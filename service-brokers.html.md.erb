@@ -1,10 +1,24 @@
-# How to Build a Service Broker
+---
+title: Service Brokers
+owner: Services
+---
 
-- [Custom Services](http://docs.pivotal.io/pivotalcf/services/index.html)
-- [Service Broker API](http://docs.pivotal.io/pivotalcf/services/api.html)
-- [Route Services](http://docs.pivotal.io/pivotalcf/services/route-services.html)
+This topic provides resources for building service brokers and routing services.
 
-## Example Service Brokers
+## <a id="resources"></a> Service Broker Resources
 
-- [Example Service Brokers](http://docs.pivotal.io/pivotalcf/services/examples.html)
-- [Example Route Services](http://docs.pivotal.io/pivotalcf/services/route-services.html#examples)
+* The [Custom Services Overview](http://docs.pivotal.io/pivotalcf/services/overview.html) topic gives a high-level description of how service brokers work in Pivotal Cloud Foundry (PCF).
+
+* [Service Broker API](http://docs.pivotal.io/pivotalcf/services/api.html) gives a more detailed explanation of PCF service brokers, and provides a full specification for the endpoints, requests, responses, and status codes that a service broker must support.
+
+* [Example Service Brokers](http://docs.pivotal.io/pivotalcf/services/examples.html) offers example brokers written in Ruby, Java, and Go.
+
+## <a id="route"></a> Route Services Resources
+
+* [Route Services](http://docs.pivotal.io/pivotalcf/services/route-services.html) explains how route services work, and what are the different architectures for using them in a Cloud Foundry deployment. 
+
+- [Example Route Services](http://docs.pivotal.io/pivotalcf/services/route-services.html#examples) gives examples of a logging route service, a rate-limiting route service, and another logging service written in Spring Boot. It also offers a tutorial on setting up the logging route service.
+
+## <a id="catalog"></a> Catalog Resources
+
+* [Catalog Metadata](https://docs.pivotal.io/pivotalcf/services/catalog-metadata.html) explains how to publish service plan information to the Services Marketplace, including the icons, display names, and links that appear in the PCF Apps Manager UI but not the plain text output of `cf marketplace`.

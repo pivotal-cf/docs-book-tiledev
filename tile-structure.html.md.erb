@@ -1,0 +1,203 @@
+---
+title: How Tiles Work
+owner: Services
+---
+
+Product tiles make it easy for cloud operators to offer new and upgraded software services to developers in a Pivotal Cloud Foundry (PCF) deployment. [Pivotal Network](https://network.pivotal.io) distributes these tiles as zipped code directories, with filename extension `.pivotal`, that contain or point to all of the software elements that perform the tile's functions.
+
+This topic explains what each functional element of a tile does and how you create or specify it as input to the [Tile Generator](./tile-generator.html) tool that creates `.pivotal` files.
+
+This topic also describes the typical [structure](#structure) of a tile directory. This is useful information for modifying generated tiles or legacy tiles that were created without the Tile Generator.
+
+## <a id='functions'></a>Tile Functions
+
+PCF service tiles perform multiple functions that streamline the use of software services on PCF, including:
+
+* Deploy a [service broker](#broker) that interfaces between the Cloud Controller, PCF's main executive component, and the service.
+
+* [Publish a catalog](#catalog) of available service plans to the **Services Marketplace**.
+
+* Define an interface for [configuring service properties](#configure) in Ops Manager.
+
+* Generate a BOSH manifest for deploying instances of the service, populating it with both user-configured and [fixed](#fixed) properties.
+
+* Run BOSH [errands](#errands): deploy errands that set PCF up to run the service when an operator first deploys the service, and delete errands that clean up when an operator deletes the service.
+
+* Define [dependencies](#dependencies) for the tile, to prevent Ops Manager from installing the service when its dependencies are missing.
+
+* Support one-click installation and [upgrading](#upgrading) from previous versions.
+
+These functions are described in more detail below.
+
+### <a id='broker'></a> Service Broker
+
+Service brokers integrate services with PCF by providing an API for the Cloud Controller to create service instances, bind them to apps, and perform other operations. The [Service Broker API v2.10](http://docs.pivotal.io/pivotalcf/services/api.html) topic specifies requirements for this API.
+
+Each service tile acts as a wrapper for a service broker. Installing the tile creates its service broker, registers it with the Cloud Controller, and [publishes](#catalog) the service plans that the broker offers.
+
+You can write a service broker in any language, and it can run anywhere, inside your PCF installation or external. See [Example Service Brokers](http://docs.pivotal.io/pivotalcf/services/examples.html) for sample code in Ruby, Java, and Go.
+
+Specify the service broker for a tile in the tile directory's `tile.yml` file, as a [package](#packages) with `type:` set to `app-broker`, `docker-app-broker`, or `external-broker`. The `external-broker` type requires a `uri` value, for the service broker location.
+
+#### <a id='catalog'></a> Catalog
+
+Service brokers include [catalog metadata](http://docs.pivotal.io/pivotalcf/services/catalog-metadata.html) that list their service plans. This information publishes to the Services Marketplace that app developers use to browse and select services.
+
+Developers on either PCF or open-source Cloud Foundry see a plain-text version of the Services Marketplace by running `cf marketplace`. But PCF also features a graphical Services Marketplace, and PCF service brokers support this marketplace with additional catalog metadata fields for display names, logo images, and links to more information and documentation.
+
+Define this catalog metadata for your service by writing your service broker to return the API calls listed in the [Catalog Metadata](http://docs.pivotal.io/pivotalcf/services/catalog-metadata.html) topic.
+
+### <a id='configure'></a> Configuration
+
+In the Ops Manager Installation Dashboard, service tiles present a form-based interface that cloud operators use to configure the service. These configured properties become part of the BOSH manifest that PCF uses to deploy instances of the service.
+
+You define this configuration interface in the `forms:` section of the `tile.yml` configuration file that you pass to the Tile Generator. Each named form element defines a configuration pane accessible under the tile's **Settings** tab.
+
+A left-side menu lists all configuration panes and indicates with check marks which ones have been configured. The menu lists service-specific panes, defined by the tile developer, between system-level panes like **Assign AZs and Networks** and **Resource Config** that all PCF products and services use.
+
+![Form Layout](img/form-layout.png)
+
+Each form, or configuration pane, has `label` for the menu text, a `description` to appear up top, and `property_inputs` that define the configuration fields themselves. Construct your `forms` by following the [Product Template Reference](http://docs.pivotal.io/partners/product-template-reference.html) topic and the [Property Blueprint Reference](http://docs.pivotal.io/partners/tiles.html#property-ref) section of the About PCF Tiles topic.
+
+For each property, you can combine specifications for `name`, `type`, `default`, `configurable`, `options`, and `constraints`, under both the [Form Properties](http://docs.pivotal.io/partners/product-template-reference.html#form-properties] and [Property Blueprints](http://docs.pivotal.io/partners/product-template-reference.html#property-blueprints) sections of the topic.
+
+<p class="note"><strong>Note</strong>: In the tile installer <code>.yml</code> that Tile Generator creates, form properties appear in two locations: a <code>form_types</code> section that defines the contents and layout of the configuration interface, and a <code>property_blueprints</code> section that defines the corresponding field value types and constraints.</p>
+
+#### <a id='appearance'></a> Tile Appearance
+
+In the Ops Manager Installation Dashboard, your service tile bears an identifying label, description, and logo icon. Specify these at the top of your `tile.yml` configuration file as `label`, `description`, and `icon_file`. The value of `icon_file` should be the name of a 128×128 pixel PNG image.
+
+### <a id='fixed'></a> Fixed properties
+
+A tile also writes fixed, unconfigurable properties into the BOSH manifest that it creates. You specify these properties in your `tile.yml` configuration file using [Double-Paren Expressions](http://docs.pivotal.io/partners/tiles.html#expressions) format.
+
+#### <a id='credentials'></a> Credentials
+
+Include credentials to pass into a BOSH manifest as `salted_credentials` in your `tile.yml` file. But you need not include credentials that already exist in other tiles, such as Elastic Runtime. BOSH automatically generates these for any packages that require them.
+
+### <a id='errands'></a> Errands
+
+Tile Generator automatically generates `deploy` and `delete` lifecycle errands for [packages](#packages) that deploy to PCF. These errand scripts deploy the service to PCF and publish its plans in the Services Marketplace, and remove the service from PCF and the marketplace.
+
+You can also define additional `post_deploy` and `pre_delete` errand scripts in `tile.yml` that prepare PCF to host the service or clean up before deleting it.
+
+For `bosh-release` and `docker-bosh` packages, which run jobs directly on BOSH rather than on the PCF layer, you need to include `post_deploy` and `pre_delete` errands with their package definitions in `tile.yml`. Label them as lifecycle errands using `lifecycle: errand` and either `post_deploy: true` or `pre_delete: true`.
+
+Tile Generator writes the `bosh-release` errands into the main BOSH release that it creates for the service, and adds `docker-bosh` errands into a separate Docker BOSH release that the main release depends on.
+
+### <a id='dependencies'></a> Dependencies
+
+Include product dependencies under `requires_product_versions` at the top of your `tile.yml` file.
+
+### <a id='update'></a> Update Rules
+
+Tile Generator automatically generates the JavaScript migration file that enables one-click updates from Ops Manager. This file describes how to change existing tile property names and values in order to match the new version of the tile.
+
+A mature tile may contain several of these `.js` files, from previous versions and the current one, to enable tile updates to automatically chain together in sequence.
+
+You can add custom update code in the `tile.yml` Tile Generator configuration file, following the properties documented in the [Migrating Tile Versions](http://docs.pivotal.io/partners/migrations.html#import) topic.
+
+## <a id='structure'></a>Tile File Format and Structure
+
+Tile directories contain the following components, which include each other as shown:
+
+* BOSH release
+    - Service source code
+    - Service broker
+    - Language-specific buildpack(s)
+    - Errands (service start and stop scripts)
+    - BOSH manifest (deployment properties for service)
+        * Packages
+        * Dependencies
+* Tile manifest template (adds properties into BOSH manifest)
+    - Configuration forms and properties
+    - Catalog metadata (for Services Marketplace)
+* Migrations
+
+The three required top-level subdirectories in a `.pivotal` tile directory are:
+
+* `metadata` - high-level information for configuring and publishing your service.
+* `migrations` - rules that govern tile upgrades.
+* `releases` - the BOSH releases that deploy your service.
+
+The tile manifest template defines these subdirectory locations, so they can reside anywhere in the directory, but the typical structure looks like this:
+
+```
+.
+├── example-product
+│   ├── metadata
+│   │   └── example-product.yml
+│   ├── migrations
+│   │   └── v1
+│   │       ├── 201512301616_convert_14_transmogrifier_rules.js
+│   │       ├── 201512301631_convert_15_16_transmogrifier_rules.js
+│   │       └── 201611060205_example_migration.js
+│   └── releases
+│       └── example-release-18.tgz
+```
+
+### <a id='dot-pivotal'></a>.pivotal File Format
+
+Within the tile directory, the BOSH release exists as a gzipped tarfile.
+
+The entire tile directory is also a gzipped tarfile, with the `.tgz` extension renamed to `.pivotal`.
+
+You can use any zip utility to create a `.pivotal` file. Ensure that the top-level subfolders as seen above in the `example-product` folder remain.
+
+#### Example workflow
+
+<pre class='terminal'>
+$ cd example-product
+$ zip -r example-product.pivotal metadata/ migrations/ releases/
+$ unzip -l example-product.pivotal
+Archive:  example-product.pivotal
+  Length     Date   Time    Name
+ --------    ----   ----    ----
+        0  08-09-16 16:10   metadata/
+    89458  08-09-16 16:10   metadata/example-product.yml
+        0  07-08-16 09:32   migrations/
+        0  07-08-16 09:32   migrations/v1/
+      423  07-08-16 09:32   migrations/v1/201512301616_convert_14_transmogrifier_rules.js
+     1228  07-08-16 09:32   migrations/v1/201512301631_convert_15_16_transmogrifier_rules.js
+      582  07-08-16 09:32   migrations/v1/201611060205_example_migration.js
+        0  08-09-16 16:11   releases/
+        0  07-12-16 17:19   releases/example-release-18.tgz
+</pre>
+
+### <a id='repo'></a>Github Repository Structure
+
+Tile developers typically develop and archive their code on Github, and their Concourse build pipeline pulls from Github to perform continuous integration.
+
+Tile Generator does not dictate any directory structure for a Github repository, but by convention your tile repo might look like this:
+
+```
+/tile.yml
+/src        # source code for all components deployed by the tile
+/resources  # other resources, such as icon images and imported docker images or bosh releases
+/release    # generated bosh release(s)
+/product    # generated tile
+```
+
+### <a id='packages'></a>Packages
+
+PCF services typically require multiple component job processes to run concurrently, such as a main app, a helper app, and a service broker. They also require buildpacks that run as one-time compilation tasks. Services also require components such as external brokers or storage, which do not run as jobs, but nevertheless need to remain available.
+
+The `tile yml` file that you pass to Tile Generator defines these service components it its `packages:` section. Each package has a name and a package type. The list of possible package types to pass to Tile Generator is in the [Tile Generator code](https://github.com/cf-platform-eng/tile-generator/blob/master/tile_generator/config.py#L59-L70). It includes:
+
+  * app - `cf push`ed to PCF
+  * docker-app - `cf push`ed to PCF (image will not be embedded so requires docker registry access)
+  * app-broker - `cf push`ed to PCF and registered as a broker
+  * docker-app-broker - `cf push`ed to PCF and registered as a broker (image is not embedded, so requires Docker registry access)
+  * external-broker - Registered as a broker
+  * buildpack - installed with `cf create-buildpack`; runs as a one-time task rather than a long-running process
+  * docker-bosh - describes a collection of Docker images that embed in the tile and run on BOSH-managed VMs, not PCF
+  * bosh-release - a pre-existing BOSH release wrapped in a tile, to run on BOSH-managed VMs, not PCF; requires you to describe all jobs (long-running processes and errands)
+
+#### <a id='process'></a>Processes and VM Resources
+
+Each `app` or `broker` type package runs processes on its own VM, either deployed to PCF using `cf push`, or run on the BOSH layer underneath. These packages typically contain a single process, but can include more than one that share a VM.
+
+The service tile's **Resource Config** pane lets the operator configure resources individually for each package. This pane also lets operators provision resources for VMs that handle one-time tasks, with the `acceptance-tests`, `deploy-all`, and `delete-all` rows.
+
+![Service Tile Resource Config](img/service-resource-config.png)
+

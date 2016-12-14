@@ -1,16 +1,34 @@
-# Tile Documentation Template
+---
+title: Documentation
+owner: Services
+---
 
-This document offers a template for preparing documentation for partner services that appear on PivNet. The documentation will be posted on the front page of [http://docs.pivotal.io](http://docs.pivotal.io)
-under “Partner Services for Pivotal Cloud Foundry.”
+This topic explains how to document your service tile for Pivotal Cloud Foundry (PCF).
 
-While the specifics will vary depending on the product, we have provided a basic blueprint below. At minimum, documentation should include #1 (Overview) and #2 (Installing/Configuring).
+## <a id="overview"></a> Overview
+
+When a PCF service tile launches on [PivNet](http://network.pivotal.io), Pivotal publishes corresponding documentation at [http://docs.pivotal.io](http://docs.pivotal.io) under **Partner Services for Pivotal Cloud Foundry**.
+
+This documentation is formatted in [Markdown](https://daringfireball.net/projects/markdown/], stores in a Github repo that Pivotal creates, and is published with the bookbinder](https://github.com/pivotal-cf/bookbinder) platform.
+
+## <a id="template"></a> Partner Documentation Template
+
+The [PCF Partner Documentation Template](https://github.com/pivotal-cf/docs-partners-template) is a Github repository that you can clone to create documentation for your service tile that follows Pivotal's format and works with its documentation publishing platform, [bookbinder](https://github.com/pivotal-cf/bookbinder).
+
+Documentation content resides in the `/docs-content` folder of the repository, as skeleton pages with embedded prompts for content that you should fill in, approximately following the [content descriptions](#content) below.
+
+See the repo [README.md](https://github.com/pivotal-cf/docs-partners-template/blob/master/README.md) for how to use the template with bookbinder to develop your documentation.
+
+## <a id="content"></a> Documentation Content
+
+While the specifics of your documentation will vary depending on the product, we have provided a basic blueprint below. At minimum, documentation should include #1 (Overview) and #2 (Installing/Configuring).
 
 For a good example of a partner service doc, see the
 [JFrog Artifactory docs](http://docs.pivotal.io/jfrog/index.html).
 
 If you have questions or want to collaborate on drafting the documentation, feel free to hop on our Slack channel #pcf-docs. We’re always happy to help!
 
-## Overview
+### <a id="index"></a> Index/Landing Page
 
 General overview of Partner Product. What does it do? What are its features?
 
@@ -20,7 +38,7 @@ Key Features
 - Feature two
 - Feature three
 
-## Partner Service Broker
+#### Partner Service Broker
 
 A Service Broker allows Cloud Foundry applications to bind to services and consume the services easily from App Manager UI or command line. The Partner Service Broker will enable you to use one or more Partner accounts and is deployed as a Java Application on Cloud Foundry. The Broker exposes the Partner service on the Cloud Foundry Marketplace and allows users to directly create a service instance and bind it to their applications either from the Pivotal Apps Manager Console or from the command line. 
 
@@ -28,7 +46,7 @@ The PCF (Pivotal Cloud Foundry) Tile for Partner installs the Partner Service Br
 
 If trial license available => Customers interested in using Partner can obtain a 60 day free trial license from edit link here.
 
-## Product Snapshot
+#### Product Snapshot
 
 Current Partner Tile for Pivotal Cloud Foundry Details:
 
@@ -38,25 +56,25 @@ Current Partner Tile for Pivotal Cloud Foundry Details:
 - Compatible Ops Manager Version(s): 1.5.x, 1.6.x
 - Compatible Elastic Runtime Version(s): 1.4.x, 1.5.x, 1.6.x
 
-## Requirements
+#### Requirements
 
 (or Prerequisites, Packaging Dependencies for Offline Buildpacks, etc.)
 
 Provide any general or specific requirements here. A general requirement might be something like, “An AppDynamics account.” A specific requirement might be something like, “Packaging Dependencies for Offline Buildpacks.”
 
-## Limitations
+#### Limitations
 
 Any known limitations.
 
-## Feedback
+#### Feedback
 
 Please provide any bugs, feature requests, or questions to the Pivotal Cloud Foundry Feedback list.
 
-## Installing / Configuring the Tile
+### <a id="install"></a> Installing / Configuring the Tile
 
 This topic provides instructions for how to install and configure the tile. Typically this includes procedures for how to download the tile from PivNet, install it on Ops Manager, configure the tile, and do any required third-party configuration. Screenshots should be provided where necessary. Consult the following format:
 
-### Install via Pivotal Ops Manager
+#### Install via Pivotal Ops Manager
  
 - Download the product file from Pivotal Network (edit link).
 - Upload the product file to your Ops Manager installation.
@@ -64,11 +82,11 @@ This topic provides instructions for how to install and configure the tile. Typi
 - Click the newly added tile to review any configurable options.
 - Click Apply Changes to install the service.
 
-### Upgrading to the Latest Version
+#### Upgrading to the Latest Version
 
 If there are any specific instructions for upgrading the tile, you can include those here. If the procedures are complicated, create a new Upgrading topic.
 
-### Configuring the Partner Tile 
+#### Configuring the Partner Tile 
 
 (add snapshots for each step when possible or add details as required)
 
@@ -86,21 +104,21 @@ On completion of Partner Tile install, check Services Marketplace in Apps Manage
 - Bind the Partner Service to an Application
 - Check the service or dashboard for the partner for more data…
 
-## Other Configurations / Third-Party Configurations
+#### Other Configurations / Third-Party Configurations
 
 Provide information for specific configurations like configuring for HTTP proxy, or doing any necessary configurations on a third-party service portal.
 
-## Using the Tile
+### <a id="using"></a> Using the Tile
 
 This topic provides instructions for how to use the tile. Typically this includes 
 procedures for how to perform the different functions offered by the service. Screenshots should be provided where necessary. You can also include information about Architecture here if necessary.
 
-## Troubleshooting
+### <a id="troubleshooting"></a> Troubleshooting
 
 This topic provides troubleshooting information for known errors, following the Symptom/Explanation format used here:
 [http://docs.pivotal.io/p-identity/okta/troubleshooting.html](http://docs.pivotal.io/p-identity/okta/troubleshooting.html)
 
-## Release Notes
+### <a id="release-notes"></a> Release Notes
 
 Include the release notes as the final topic, following the format below. For reference, see the
 [JFrog Artifactory Release Notes](http://docs.pivotal.io/jfrog/release.html).

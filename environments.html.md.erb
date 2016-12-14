@@ -1,0 +1,61 @@
+---
+title: Development Environments
+owner: Services
+---
+
+This topic explains how to set up tile development environments, from simple standalone tools to a full PCF development environment. As you progress through the [stages](./stages.html) of tile development, you will likely also progress through these environments.
+
+## <a id="pcfdev"></a> PCF Dev and BOSH Lite
+
+Pivotal provides a lightweight (vagrant packaged) instance of PCF with some
+basic services as a free product named PCF Dev. This is a great environment
+to develop and test everything that runs in the Cloud Foundry Elastic Runtime.
+
+Either of these environments allow you to develop the first three levels of service for Pivotal Cloud Foundry (PCF): a [User-Provided Service](./roadmap.html), a [Brokered Service](./brokered.html), and a [Managed Service](./managed.html).
+
+If your integration includes managed services, you will also need an instance
+of bosh that can manage virtual machines and bosh releases for you.
+[bosh-lite](https://github.com/cloudfoundry/bosh-lite) works well for that
+purpose.
+
+Between these two components, you will have everything you need to develop
+tiles, except for Pivotal's Ops Manager. But if you followed the recommended
+[staged development approach](development.html) you will not need an actual full
+PCF environment until the later phases of your development.
+
+## Setting up bosh-lite
+
+- [Install bosh-lite](https://github.com/cloudfoundry/bosh-lite)
+
+	<p class="note"><strong>Note</strong>: For this type of development environment, you only need bosh-lite
+	itself to deploy managed service releases. You do **not** need to follow the
+	instructions to Deploy Cloud Foundry in bosh-lite, as Cloud Foundry is
+	provided by the PCF Dev installation above.</p>	
+
+## Setting up PCF Dev
+
+- [Try PCF on your Local Workstation](http://pivotal.io/platform/pcf-tutorials/getting-started-with-pivotal-cloud-foundry-dev/introduction)
+
+
+## <a id="pws">PWS or Other Supported CF Infrastructure</a>
+
+- [Set Up Your PWS Account and Download the cf CLI](http://docs.run.pivotal.io/starting/index.html) explains how to get started with Pivotal Web Services (PWS), a highly-available, production-scale PCF environment hosted by Pivotal.
+
+## <a id="pcf">PCF with Ops Manager</a>
+
+<a name="setup"></a> 
+
+Partners who participate in our program have access to a number of shared
+PCF environments that are operated and managed by Pivotal. If you are not
+(yet) in our program, need a dedicated environment, or want to be able to
+work offline, you can set up your own environment. Often, a
+[developer environment](./environments.html#pcfdev) is sufficient for the early
+phases of an integration effort. But eventually, you will need access to
+a complete environment that includes Pivotal's Ops Manager on one of the
+supported infrastructures:
+
+- [Installing Pivotal Cloud Foundry](http://docs.pivotal.io/pivotalcf/installing/index.html)
+<a name="operations"></a> 
+- [Operating Pivotal Cloud Foundry](http://docs.pivotal.io/pivotalcf/opsguide/index.html)
+<a name="upgrade"></a> 
+- [Upgrading Pivotal Cloud Foundry](http://docs.pivotal.io/pivotalcf/customizing/upgrading-pcf.html)

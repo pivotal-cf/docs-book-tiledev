@@ -1,9 +1,14 @@
-# Tile Generator
+---
+title: Tile Generator
+owner: Services
+---
 
-The Tile Generator is a tool to help you develop, package, test,
-and deploy services and other add-ons to Pivotal Cloud Foundry. Tiles are the
-installation package format used by Pivotal's Ops Manager to deploy these
-components to both public and private cloud deployments. The tile generator
+This topic describes the Tile Generator tool, which helps tile authors develop, package, test,and deploy services and other add-ons to Pivotal Cloud Foundry (PCF).
+
+## <a id="overview"></a> Overview
+
+Tiles are the
+installation package format used by Pivotal's Ops Manager to deploy services and other add-ons to both public and private cloud deployments. The tile generator
 uses templates and patterns that are based on years of experience integrating
 third-party services into Cloud Foundry, and eliminates much of the need for
 you to have intimate knowledge of all the tools involved.
@@ -25,7 +30,7 @@ Pivotal Cloud Foundry:
 - A **Concourse pipeline configuration** to enable Continuous Integration of
   your software with the latest versions of Pivotal Cloud Foundry
 
-Use the tile generator in combination with the [pcf utility](pcf-command.md)
+Use the tile generator in combination with the [pcf utility](pcf-command.html)
 to enable rapid deploy and test cycles of your software.
 
 The current release of the tile generator supports tiles that have any
@@ -36,12 +41,20 @@ combination of the following package types:
 - Cloud Foundry Service Brokers (both inside and outside the Elastic Runtime)
 - Docker images (both inside and outside the Elastic Runtime)
 
-## Screencast
+### <a id="legacy"></a>Legacy Tiles and OSS-Compatible Service Brokers
+
+Many tile authors, in both Pivotal-internal teams and at external partner companies, built their PCF tiles before the Tile Generator existed.
+
+Many other tile authors serve two markets with their service integrations, offering both a Cloud Foundry-compatible service broker to open-source users and corresponding PCF tile for PCF users. They wish to continue serving both sets of users.
+
+All of these tile authors can now use Tile Generator to simplify and speed up their development. The Tile Generator tool can generate an OSS-compatible BOSH release service broker BOSH release in addition to a PivNet-ready PCF tile.
+
+## <a id="screencast"></a> Screencast
 
 For a 7-minute introduction into what tile generator is and does, see
 [this screencast](https://www.youtube.com/watch?v=_WeJbqNJWzQ).
 
-## How to Use
+## <a id="how-to"></a> How to Use
 
 1. Install the tile-generator python package.
    **Note**: tile-generator requires **Python 2**, and will *not* work with Python 3.
@@ -95,7 +108,7 @@ image in your Dockerfile:
 FROM cfplatformeng/tile-generator
 ```
 
-## Building the Sample
+## <a id="sample"></a> Build the Sample
 
 The repository includes a sample tile that exercises most of the features of the
 tile generator (it is used by the CI pipeline to verify that things work correctly).
@@ -107,15 +120,14 @@ src/build.sh
 tile build
 ```
 
-!!! note "Note:"
-    The sample tile includes a Python application that is re-used in several packages,
+<p class="note"><strong>Note</strong>: The sample tile includes a Python application that is re-used in several packages,
     sometimes as an app, sometimes as a service broker. One of the deployments (app3)
     uses the sample application inside a docker image that is currently only modified
     by the CI pipeline. If you modify the sample app, you will have to build your own
     docker image using the provided `Dockerfile` and change the image name in
-    `sample/tile.yml` to include the modified code in app3.
+    `sample/tile.yml` to include the modified code in app3.</p>
 
-## Defining your Tile
+## <a id="define"></a> Define your Tile in `tile.yml`
 
 All required configuration for your tile is in the file called `tile.yml`.
 `tile init` will create an initial version for you that can serve as a template.
@@ -133,12 +145,12 @@ the Ops Manager GUI. By convention, any resources used by the tile should be
 placed in the `resources` sub-directory of your repo, although this is not
 mandatory. The `label` text will appear on the tile under your icon.
 
-### Packages
+### <a id="packages"></a> Packages
 
 Next you can specify the packages to be included in your tile. The format of
 each package entry depends on the type of package you are adding.
 
-#### Pushed Applications
+#### <a id="pushed"></a> Pushed Applications
 
 Applications (including service brokers) that are being `cf push`ed into the
 Elastic Runtime use the following format:
@@ -183,7 +195,7 @@ Currently, the only valid options are `none` and `port`.
 `configurable_persistence: true` results in the user being able to select a backing
 service for data persistence. If there is a specific broker you want to use, you can
 use the `auto-services` feature described below. If you want to bind to an already
-existing service instance, use the `services` proeprty of the `manifest` instead.
+existing service instance, use the `services` property of the `manifest` instead.
 
 `needs_cf_credentials` causes the application to receive two additional environment
 variables named `CF_ADMIN_USER` and `CF_ADMIN_PASSWORD` with the admin credentials
@@ -192,7 +204,7 @@ services to interact with the Cloud Controller.
 
 `auto_services` is described in more detail below.
 
-#### Service Brokers
+#### <a id="brokers"></a> Service Brokers
 
 Most modern service brokers are pushed into the Elastic Runtime as normal
 CF applications. For these types of brokers, use the Pushed Application format
@@ -212,11 +224,10 @@ of just `app` or `docker-app`:
   enable_global_access_to_plans: true  # optional
 ```
 
-!!! note "Note:"
-    Unless you specify the `enable_global_access_to_plans: true` option, your
+  <p class="note"><strong>Note</strong>: Unless you specify the `enable_global_access_to_plans: true` option, your
     broker's services will not appear in the user's marketplaces.
     Operators will have to use the `cf enable-service-access` command to allow
-    specific users, orgs, and spaces to access your services.
+    specific users, orgs, and spaces to access your services.</p>
 
 Your broker will be automatically registered with the Cloud Controller. The
 Cloud Controller will invoke your broker's endpoints, and it will use basic
@@ -275,7 +286,8 @@ For an external service broker, use:
   internal_service_names: 'service1,service2'
 ```
 
-#### Bosh Releases
+#### <a id="bosh"></a> BOSH Releases
+
 You can include [BOSH releases](http://bosh.io/docs/release.html) in
 your tile with the `bosh-release` package type. For example, here is a
 package definition to include a Redis BOSH release:
@@ -347,9 +359,7 @@ package definition to include a Redis BOSH release:
         slave: (( .redis_test_slave_z1.first_ip ))
 ```
 
-
-
-#### Buildpacks
+#### <a id="buildpacks"></a> Buildpacks
 
 ```
 - name: my-buildpack
@@ -358,7 +368,7 @@ package definition to include a Redis BOSH release:
   buildpack_order: 99     # optional, 99 means end of the list
 ```
 
-#### Docker Images
+#### <a id="docker"></a> Docker Images
 
 Applications packages as docker images can be deployed inside or outside the Elastic
 Runtime. To push a docker image as a CF application, use the *Pushed Application*
@@ -441,7 +451,7 @@ If a docker image cannot be downloaded by BOSH dynamically, its better to provid
       - "custom_variable_name=((.properties.customer_name.value))"
 ```
 
-### Custom Forms and Properties
+### <a id="custom-forms"></a> Custom Forms and Properties
 
 You can pass custom properties to all applications deployed by your tile by adding
 the to the properties section of `tile.yml`:
@@ -540,11 +550,10 @@ package.
 Service instances provisioned this way survive updates, but will be deleted
 when the tile is uninstalled.
 
-!!! note "Note:"
-    The name is the name of the provided *service, not the broker*.
+<p class="note"><strong>Note</strong>:  The name is the name of the provided *service, not the broker*.
     In many cases these are not the same, and a single broker may even offer
     multiple services. Use `cf service-access` to see the services and plans
-    offered by installed service brokers.
+    offered by installed service brokers.</p>
 
 If you do not specify a plan, the tile generator will use the first plan
 listed for the service in the broker catalog. It is a good idea to always
@@ -591,7 +600,7 @@ org_quota: 4096
 space: test-space
 ```
 
-### Security
+### <a id="security"></a> Security
 
 If your cf packages need outbound access (including access to other packages
 within the same tile), you will need to apply an appropriate security group.
@@ -601,7 +610,7 @@ The following option will remove all constraints on outbound traffic:
 apply_open_security_group: true
 ```
 
-### Stemcells
+### <a id="stemcells"></a> Stemcells
 
 The tile generator will default to a recent stemcell supported by Ops Manager.
 In most cases the default will be fine, as the stemcell is only used to execute
@@ -615,7 +624,7 @@ stemcell_criteria:
   version: '3146.5'     #NOTE: You must quote the version to force the type to be string
 ```
 
-### Custom Errands
+### <a id="custom-errands"></a> Custom Errands
 
 Tile generator supplies standard errands to deploy and delete CF type packages. You can
 replace or augment those errands by specifying errand shell commands in your tile.yml
@@ -650,7 +659,7 @@ package in which you include them. If you want to keep the standard commands, bu
 add additional commands to execute before or after the standard errand, use
 `pre_deploy`, `post_deploy`, `pre_delete`, and/or `post_delete` instead.
 
-## Versioning
+## <a id="versioning"></a> Versioning
 
 The tile generator uses [semver versioning](http://semver.org/). By default, `tile build` will
 generate the next patch release. Major and minor releases can be generated
@@ -671,8 +680,7 @@ tile build <new-version>
 
 The new tile will then support upgrades from `old-version`.
 
-<a name="upgrades"></a> 
-## Upgrades
+## <a name="upgrades"></a> Upgrades
 
 By default, tile generator produces all code necessary to do a blue/green,
 zero-downtime deployment of all tile components when installing a newer version
@@ -711,14 +719,14 @@ created tile tibco-bwce-0.0.2.pivotal
 This tile includes a single large buildpack, and takes less than 15 seconds
 to build including the CF CLI download and the BOSH release generation.
 
-## Supported Commands
+## <a id="commands"></a> Supported Commands
 
 ```bash
 tile init [<tile-name>]
 tile build [patch|minor|major|<version>]
 ```
 
-## Credits
+## <a id="credits"></a> Credits
 
 - [sparameswaran](https://github.com/sparameswaran) supplied most of the actual template content, originally built as part of [cf-platform-eng/bosh-generic-sb-release](https://github.com/cf-platform-eng/bosh-generic-sb-release.git)
 - [frodenas](https://github.com/frodenas) contributed most of the docker content through [cloudfoundry-community/docker-boshrelease](https://github.com/cloudfoundry-community/docker-boshrelease.git)

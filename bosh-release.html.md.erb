@@ -1,0 +1,61 @@
+---
+title: BOSH Releases
+owner: Services
+---
+
+This topic provides resources for creating a BOSH release that integrates a software service with Pivotal Cloud Foundry (PCF) at the managed service level.
+
+## <a id="overview"></a> Overview
+
+A BOSH release is a directory that contains the source code for your service along with everything else that BOSH needs to deploy it reproducibly to cloud VMs running a specified operating system (stemcell). These contents include but are not limited to buildpacks, start up scripts, binary artifacts, and a BOSH manifest containing configuration and deployment properties.
+
+The BOSH manifest specifies the following major components:
+
+- **Packages** that can be installed on PCF stemcells to create virtual machine images
+
+- **Jobs** that describe how to install, run, and remove your software
+
+- A **Monitor** script, that describes how to monitor the health of your
+service components and stop or restart them
+
+## <a id="resources"></a> BOSH Resources
+
+These topics give more details on BOSH and BOSH releases:
+
+- [BOSH Documentation](http://bosh.io/docs) is the top-level contents page for BOSH documentation.
+
+- [BOSH Problem Statement](http://bosh.io/docs/problems.html) explains what BOSH does.
+
+- [BOSH Basic Workflow](http://bosh.io/docs/basic-workflow.html) lists the high-level steps for creating a BOSH deployment.
+
+## <a id="create"></a>Creating a BOSH Release
+
+These topics explain how to create a BOSH release:
+
+- [Creating a Release](http://bosh.io/docs/create-release.html)
+
+- [Defining your Jobs](http://bosh.io/docs/jobs.html)
+
+- [Defining your VMs](http://bosh.io/docs/vm-struct.html)
+
+- [Monitoring the Health of your Service](http://bosh.io/docs/monitoring.html)
+
+## <a id="docker"></a>Shortcut: Start with Docker Images
+
+If you have already packaged your service as Docker images, you can emulate
+a managed service deployment using the [Tile Generator](tile-generator.html)'s
+support for `docker-bosh` packages. This feature lets you deploy pre-existing
+docker images into bash managed virtual machines on the PCF infrastructure.
+
+While this is a great, easy way to deploy your service on PCF, we don't
+recommend this as a long-term, production-ready solution. There is really no
+benefit of running your service in containers on the VMs, and it does have
+a number of operational ("day 2") drawbacks:
+
+- You introduce more software (docker) which needs to be kept up-to-date, and
+has the potential for bugs, downtime, and security vulnerabilities.
+
+- You can no longer take advantage of the patching capabilities of PCF for
+stemcells and application dependencies, like frameworks and libraries. Instead,
+you become directly responsible for managing all software that is in the docker
+images you deploy.

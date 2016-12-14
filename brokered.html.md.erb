@@ -1,0 +1,39 @@
+---
+title: Brokered Service
+owner: Services
+---
+
+The topics in this subsection explain how to integrate your software service with Pivotal Cloud Foundry (PCF) to create a brokered service and service tile for PCF.
+
+## <a id="overview"></a> Overview
+
+You can achieve the first real improvement in your PCF customers user experience by creating a [Service Broker](service-brokers.html) for your service.
+
+A brokered service runs external to PCF, but it has a tile on [Pivotal Network](http://network.pivotal.io) (PivNet). Operators install, configure, and upgrade the tile through the Ops Manager Installation Dashboard.
+
+The service broker eliminates the need for your customers to know the URLs and
+credentials for your services; they are managed automatically by the
+broker.
+
+Building a broker for a (still) externally deployed service is generally
+a good way to publish a first tile that adds real value for customers who have both your software and PCF.
+
+## <a id="create"></a> Create a Brokered Service
+
+* A brokered service requires a service broker, which publishes an API to the Cloud Controller.  
+[Service Brokers](./service-brokers.html) explains how to create one. 
+
+* [Route Services](./service-brokers.html#route) explains how to create a route service, for use in the routing layer of PCF rather than by hosted PCF apps.
+
+* [Catalog](./service-brokers.html#catalog) explains how to design the part of your service broker API that publishes service plan information to the Services Marketplace.
+
+* You can write your service broker in the language of your choice.  
+[Buildpacks](./buildpacks.html) explains how to create a language-specific buildpack that compiles and packages your service broker to run on PCF.
+
+* A PCF buildpack lets you inject embedded agent code into application containers, such as for application performance monitoring (APM) or client-side routing.  
+[Embedded Agents](./embedded-agents.html) explains how to do this.
+
+* Once you have the individual components for your brokered service integration, you can work through the [development steps](./development.html) to create your tile.
+
+At any level of integration, Pivotal recommends and supports using [Concourse](./concourse.html) for continuous integration during development.
+
