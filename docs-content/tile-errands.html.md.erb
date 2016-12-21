@@ -9,7 +9,7 @@ Products can have two kinds of lifecycle errands. Post-install errands run after
 
 Under **Pending Changes**, the Ops Manager Installation Dashboard displays a list of both post-install and pre-delete errands.
 
-<%= image_tag("http://docs.pivotal.io/partners/images/pending_changes.png") %>
+![Pending Changes](img/pending_changes.png)
 
  Operators can deselect any errands they do not want to run before clicking **Apply Changes**.
 
@@ -19,7 +19,7 @@ Post-install errands run after a product installs, but before Ops Manager makes 
 
 Most post-install errands run by default, but an operator can prevent a post-install errand from running by deselecting its checkbox under **Pending Changes** in the Ops Manager Installation Dashboard, or on the product tile's **Settings** tab, before installing the product.
 
-<%= image_tag("http://docs.pivotal.io/partners/images/example-errand.png") %>
+![Example Errand](img/example-errand.png)
 
 For example, Pivotal MySQL has a **Broker Registrar** post-install errand that the Elastic Runtime tile uses to register its service broker with the Cloud Controller and publish its service plans.
 
