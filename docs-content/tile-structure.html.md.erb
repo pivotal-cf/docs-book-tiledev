@@ -57,7 +57,7 @@ A left-side menu lists all configuration panes and indicates with check marks wh
 
 ![Form Layout](img/form-layout.png)
 
-Each form, or configuration pane, has `label` for the menu text, a `description` to appear up top, and `property_inputs` that define the configuration fields themselves. Construct your `forms` by following the [Product Template Reference](./product-template-reference.html) topic and the [Property Blueprint Reference](./tiles.html#property-ref) section of the About PCF Tiles topic.
+Each form, or configuration pane, has `label` for the menu text, a `description` to appear up top, and `property_inputs` that define the configuration fields themselves. Construct your `forms` by following the [Product Template Reference](./product-template-reference.html) topic and the [Property Blueprint Reference](./property-reference.html#property-ref) section of the About PCF Tiles topic.
 
 For each property, you can combine specifications for `name`, `type`, `default`, `configurable`, `options`, and `constraints`, under both the [Form Properties](./product-template-reference.html#form-properties] and [Property Blueprints](./product-template-reference.html#property-blueprints) sections of the topic.
 
@@ -69,7 +69,7 @@ In the Ops Manager Installation Dashboard, your service tile bears an identifyin
 
 ### <a id='fixed'></a> Fixed properties
 
-A tile also writes fixed, unconfigurable properties into the BOSH manifest that it creates. You specify these properties in your `tile.yml` configuration file using [Double-Paren Expressions](./tiles.html#expressions) format.
+A tile also writes fixed, unconfigurable properties into the BOSH manifest that it creates. You specify these properties in your `tile.yml` configuration file using [Double-Paren Expressions](./property-reference.html#expressions) format.
 
 #### <a id='credentials'></a> Credentials
 

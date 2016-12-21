@@ -23,7 +23,7 @@ For a high-level explanation, see [Changes in Ops Manager v1.8.0 for Tile Author
 
 * The second issue is an inconsistency between Ops Manager 1.7 and 1.8 in how they parse one particular syntax for selectors.
 It's unlikely that this inconsistency will affect you, but you should double-check your tile for this usage.
-For general information about how 1.8 tiles use the `selector` property, see [Selector](./tiles.html#selector) in the _About PCF Tiles_ topic. For a full rundown, with code examples, of how Ops Manager 1.7 and 1.8 interpret specific selector syntax differently, refer to the [Selector Inconsistencies](#selectors) section below.
+For general information about how 1.8 tiles use the `selector` property, see [Selector](./property-reference.html#selector) in the _About PCF Tiles_ topic. For a full rundown, with code examples, of how Ops Manager 1.7 and 1.8 interpret specific selector syntax differently, refer to the [Selector Inconsistencies](#selectors) section below.
 
 * Lastly, to make sure your tile takes advantage of all the benefits of PCF v1.8, change its `metadata_version` property to `v1.8`.
 Changing the version number can unlock new properties and also break properties that changed from previous versions.
@@ -32,7 +32,7 @@ For more information, see the [Product Template Reference](./product-template-re
 For general information about the PCF v1.8 release, see the [Pivotal Cloud Foundry Release Notes](http://docs-pcf-staging.cfapps.io/pivotalcf/1-8/pcf-release-notes/).
 
 As part of our latest release process, we reviewed our documentation for tile authors and made some changes.
-With the v1.8 release, we now have an [About PCF Tiles](./tiles.html) topic that we'll keep up-to-date with the changes in Ops Manager that affect tile authors.
+With the v1.8 release, we now have an [About PCF Tiles](./property-reference.html) topic that we'll keep up-to-date with the changes in Ops Manager that affect tile authors.
 In addition, we now let partners access our documentation staging area so that they can preview changes directly and provide feedback.
 You can see the details, including some code snippet examples on the [Changes in Ops Manager v1.8.0 for Tile Authors](http://docs-pcf-staging.cfapps.io/pivotalcf/1-8/pcf-release-notes/p1-v1.8/opsmanager_rn_1_8.html#tileauthorchanges) section of the Ops Manager Release notes.
 
@@ -72,7 +72,7 @@ Here are three configurations to test with your service:
 
 PCF tiles are configured and deployed by Ops Manager. Tile authors build BOSH releases, Ops Manager metadata, and upgrade migrations.
 
-You can read more about how to build a PCF tile in the [About PCF Tiles](./tiles.html) topic.
+You can read more about how to build a PCF tile in the [About PCF Tiles](./property-reference.html) topic.
 
 Ops Manager metadata renders forms and substitutes user-entered values into a generated BOSH manifest.
 Here's an excerpt from the [PCF example tile](https://github.com/pivotal-cf-experimental/ops-manager-example), which deploys an Nginx webserver and prints properties as static text.
@@ -212,7 +212,7 @@ There are some inconsistencies between particular accessors in 1.7 vs. 1.8.
 
 A selector is an Ops Manager property input that displays different sets of options beneath radio buttons. Operators use selectors to make small decisions within the context of a larger one. Here's a selector from the [PCF Example Tile](https://github.com/pivotal-cf-experimental/ops-manager-example/blob/master/example-product/metadata/example-product.yml):
 
-![Selector Example Form](selector-example-form.png)
+![Selector Example Form](img/selector-example-form.png)
 
 ### Using a Selector
 
