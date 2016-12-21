@@ -3,7 +3,7 @@ title: PCF v1.8 Partners Release Notice
 owner: Technical Program Management
 ---
 
-<p class="note"><strong>Note</strong>: In September 2016, prior to the release of Pivotal Cloud Foundry (PCF) 1.8, a version of this notice was emailed to PCF partners.</p>
+<p class="note"><strong>Note</strong>: In September 2016, prior to the release of Pivotal Cloud Foundry (PCF) 1.8, an earlier version of this notice was emailed to PCF partners.</p>
 
 PCF v1.8 latest release candidates (RCs) for Ops Manager and Elastic Runtime (OM RC4 and ERT RC7) have been released. You should have access now.
 
@@ -28,6 +28,8 @@ For general information about how 1.8 tiles use the `selector` property, see [Se
 * Lastly, to make sure your tile takes advantage of all the benefits of PCF v1.8, change its `metadata_version` property to `v1.8`.
 Changing the version number can unlock new properties and also break properties that changed from previous versions.
 For more information, see the [Product Template Reference](./product-template-reference.html#metadata) topic.
+
+<p class="note"><strong>Note: </strong>Changing the value of<code>single_az_only</code> for jobs launched by your tile can cause data loss for customers who upgrade to PCF v1.8 versions older than v1.8.12. Contact <a href="http://support.pivotal.io/">Pivotal Support</a> for help avoiding this.</p>
 
 For general information about the PCF v1.8 release, see the [Pivotal Cloud Foundry Release Notes](http://docs-pcf-staging.cfapps.io/pivotalcf/1-8/pcf-release-notes/).
 

@@ -7,6 +7,8 @@ This topic discusses product tile migrations, which refers to changing the name 
 
 <p class="note"><strong>Note</strong>: In order to use JS migrations, ensure you are using Ops Manager 1.7 or later.</p>
 
+<p class="note"><strong>Note: </strong>Changing the value of<code>single_az_only</code> for jobs launched by your tile can cause data loss for customers who upgrade to PCF v1.7 versions older than v1.7.20, or v1.8 versions older than v1.8.12. Contact <a href="http://support.pivotal.io/">Pivotal Support</a> for help avoiding this.</p>
+
 ## <a id='import'></a>Update Values or Property Names Using JavaScript##
 
 To update a product tile, tile authors must complete the following steps:

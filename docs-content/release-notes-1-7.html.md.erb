@@ -3,7 +3,22 @@ title: PCF v1.7 Partners Release Notice
 owner: Technical Program Management
 ---
 
-<p class="note"><strong>Note</strong>: In April 2016, prior to the release of Pivotal Cloud Foundry (PCF) 1.7, this notice was released to PCF partners.</p>
+Red warning in css
+http://docs.cloudfoundry.org/deploying/aws/setup_aws.html
+docs-deploying-cf/aws/setup_aws.html.md.erb
+
+<style>
+    .note.warning {
+        background-color: #fdd;
+        border-color: #fbb
+    }
+
+    .note.warning:before {
+        color: #f99;
+    }
+</style>
+
+<p class="note"><strong>Note</strong>: In April 2016, prior to the release of Pivotal Cloud Foundry (PCF) 1.7, an earlier version of this notice was emailed to PCF partners.</p>
 
 As you may be aware, a feature release of Ops Manager and Elastic Runtime is approaching for Pivotal Cloud Foundry (1.7). We’re currently targeting the middle of April to make the release available for customers, and we would like to make sure your products are all compatible with the changes that these releases will introduce. Below we’re going to list out some analysis and actions for you to perform with your product(s). Going through all of these "chores" in a timely manner will ensure that we are healthy for the release.
 
@@ -11,7 +26,9 @@ There are several changes to how Services integrate with Ops Manager. Broadly, t
 
 ##<a id='product-template-changes'></a> Product Template Changes ##
 
-* The double parens value of “Singleton Jobs” has been removed from Ops Manager in 1.7. As part of your product’s integration work required for 1.7, there is a new property to peg instances to a single AZ. You will need to ensure that any product release you wish to be able to upgrade to within Ops Manager 1.7 or greater contain a migration from any singleton job(s) to the new boolean property `single_az_only: true | false`. This impacts products that want to go to the 1.7 metadata schema in Ops Manager to take advantage of multi-AZ. They will need to replace singleton jobs with the new double parens value. Note that you don't need a migration for this - OM will do that for you. See the [Job Types](./product-template-reference.html#job-types) section of the _Product Template Reference_ topic for details.  
+* The double parens value of “Singleton Jobs” has been removed from Ops Manager in 1.7. As part of your product’s integration work required for 1.7, there is a new property to peg instances to a single AZ. You will need to ensure that any product release you wish to be able to upgrade to within Ops Manager 1.7 or greater contain a migration from any singleton job(s) to the new boolean property `single_az_only: true | false`. This impacts products that want to go to the 1.7 metadata schema in Ops Manager to take advantage of multi-AZ. They will need to replace singleton jobs with the new double parens value. Note that you don't need a migration for this - OM will do that for you. See the [Job Types](./product-template-reference.html#job-types) section of the _Product Template Reference_ topic for details.
+	<p class="note warning"><strong>WARNING: </strong>Changing the value of<code>single\_az\_only</code> can cause data loss for customers who upgrade to PCF v1.7 versions older than v1.7.19. Contact <a href="http://support.pivotal.io/">Pivotal Support</a> for help avoiding this.</p>
+
 * Ops Manager 1.7 ships with a new multi-AZ functionality that results in multiple networks. There is no longer a default network, and Ops Manager will not look for one. Check your tile and BOSH release, if you have one, to make sure there are no `network: default` property settings.
 	<p class="note"><strong>Note</strong>: Pivotal recommends partners follow instructions about [troubleshooting IP values for network properties](#troubleshoot-ip-values) to make the necessary updates to their tile for use with Ops Manager 1.7.</p>
 
