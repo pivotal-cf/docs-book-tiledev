@@ -65,14 +65,14 @@ message loss during upgrades an other deployments: run at least two instances.
 
 The events channel receives six different types of events.
 
-* ValueMetric: some platform metric at a point in time, emitted by platform components (for example, how many 2xx responses the router has sent out)
-* CounterEvent: an incrementing counter, emitted by platform components (for example, a diego cells remaining memory capacity)
-* Error: an error
-* HttpStartStop: http request details, including both application and platform requests
-* LogMessage:  a log message for an individual app
-* ContainerMetric: application container information (for example, memory used)
+* ValueMetric: Some platform metric at a point in time, emitted by platform components. For example, how many `2xx` responses the router has sent out.
+* CounterEvent: An incrementing counter, emitted by platform components. For example, a Diego cell's remaining memory capacity.
+* Error: An error.
+* HttpStartStop: HTTP request details, including both application and platform requests.
+* LogMessage: A log message for an individual app.
+* ContainerMetric: Application container information. For example, memory used.
 
-For the full details on events, check the
+For the full details on events, see the
 [dropsonde protocol](https://github.com/cloudfoundry/dropsonde-protocol/tree/master/events).
 
 The above events show how this data targets two different personae:
