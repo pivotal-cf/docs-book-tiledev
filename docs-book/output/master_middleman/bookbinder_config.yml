@@ -5,9 +5,9 @@
 :subnav_templates:
   tiledev: tiledev_subnav
 :template_variables: 
-:local_repo_dir: "/Users/pspinrad/workspace/docs-book-tiledev"
+:local_repo_dir: "/Users/ljarzynski/workspace/docs-book-tiledev"
 :workspace: !ruby/object:Pathname
-  path: "/Users/pspinrad/workspace/docs-book-tiledev/docs-book/output/master_middleman/source"
+  path: "/Users/ljarzynski/workspace/docs-book-tiledev/docs-book/output/master_middleman/source"
 :feedback_enabled: 
 :repo_link_enabled: true
 :repo_links:
