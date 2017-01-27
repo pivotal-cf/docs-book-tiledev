@@ -12,13 +12,13 @@ The `pcf` utility also allows you to test your tile's BOSH errands
 directly from your CLI, without going through Ops Manager and BOSH. This greatly
 reduces the time it takes to deploy/test each iteration of your software components.
 
-## Installation
+##<a id="install"></a> Installation
 
 The `pcf` utility comes bundled with the Tile Generator tool. To
 install the `pcf` utility, follow the
 [Tile Generator installation instructions](tile-generator.html#how-to).
 
-## Authentication
+##<a id="auth"></a> Authentication
 
 The `pcf` utility looks for a file called `metadata` in the current directory.
 This file is expected to provide the URL and credentials to connect to
@@ -41,7 +41,7 @@ file in the directory where you run the `pcf` command.
 version control system) repository, as you do not want to accidentally commit
 these credentials to version control.*
 
-# Commands
+##<a id="commands"></a> Commands
 
 The `pcf` utility implements many different commands. To see available commands:
 
@@ -70,7 +70,7 @@ Commands:
   uninstall
 ```
 
-## Checking Ops Manager Settings
+##<a id="ops-man-settings"></a> Checking Ops Manager Settings
 
 To see which products are currently available and installed in Ops Manager:
 
@@ -115,8 +115,7 @@ $ pcf settings test-tile
     ...
 ```
 
-<a name="errands"></a> 
-## Testing Errands
+##<a id="errands"></a> Testing Errands
 
 You can test your tile's BOSH errands directly from your current shell. Deploy
 your tile's packages using:
@@ -175,7 +174,7 @@ generator. If your tile includes any packages that are not deployed into them
 Elastic Runtime, such as docker-bosh packages, those will not be deployed when
 using this method.
 
-## Deploying Tiles
+##<a id="deploy-tiles"></a> Deploying Tiles
 
 Once your software works and correctly deploys using `test-errand`, you can go
 through the real Ops Manager deployment process from the CLI, as you would
@@ -262,7 +261,7 @@ of the most recent installation:
 $ pcf logs
 ```
 
-## Removing Tiles
+##<a id="remove"></a> Removing Tiles
 
 To uninstall a tile:
 
@@ -277,7 +276,7 @@ up Ops Manager's available products (and disk space):
 $ pcf delete-unused-products
 ```
 
-## Accessing Elastic Runtime
+##<a id="access-ert"></a> Accessing Elastic Runtime
 
 To see details about the Elastic Runtime of your PCF environment:
 
