@@ -3,13 +3,12 @@ title: Development Steps at Each Level
 owner: Services
 ---
 
-The ultimate deliverable of a PCF integration is almost always a "tile," a
+The ultimate deliverable of a PCF integration is almost always a **tile**", a
 Pivotal Cloud Foundry installation package that is delivered through our
 [marketplace](http://network.pivotal.io) and installed through Pivotal's
 Ops Manager. But when developing an integration, it is advisable to start
 with smaller components of that tile, as it allows you to iterate on those
-components much faster. Our recommendation is to approach development in
-phases:
+components much faster. We recommend that you approach development in the following phases:
 
 1. [Develop](#components) and test the Tile Generator inputs individually
 2. [Describe](#tile-generator) your tile in `tile.yml` and use [Tile Generator](./tile-generator.html) to create the tile components
@@ -55,10 +54,7 @@ time.
 
 ## <a name="test-errands"></a> Test the Deploy and Delete Errands
 
-This is the first step for which you will need a
-[complete PCF deployment](./environments.html#pcf). But before you deploy your complete
-tile to Ops Manager, you can manually deploy your individual
-[components](#components) and test the errands created by the Tile Generator
+This is the first step for which you will need a [complete PCF deployment](./environments.html#pcf). But before you deploy your complete tile to Ops Manager, you can manually deploy your individual [components](#components) and test the errands created by the Tile Generator
 using the [pcf utility](pcf-command.html#errands). Doing this is significantly
 faster than testing the errands through Ops Manager and BOSH, as BOSH will
 run each errand in a newly created virtual machine.
@@ -68,12 +64,9 @@ run each errand in a newly created virtual machine.
 After you have verified that all individual [components](#components) and
 [errands](#test-errands) work, you are ready to deploy your tile's generated BOSH release from the command line.
 
-Finally, test deploy your tile as your customers
-would, by uploading it to Ops Manager, installing and configuring the tile,
-and having Ops Manager apply your changes to the PCF deployment.
+Finally, test deploy your tile as your customers would, by uploading it to Ops Manager, installing and configuring the tile, and having Ops Manager apply your changes to the PCF deployment.
 
-The only things you should be testing in this phase are the things that
-could not be tested in earlier ones:
+The only things you should be testing in this phase are the things that could not be tested in earlier ones:
 
 - The appearance of the tile forms in Ops Manager
 - The upgrade/migration steps from one version of a tile to another (if applicable)

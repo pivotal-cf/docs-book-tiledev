@@ -7,12 +7,7 @@ This topic explains how to use [Concourse](http://concourse.ci) continuous integ
 
 ## <a name="overview"></a> Overview
 
-PCF is a fast moving platform as we are constantly extending and
-enhancing it. When you integrate your software with PCF, it is
-important to make sure that your integration continues to work with every
-new release of the platform. A great way to ensure that is to set up a CI
-pipeline for your tile against a PCF deployment that is constantly updated
-with the latest Alpha release of the platform.
+PCF is a fast moving platform as we are constantly extending and enhancing it. When you integrate your software with PCF, you should make sure that your integration continues to work with every new release of the platform. One way to ensure that is to set up a CI pipeline for your tile against a PCF deployment that is constantly updated with the latest Alpha release of the platform.
 
 Our tool of choice for setting up CI is [concourse](http://concourse.ci/).
 While you are of course free to use whatever system you are familiar with,
@@ -37,7 +32,7 @@ A typical CI pipeline for a tile consists of the following jobs:
 - Run a set of deployment tests to verify that it deployed and works correctly
 - Remove it from PCF
 
-You describe this pipeline in a pipeline.yml file that is then uploaded to the
+You describe this pipeline in a `pipeline.yml` file that is then uploaded to the
 concourse server. [Tile Generator](tile-generator.html) contains a sample
 pipeline that you can clone for your own tile. We are working on automating
 the process of generating a pipeline template for you.

@@ -24,7 +24,7 @@ use the following links:
 <a name="applications"></a> 
 ## Applications
 
-Cloud Foundry is primarily a cloud native application platform. To understand how to integrate your services with Cloud Foundry, it is important to understand how your customers are using the platform to develop, deploy, and operate their applications:
+Cloud Foundry is primarily a cloud native application platform. To understand how to integrate your services with Cloud Foundry, you should understand how your customers are using the platform to develop, deploy, and operate their applications.
 
 - [Developer Guide](http://docs.pivotal.io/pivotalcf/devguide/index.html) explains how to push an app to run on PCF and enable it to use services.
 - [Logging and Monitoring](http://docs.pivotal.io/pivotalcf/loggregator/index.html) describes how PCF aggregates and streams logs and metrics from the apps it hosts and from internal system components.
@@ -32,9 +32,7 @@ Cloud Foundry is primarily a cloud native application platform. To understand ho
 <a name="services"></a> 
 ## Services
 
-Most value-add integrations are done by exposing your software to customer applications
-as services. To understand the service concepts, and what a service integration
-looks like, read the following documentation:
+Most value-add integrations are done by exposing your software to customer applications as services. To understand the service concepts, and what a service integration looks like, read the following documentation:
 
 - [Services Overview](http://docs.pivotal.io/pivotalcf/devguide/services/index.html) explains how developers provision and use existing services in their apps.
 - [Cloud Foundry Service Brokers and PCF Tiles](http://docs.pivotal.io/on-demand-service-broker/about.html#cf-broker) briefly describes the two main elements of PCF service integration: the service broker API, which connects the service to PCF internally by taking commands from the Cloud Controller; and the tile, a packaged interface that cloud operators use to install and configure a service within PCF.
@@ -43,10 +41,7 @@ looks like, read the following documentation:
 <a name="buildpacks"></a> 
 ## Buildpacks
 
-When application code is deployed to Cloud Foundry, it is processed by a language-specific
-buildpack. Language buildpacks provide a convenient integration hook for any service that
-needs to inspect or embellish application code. The meta-buildpack also provides a
-language-agnostic way to inject your code into the application container image.
+When application code is deployed to Cloud Foundry, it is processed by a language-specific buildpack. Language buildpacks provide a convenient integration hook for any service that needs to inspect or embellish application code. The meta-buildpack also provides a language-agnostic way to inject your code into the application container image.
 
 - [Application Staging Process](http://docs.pivotal.io/pivotalcf/concepts/how-applications-are-staged.html) explains how PCF packages and deploys apps in containers with buildpacks so that they can run on multiple VMs interchangeably.
 - [Language Buildpacks](http://docs.pivotal.io/pivotalcf/buildpacks/index.html) describes the language-specific buildpacks support PCF apps.
@@ -57,16 +52,14 @@ language-agnostic way to inject your code into the application container image.
 
 Some integrations depend on the ability to inject code into the application container.
 We refer to these injected components as "container-embedded agents".
-[Buildpacks](#buildpacks) provide a mechanism to inject components into the application
-container image, and the `.profile.d` directory provides a way to start agents before or
-alongside the customer application.
+[Buildpacks](#buildpacks) provide a mechanism to inject components into the application container image, and the `.profile.d` directory provides a way to start agents before or alongside the customer application.
 
 - [Agent Injection with the meta-buildpack](https://github.com/guidowb/meta-buildpack)
 - [Using .profile.d](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/deploy-app.html#profile)
 
 <a name="nozzles"></a>
 ## Nozzles
-Cloud Foundry's logging system, Loggregator, has a feature called firehose. The firehose includes the combined stream of logs from all apps, plus metrics data from CF components, and is intended to be used by operators and administrators.
+Cloud Foundry's logging system, Loggregator, has a feature named **firehose**. The firehose includes the combined stream of logs from all apps, plus metrics data from Cloud Foundry components, and is intended to be used by operators and administrators.
 
 A nozzle takes this data and forwards it to an external logging and/or metrics solution.
 
