@@ -60,13 +60,24 @@ For a 7-minute introduction into what tile generator is and does, see
    **Note**: tile-generator requires **Python 2**, and will *not* work with Python 3.
    We recommend using a
    [virtualenv](https://virtualenv.pypa.io/en/stable/) environment to
-   avoid conflicts with other Python packages:
+   avoid conflicts with other Python packages.
+   A virtualenv is simply a directory containing dependencies for a project.
+   When a virtual environment is *active*, packages will install into the
+   virtualenv instead of the system-wide Python installation.
+   Create a virtualenv with the `virtualenv` command:
 
-        virtualenv -p python2 tile-generator
-        source tile-generator/bin/activate
+        virtualenv -p python2 tile-generator-env
+
+    To activate the virtualenv, source the bin/activate script in the virtualenv directory:
+
+        source tile-generator-env/bin/activate
+
+    Then install the tile-generator package inside the virtualenv with:
+
         pip install tile-generator
 
-    This will put the `tile` and `pcf` commands in your `PATH`.
+    This will put the `tile` and `pcf` commands in your `PATH` when the virtualenv is active.
+    To deactivate the virtualenv, simply run the command `deactivate`.
 
     <p class="note"><strong>Note</strong>: To upgrade Tile Generator, run the following command with the virtualenv activated: <code>pip install tile-generator --upgrade</code></p>
 
