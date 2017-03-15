@@ -1,0 +1,22 @@
+---
+title: Pivotal Cloud Foundry v1.10 Partners Release Notice
+owner: Technical Program Management
+---
+
+The Ops Manager v1.10 release does not introduce any breaking metadata changes for partner service tiles. 
+
+## Test Your Tile on PCF v1.10
+
+Pivotal recommends that you test your tiles against Pivotal Cloud Foundry v1.10 to ensure full compatibility.
+
+## New Run Errand Configuration: <i>When Changed</i> 
+
+Ops Manager v1.10 introduces a new configuration option under a product tile **Settings** tab > **Errands** pane > **Post-Deploy Errands** section. For each post-deploy and pre-delete errand, the user can now specify **When Changed** in addition to **On** or **Off**. When an operator installs or deletes the product, the **When Changed** option configures the errand to run under the following conditions:
+
+* The product manifest has changed since the last product installation, as with an upgrade.
+* The last product installation attempt did not succeed.
+
+The **When Changed** option is designed to save installation See [Managing Errands in Ops Manager](http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html) for more information.
+
+Tile authors can specify default run settings for each errands in their tile metadata, by setting `run_post_deploy_errand_default` to `on`, `off`, or `when-changed` in the `job` definition of the errand.
+
