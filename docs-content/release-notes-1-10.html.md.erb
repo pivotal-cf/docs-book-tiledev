@@ -9,14 +9,25 @@ The Ops Manager v1.10 release does not introduce any breaking metadata changes f
 
 Pivotal recommends that you test your tiles against Pivotal Cloud Foundry v1.10 to ensure full compatibility.
 
-## New Run Errand Configuration: <i>When Changed</i> 
+## Default Errand Run Rules and New **When Changed** Rule
 
-Ops Manager v1.10 introduces a new configuration option under a product tile **Settings** tab > **Errands** pane > **Post-Deploy Errands** section. For each post-deploy and pre-delete errand, the user can now specify **When Changed** in addition to **On** or **Off**. When an operator installs or deletes the product, the **When Changed** option configures the errand to run under the following conditions:
+In Ops Manager v1.9 and earlier, the checkboxes on a tile's **Errands** pane defaulted to selected, to run all errands. Users deselected specific errands to save to save installation time. Ops Manager v1.8 added the same checkboxes to the **Pending Changes** list above the **Apply changes** button, to quick-pick errands to run during the next installation only.
 
-* The product manifest has changed since the last product installation, as with an upgrade.
-* The last product installation attempt did not succeed.
+Ops Manager v1.10 lets tile developers set defaults for whether each errand runs or not. It also adds a new **When Changed** option that frees users from having to keep track of installed versions to save installation time. The user can override the tile defaults in Ops Manager, and to accommodate the new option, the interface uses dropdowns instead of checkboxes. See [Managing Errands in Ops Manager](http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html) for more information.
 
-The **When Changed** option is designed to save installation See [Managing Errands in Ops Manager](http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html) for more information.
+Tile developers set default run rules for each errand in the errand's `job` definition. Possible property values are:
 
-Tile authors can specify default run settings for each errands in their tile metadata, by setting `run_post_deploy_errand_default` to `on`, `off`, or `when-changed` in the `job` definition of the errand.
+* `on` - Runs the errand; equivalent to selecting the checkbox pre-v1.10.
+* `off` - Does not run the errand; equivalent to unselecting the checkbox pre-v1.10.
+* `when-changed` - Runs the errand under the following conditions:
+	- The product manifest has changed since the last product installation, as with an upgrade.
+	- The last product installation attempt did not succeed.
 
+To apply these properties to an errand in the tile:
+
+* **Post-deploy errands**: add a `run_post_deploy_errand_default` property set to `on`, `off`, or `when-changed`.
+* **Pre-delete errands**: add a `run_pre_delete_errand_default` property set to `on` or `off`. You cannot set a pre-delete errand run rule to `when-changed`.
+
+In the Ops Manager **Errands** pane, a dropdown for each errand shows the options as **On**, **Off**, **When Changed**, and a default option that appears as **Default (On)**, **Default (Off)**, and **Default (When Changed)**. See [Ops Manager Defaults and Tile Defaults](http://docs.pivotal.io/pivotalcf/1-10/customizing/customizing/managing_errands.html#defaults) for how this default option is determined whether or not the tile defines a default.
+
+Under **Pending Changes**, in Ops Manager, above the **Apply changes** button on the Installation Dashboard, the four dropdown options for each errand show as **On**, **Off**, **When Changed**, and **Default**.
