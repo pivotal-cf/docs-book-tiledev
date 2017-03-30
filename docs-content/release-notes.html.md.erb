@@ -9,8 +9,8 @@ PCF v1.8 latest release candidates (RCs) for Ops Manager and Elastic Runtime (OM
 
 We'd also like to remind you about the importance of metadata versioning and having compatible versions of your tile with the different PCF versions.
 
-Lastly, our IPsec add-on is now supported on ERT and our internal service tiles.
-To ensure that your service works with IPsec, you should test and verify. For more information, see [Supporting the IPsec Add-on](#ipsec) below.
+Lastly, our IPsec Add-on is now supported on ERT and our internal service tiles.
+To ensure that your service works with IPsec, you should test and verify. For more information, see [Supporting the IPsec Add-On](#ipsec) below.
 
 ## <a id='where'></a> Test Your Tile on PCF v1.8
 
@@ -42,10 +42,9 @@ Reach out to your Pivotal contact for help with any questions or issues with PCF
 
 [Pivotal Cloud Foundry 1.7 Partners Release Notice](./release-notes-1-7.html)
 
-## <a id='ipsec'></a> Supporting the IPsec Add-on
+## <a id='ipsec'></a> Supporting the IPsec Add-On
 
-As of PCF v1.8, we certify that all of our internal service tiles (except RabbitMQ,
-though that will be remedied soon) work with our IPsec add-on to provide a better security experience for our customers. 
+As of PCF v1.8, we certify that all of our internal service tiles except RabbitMQ work with our IPsec Add-on to provide a better security experience for our customers. 
 
 Services that support Transport Layer Security (TLS) do not necessarily need to support IPsec.
 This is a question of addressable market.  
@@ -53,7 +52,7 @@ This is a question of addressable market.
 Operators may choose to deploy services to a non-IPsec subnet.
 However, based on any individual customer's unique constraints or policy preferences,
 services may also be expected to be deployable to the same subnet as ERT,
-and the IPsec add-on may be present there for the benefit it brings to the ERT.
+and the IPsec Add-on may be present there for the benefit it brings to the ERT.
 In this case, your service may be expected to operate in an IPsec environment.
 By testing that your service operates in a deployment where IPsec is present,
 you ensure the maximum compatibility with potential customer deployment choices.  
