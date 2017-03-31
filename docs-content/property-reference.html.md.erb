@@ -346,7 +346,7 @@ Example
 
 #### wildcard\_domain
 
-Holds a single boolean value
+Ensures the string value is a domain prefixed with "*."
 
 Accessors
 
@@ -370,8 +370,7 @@ Example
 
 #### ip\_ranges
 
-Holds a single boolean value
-
+Holds an array of strings and ensure the values are ip ranges
 Accessors
 
 <table class="nice"><tr>
@@ -394,7 +393,7 @@ Example
 
 #### ip\_address
 
-Holds a single boolean value
+Ensures the string value is an ip address
 
 Accessors
 
@@ -415,7 +414,7 @@ Example
 
 #### email
 
-Holds a single boolean value
+Ensures the string value is formatted as an email address
 
 Accessors
 
@@ -436,7 +435,7 @@ Example
 
 #### port
 
-Holds a single boolean value
+Holds a single integer value
 
 Accessors
 
@@ -457,7 +456,7 @@ Example
 
 #### integer
 
-Holds a single boolean value
+Holds a single integer value
 
 Accessors
 
@@ -478,7 +477,7 @@ Example
 
 #### text
 
-Holds a single boolean value
+Holds a single string value
 
 Accessors
 
@@ -501,7 +500,7 @@ Example
 
 #### smtp\_authentication
 
-Holds a single boolean value
+Holds string value with possible vlaue plain, login, or cram_md5
 
 Accessors
 
@@ -522,7 +521,7 @@ Example
 
 #### network\_address
 
-Holds a single boolean value
+Ensure the string is a network address
 
 Accessors
 
@@ -543,7 +542,7 @@ Example
 
 #### network\_address\_list
 
-Holds a single boolean value
+Holds an array of new addresses
 
 Accessors
 
@@ -567,7 +566,7 @@ Example
 
 #### string\_list
 
-Holds a single boolean value
+Holds an array of strings
 
 Accessors
 
@@ -594,7 +593,7 @@ Example
 
 #### ca\_certificate
 
-Holds a single boolean value
+Holds a string value
 
 Accessors
 
@@ -617,7 +616,7 @@ Example
 
 #### multi\_select\_options
 
-Holds a single boolean value
+Holds an array of selected string values
 
 Accessors
 
@@ -645,7 +644,7 @@ Example
 
 #### dropdown\_select
 
-Holds a single boolean value
+Holds an array of strings selected string values
 
 Accessors
 
@@ -673,7 +672,7 @@ Example
 
 #### vm\_type\_dropdown
 
-Holds a single boolean value
+Holds single string value selected from allowed vm_types
 
 Accessors
 
@@ -693,7 +692,7 @@ Example
 
 #### disk\_type\_dropdown
 
-Holds a single boolean value
+Holds single string value selected from allowed disk_types
 
 Accessors
 
@@ -713,7 +712,7 @@ Example
 
 #### uuid
 
-Holds a single boolean value
+Holds a string uuid value
 
 Accessors
 
@@ -733,13 +732,13 @@ Example
 
 #### service\_network\_az\_multi\_select
 
-Holds a single boolean value
+Holds an arrays of string value selected from allowed azs
 
 Accessors
 
 <table class="nice"><tr>
   <td>value</td>
-  <td>Returns a string</td>
+  <td>Returns an array of strings for the selected options</td>
   </tr>
 </table>
 
@@ -753,7 +752,7 @@ Example
 
 #### service\_network\_az\_single\_select
 
-Holds a single boolean value
+Holds a single string value selected from allowed azs
 
 Accessors
 
@@ -773,7 +772,7 @@ Example
 
 #### secret
 
-Holds a single boolean value
+Holds a single string value
 
 Accessors
 
