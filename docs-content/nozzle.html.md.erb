@@ -3,7 +3,8 @@ title: Nozzles
 owner: Services
 ---
 
-This topic explains how to build a nozzle that directs desired data from the aggregated Firehose of component and app logs and metrics to services or apps that consume them.
+This topic explains how to build a nozzle that directs desired data from the aggregated Firehose
+of component and app logs and metrics to services or apps that consume them.
 
 ## <a id="overview"></a> Overview
 
@@ -86,7 +87,8 @@ An advanced integration could do something like combine a
 * Let application developers opt-in to logging (implementing filtering in the nozzle)
 * Establish [SSO](https://docs.cloudfoundry.org/services/dashboard-sso.html) exchange for authentication such that developers only can access logs for their space's apps
 
-For a full working example, see [firehose-nozzle](https://github.com/cf-platform-eng/firehose-nozzle).
+For a full working example (suitable as an integration starting point),
+see [firehose-nozzle](https://github.com/cf-platform-eng/firehose-nozzle).
 
 ## <a id="deploy"></a> Deploy a Nozzle
 
@@ -137,9 +139,15 @@ as a reference for building your nozzle
       - Org guid & name
   * [logsearch-for-cloudfoundry](https://github.com/cloudfoundry-community/logsearch-for-cloudfoundry) packages this nozzle as a BOSH release
 
+[splunk-firehose-nozzle](https://github.com/cf-platform-eng/splunk-firehose-nozzle) and
+[splunk-firehose-nozzle-release](https://github.com/cf-platform-eng/splunk-firehose-nozzle-release)
+
+  * Source code based on `firehose-to-syslog`
+  * Packaged as a [BOSH release](./bosh-release.html)
+
 [datadog-firehose-nozzle](https://github.com/cloudfoundry-incubator/datadog-firehose-nozzle)
 
-  * A simpler implementation than other real examples
+  * Another real world implementation
 
 ## <a id="resources"></a> Other Resources
 
