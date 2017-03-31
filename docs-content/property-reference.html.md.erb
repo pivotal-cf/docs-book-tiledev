@@ -14,7 +14,7 @@ A tile's configuration interface is defined in a `.yml` file in the tile's `meta
 Evaluating a property can be represented by piecing two segments together:
 
 * The location of the property
-* What information from the property you are looking to access (otherwise known as accessors)
+* What information from the property you are looking to access, or _accessors_
 
 Together, the double paren expression can be written as:
 
@@ -52,7 +52,7 @@ Outside of properties, you can also retrieve information about various configura
 
 * $opsmanager: used by any product to obtain information about specific OpsManager
 * $director: used by any product to obtain information about the Director
-* $self: used by your own product to obtain information about your product’s configuration
+* $self: used by your own product to obtain information about your product's configuration
 
 #### $opsmanager
 
@@ -70,7 +70,7 @@ Outside of properties, you can also retrieve information about various configura
   <td>Provides the comma separated values that are entered if OpsManager traffic is directed to an HTTPS Proxy</td>
   </tr><tr>
   <td>no_proxy</td>
-  <td>Provides a the comma separated values that should not go through a proxy.</td></tr>
+  <td>Provides a the comma separated values that should not go through a proxy</td></tr>
 </table>
 
 #### $director
@@ -87,7 +87,7 @@ Outside of properties, you can also retrieve information about various configura
   <td>ntp_servers</td><td>Provides a list of ntp servers that are deployed by the Director</td>
   </tr><tr>
   <td>ca_public_key</td>
-  <td>Provides the public key that is used to sign the Director VM?</td>
+  <td>Provides the public key that is used to sign the Director VM</td>
   </tr>
 </table>
 
@@ -114,14 +114,15 @@ Outside of properties, you can also retrieve information about various configura
 
 Holds a single string value
 
-Accessors
+Accessors:
+
 <table class="nice"><tr>
   <td>value</td>
   <td>Returns the string value</td>
   </tr>
 </table>
 
-Product template example
+Product template example:
 
 ```
 - name: example_string
@@ -139,14 +140,15 @@ Product template example
 
 Holds a single boolean value
 
-Accessors
+Accessors:
+
 <table class="nice"><tr>
   <td>value</td>
   <td>Returns the boolean value</td>
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_boolean
@@ -159,11 +161,12 @@ Example
 
 Collections represent the ability to hold multi-property entries. Each "record" will contain values for the configured set of property blueprints.
 
-Accessors
+Accessors:
+
 <table class="nice"><tr>
   <td>value</td>
   <td>An array of hashes whose key are the property name.<br>
-  Example: <code>[{album: ‘my-album’, artist: ‘some-artist’, explicit: true, genre: ‘rock’}]</code></td>
+  Example: <code>[{album: 'my-album', artist: 'some-artist', explicit: true, genre: 'rock'}]</code></td>
   </tr>
 </table>
 
@@ -206,9 +209,9 @@ Provides the ability to switch between groups of properties.
 
 Selectors are unique in the way that property information is accessed. Ops Manager provides accessors available at the top-level selector property, accessors for retrieving a specific property in an option group, and the ability to provide manifest snippets for a selector option group.
 
-Each selector group may provide manifest snippets. This is because Ops Manager does not support conditionally adding manifest snippets. Therefore, it’s difficult to be able to write manifest sections for a selector. A manifest snippet should be present within all option groups, and can
+Each selector group may provide manifest snippets. This is because Ops Manager does not support conditionally adding manifest snippets. Therefore, it's difficult to be able to write manifest sections for a selector. A manifest snippet should be present within all option groups, and can
 
-Accessors on Selector Property
+Accessors on Selector Property:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -228,7 +231,7 @@ Example, `value`:
 
 `.properties.example_selector.filet_mignon_option.review.value`
 
-Accessors on Selector Option Group
+Accessors on Selector Option Group:
 
 <table class="nice"><tr>
   <td>parsed_manifest(manifest_snippet_name)</td>
@@ -240,7 +243,7 @@ Example, `selected_option`:
 
 `.properties.example_selector.selected_option.parsed_manifest(my_snippet)`
 
-Here, `my_snippet` corresponds to the name of an entry within each option\_template’s named\_manifests section.
+Here, `my_snippet` corresponds to the name of an entry within each option\_template's named\_manifests section.
 
 Example, option group:
 
@@ -301,10 +304,9 @@ Example, option group:
 
 #### ldap\_url
 
-Ensures the inputted string matches a url of the ldap protocol
+Ensures the inputted string matches a url of the LDAP protocol
 
-Accessors
-
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -312,21 +314,21 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 
 ```
 - name: example_ldap_url
   type: ldap_url
   configurable: true
-  default: ‘ldap://example.com’
+  default: 'ldap://example.com'
 ```
 
 #### domain
 
 Ensures the string value is a domain
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -334,21 +336,21 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 
 ```
 - name: example_domain
   type: domain
   configurable: true
-  default: ’example.com’
+  default: 'example.com'
 ```
 
 #### wildcard\_domain
 
 Ensures the string value is a domain prefixed with "*."
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -359,43 +361,44 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_wildcard_domain
   type: wildcard_domain
   configurable: true
-  default: ‘*.example.com’
+  default: '*.example.com'
 ```
 
 #### ip\_ranges
 
-Holds an array of strings and ensure the values are ip ranges
-Accessors
+Holds an array of strings and ensure the values are IP ranges
+
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
-  <td>Returns a string containing a comma-separated list of ip ranges</td>
+  <td>Returns a string containing a comma-separated list of IP ranges</td>
   </tr><tr>
   <td>parsed_ip_ranges</td>
-  <td>Returns an array of strings for each ip range</td>
+  <td>Returns an array of strings for each IP range</td>
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_ip_ranges
   type: ip_ranges
   configurable: true
-  default: ‘1.1.1.1-1.1.14,2.2.2.1-2.2.2.4’
+  default: '1.1.1.1-1.1.14,2.2.2.1-2.2.2.4'
 ```
 
 #### ip\_address
 
-Ensures the string value is an ip address
+Ensures the string value is an IP address
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -403,20 +406,20 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_ip_address
   type: ip_address
   configurable: true
-  default: ‘192.168.0.1’
+  default: '192.168.0.1'
 ```
 
 #### email
 
 Ensures the string value is formatted as an email address
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -424,20 +427,20 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_string
   type: email
   configurable: true
-  default: ‘john@example.com’
+  default: 'john@example.com'
 ```
 
 #### port
 
 Holds a single integer value
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -445,7 +448,7 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_port
@@ -458,7 +461,7 @@ Example
 
 Holds a single integer value
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -466,7 +469,7 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_integer
@@ -479,7 +482,7 @@ Example
 
 Holds a single string value
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -487,7 +490,7 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_text
@@ -502,7 +505,7 @@ Example
 
 Holds string value with possible vlaue plain, login, or cram_md5
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -510,7 +513,7 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_smtp_authentication
@@ -523,7 +526,7 @@ Example
 
 Ensure the string is a network address
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -531,20 +534,20 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_network_address
   type: network_address
   configurable: true
-  default: ‘localhost’
+  default: 'localhost'
 ```
 
 #### network\_address\_list
 
 Holds an array of new addresses
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -555,20 +558,20 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_network_address_list
   type: network_address_list
   configurable: true
-  default: ‘localhost,1.1.1.1’
+  default: 'localhost,1.1.1.1'
 ```
 
 #### string\_list
 
 Holds an array of strings
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -582,20 +585,20 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_string_list
   type: string_list
   configurable: true
-  default: ‘foo,bar,baz’
+  default: 'foo,bar,baz'
 ```
 
 #### ca\_certificate
 
 Holds a string value
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -603,7 +606,7 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_ca_certificate
@@ -618,7 +621,7 @@ Example
 
 Holds an array of selected string values
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -626,27 +629,27 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_multi_select_options
   type: multi_select_options
   configurable: true
-  default: [‘earth’, ‘mercury’]
+  default: ['earth', 'mercury']
          options:
          - name: mercury
-           label: ‘label for mercury’
+           label: 'label for mercury'
          - name: venus
-           label: ‘label for venus’
+           label: 'label for venus'
          - name: earth
-           label: ‘label for earth’
+           label: 'label for earth'
 ```
 
 #### dropdown\_select
 
 Holds an array of strings selected string values
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -654,7 +657,7 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
    - name: example_dropdown
@@ -674,7 +677,7 @@ Example
 
 Holds single string value selected from allowed vm_types
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -682,7 +685,7 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_vm_type_dropdown
@@ -694,7 +697,7 @@ Example
 
 Holds single string value selected from allowed disk_types
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -702,7 +705,7 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_disk_type_dropdown
@@ -714,7 +717,7 @@ Example
 
 Holds a string uuid value
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -722,7 +725,7 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_uuid
@@ -734,7 +737,7 @@ Example
 
 Holds an arrays of string value selected from allowed azs
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -742,7 +745,7 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_service_network_az_multi_select
@@ -754,7 +757,7 @@ Example
 
 Holds a single string value selected from allowed azs
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -762,7 +765,7 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_service_network_az_single_select
@@ -774,7 +777,7 @@ Example
 
 Holds a single string value
 
-Accessors
+Accessors:
 
 <table class="nice"><tr>
   <td>value</td>
@@ -782,7 +785,7 @@ Accessors
   </tr>
 </table>
 
-Example
+Example:
 
 ```
 - name: example_secret
