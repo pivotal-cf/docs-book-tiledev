@@ -1,17 +1,17 @@
 ---
-title: Nozzles
+title: Logs, Metrics, and Nozzles
 owner: Services
 ---
 
-This topic explains how to build a nozzle that directs desired data from the aggregated Firehose
-of component and app logs and metrics to services or apps that consume them.
+This topic explains how to include tile component logs and metrics in the Firehose of Pivotal Cloud Foundry (PCF) platform logs and metrics, and how to include a nozzle that directs this data to external services or apps that consume them.
 
 ## <a id="overview"></a> Overview
 
-Cloud Foundry's logging system, Loggregator,
-has a feature called Firehose. The Firehose includes the combined stream of logs 
-and metrics from every apps as well as
-the Cloud Foundry platform itself. Building a nozzle could be a solution for
+Cloud Foundry's logging system, _Loggregator_, sends combined logs and metrics from PCF apps and PCF platform components to a single endpoint, the _Firehose_. You can configure your tile to make PCF include your service component logs and metrics in the Firehose output.
+
+To process Firehose output, users can apply a _nozzle_, and you can configure your tile to include a built-in nozzle.
+
+Building a nozzle could be a solution for
 
 * Draining metrics to an external dashboard product for system operators
 * Sending every http request's details into a search tool
