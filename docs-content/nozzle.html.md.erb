@@ -3,15 +3,15 @@ title: Logs, Metrics, and Nozzles
 owner: Services
 ---
 
-This topic explains how to integrate PCF services with Cloud Foundry's logging system, the _Loggregator_, by writing to or reading from its _Firehose_ endpoint.
+This topic explains how to integrate PCF services with Cloud Foundry's logging system, the _Loggregator_, by writing to and reading from its _Firehose_ endpoint.
 
 ## <a id="overview"></a> Overview
 
-Cloud Foundry's logging system, _Loggregator_, sends logs and metrics aggregated from PCF apps and platform components to a single endpoint, the _Firehose_. Your tile can integrate its service with the Firehose in two ways:
+Cloud Foundry's _Loggregator_ logging system collects logs and metrics from PCF apps and platform components and streams them to a single endpoint, the _Firehose_. Your tile can integrate its service with the Loggregator system in two ways:
 
-* By sending your service component logs and metrics to the Firehose, to be streamed along with core PCF platform component logs and metrics.
+* By sending your service component logs and metrics to the Firehose, to be streamed along with PCF core platform component logs and metrics.
 
-* By installing a _nozzle_ on the Firehose. A nozzle directs Firehose data to be consumed by external services or apps. This can enable a service to:
+* By installing a _nozzle_ on the Firehose that directs Firehose data to be consumed by external services or apps. A built-in nozzle can enable a service to:
   - Drain metrics to an external dashboard product, for system operators
   - Send HTTP request details to search or analysis tools
   - Drain app logs to an external system 
@@ -21,15 +21,15 @@ Cloud Foundry's logging system, _Loggregator_, sends logs and metrics aggregated
 
 ## <a id="firehose"></a> Firehose Communication
 
-PCF components publish logs and metrics to the Firehose through Metron agent processes running locally on the component VMs. Metron agents add the data to the Loggregator system by writing it to Loggregator's [etcd](https://coreos.com/etcd/) key-value store via a [gRPC](https://coreos.com/etcd/docs/latest/op-guide/grpc_proxy.html) proxy. The [Overview of the Loggregator System](https://docs.cloudfoundry.org/loggregator/architecture.html) topic shows how logs and metrics travel from PCF system components to the Firehose.
+PCF components publish logs and metrics to the Firehose through Metron agent processes that run locally on the component VMs. Metron agents input the data to the Loggregator system by writing it to Loggregator's [etcd](https://coreos.com/etcd/) key-value store via a [gRPC](https://coreos.com/etcd/docs/latest/op-guide/grpc_proxy.html) proxy. The topic [Overview of the Loggregator System](https://docs.cloudfoundry.org/loggregator/architecture.html) shows how logs and metrics travel from PCF system components to the Firehose.
 
-PCF service component VMs can publish logs and metrics the same way, by running a Metron agent that writes to etcd. In PCF v1.10 and higher, components can only communicate with `etcd` securely via `https` protocol. Earlier versions of PCF allowed both encrypted `https` and unencrypted `http` communications with etcd.
+Component VMs running PCF services can publish logs and metrics the same way, by including a Metron agent that writes to etcd. In PCF v1.10 and higher, components only communicate with `etcd` via secure, encrypted `https` protocol. Earlier versions of PCF allow both encrypted `https` and unencrypted `http` communications with etcd.
 
 ### <a id="https"></a> Secure HTTPS Protocol: PCF 1.10+
 
-To enable a service component to supply logs and metrics to the Firehose through encrypted communications, include a Metron agent and a Consul agent in its template definitions.
+To enable a service component to supply logs and metrics to the Firehose through encrypted communications, you need to include a Metron agent and a Consul agent in its template definitions.
 
-The Metron definition includes double-paren properties that define a keypair to access etcd. The Consul definition includes double-paren properties for securely looking up the IP addresses of the etcd nodes at `cf-etcd.service.cf.internal`. This avoids hard-coding the etcd server addresses.
+The Metron definition includes double-paren properties defining a keypair for accessing etcd. The Consul definition includes double-paren properties for securely looking up the internal IP addresses of the etcd nodes at `cf-etcd.service.cf.internal`. This avoids hard-coding any etcd server addresses.
 
 For example:
 
@@ -71,9 +71,9 @@ manifest: |
 
 ### <a id="http"></a> HTTP Protocol: PCF 1.9 and Earlier
 
-In PCF v1.9, service components can publish logs and metrics to the Firehose encrypted or unencrypted. In v1.8 and earlier releases, components only communicate their data unencrypted.
+In PCF v1.9, service components can send logs and metrics to the Firehose encrypted or unencrypted. In v1.8 and earlier releases, components only communicate their log and metrics data unencrypted.
 
-To enable unencrypted communications with etcd, define a Metron agent and list the addresses of the etcd servers as follows in the template definitions:
+To enable unencrypted communications with etcd, define a Metron agent and list the addresses of the etcd servers in the template definitions as follows:
 
 ```
 name: service
