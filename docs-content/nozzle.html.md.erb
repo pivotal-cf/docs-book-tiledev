@@ -69,6 +69,8 @@ manifest: |
         lan: (( ..cf.consul_server.ips ))
 ```
 
+Metron versions v72 and later do not use etcd to communicate with Loggregator, but the configuration above works with any version of Metron. If the Metron agent does not need values for etcd, it safely ignores them.
+
 ### <a id="http"></a> HTTP Protocol: PCF 1.9 and Earlier
 
 In PCF v1.9, service components can send logs and metrics to the Firehose encrypted or unencrypted. In v1.8 and earlier releases, components only communicate their log and metrics data unencrypted.
