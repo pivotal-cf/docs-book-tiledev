@@ -173,7 +173,7 @@ Elastic Runtime use the following format:
   type: app # or app-broker
   manifest:
     # any options that you would normally specify in a cf manifest.yml, including</i>
-    buildpack:
+    buildpack: # required
     command:
     domain:
     host:
@@ -228,6 +228,7 @@ of just `app` or `docker-app`:
 - name: my-broker
   type: app-broker
   manifest:
+    buildpack: # required
     command:
     domain:
     path:
