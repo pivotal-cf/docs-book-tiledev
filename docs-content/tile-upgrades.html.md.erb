@@ -24,22 +24,22 @@ To update a product tile, tile authors must complete the following steps:
 The functions below display an example migration file:
 
 ```
-exports.migrate = function(properties) {
+exports.migrate = function(input) {
     // Append text to a string
 
-    properties['.web_server.example_string']['value'] += '!'; 
+    input.properties['.web_server.example_string']['value'] += '!'; 
     
     // Rename property 'example_port' to 'example_port_renamed',
     // retaining the previous value.
-    properties['.properties.example_port_renamed'] = 
-        properties['.properties.example_port'];
-    delete properties['.properties.example_port'];
+    input.properties['.properties.example_port_renamed'] = 
+        input.properties['.properties.example_port'];
+    delete input.properties['.properties.example_port'];
     
     // Append text to a string list
-    properties['.properties.example_string_list']['value'].push(
+    input.properties['.properties.example_string_list']['value'].push(
         'new-string-append-by-migration');
     
-    return properties;
+    return input;
 }; 
 
 ```
