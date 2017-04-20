@@ -113,31 +113,36 @@ Draining the logs consists of:
 1. Establishing a connection to the logging system
 1. Forwarding events on to their ultimate destination
 
-Authenticate by fetching a token from [UAA](https://github.com/cloudfoundry/uaa)
-with a client having the `doppler.firehose` scope:
+Authenticate against the API (https://github.com/cloudfoundry-community/go-cfclient)
+with a user in the `doppler.firehose` group:
 
 ```go
-	uaaClient, err := uaago.NewClient(uaaUrl)
-	if err != nil {
-		panic(err)
-	}
+import "github.com/cloudfoundry-community/go-cfclient"
 
-	token, err := uaaClient.GetAuthToken(username, password, skipSSL)
-	if err != nil {
-		panic(err)
-	}
+...
+
+config := &cfclient.Config{
+  ApiAddress:        apiUrl,
+  Username:          username,
+  Password:          password,
+  SkipSslValidation: sslSkipVerify,
+}
+
+client, err := cfclient.NewClient(config)
 ```
 
-Using the token, create a consumer and connect to the Firehose with a subscription id.
+Using the client's token, create a consumer and connect to the Firehose with a subscription id.
 The id is important, since the Firehose looks for connections having the same id and only
 sends an event to one of those connections. This is how a nozzle developer can prevent
 message loss during upgrades an other deployments: run at least two instances.
 
 ```go
-	consumer := consumer.New(config.TrafficControllerURL, &tls.Config{
-		InsecureSkipVerify: config.SkipSSL,
-	}, nil)
-	events, errors := consumer.Firehose(firehoseSubscriptionID, token)
+token, err := client.GetToken()
+
+consumer := consumer.New(config.TrafficControllerURL, &tls.Config{
+  InsecureSkipVerify: config.SkipSSL,
+}, nil)
+events, errors := consumer.Firehose(firehoseSubscriptionID, token)
 ```
 
 `Firehose` will give back two channels: one for events and a second for errors.
