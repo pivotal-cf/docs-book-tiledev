@@ -34,10 +34,12 @@ The following is an example of the properties that appear at the top of a produc
       version: "11"
 
   post_deploy_errands:
-    - name: example-errand
+    - name: example-startup-errand
+      run_post_deploy_errand_default: off
 
   pre_delete_errands:
-    - name: example-errand
+    - name: example-cleanup-errand
+      run_pre_delete_errand_default: on
 
   icon_image: iVBORw0KGgoAAAANSUhEUgAAAUIAAADcCAYAAAAFtqgbAAAAAXNSR0IArs4c6QAAAAlwSFl...
 
@@ -94,11 +96,15 @@ The list of releases contained in your product's releases directory. The version
 
 ### post\_deploy\_errands
 Array of Hashes. Optional.
-A list of errands that will run after a deploy succeeds. See [Lifecycle Errands](./tile-errands.html). 
+A list of errands that will run after a deploy succeeds.
+
+Set the `run_post_deploy_errand_default:` property to `on` or `off` to set the default for the errand's run rule selector in Ops Manager. See [Lifecycle Errands](./tile-errands.html). If this property is not supplied, the selector defaults to `On`.
 
 ### pre\_delete\_errands
 Array of Hashes. Optional.
-A list of errands that will run before a deployment is deleted. See [Lifecycle Errands](./tile-errands.html). 
+A list of errands that will run before a deployment is deleted.
+
+Set the `run_pre_delete_errand_default:` property to `on` or `off` to set the default for the errand's run rule selector in Ops Manager. See [Lifecycle Errands](./tile-errands.html). If this property is not supplied, the selector defaults to `On`. 
 
 ## <a id='form-properties'></a> Form Properties
 
