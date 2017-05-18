@@ -9,6 +9,8 @@ Products can have two kinds of errands. [Post-deploy errands](#post-deploy) run 
 
 To save deployment time, operators can set [errand run rules](#run-rules) that dictate whether or not errands run. Tile authors can [set defaults](./product-template-reference.html#top-level) for these run rules.
 
+<p class="note warning"><strong>Warning</strong>: As of Ops Manager v10.0.0, errands set to the <strong>When Changed</strong> rule do not always run when the tile has relevant changes. Instead of using <strong>When Changed</strong>, Pivotal recommends that tile developers leave the default run rule for errands as <strong>On</strong> and let operators use <a href="http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html#changes-view">one-time rules</a> to turn errands off and save deploy time.</p>
+
 ##<a id='post-deploy'></a>Post-Deploy Errands
 
 Post-deploy errands run after a product installs, but before Ops Manager makes it available for use.
@@ -48,7 +50,5 @@ Some errands do not always need to run. For example, installing a minor patch to
 ![Pending Changes](img/pending_changes.png)
 
 * **Persistent Rules** in the tile's **Errands** pane. These rules persist through subsequent installations, until changed in the **Errands** pane.
-
-<p class="note warning"><strong>Warning</strong>: As of Ops Manager v10.0.0, errands set to the <strong>When Changed</strong> rule do not always run when the tile has relevant changes. Instead of using <strong>When Changed</strong>, Pivotal recommends that tile developers leave the default run rule for errands as <strong>On</strong> and let operators use <a href="http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html#changes-view">one-time rules</a> to turn errands off and save deploy time.</p>
 
 See [Configure Run Rules in Ops Manager](http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html#modify) for more.
