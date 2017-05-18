@@ -1,0 +1,22 @@
+---
+title: Pivotal Cloud Foundry v1.11 Partners Release Notice
+owner: Technical Program Management
+---
+
+This topic describes the changes that PCF v1.11 introduces which may be relevant to partner service tiles.
+
+## <a id="ipv6"></a> IPv6 Disabled in Stemcell
+
+To reduce the attack surface of PCF and improve security, Pivotal disabled IPv6 for all stemcells v3363.20 and later, including stemcells bundled with PCF v1.11. This means that apps deployed by PCF service tiles using current stemcells cannot communicate via IPv6 unless explicitly configured to do so.
+
+Within PCF, all platform and service components, brokers, and apps communicate via IPv4, not IPv6. Therefore, tile authors only need to enable IPv6 for instances or apps that communicate externally, such as:
+
+  - Helper apps that deploy in a post-install errand and communicate externally during runtime
+  - Brokered or managed service instances that communicate externally during instance creation
+  - Brokered service instances that communicate externally during runtime
+
+Some existing PCF tiles may open IPv6 ports without using them. In PCF v1.11+, attempting to install such tiles causes a `TK` error which did not appear in older versions of PCF. Fixing tiles to keep any unused IPv6 ports closed removes a security vulnerability that PCF v1.10 and earlier versions tolerated.
+
+For more information, see the Pivotal Knowledge Base article [IPv6 disabled at kernel level on Stemcell 3363.20](https://discuss.pivotal.io/hc/en-us/articles/115006965027).
+
+
