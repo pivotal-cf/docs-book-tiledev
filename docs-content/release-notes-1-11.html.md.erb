@@ -7,15 +7,25 @@ This topic describes the changes that PCF v1.11 introduces which may be relevant
 
 ## <a id="ipv6"></a> IPv6 Disabled in Stemcell
 
-To reduce the attack surface of PCF and improve security, Pivotal disabled IPv6 for all stemcells v3363.20 and later, including stemcells bundled with PCF v1.11. This means that apps deployed by PCF service tiles using current stemcells cannot communicate via IPv6 unless explicitly configured to do so.
+To reduce the attack surface of PCF and improve security, Pivotal disabled IPv6 for all stemcells v3363.20 and later, including stemcells bundled with PCF v1.11. This means that apps deployed by PCF service tiles using current stemcells cannot communicate via IPv6 unless your tile explicitly configures VM network settings to enable IPv6.
 
-Within PCF, all platform and service components, brokers, and apps communicate via IPv4, not IPv6. Therefore, tile authors only need to enable IPv6 for instances or apps that communicate externally, such as:
+Within PCF, all platform and service components, brokers, and apps communicate via IPv4, and do not use IPv6. 
 
-  - Helper apps that deploy in a post-install errand and communicate externally during runtime
-  - Brokered or managed service instances that communicate externally during instance creation
-  - Brokered service instances that communicate externally during runtime
+This stemcell change does not impact many PCF tiles. Possible exceptions are:
 
-Some existing PCF tiles may open IPv6 ports without using them. In PCF v1.11+, attempting to install such tiles causes a `TK` error which did not appear in older versions of PCF. Fixing tiles to keep any unused IPv6 ports closed removes a security vulnerability that PCF v1.10 and earlier versions tolerated.
+* **If your service needs IPv6**. Please contact [Pivotal Support](http://support.pivotal.io/) to discuss. We want to know which PCF services require IPv6, if any.  
+
+* **If your tile doesn't work on PCF v1.11** and triggers a `no interface available` or similar error when trying to open a connection. Whether you knew it or not, your service may be expecting IPv6, and the updated stemcell causes an error that did not appear previously. As above, please contact [Pivotal Support](http://support.pivotal.io/).
+
+* **If a security scan shows that IPv6 is active** for your service, but your service does not use it. Please remove any tile code that opens unused IPv6 ports, to remove a security vulnerability that earlier PCF versions tolerated.
+
+Tiles may need to enable IPv6 because:
+
+  - Helper apps deploy in a post-install errand communicate externally via IPv6 during runtime.
+  - Brokered or managed service instances communicate externally via IPv6 during instance creation.
+  - Brokered service instances communicate externally via IPv6 during runtime.
+
+You can enable IPv6 with `sysctl` in a VM startup script, or elsewhere, but a more secure approach would be to make IPv6 an option configurable in Ops Manager.
 
 For more information, see the Pivotal Knowledge Base article [IPv6 disabled at kernel level on Stemcell 3363.20](https://discuss.pivotal.io/hc/en-us/articles/115006965027).
 
