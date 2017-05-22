@@ -3,13 +3,15 @@ title: Errands
 owner: Services
 ---
 
-Lifecycle errands are BOSH errands (scripts) that run at the beginning and end of an installed product's availability time. Product teams create errands as part of a product package, and a product can only run errands it includes. See [BOSH documentation](https://bosh.io/) for more information about BOSH errands and [Managing Errands in Ops Manager](http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html) for more information about errands in Pivotal Cloud Foundry (PCF).
+Lifecycle errands are BOSH errands (scripts) that run at the beginning and end of an installed product's availability time. Product teams create errands as part of a product package, and a product can only run errands it includes. 
+For more information about BOSH errands, see [BOSH documentation](https://bosh.io/), 
+and for more information about errands in Pivotal Cloud Foundry (PCF), see [Managing Errands in Ops Manager](http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html).
 
 Products can have two kinds of errands. [Post-deploy errands](#post-deploy) run after a product installs but before Ops Manager displays makes it available for use. [Pre-delete errands](#pre-delete) run after an operator chooses to delete a product, but before Ops Manager finishes removing it from use.
 
 To save deployment time, operators can set [errand run rules](#run-rules) that dictate whether or not errands run. Tile authors can [set defaults](./product-template-reference.html#top-level) for these run rules.
 
-<p class="note warning"><strong>Warning</strong>: As of Ops Manager v10.0.0, errands set to the <strong>When Changed</strong> rule do not always run when the tile has relevant changes. Instead of using <strong>When Changed</strong>, Pivotal recommends that tile developers leave the default run rule for errands as <strong>On</strong> and let operators use <a href="http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html#changes-view">one-time rules</a> to turn errands off and save deploy time.</p>
+<p class="note warning"><strong>WARNING</strong>: As of Ops Manager v10.0.0, errands set to the <strong>When Changed</strong> rule do not always run when the tile has relevant changes. Instead of using <strong>When Changed</strong>, Pivotal recommends that tile developers leave the default run rule for errands as <strong>On</strong> and let operators use <a href="http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html#changes-view">one-time rules</a> to turn errands off and save deploy time.</p>
 
 ##<a id='post-deploy'></a>Post-Deploy Errands
 
@@ -17,13 +19,13 @@ Post-deploy errands run after a product installs, but before Ops Manager makes i
 
 Typical post-install errands include smoke or acceptance tests, database initialization or database migration, and service broker registration.
 
-Post-deploy errands run by default. An operator can prevent a post-deploy errand from running by setting its [run rule](#run-rules) to **Off** under **Pending Changes** in the Ops Manager Installation Dashboard, or on the product tile's **Settings** tab **Errands** pane, before installing the product.
+Post-deploy errands run by default. An operator can prevent a post-deploy errand from running by setting its [run rule](#run-rules) to **Off** under **Pending Changes** in the Ops Manager Installation Dashboard or on the product tile's **Settings** tab **Errands** pane, before installing the product.
 
 ![Example Errand](img/example-errand.png)
 
 For example, Redis has a **Broker Registrar** post-deploy errand that the Elastic Runtime tile uses to register its service broker with the Cloud Controller and publish its service plans.
 
-If an operator chooses **Off** in the dropdown for Elastic Runtime's **Broker Registrar** errand before installation, Elastic Runtime's service broker is not registered with the Cloud Controller, and its service plans are not made public.
+If an operator chooses **Off** in the drop-down menu for Elastic Runtime's **Broker Registrar** errand before installation, Elastic Runtime's service broker is not registered with the Cloud Controller and its service plans are not made public.
 
 ##<a id='pre-delete'></a>Pre-Delete Errands
 
@@ -40,7 +42,7 @@ broker de-registration. For example, Pivotal MySQL has a **Broker Deregistrar** 
 When an operator chooses to delete the Pivotal MySQL product, Ops Manager first
 runs the **Broker Deregistrar** pre-delete errand, then deletes the product.
 
-Pre-delete errands run by default. An operator can prevent a pre-delete errand from running by setting its [run rule](#run-rules) to **Off** under **Pending Changes** in the Ops Manager Installation Dashboard, or on the product tile's **Settings** tab **Errands** pane, before installing the product.
+Pre-delete errands run by default. An operator can prevent a pre-delete errand from running by setting its [run rule](#run-rules) to **Off** under **Pending Changes** in the Ops Manager Installation Dashboard or on the product tile's **Settings** tab **Errands** pane, before installing the product.
 
 ##<a id='run-rules'></a>Errand Run Rules
 
@@ -51,4 +53,4 @@ Some errands do not always need to run. For example, installing a minor patch to
 
 * **Persistent Rules** in the tile's **Errands** pane. These rules persist through subsequent installations, until changed in the **Errands** pane.
 
-See [Configure Run Rules in Ops Manager](http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html#modify) for more.
+For more information, see [Configure Run Rules in Ops Manager](http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html#modify).
