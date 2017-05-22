@@ -7,23 +7,17 @@ This topic describes the changes that PCF v1.11 introduces which may be relevant
 
 ## <a id="ipv6"></a> IPv6 Disabled in Stemcell
 
-To reduce the attack surface of PCF and improve security, Pivotal disabled IPv6 for all stemcells v3363.20 and later, including stemcells bundled with PCF v1.11.
-This means that apps deployed by PCF service tiles using current stemcells cannot communicate via IPv6
-unless your tile explicitly configures VM network settings to enable IPv6.
+To reduce the attack surface of PCF and improve security, Pivotal disabled IPv6 for all stemcells v3363.20 and later, including stemcells bundled with PCF v1.11. This means that apps deployed by PCF service tiles using current stemcells cannot communicate via IPv6 unless your tile explicitly configures VM network settings to enable IPv6.
 
-Within PCF, all platform and service components, brokers, and apps communicate via IPv4 and do not use IPv6. 
+Within PCF, all platform and service components, brokers, and apps communicate via IPv4, and do not use IPv6. 
 
 This stemcell change does not impact many PCF tiles. Possible exceptions are:
 
-* **If your service needs IPv6**. Please contact [Pivotal Support](http://support.pivotal.io/) to discuss.
-    We want to know which PCF services require IPv6, if any.  
+* **If your service needs IPv6**. Please contact [Pivotal Support](http://support.pivotal.io/) to discuss. We want to know which PCF services require IPv6, if any.  
 
-* **If your tile doesn't work on PCF v1.11** and triggers a `no interface available` or similar error when trying to open a connection.
-  Whether you knew it or not, your service might be expecting IPv6, and the updated stemcell causes an error that did not appear previously.
-  As above, please contact [Pivotal Support](http://support.pivotal.io/).
+* **If your tile doesn't work on PCF v1.11** and triggers a `no interface available` or similar error when trying to open a connection. Whether you knew it or not, your service may be expecting IPv6, and the updated stemcell causes an error that did not appear previously. As above, please contact [Pivotal Support](http://support.pivotal.io/).
 
-* **If a security scan shows that IPv6 is active** for your service, but your service does not use it.
-    Remove any tile code that opens unused IPv6 ports, to remove a security vulnerability that earlier PCF versions tolerated.
+* **If a security scan shows that IPv6 is active** for your service, but your service does not use it. Please remove any tile code that opens unused IPv6 ports, to remove a security vulnerability that earlier PCF versions tolerated.
 
 Tiles may need to enable IPv6 because:
 
@@ -31,9 +25,45 @@ Tiles may need to enable IPv6 because:
   - Brokered or managed service instances communicate externally via IPv6 during instance creation.
   - Brokered service instances communicate externally via IPv6 during runtime.
 
-You can enable IPv6 with `sysctl` in a VM startup script or elsewhere, 
-but a more secure approach is to make IPv6 an option configurable in Ops Manager.
+You can enable IPv6 with `sysctl` in a VM startup script, or elsewhere, but a more secure approach would be to make IPv6 an option configurable in Ops Manager.
 
 For more information, see the Pivotal Knowledge Base article [IPv6 disabled at kernel level on Stemcell 3363.20](https://discuss.pivotal.io/hc/en-us/articles/115006965027).
+
+## <a id="sha2"></a> SHA-2 Checksums
+
+When PCF transfers a large data file internally, it ensures data integrity by comparing hash values at each end of the transfer. PCF runs these checksums for downloads from Pivotal Network, uploads to Ops Manager, and file transfers to and from the BOSH and Cloud Controller blobstores.
+
+Previous versions of PCF used the [MD5](https://en.wikipedia.org/wiki/MD5]) hash algorithm to generate checksums. PCF v1.11 uses the more secure SHA-256 function, the 256-bit version of the [SHA-2](https://en.wikipedia.org/wiki/SHA-2) algorithm. SHA-256 generates hashes that render as 64-character hexadecimal strings containing 32 hex pairs.
+
+See below for how to [create and publish](#create-sha2) a SHA-2 checksum compatible product, and how to [check](#check-sha2) if an existing product is SHA-2 checksum compatible.
+
+### <a id="create-sha2"></a> Create and Publish a SHA-2 Release
+
+To create and publish Pivotal product tiles compatible with SHA-2 checksums:
+
+1. When you run `bosh create release` to [create your release](https://bosh.io/docs/create-release.html#final-release), pass in the `--sha2` flag.
+  <pre class="terminal">
+  $ bosh create release my-manifest --name my-product-tile --sha2
+  </pre>
+
+1. Run `shasum -a 256 PRODUCT-FILE` to generate the SHA-256 hash for the release.
+
+1. Include the SHA-256 hash when uploading the release to Pivotal Network. Do this in one of two ways:
+  * **API**: Pass in the hash as the `sha256` field for the Pivotal Network [API command](https://network.pivotal.io/docs/api#public/docs/api/v2/product_files.md) `POST /api/v2/products/:product_slug/product_files`.
+  * **UI**: Enter the hash in the **SHA256** field in the Pivotal Network product upload form.
+  ![Pivnet Upload GUI](img/pivnet-upload.png)
+
+### <a id="check-sha2"></a> Check if a Release is SHA-2
+
+To check if an existing release uses SHA-256:
+
+1. [Upload the release](https://bosh.io/docs/uploading-releases.html#upload) to the BOSH Director.
+
+1. Run `bosh inspect release PRODUCT-NAME/VERSION`.
+
+1. Confirm that the `bosh inspect release` output contains 256-bit checksums prefixed with `sha256:`, like this:
+  <pre class="terminal">
+	ruby/c1086875b047d112e46756dcb63d8f19e63b3ac4
+	sha256:9edf95a59cc3de9a5ca67c30155dc5c652f90e1645ba8874aed4874be3ec3b05</pre>
 
 
