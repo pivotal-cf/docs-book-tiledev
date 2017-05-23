@@ -35,16 +35,26 @@ When PCF transfers a large data file internally, it ensures data integrity by co
 
 Previous versions of PCF used the [MD5](https://en.wikipedia.org/wiki/MD5]) hash algorithm to generate checksums. PCF v1.11 uses the more secure SHA-256 function, the 256-bit version of the [SHA-2](https://en.wikipedia.org/wiki/SHA-2) algorithm. SHA-256 generates hashes that render as 64-character hexadecimal strings containing 32 hex pairs.
 
-See below for how to [create and publish](#create-sha2) a SHA-2 checksum compatible product, and how to [check](#check-sha2) if an existing product is SHA-2 checksum compatible.
+To make your product SHA-2 compatible, you need to do two things:
 
-### <a id="create-sha2"></a> Create and Publish a SHA-2 Release
+1. Make any BOSH releases within your product SHA-2 compatible, so their components use SHA-2 with the BOSH and Cloud Controller blobstores.
 
-To create and publish Pivotal product tiles compatible with SHA-2 checksums:
+1. Post your zipped product file to Pivotal Network with its SHA-2 checksum, to maintain integrity transferring from Pivotal Network and to Ops Manager.
 
-1. When you run `bosh create release` to [create your release](https://bosh.io/docs/create-release.html#final-release), pass in the `--sha2` flag.
-  <pre class="terminal">
-  $ bosh create release my-manifest --name my-product-tile --sha2
-  </pre>
+See below for how to make your product's [BOSH releases](#sha2-releases) and [download file](#sha2-download) SHA2-compatible, and for how to [check](#sha2-check) if an existing BOSH release is SHA-2 compatible.
+
+### <a id="sha2-releases"></a> Create Releases That Use SHA-2
+
+When you run `bosh create-release` to [create releases](https://bosh.io/docs/create-release.html#final-release) for your product, you can make them SHA2-compatible by passing in the `--sha2` flag:
+<pre class="terminal">
+$ bosh create-release my-manifest --name my-product-tile --sha2
+</pre>
+
+<p class="note"><strong>Note</strong>: The <a href="https://bosh.io/docs/cli-v2.html">BOSH CLI v2</a> includes commands <code>create-release</code>, <code>upload-release</code>, <code>inspect-release</code> and others with hyphens. Analogous BOSH CLI v1 commands lack hyphens.</p>
+
+### <a id="sha2-download"></a> Publish a Tile Using SHA-2
+
+After you've packaged your product's BOSH releases, stemcell, metadata, and other tile components into a single zipped download file, post it to Pivotal Network with its SHA-2 checksum as follows.
 
 1. Run `shasum -a 256 PRODUCT-FILE` to generate the SHA-256 hash for the release.
 
@@ -53,17 +63,22 @@ To create and publish Pivotal product tiles compatible with SHA-2 checksums:
   * **UI**: Enter the hash in the **SHA256** field in the Pivotal Network product upload form.
   ![Pivnet Upload GUI](img/pivnet-upload.png)
 
-### <a id="check-sha2"></a> Check if a Release is SHA-2
+### <a id="check-sha2"></a> Check If a Release Uses SHA-2
 
 To check if an existing release uses SHA-256:
 
 1. [Upload the release](https://bosh.io/docs/uploading-releases.html#upload) to the BOSH Director.
 
-1. Run `bosh inspect release PRODUCT-NAME/VERSION`.
+1. Run `bosh inspect-release PRODUCT-NAME/VERSION`.
 
-1. Confirm that the `bosh inspect release` output contains 256-bit checksums prefixed with `sha256:`, like this:
+1. In the `bosh inspect release` output, confirm that the `Digest` column contains 256-bit checksums prefixed with `sha256:`.
   <pre class="terminal">
-	ruby/c1086875b047d112e46756dcb63d8f19e63b3ac4
-	sha256:9edf95a59cc3de9a5ca67c30155dc5c652f90e1645ba8874aed4874be3ec3b05</pre>
+  $ bosh inspect-release uaa/24
+  Using environment 'director.example.com' as 'admin'
+  Job                                                    Blobstore ID                          Digest                                                                   Links Consumed  Links Provided
+  uaa/a323f7e9973692f5ab4e6b294fcab4cc3d0ba9e3           71771c8d-23ac-4342-81c4-716e97e18601  sha256:e45f4c4b46fcb19644121f079d02712eb46b0ff0da411fdbd31ba5b64c45cbf1  -               -
+  uaa_postgres/4267e92b14e45051772bdc5f89066d55d8bd9297  36d7e73b-2263-432d-8a1e-d41632fa24d1  sha256:72f17f5efadebb2ba0c9ef9ef78de3e2d87097fb61a04edba1a8eb930dd9c92f  -               -
+  </pre>
 
+If you see the `sha256:` checksums, the release uses SHA-2.
 
