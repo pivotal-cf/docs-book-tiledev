@@ -96,3 +96,120 @@ post it to Pivotal Network with its SHA-2 checksum as follows.
   * **UI**: Enter the hash in the **SHA256** field in the Pivotal Network product upload form.
   ![Pivnet Upload GUI](img/pivnet-upload.png)
 
+## <a id="bosh-links"></a> BOSH Links
+
+PCF v1.11 enables the BOSH Links feature available with bosh-release v255.5+. For managed services, BOSH Links streamlines BOSH releases by letting multiple jobs share configuration data, such as IP addresses, rather than requiring redundant configurations in the release and in the manifest.
+
+For more information, see [BOSH Links: Why and How](
+https://gist.github.com/Amit-PivotalLabs/c39528248b8cdc4ba8e347f8aa68abb6)
+
+### <a id="bosh-links-bkgnd"></a> Background
+
+BOSH releases are portable, but when BOSH consumes a release to deploy job instances, it needs local and deployment-specific configuration values that the generalized release cannot contain. Such values can include IP addresses, networks, ports, and credentials. BOSH either reads these values from the deployment manifest or sets them from its current state or local environment.
+
+BOSH releases handle these deploy-time values in two places, as described in more detail [below](#bosh-links-spec):
+
+* The _job spec_ file that describes each job includes a `properties` section that lists deployment-specific properties with their descriptions and default values.
+* The job's _templates_ are incomplete versions of the configuration files and scripts that a job needs to start, stop, and run. These templates contain Ruby calls embedded in place for any deployment-specific values.
+
+To fill in these values at deploy time, BOSH:
+
+1. Reads in the property values defined in the manifest.
+
+1. Runs the job templates through Ruby to fill in any deploy-time values.
+
+1. Saves out the resulting config files and scripts for use by the job.
+
+### <a id="bosh-links-before-after"></a> Before and After BOSH Links
+
+Without BOSH Links, the spec file `properties` list for each job has include all configuration-time values that the job uses, even if they're also used by other jobs. Often, the deployment manifest has to define identical property-value pairs repeatedly, once for each job.
+
+BOSH Links lets jobs share deploy-time configuration properties as follows:
+
+* Job spec files include `provides:` and `consumes:` sections for sharing properties across jobs.
+
+* Templates use a `link` function to pull in shared properties provided by other jobs, plus basic information about the instances running those jobs.
+
+With little overhead, BOSH links can make BOSH manifests shorter, easier to read, and simpler to build. By removing environment-specific details, they also make manifests more secure and more readily shareable and extensible.
+
+### <a id="bosh-links-spec"></a> Links in Spec Files
+
+In a BOSH release, each job has a job spec file, which contains [job metadata](https://bosh.io/docs/jobs.html) and is located in the job's `spec` subdirectory. This spec file has a `properties:` section that lists all the configuration properties BOSH needs to fill in at deploy time. To enable BOSH Links, an additional `provides:` section publishes some or all of a job's properties to other jobs, and in the spec files of those other jobs, a `consumes:` section brings in the provided properties.
+
+#### <a id="bosh-links-spec-provide"></a> Job Provides Properties
+
+To share properties with other jobs, declare them in a `provides:` section in the spec file, as a single data structure that contains all of the properties you want to export. For example, a database job could share its `username`, `password`, and `port` values in a `database_access_info` structure like this:
+
+<pre class="code">
+provides:
+- {name: myjob_database_access, type: database_access_info, properties: [port, username, password]}
+</pre>
+
+In this declaration, the `properties` value lists the properties to export, the `type` value identifies to other jobs the `database_access_info` data structure containing those properties, and the `name` value disambiguates when multiple jobs provide the same data structure.
+
+When a job shares properties in this way, it also automatically shares basic information about instances of the job, including their `address` values. See [Template Accessors](https://bosh.io/docs/links.html#templates) in the BOSH docs for the basic instance properties that jobs provide through BOSH Links without explicit declaration.
+
+#### <a id="bosh-links-spec-consume"></a> Job Consumes Properties
+
+To use properties provided by other jobs, import them with a `consumes:` section in the spec file, referring to the exported data structure's `type:` (not `name:`) attribute. For example, a webserver job could obtain credentials for the database above by including this in its spec file:
+
+<pre class="code">
+consumes: 
+- {name: my_database_access, type: database_access_info}
+</pre>
+
+The `type` value in this declaration identifies the data structure provided by the database job. The `name` value gives a unique name to the webserver job's own local version of this structure, which the webserver job's [template files](#bosh-links-template) use to access the local structure's property values.
+
+As explained [above](#bosh-links-spec-provide), the webserver job can access `address` values for database job instances even though the field is not in the `database_access_info` structure. With `address`, `port`, `username`, and `password`, the webserver has all of the property values it needs to access the database.
+
+### <a id="bosh-links-template"></a> Links in Templates
+
+Job template files, in the job's `templates` subdirectory, call three methods to fill in properties at deploy time:
+
+* The `p` method retrieves a property from any object, which can be the job's locally-defined property list or a data structure consumed from another job.
+
+* The `link` method retrieves a property structure consumed from another job.
+
+* The `instances` method retrieves information about deployed instances of any job providing linked properties.
+
+Following the scenario above, an example webserver job template `config.json.erb` looks like:
+
+<pre class="code">
+{
+  "greeting": "&lt;%= p("greeting") %&gt;",
+  "port": &lt;%= p("port") %&gt;
+  "database": {
+    "port": &lt;%= link("my_database_access").p("port") %&gt;,
+    "username": "&lt;%= link("my_database_access").p("username") %&gt;",
+    "password": "&lt;%= link("my_database_access").p("password") %&gt;"
+    "address": "&lt;%= link("my_database_access").instances[0].address %&gt;",
+  },
+}
+</pre>
+
+In this code:
+
+* The `p("greeting")` and `p("port")` calls retrieve properties listed in the webserver's own spec file, without BOSH links. `port` here is the webserver port, not the database port.
+
+* The four `link("my_database_access")` expressions retrieve the `database_data_class` object with the name `myjob_database_access` to the webserver. With only one `database_data_class` object available, the name does not matter.
+
+* `.p("port">`, `.p("username">`), and `.p("password">`) retrieve properties from the `database_data_class` object in front of the dot.
+
+* `.instances[0].address` retrieves the `address` value of the first database job instance. Values obtainable from instances are `.address`, `.az`, `.id`, `.index`, and `.name`, as described [here](https://bosh.io/docs/links.html#templates).
+
+At deploy time, BOSH would replace the embeds between the Ruby code delimiters (<code>&lt;%=</code> and <code>=&gt;</code>) with the property values they generate, and save the resulting JSON out as a webserver job configuration file.
+
+#### <a id="bosh-links-template-logic"></a> Logic for Backward Compatibility
+
+System components evolve separately and people combine them in different ways. So someone writing templates for one job might not know whether to use duplicated local properties or BOSH-linked properties from another job, and when that might change.
+
+To make templates backward- and forward-compatible, templates embed Ruby with `if_p` and `if_link` helper functions. These functions let templates include local or BOSH-linked properties, and favor one over the other, as described [here](https://gist.github.com/Amit-PivotalLabs/c39528248b8cdc4ba8e347f8aa68abb6#4-advanced-but-what-about).
+
+### <a id="bosh-links-manifest"></a> Links in Manifests
+
+With or without BOSH links, a manifest includes jobs in its `instance_groups:` definitions, and property values explicitly set in the manifest override default values set in the job spec and values set in templates.
+
+The BOSH `link:` function takes as its argument a data structure `type` that multiple jobs might use. You can disambiguate this in the manifest by defining `provides:` and `consumes:` relationships between jobs and tagging them with `from:` and `as:` differently for different jobs that provide and consume them.
+
+In the manifest, you can also define a job to consume configuration properties from jobs in other BOSH deployments and from external, non-BOSH services. see [BOSH Links: Why and How](
+https://gist.github.com/Amit-PivotalLabs/c39528248b8cdc4ba8e347f8aa68abb6#6-advanced-links) for more information.
