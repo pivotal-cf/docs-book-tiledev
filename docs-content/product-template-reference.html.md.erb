@@ -3,9 +3,9 @@ title: Product Template Reference
 owner: Ops Manager
 ---
 
-This document defines the separate pieces of a product template. For the purpose of explanation we will use the [v1.7 example product tile](https://github.com/pivotal-cf-experimental/example-tile-docs-resources), a functional tile provided by the Ops Manager engineering team that deploys the NGINX web server.
+This document defines the separate pieces of a product template. For the purpose of explanation we will use the [PCF example tile](https://github.com/pivotal-cf-experimental/ops-manager-example), a functional tile provided by the Ops Manager engineering team that deploys the NGINX web server.
 
-The product template includes the following sections:
+The product template, a `.yml.erb` file in the tile's `metadata` subdirectory, includes the following sections:
 
 * Metadata: high level information about your tile
 * Dependencies: how to specify product dependencies
@@ -17,33 +17,36 @@ The product template includes the following sections:
 
 The following is an example of the properties that appear at the top of a product template. Following this example are definitions of each property.
 
-  ```
+<pre class="code">
   ---
   name: example-product
-  product_version: "1.7.0.0-alpha"
-  metadata_version: "1.7"
+  product_version: &lt;%= version.inspect %>
+  minimum_version_for_upgrade: "1.7.0"
+  metadata_version: "1.11"
   label: 'Ops Manager: Example Product'
   description: An example product to demonstrate Ops Manager product-author features
   rank: 1
+  service_broker: false # Default value
   stemcell_criteria:
     os: ubuntu-trusty
-    version: "3191" # BOSH stemcell should match Ops Manager with same version
+    version: &lt;%= stemcell_version.inspect %&gt;
+
+    enable_patch_security_updates: true
   releases:
     - name: example-release
-      file: example-release-11.tgz
-      version: "11"
+      file: &lt;%= release_file_name.inspect %&gt;
+      version: &lt;%= release_file_name.match(/^example-release-(.*)\.tgz$/)[1].inspect %&gt;
+
+  variables:
+    - name: credhub-password
+      type: password
 
   post_deploy_errands:
-    - name: example-startup-errand
-      run_post_deploy_errand_default: off
+    - name: example-errand
 
   pre_delete_errands:
-    - name: example-cleanup-errand
-      run_pre_delete_errand_default: on
-
-  icon_image: iVBORw0KGgoAAAANSUhEUgAAAUIAAADcCAYAAAAFtqgbAAAAAXNSR0IArs4c6QAAAAlwSFl...
-
-  ```
+    - name: example-errand
+</pre>
 
 ### name
 String. Required.
