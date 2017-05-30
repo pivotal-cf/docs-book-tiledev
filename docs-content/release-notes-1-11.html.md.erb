@@ -100,6 +100,10 @@ post it to Pivotal Network with its SHA-2 checksum as follows.
 
 PCF v1.11 enables the BOSH Links feature available with bosh-release v255.5+. For managed services, BOSH Links streamlines BOSH releases by letting multiple jobs share configuration data, such as IP addresses, rather than requiring redundant configurations in the release and in the manifest.
 
+Upcoming enhancements to BOSH Links will further simplify BOSH manifests and completely eliminate their need to include IP addresses and credentials, improving security.
+
+Pivotal encourages tile developers to "linkify" new versions of their tiles to make them easier to use and maintain and to prepare them for future BOSH developments.
+
 For more information, see [BOSH Links: Why and How](
 https://gist.github.com/Amit-PivotalLabs/c39528248b8cdc4ba8e347f8aa68abb6)
 
@@ -109,32 +113,32 @@ BOSH releases are portable, but when BOSH consumes a release to deploy job insta
 
 BOSH releases handle these deploy-time values in two places, as described in more detail [below](#bosh-links-spec):
 
-* The _job spec_ file that describes each job includes a `properties` section that lists deployment-specific properties with their descriptions and default values.
-* The job's _templates_ are incomplete versions of the configuration files and scripts that a job needs to start, stop, and run. These templates contain Ruby calls embedded in place for any deployment-specific values.
+* The `properties:` section of the _job spec_ file lists deployment-specific properties for the job, along with their descriptions and default values. The job spec lists all of the deploy-time properties that the job uses.
+* The job's _templates_ are incomplete versions of the configuration files and scripts that a job needs to start, stop, and run. These templates contain Ruby calls embedded in place for any deployment-specific values. Different templates can use different sets of properties listed in the job spec, as needed. 
 
-To fill in these values at deploy time, BOSH:
+To fill in deployment-specific values at deploy time, BOSH:
 
-1. Reads in the property values defined in the manifest.
+1. Reads the property value definitions in the manifest.
 
-1. Runs the job templates through Ruby to fill in any deploy-time values.
+1. Runs the job templates through Ruby to plug in any deploy-time values.
 
 1. Saves out the resulting config files and scripts for use by the job.
 
 ### <a id="bosh-links-before-after"></a> Before and After BOSH Links
 
-Without BOSH Links, the spec file `properties` list for each job has include all configuration-time values that the job uses, even if they're also used by other jobs. Often, the deployment manifest has to define identical property-value pairs repeatedly, once for each job.
+Without BOSH Links, the spec file `properties` list for each job has include all configuration-time values that the job uses, even if they're also used by other jobs. Deployment manifests often have to define identical property-value pairs repeatedly, once for each job.
 
 BOSH Links lets jobs share deploy-time configuration properties as follows:
 
-* Job spec files include `provides:` and `consumes:` sections for sharing properties across jobs.
+* [Job spec](#bosh-links-spec) files include `provides:` and `consumes:` sections for sharing properties across jobs. The job spec `properties:` section still lists the deploy-time properties defined locally in the job, which was the only way to include the properties before BOSH Links. The `consumes:` section now adds deploy-time properties that are defined in and provided by other jobs.
 
-* Templates use a `link` function to pull in shared properties provided by other jobs, plus basic information about the instances running those jobs.
+* [Templates](#bosh-links-template) use a `link` function to pull in shared properties provided by other jobs, plus basic information about the instances running those jobs.
 
-With little overhead, BOSH links can make BOSH manifests shorter, easier to read, and simpler to build. By removing environment-specific details, they also make manifests more secure and more readily shareable and extensible.
+With little overhead, BOSH links make BOSH manifests shorter, easier to read, and simpler to build. By removing environment-specific details, they also make manifests more secure and more readily shareable and extensible.
 
 ### <a id="bosh-links-spec"></a> Links in Spec Files
 
-In a BOSH release, each job has a job spec file, which contains [job metadata](https://bosh.io/docs/jobs.html) and is located in the job's `spec` subdirectory. This spec file has a `properties:` section that lists all the configuration properties BOSH needs to fill in at deploy time. To enable BOSH Links, an additional `provides:` section publishes some or all of a job's properties to other jobs, and in the spec files of those other jobs, a `consumes:` section brings in the provided properties.
+In a BOSH release, each job has a job spec file, which contains [job metadata](https://bosh.io/docs/jobs.html) and is located in the job's `spec` subdirectory. This spec file has a `properties:` section that lists configuration properties that BOSH needs to fill in at deploy time. To enable BOSH Links, an additional `provides:` section publishes some or all of a job's properties to other jobs, and in the spec files of those other jobs, a `consumes:` section brings in the provided properties.
 
 #### <a id="bosh-links-spec-provide"></a> Job Provides Properties
 
