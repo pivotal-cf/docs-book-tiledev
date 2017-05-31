@@ -7,7 +7,13 @@ This topic explains how PCF Tiles describe properties.
 
 ## <a id='expressions'></a>Double-Paren Expressions
 
-A tile's configuration interface is defined in a `.yml` file in the tile's `metadata` subdirectory. Within a `.yml` file, you can use double parentheses to enclose deployment manifest snippets, and Ops Manager will pass these snippets to BOSH, to incorporate into the manifest that BOSH uses to deploy instances of the tile service. These double-paren expressions are how Ops Manager sends tile configuration information to BOSH, and how you should write these expressions depends on what type of information you want to retrieve.
+The product template `.yml` file in a tile's `metadata` subdirectory defines how the tile interface collects configurable properties from the user, and how Ops Manager incorporates these properties into the deployment manifest that it creates.
+
+The product template contains `manifest` snippets in both the `form_types` section that defines the tile interface, and the `job_types` section describing the jobs that the manifest deploys. Within these snippets, you can use special expressions to include property values that are otherwise not known ahead of time, such as configurable properties or system properties:
+
+* Double-parentheses expressions designate property values that Ops Manager fills in when it generates the deployment manifest, after the user clicks **Apply Changes**. These values include configurable properties and properties supplied by Ops Manager.
+
+* Triple-parentheses expressions designate property values that BOSH supplies when it deploys instances of the tile service, such as CredHub credentials.
 
 ### <a id='property-refs'></a>Referencing Properties
 

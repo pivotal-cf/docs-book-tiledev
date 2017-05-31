@@ -5,7 +5,7 @@ owner: Ops Manager
 
 This document defines the separate pieces of a product template. For the purpose of explanation we will use the [PCF example tile](https://github.com/pivotal-cf-experimental/ops-manager-example), a functional tile provided by the Ops Manager engineering team that deploys the NGINX web server.
 
-The product template, a `.yml.erb` file in the tile's `metadata` subdirectory, includes the following sections:
+The product template, a `.yml.erb` file in the tile's `metadata` subdirectory, includes or points to the following:
 
 * Metadata: high level information about your tile
 * Dependencies: how to specify product dependencies
@@ -86,10 +86,12 @@ Refer to [the BOSH hub](https://bosh.io/) for a list of stemcells, including os 
 
 `enable_patch_security_updates` allows you to automatically use the latest patched version of a stemcell. This is by default set to `true`. For products using static compilations, you can disable this feature. If you set the property to `false`, your product will not receive security patches through automatic stemcell updates. 
 
- ```
- stemcell_criteria
-  enable_patch_security_updates: true
- ```
+ <pre class="code">
+ stemcell\_criteria
+  os: ubuntu-trusty
+  version: &lt;%= stemcell\_version.inspect %>
+  enable\_patch\_security\_updates: true
+ </pre>
 
 This feature increases security by automatically using the latest patched version of a stemcell. However, operators may experience longer than expected upgrade times. Review the [Understanding Floating Stemcells](http://docs.pivotal.io/pivotalcf/customizing/understanding-stemcells.html) topic for more information.
 
@@ -118,12 +120,12 @@ As shown in a later section, form properties reference property\_blueprints for 
 Following this example are definitions of each property.
 
   ```
-  form_types:
-    - name: example-form
-      label: Configurable Properties
-      description: All the properties that you can configure!
-      markdown: |
-      ## This is markdown.
+form_types:
+  - name: example-form
+    label: Configurable Properties
+    description: All the properties that you can configure!
+    markdown: |
+      ## I am markdown, hear me _roar_.
 
       ![Alt text](http://placekitten.com/g/400/200)
 
@@ -131,53 +133,69 @@ Following this example are definitions of each property.
 
       1. Learn [markdown](https://daringfireball.net/projects/markdown/).
       1. ...
-      1. Describe your tile.
-      property_inputs:
-        - reference: .web_server.example_string
-          label: Example string
-          description: 'Configure a property of type string'
-        - reference: .web_server.example_string_with_placeholder
-          label: Example string containing Placeholder text
-          description: 'Optional field. Configuration not necessary'
-          placeholder: 'Ghost text. Spooky!'
-    - name: example_collections_form
-      label: 'Collection example'
-      description: 'A collection example form'
-      property_inputs:
-        - reference: .properties.example_collection
-          label: 'Albums collection'
-          description: 'The albums'
-          property_inputs:
-            - reference: album
-              label: 'Name of the Album'
-              description: 'ex Graceland'
-            - reference: artist
-              label: 'Name of the Artist'
-              description: 'ex Paul Simon'
-            - reference: explicit
-              label: 'Explicit?'
-              description: '$#!%&'
-    - name: example_selector_form
-      label: 'Selector Example'
-      description: 'A selector example form'
-      property_inputs:
-        - reference: .properties.example_selector
-          label: 'Food Choices'
-          selector_property_inputs:
-            - reference: .properties.example_selector.pizza_option
-              label: 'Pizza'
-              property_inputs:
-                - reference: .properties.example_selector.pizza_option.pepperoni
-                  label: 'Add Pepperoni'
-                - reference: .properties.example_selector.pizza_option.pineapple
-                  label: 'Add Pineapple'
-                - reference: .properties.example_selector.pizza_option.other_toppings
-                  label: 'Other toppings'
-            - reference: .properties.example_selector.filet_mignon_option
-              label: 'Filet Mignon'
-              property_inputs:
-                - reference: .properties.example_selector.filet_mignon_option.rarity_dropdown
-                  label: 'How rare?'
+      1. Profit!
+    property_inputs:
+      - reference: .web_server.example_string
+        label: Example string
+        description: 'Configure a property of type string'
+      - reference: .web_server.example_string_with_placeholder
+        label: Example string containing Placeholder text
+        description: 'Optional field. Configuration not necessary'
+        placeholder: 'Ghost text. Spooky!'
+      - reference: .web_server.example_migrated_integer
+        label: Example integer
+        description: 'Configure a property of type integer'
+      - reference: .web_server.example_boolean
+        label: Example boolean
+        description: 'Configure a property of type boolean'
+      - reference: .web_server.example_dropdown
+        label: Example dropdown
+        description: 'Configure a property of type dropdown'
+      - reference: .web_server.example_domain
+        label: Example domain
+        description: 'Configure a property of type domain'
+      - reference: .web_server.example_wildcard_domain
+        label: Example wildcard_domain
+        description: 'Configure a property of type wildcard_domain'
+      - reference: .web_server.example_string_list
+        label: Example string_list
+        description: 'Configure a property of type string_list'
+      - reference: .web_server.example_text
+        label: Example text
+        description: 'Configure a property of type text (setting to "magic value" will cause the web server job instance count to go to 0)'
+      - reference: .web_server.example_ldap_url
+        label: Example ldap_url
+        description: 'Configure a property of type ldap_url'
+      - reference: .web_server.example_email
+        label: Example email
+        description: 'Configure a property of type email'
+      - reference: .web_server.example_http_url
+        label: Example http_url
+        description: 'Configure a property of type http_url'
+      - reference: .web_server.example_ip_address
+        label: Example ip_address
+        description: 'Configure a property of type ip_address'
+      - reference: .web_server.example_ip_ranges
+        label: Example ip_ranges
+        description: 'Configure a property of type ip_ranges'
+      - reference: .web_server.example_multi_select_options
+        label: Example multi_select_options
+        description: 'Configure a property of type multi_select_options'
+      - reference: .web_server.example_network_address_list
+        label: Example network_address_list
+        description: 'Configure a property of type network_address_list (this property was marked with freeze_on_deploy, and so will not be editable after changes are first applied)'
+      - reference: .web_server.example_network_address
+        label: Example network_address
+        description: 'Configure a property of type network_address'
+      - reference: .web_server.example_port
+        label: Example port
+        description: 'Configure a property of type port'
+      - reference: .web_server.example_smtp_authentication
+        label: Example smtp_authentication
+        description: 'Configure a property of type smtp_authentication'
+      - reference: .web_server.client_certificate
+        label: Example certificate
+        description: 'Configure a certificate'
   ```
 
 ### name
@@ -241,77 +259,70 @@ The following is an example of the property_blueprints that appear in a product 
 Note that one of these blueprints references a migrated value, which came from the Example Product v1.6 using [migrations](./tile-upgrades.html).  
 
   ```
-    property_blueprints:
-      - name: example_string
-        type: string
-        configurable: true
-        default: 'Hello world'
-        constraints:
-          - must_match_regex: '^[^!@#$%^&*()]*$'
-            error_message: 'This name cannot contain capital digits.'
-          - must_match_regex: '^[^0-9]*$'
-            error_message: 'This name cannot contain digits.'
-      - name: example_migrated_integer
-        type: integer
-        configurable: true
-        default: 1
-      - name: example_collection
-        type: collection
-        configurable: true
+property_blueprints:
+  - name: example_selector
+    type: selector
+    configurable: true
+    default: Pizza
+    freeze_on_deploy: true
+    option_templates:
+      - name: pizza_option
+        select_value: Pizza
+        named_manifests:
+          - name: my_snippet
+            manifest: |
+              pizza_toppings:
+                pepperoni: (( .properties.example_selector.pizza_option.pepperoni.value ))
+                pineapple: (( .properties.example_selector.pizza_option.pineapple.value ))
+                other: (( .properties.example_selector.pizza_option.other_toppings.value ))
+          - name: provides_section
+            manifest: |
+              as: 'pizza_link_web_server_job'
+          - name: consumes_section
+            manifest: |
+              from: 'pizza_link_web_server_job'
         property_blueprints:
-          - name: album
-            type: string
-          - name: artist
-            type: string
-          - name: explicit
+          - name: pepperoni
             type: boolean
-        default:
-          - album: Christmas Carols
-            artist: Ops Manatee
-            explicit: true
-      - name: example_selector
-        type: selector
-        configurable: true
-        default: Pizza
-        option_templates:
-          - name: pizza_option
-            select_value: Pizza
-            named_manifests:
-              - name: my_snippet
-                manifest: |
-                  pizza_toppings:
-                    pepperoni: (( .properties.example_selector.pizza_option.pepperoni.value ))
-                    pineapple: (( .properties.example_selector.pizza_option.pineapple.value ))
-                    other: (( .properties.example_selector.pizza_option.other_toppings.value ))
-            property_blueprints:
-              - name: pepperoni
-                type: boolean
-                configurable: true
-              - name: pineapple
-                type: boolean
-                configurable: true
-              - name: other_toppings
-                type: string
-                configurable: true
-                optional: true
-          - name: filet_mignon_option
-            select_value: Filet Mignon
-            named_manifests:
-              - name: my_snippet
-                manifest: |
-                  rarity: (( .properties.example_selector.filet_mignon_option.rarity_dropdown.value ))
-            property_blueprints:
-              - name: rarity_dropdown
-                type: dropdown_select
-                configurable: true
-                default: rare
-                options:
-                  - name: rare
-                    label: 'Rare'
-                  - name: medium
-                    label: 'Medium'
-                  - name: well-done
-                    label: 'Well done'
+            configurable: true
+            freeze_on_deploy: true
+          - name: pineapple
+            type: boolean
+            configurable: true
+            default: true
+          - name: other_toppings
+            type: string
+            configurable: true
+            optional: true
+            constraints:
+            - must_match_regex: '\A[^!@#$%^&*()]*\z'
+              error_message: 'This name cannot contain special characters.'
+      - name: filet_mignon_option
+        select_value: Filet Mignon
+        named_manifests:
+          - name: my_snippet
+            manifest: |
+              rarity: (( .properties.example_selector.filet_mignon_option.rarity_dropdown.value ))
+              review: (( .properties.example_selector.filet_mignon_option.review.value ))
+              secret_sauce: (( .properties.example_selector.filet_mignon_option.secret_sauce.value ))
+          - name: provides_section
+            manifest: |
+              as: 'filet_mignon_link_web_server_job'
+          - name: consumes_section
+            manifest: |
+              from: 'filet_mignon_link_web_server_job'
+        property_blueprints:
+          - name: rarity_dropdown
+            type: dropdown_select
+            configurable: true
+            default: rare
+            options:
+              - name: rare
+                label: 'Rare'
+              - name: medium
+                label: 'Medium'
+              - name: well-done
+                label: 'Well done'
   ```
 
 ### configurable
@@ -665,9 +676,27 @@ If your product uses an external service that performs the same job as a service
 
 ### manifest
 Text Snippet, prefaced by pipe symbol: **|**. Optional.
-A BOSH manifest will be created by Ops Manager. The sections of that manifest will include each job, and the properties for that job. These properties come directly from the manifest snippet here, and use a syntax known as "double-parens" which consists of a variable name surrounded by two sets of parentheses.
+Ops Manager generates a BOSH manifest that defines properties for each job that the manifest deploys. Some of these properties not set until the user clicks **Apply Changes**, because the user configures them in the tile or because Ops Manager has to generate them.
 
-The double-parens syntax will be evaluated when a user clicks the Apply Changes button in Ops Manager. A manifest is created and the double-parens variables are evaluated. The values, either entered by a user, or generated by Ops Manager, are dynamically inserted in place of the double-parens references.
+To include these properties in a manifest snippet, use "double-parens" syntax, which consists of a variable name surrounded by two sets of parentheses:
+
+```
+    manifest: |
+      pizza_toppings:
+        pepperoni: (( .properties.example_selector.pizza_option.pepperoni.value ))
+```
+
+When Ops Manager parses a product template and BOSH parses a manifest, they both fill in properties designated by double-parens syntax. Some property values in a product template, such as CredHub credentials, must be filled in by BOSH on the BOSH Director VM, rather than by Ops Manager. To include these BOSH deploy-time properties in a `manifest` snippet, use "triple-parens" notation:
+
+```
+    manifest: |
+      credhub:
+        concatenated_password: prefix-((( credhub-password )))-suffix
+        password: ((( credhub-password )))
+
+```
+
+Ops Manager strips the outer parentheses off of these expressions and includes the resulting double-parens expressions in the manifest it generates, for BOSH to evaluate at deploy time.
 
 ### Selector Manifest Snippets
 
