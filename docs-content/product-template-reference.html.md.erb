@@ -441,13 +441,13 @@ We will learn about manifest snippets in the next section.
 
 ## <a id='job-types'></a> Job Types
 
-The following is an example of the `job_types` section that appear in a product template.
+The following is an example of the `job_types` section that appears in a product template.
 This section defines the jobs that end up in a BOSH Manifest.
 Those jobs are defined in your BOSH Release.
 Jobs require many different settings in order to function properly, and that is the crux of what Ops Manager does for you:
-it asks a user for values to those settings, and generates a manifest based on what was entered.
+it asks a user for values to those settings and generates a manifest based on what was entered.
 
-Ops Manager does not require product authors to provide `vm_credentials` in the `property_blueprints` for each `job_type`. `vm_credentials` are generated automatically,
+Ops Manager does not require product authors to provide `vm_credentials` in the `property_blueprints` for each `job_type`. This is because `vm_credentials` are generated automatically,
 and you can find them in the release manifest. 
 
 ```
@@ -728,9 +728,9 @@ For example, your product uses Amazon Relational Database Service (RDS) instead 
 Set `property reference` to `.properties.system.database` and `property value` to `magic value` to change the instance counts of all MySQL jobs to `0`. 
 
 ### manifest
-Text Snippet, prefaced by pipe symbol: `|`. Optional.
+Text snippet, prefaced by pipe symbol: `|`. Optional.
 Ops Manager generates a BOSH manifest that defines properties for each job that the manifest deploys.
-Some of these properties not set until the user clicks **Apply Changes**, because the user configures them in the tile or because Ops Manager has to generate them.
+Some of these properties are not set until the user clicks **Apply Changes**, because the user configures them in the tile or because Ops Manager has to generate them.
 
 To include these properties in a manifest snippet, use "double-parens" syntax, which consists of a variable name surrounded by two sets of parentheses:
 
@@ -743,7 +743,7 @@ To include these properties in a manifest snippet, use "double-parens" syntax, w
 When Ops Manager parses a product template and BOSH parses a manifest,
 they both fill in properties designated by double-parens syntax.
 Some property values in a product template, such as CredHub credentials, must be filled in by BOSH on the BOSH Director VM, rather than by Ops Manager.
-To include these BOSH deploy-time properties in a `manifest` snippet, use "triple-parens" notation:
+To include these BOSH deploy-time properties in a manifest snippet, use "triple-parens" notation:
 
 ```
     manifest: |
@@ -753,7 +753,7 @@ To include these BOSH deploy-time properties in a `manifest` snippet, use "tripl
 
 ```
 
-Ops Manager strips the outer parentheses off of these expressions and
+Ops Manager strips the outer parentheses from these expressions and
 includes the resulting double-parens expressions in the manifest it generates, for BOSH to evaluate at deploy time.
 
 ### Selector Manifest Snippets
