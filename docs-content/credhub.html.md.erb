@@ -1,0 +1,59 @@
+---
+title: CredHub
+owner: Services
+---
+
+CredHub is a secure credential management component that runs on the BOSH VM, to minimize the surface area where credentials can be compromised. This topic provides resources for configuring service tiles to use CredHub, instead of encoding credentials in product template and job template files.
+
+## <a id="overview"></a> Overview
+
+[//]: # (WHEN PCF V1.11 DOCS PUBLISH, REPLACE LINK BELOW WITH https://docs.pivotal.io/pivotalcf/1-11/credhub/index.html )
+
+In PCF v1.11.0, CredHub runs on the BOSH VM, alongside the BOSH Director and UAA. Ops Manager v1.11 stores its credentials in CredHub, and users retrieve them using the CredHub API rather than from the **Credentials** tab of the Ops Manager Director tile. Tile developers can embed CredHub calls in [manifest snippets](#snippets) and PCF apps can retrieve credentials using the CredHub API.
+
+Users in the Pivotal Early Access Program can refer to the [PCF v1.11 pre-release documentation](https://docs-pcf-staging.cfapps.io/pivotalcf/1-11/credhub/credhub-api-variables.html) (ask your Pivotal contact for password) for how to fetch variable names and values using the CredHub API.
+
+
+
+<p class="note warning"><strong>WARNING</strong>: CredHub in PCF v1.11.0 does not support backup and restore, so Pivotal only recommends using CredHub for credentials that you can recover from elsewhere after a disaster.</p>
+
+## <a id="types"></a> CredHub Credential Types
+
+CredHub stores and retrieves the following types of credentials:
+
+* `value` - single string value
+* `json` - arbitrary JSON object
+* `password` - password string
+* `certificate` - object containing certificate authority (CA), certificate, and private key
+* `ssh` - object containing SSH public key and private key
+* `rsa` - object containing RSA public key and private key
+
+## <a id="snippets"></a> CredHub in Manifest Snippets
+
+Tile developers can embed CredHub in product template and job template manifest snippets using [triple-parenthesis notation](./product-template-reference.html#job-manifest):
+
+```
+    manifest: |
+      credhub:
+        concatenated_password: prefix-((( credhub-password )))-suffix
+        password: ((( credhub-password )))
+
+```
+
+## <a id="limitations"></a> PCF v1.11.0 Limitations
+
+PCF v1.11.0 supports CredHub, but does not support CredHub backups or migrating existing credentials to CredHub. Upcoming PCF v1.11.x versions will include the following:
+
+* Automatic backup and restore for CredHub, along with other PCF system components.
+
+* Support for tile version [upgrades](./tile-upgrades.html) that migrate the credentials set in previous tile versions by [property blueprints](./property-reference.html#property-blueprints) over to credentials managed by CredHub.
+
+Tile authors may choose to wait until these features are supported before incorporating CredHub into their service.
+
+Future versions of CredHub will also support generating credentials.
+
+Pivotal Early Access Program users can refer to the [PCF v1.11 pre-release documentation](https://docs-pcf-staging.cfapps.io/pivotalcf/1-11/credhub/index.html) (ask your Pivotal contact for password).
+
+[//]: # ( CREDHUB API AND CLI NOT READY YET IN FULL; UNCOMMENT BELOW WHEN READY )
+
+[//]: # ( For more information, see the [CredHub API](https://credhub-api.cfapps.io), [CredHub CLI repo](https://github.com/cloudfoundry-incubator/credhub-cli), and [CredHub Release repo](https://github.com/pivotal-cf/credhub-release). )
