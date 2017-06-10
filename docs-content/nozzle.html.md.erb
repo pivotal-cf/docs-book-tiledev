@@ -232,6 +232,120 @@ as a reference for building your nozzle
 
   * Another real world implementation
 
+## <a id="syslog-format-pcf"></a> Log Format for PCF Components
+
+Pivotal's standard log format adheres to the [RFC-5424 syslog protocol](https://tools.ietf.org/html/rfc5424), with log messages formatted as follows. The [table below](#syslog-elements) describes each element.
+
+`<${PRI}>${VERSION} ${TIMESTAMP} ${HOST_IP} ${APP_NAME} ${PROD_ID} ${MSG_ID} ${SD-ELEMENT-instance} ${MESSAGE}`
+
+### <a id="syslog-elements"></a> Syslog Message Elements
+
+This table describes each element of a standard PCF syslog message.
+
+<table id='syslog-elements-table' border="1" class="nice" >
+  <tr>
+    <th>Syslog Message Element</th>
+    <th>Meaning or Value</th>
+  </tr><tr>
+    <td><code>${PRI}</code></td>
+    <td><p><a href="https://tools.ietf.org/html/rfc5424#section-6.2.1">Priority value (PRI)</a>, calculated as <code>8 × Facility Code + Severity Code</code>.</p>
+    <p>Use a Facility Code value of <code>1</code>, which indicates a user-level facility.</p>
+    <p>For Severity Code, see the <a href="#severity-codes">RFC-5424 Severity Codes</a> table below. If in doubt, default to <code>13</code>, Notice-level severity.</p>
+</td>
+  </tr><tr>
+    <td><code>${VERSION}</code></td>
+    <td><a href="https://tools.ietf.org/html/rfc5424#section-9.1"><code>1</code></a></td>
+  </tr>
+  </tr><tr>
+    <td><code>${TIMESTAMP}</code></td>
+    <td><p>The <a href="https://tools.ietf.org/html/rfc5424#section-9.1">timestamp</a> of when the log is forwarded; typically slightly after it was generated. Example: <code>2017-07-24T05:14:15.000003Z</code></p></td>
+  </tr><tr>
+    <td><code>${HOST_IP}</code></td>
+    <td><a href="https://tools.ietf.org/html/rfc5424#section-6.2.4">Internal IP address</a> of origin server</td>
+  </tr><tr>
+    <td><code>${APP_NAME}</code></td>
+    <td><p><a href="https://tools.ietf.org/html/rfc5424#section-6.2.5">Process name</a>  of the program the generated the message.  Prefixed with <code>vcap</code>. For example:</p>
+    <ul><li><code>vcap.rep</code></li>
+    <li><code>vcap.garden</code></li>
+    <li><code>vcap.cloud_controller_ng</code></li></ul>
+    <p>
+    You can derive this process name from either the program name configured for the local Metron agent or the <code>:progname</code>that blackbox derives from the folder that syslog-release forwards logs into.</p></td>
+  </tr><tr>
+    <td><code>${PROD_ID}</code></td>
+    <td>The <a href="https://tools.ietf.org/html/rfc5424#section-6.2.6">Process ID</a> of the syslog process doing the forwarding. If this is not easily available, default to <code>-</code> (hyphen) to indicate unknown.</td>
+</td>
+  </tr><tr>
+    <td><code>${MSG_ID}</code></td>
+    <td>The <a href="https://tools.ietf.org/html/rfc5424#section-6.2.7">type</a> of message. If this is not easily available, default to <code>-</code> (hyphen) to indicate unknown.</td>
+  </tr><tr>
+    <td><code>${SD-ELEMENT-instance}</code></td>
+    <td>Structured data (SD) relevant to PCF about the <a href="https://tools.ietf.org/html/rfc5424#section-6.3.1">source instance (VM)</a> where the log originates. See the <a href="#sd-element">SD element table</a> below for content and format.</td>
+  </tr><tr>
+    <td><code>${MESSAGE}</code></td>
+    <td>The log message itself, ideally in JSON</td>
+  </tr>
+</table>
+
+### <a id="severity"></a> RFC-5424 Severity Codes
+
+<table id='severity-table' border="1" class="nice" >
+  <tr>
+    <th>Severity Code</th>
+    <th>Meaning</th>
+  </tr><tr>
+    <td><code>8</code></td>
+    <td>Emergency: system is unusable</td>
+  </tr><tr>
+    <td><code>9</code></td>
+    <td>Alert: action must be taken immediately</td>
+  </tr><tr>
+    <td><code>10</code></td>
+    <td>Critical: critical conditions</td>
+  </tr><tr>
+    <td><code>11</code></td>
+    <td>Error: error conditions</td>
+  </tr><tr>
+    <td><code>12</code></td>
+    <td>Warning: warning conditions</td>
+  </tr><tr>
+    <td><code>13</code></td>
+    <td>Notice: normal but significant condition</td>
+  </tr><tr>
+    <td><code>14</code></td>
+    <td>Informational: informational messages</td>
+  </tr><tr>
+    <td><code>15</code></td>
+    <td>Debug: debug-level messages</td>
+ </tr>
+</table>
+
+### <a id="sd-element"></a> Structured Instance Data Format
+
+<table id='sd-element-table' border="1" class="nice" >
+  <tr>
+    <th><code>SD-ELEMENT-instance</code> element</th>
+    <th>Meaning</th>
+  </tr><tr>
+    <td><code>${ENTERPRISE_ID}</code></td>
+    <td>Your Enterprise Number, as <a href="https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers">listed</a> by the Internet Assigned Numbers Authority (IANA) </td>
+  </tr><tr>
+    <td><code>${DIRECTOR}</code></td>
+    <td>The BOSH director managing the deployment. </td>
+  </tr><tr>
+    <td><code>${DEPLOYMENT}</code></td>
+    <td>BOSH <code>spec.deployment</code> value</td>
+  </tr><tr>
+    <td><code>${INSTANCE_GROUP}</code></td>
+    <td>BOSH <code>instance_group</code>, currently <code>spec.job.name</code></td>
+  </tr><tr>
+    <td><code>${AVAILABILITY_ZONE}</code></td>
+    <td>BOSH <code>spec.az</code> value</td>
+  </tr><tr>
+    <td><code>${ID}</code></td>
+    <td>BOSH <code>spec.id</code> value. This is a GUID, not an index. Necessary because BOSH Availability Zone index values are not always unique or sequential.</td>
+ </tr>
+</table>
+
 ## <a id="metrics"></a> Making Sense of Metrics
 
 [Monitoring Pivotal Cloud Foundry](https://docs.pivotal.io/pivotalcf/monitoring/index.html) has a great rundown of the
