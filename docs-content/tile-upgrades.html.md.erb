@@ -29,6 +29,9 @@ exports.migrate = function(input) {
 
     input.properties['.web_server.example_string']['value'] += '!'; 
     
+    // Delete property 'legacy_property' that's removed in new tile version
+    delete input.properties['.properties.legacy_property'];
+
     // Rename property 'example_port' to 'example_port_renamed',
     // retaining the previous value.
     input.properties['.properties.example_port_renamed'] = 
