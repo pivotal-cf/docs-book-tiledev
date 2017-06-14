@@ -265,13 +265,13 @@ Learn more in the [CredHub integrations](./credhub.html) topic.
 Pivotal Early Access Program users can refer to the [PCF v1.11 pre-release documentation](https://docs-pcf-staging.cfapps.io/pivotalcf/1-11/credhub/index.html),
 ask your Pivotal contact for the password.
 
-## <a id="syslog"></a> Syslog
+## <a id="syslog"></a> Syslog Standardization
 
-Platform and service components running on PCF have historically used different formats for the log messages they produce. Cloud operators set up their tools to parse these logs in different ways, depending on their format, in order to monitor their PCF deployments.
+Platform and service components running on PCF have historically not all used the same format for the log messages they produce. Cloud operators set up their tools to parse these logs in different ways, depending on their format, in order to monitor their PCF deployments.
 
-To make analyzing logs easier, Pivotal is standardizing on the [RFC-5424 syslog format](https://tools.ietf.org/html/rfc5424). The RFC-5424 standard includes a [structured data element](https://tools.ietf.org/html/rfc5424#section-6.3.1), and Pivotal is also standardizing on a format for that element to carry information about the VM instance that generates the log.
+To make analyzing logs easier, Pivotal is standardizing on the [RFC-5424 syslog format](https://tools.ietf.org/html/rfc5424). The RFC-5424 standard includes a [structured data element](https://tools.ietf.org/html/rfc5424#section-6.3.1), and Pivotal has also standardized its format for that element to carry information about the VM instance that generates the log.
 
-Pivotal has migrated its own platform and product components to use [its version](./nozzle.html#syslog-format-pcf) of the RFC-5424 standard, and recommends that its partners also follow the standard if they do not already.
+Pivotal has migrated its own platform and product components to use this new [Pivotal-standard version](./nozzle.html#syslog-format-pcf) RFC-5424, and recommends that its partners follow the standard if they do not already.
 
 ### <a id="syslog-example"></a> Pivotal syslog Log Example
 
@@ -283,16 +283,22 @@ For example:
 
     <13>1 2016-11-29T12:35:16.931595Z 10.10.147.88 vcap.rep - - [instance@47450 director="us-pws" deployment="cf" group="cell" az="us-east-1b" id="006463a1-45719-9f6d"] {"timestamp":"1480422916.931512594", "source":"rep","message":"rep.metrics-reporter.containerstore-list.starting","log_level":1,"data":{"session":"7.19442"}}
 
+See [Log Format for PCF Components](./nozzle.html#syslog-format-pcf) for details.
+
 ### <a id="syslog-forwarders"></a> syslog-release and syslog-migration-release
 
 Tile components can forward standard-format logs by including either [`syslog-release`](https://github.com/cloudfoundry/syslog-release) or [`syslog-migration-release`](https://github.com/pivotal-cf/syslog-migration-release) in their tile configurations. These BOSH releases create processes that:
 
-* Read log messages saved to a local source directory, which defaults to `/var/vcap/sys/log/*`.
+* Read log messages generated and saved to a local source directory, which defaults to `/var/vcap/sys/log/*`.
 * Forward the log messages in [Pivotal syslog format](./nozzle.html#syslog-format-pcf) to a syslog endpoint or other configurable network destination.
 
-`syslog-release` only supports logging with the RFC-5424. Pivotal developed `syslog-migration-release` as a variant of `syslog-release` to let tiles offer a configuration choice between generating logs in a legacy format and generating logs in log format RFC-5424 a configurable tile option alongside legacy log formats.
+#### <a id="syslog-forwarder-diffs"></a> syslog Forwarder Differences
 
-Tile developers can use `syslog-migration-release` to give PCF operators some time to convert from processing logs generated in their legacy format to logs generated in Pivotal standard log format.
+`syslog-release` only supports logging that follows RFC-5424 protocol.
+
+Pivotal developed `syslog-migration-release` as a variant of `syslog-release` to let tiles offer a configuration choice between generating logs in a legacy format and generating logs in Pivotal-standard RFC-5424 format.
+
+Tile developers can use `syslog-migration-release` to give PCF operators a choice of log formats, affording the operator some time to convert from processing logs generated in a tile's bespoke legacy format to logs generated in Pivotal standard format.
 
 This table summarizes the differences between `syslog-release` and `syslog-migration-release`:
 
@@ -303,8 +309,8 @@ This table summarizes the differences between `syslog-release` and `syslog-migra
     <th><code>syslog-migration-release</code></th>
   </tr><tr>
     <th>Endpoint configuration</th>
-    <td>Expects a defined forwarding endpoint, or else it breaks</td>
-    <td>Configurable with boolean <code>syslog.migration.disabled</code> to disable without breaking if no endpoint supplied.</td>
+    <td>Expects a defined syslog forwarding endpoint, or else it breaks</td>
+    <td>Configurable with boolean <code>syslog.migration.disabled</code> to disable without breaking if no endpoint supplied</td>
   </tr><tr>
     <th>Log format</th>
     <td>Only forwards logs in RFC-5424 format</td>
@@ -312,28 +318,28 @@ This table summarizes the differences between `syslog-release` and `syslog-migra
   </tr><tr>
     <th>Intended longevity</th>
     <td>Standard for PCF log forwarding; here to stay</td>
-    <td>Intended as a "bridge" for migrating tiles to <code>syslog-release</code></td>
+    <td>Intended as a temporary "bridge" for migrating tiles to <code>syslog-release</code></td>
   </tr>
 </table>
 
-<p class="note"><strong>Note</strong>: Do not use the Unix `logger` command when co-locating <code>syslog-release</code> or <code>syslog-migration-release</code>, or the component may forward duplicate logs lines to the configured syslog endpoint. Tiles should only use one log format at a time, for all components.</p>
+<p class="note"><strong>Note</strong>: Tiles should only use one log format at a time, for all components. Do not use the Unix <code>logger</code> command alongside <code>syslog-release</code> or <code>syslog-migration-release</code>, or else the component may forward duplicate log lines to the configured syslog endpoint.</p>
 
 ### <a id="syslog-path"></a> syslog Migration Path
 
 Pivotal recommends the following migration path for tiles that currently generate log messages in formats other than Pivotal-standard syslog:
 
 * **Current release, _n_**: Deploys service that generates non-syslog format logs.
-* **Release _n_ + 1**: "Bridging" release, uses `syslog-migration-release` and lets operators configure service to generate either legacy, non-syslog format logs or RFC-5424 logs.
-* **Release _n_ + 2**: Service includes `syslog-release` and generates RFC-5425 logs exclusively.
+* **Release _n_ + 1**: "Bridging" release, uses `syslog-migration-release` and lets operators configure service to generate either legacy, non-syslog format logs or Pivotal-standard RFC-5424 logs.
+* **Release _n_ + 2**: Service includes `syslog-release` and generates Pivotal-standard RFC-5425 logs exclusively.
 
 ### <a id="syslog-config"></a> Configuration Interface
 
-To give operators a uniform experience configuring PCF tiles for syslog, Pivotal recommends designing a **System Logging** configuration pane that looks like this:
+To give operators a uniform experience configuring PCF tiles for syslog, Pivotal recommends that tile developers define their forms to render a **System Logging** configuration pane that looks like this:
 
 ![Syslog Config Pane](img/syslog-migration-pane.png)
 
-For tiles that use `syslog-migration-release` to give operators the choice of generating logs in a legacy format or RFC-5424, Pivotal recommends adding a dropdown like this:
+For tiles that use `syslog-migration-release` and give operators a choice of log formats, Pivotal recommends adding a dropdown like this:
 
 ![Syslog Migration Format dropdown](img/syslog-migration-format-dropdown.png)
 
-Longer term, Ops Manager may evolve to provide a built-in configuration pane and backend for syslog-based logging, as it does currently with the **Assign AZs and Networks**, **Resource Config**, and **Stemcell** panes.
+Longer term, Ops Manager may evolve to provide a built-in configuration pane and backend for Pivotal-standard syslog logging, as it does currently with the shared **Assign AZs and Networks**, **Resource Config**, and **Stemcell** panes.
