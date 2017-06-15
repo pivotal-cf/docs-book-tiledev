@@ -10,7 +10,7 @@ This topic describes the changes that PCF v1.11 introduces which may be relevant
 To reduce the attack surface of PCF and improve security, Pivotal disabled IPv6 for all stemcells v3363.20 and later, including stemcells bundled with PCF v1.11. 
 This means that apps deployed by PCF service tiles using current stemcells cannot communicate via IPv6 unless your tile explicitly configures VM network settings to enable IPv6.
 
-Within PCF, all platform and service components, brokers, and apps communicate via IPv4, and do not use IPv6. 
+Within PCF, all platform and service components, brokers, and apps communicate via IPv4 and do not use IPv6. 
 
 This stemcell change does not impact many PCF tiles. Possible exceptions are:
 
@@ -271,7 +271,7 @@ Historically, platform and service components running on PCF have not all used t
 
 To make analyzing logs easier, Pivotal is standardizing on the [RFC-5424 syslog format](https://tools.ietf.org/html/rfc5424). The RFC-5424 standard includes a [structured data element](https://tools.ietf.org/html/rfc5424#section-6.3.1), and Pivotal has also standardized its format for that element to carry information about the VM instance that generates the log.
 
-Pivotal has migrated its own platform and product components to use this new [Pivotal-standard version](./nozzle.html#syslog-format-pcf) RFC-5424, and recommends that its partners follow the standard if they do not already.
+Pivotal has migrated its own platform and product components to use this new [Pivotal-standard version](./nozzle.html#syslog-format-pcf) RFC-5424 and recommends that its partners follow the standard if they do not already.
 
 ### <a id="syslog-example"></a> Pivotal syslog Log Example
 
@@ -309,7 +309,7 @@ This table summarizes the differences between `syslog-release` and `syslog-migra
     <th><code>syslog-migration-release</code></th>
   </tr><tr>
     <th>Endpoint configuration</th>
-    <td>Expects a defined syslog forwarding endpoint, or else it breaks</td>
+    <td>Expects a defined syslog forwarding endpoint or else it breaks</td>
     <td>Configurable with boolean <code>syslog.migration.disabled</code> to disable without breaking if no endpoint supplied</td>
   </tr><tr>
     <th>Log format</th>
