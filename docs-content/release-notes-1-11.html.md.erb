@@ -267,7 +267,7 @@ ask your Pivotal contact for the password.
 
 ## <a id="syslog"></a> Syslog Standardization
 
-Platform and service components running on PCF have historically not all used the same format for the log messages they produce. Cloud operators set up their tools to parse these logs in different ways, depending on their format, in order to monitor their PCF deployments.
+Historically, platform and service components running on PCF have not all used the same format for the log messages they produce. Cloud operators set up their tools to parse these logs in different ways, depending on their format, in order to monitor their PCF deployments.
 
 To make analyzing logs easier, Pivotal is standardizing on the [RFC-5424 syslog format](https://tools.ietf.org/html/rfc5424). The RFC-5424 standard includes a [structured data element](https://tools.ietf.org/html/rfc5424#section-6.3.1), and Pivotal has also standardized its format for that element to carry information about the VM instance that generates the log.
 
