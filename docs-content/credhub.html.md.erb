@@ -6,16 +6,16 @@ owner: Services
 CredHub is a secure credential management component that runs on the BOSH VM to minimize the surface area where credentials can be compromised.
 This topic provides resources for configuring service tiles to use CredHub, instead of encoding credentials in product template and job template files.
 
+See the [PCF CredHub documentation](https://docs.pivotal.io/pivotalcf/credhub/index.html) for more information.
+
 ## <a id="overview"></a> Overview
 
-[//]: # (WHEN PCF V1.11 DOCS PUBLISH, REPLACE LINK BELOW WITH https://docs.pivotal.io/pivotalcf/1-11/credhub/index.html )
-
-In PCF v1.11.0, CredHub runs on the BOSH VM, alongside the BOSH Director and UAA. Ops Manager v1.11 stores its credentials in CredHub,
+In Pivotal Cloud Foundry (PCF) v1.11.0, CredHub runs on the BOSH VM, alongside the BOSH Director and UAA. Ops Manager v1.11 stores its credentials in CredHub,
 and users retrieve them using the CredHub API rather than from the **Credentials** tab of the Ops Manager Director tile.
 Tile developers can embed CredHub calls in [manifest snippets](#snippets) and PCF apps can retrieve credentials using the CredHub API.
 
-Users in the Pivotal Early Access Program can refer to the [PCF v1.11 pre-release documentation](https://docs-pcf-staging.cfapps.io/pivotalcf/1-11/credhub/credhub-api-variables.html)
-(ask your Pivotal contact for the password) for how to fetch variable names and values using the CredHub API.
+See [Fetching Variable Names and Values](https://docs.pivotal.io/pivotalcf/credhub/credhub-api-variables.html)
+in the PCF CredHub documentation for how to fetch variable names and values using the CredHub API.
 
 <p class="note warning"><strong>WARNING</strong>: CredHub in PCF v1.11.0 does not support backup and restore, so Pivotal only recommends using CredHub for credentials that you can recover from elsewhere after a disaster.</p>
 
@@ -54,8 +54,6 @@ PCF v1.11.0 supports CredHub for credential storage, but it does not support the
 * Using CredHub to generate new credentials.
 
 Tile authors may choose to wait until PCF supports some or all of these features before incorporating CredHub into their service.
-
-Pivotal Early Access Program users can refer to the [PCF v1.11 pre-release documentation](https://docs-pcf-staging.cfapps.io/pivotalcf/1-11/credhub/index.html) (ask your Pivotal contact for password).
 
 [//]: # ( CREDHUB API AND CLI NOT READY YET IN FULL; UNCOMMENT BELOW WHEN READY )
 
