@@ -211,7 +211,7 @@ street_address: Cartaway Alley
 city: New Jersey
 country: US
 username: SpongeBob
-password: { 'secret': SquarePants }
+password: { 'secret': Square'Pants }
 app2:
   persistence_store_type: none
 # In PCF 1.8+, BOSH-job-specific configuration is supported:
@@ -225,9 +225,8 @@ jobs:
     job_property: property_value
 ```
 
-*Note* the special handling of the `secret` type property. Specifying a simple
-string value for a field of this type will result in a `500 System Error` being
-returned from `pcf configure`.
+Note that you must define any `secret` type property value as a hash, in curly brackets. Specifying a simple
+string value for a field of this type results in a `500 System Error` being returned from `pcf configure`. A `secret` property value can contain special characters.
 
 To see what changes are ready to be applied:
 
