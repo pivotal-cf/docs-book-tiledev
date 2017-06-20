@@ -37,7 +37,7 @@ credentials of a "claimed" PCF pool resource to the CI pipeline scripts.
 For interactive use, this means that you will have to create a `metadata`
 file in the directory where you run the `pcf` command.
 
-*We recommend that you do* **not** *create this file inside your git (or other
+*Pivotal recommends that you do* **not** *create this file inside your git (or other
 version control system) repository, as you do not want to accidentally commit
 these credentials to version control.*
 
@@ -176,7 +176,7 @@ using this method.
 
 ##<a id="deploy-tiles"></a> Deploying Tiles
 
-Once your software works and correctly deploys using `test-errand`, you can go
+After your software works and correctly deploys using `test-errand`, you can go
 through the real Ops Manager deployment process from the CLI, as you would
 normally do through the Ops Manager GUI.
 
@@ -225,8 +225,9 @@ jobs:
     job_property: property_value
 ```
 
-Note that you must define any `secret` type property value as a hash, in curly brackets. Specifying a simple
-string value for a field of this type results in a `500 System Error` being returned from `pcf configure`. `secret` type property values can contain special characters.
+You must define any `secret` type property value as a hash, in curly brackets. Specifying a simple
+string value for a field of this type results in a `500 System Error` being returned from `pcf configure`. 
+The `secret` type property values can contain special characters.
 
 To see what changes are ready to be applied:
 
