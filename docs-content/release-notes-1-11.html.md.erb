@@ -18,7 +18,7 @@ This stemcell change does not impact many PCF tiles. Possible exceptions are:
 We want to know which PCF services require IPv6, if any.  
 
 * **If your tile doesn't work on PCF v1.11** and triggers a `no interface available` or similar error when trying to open a connection. 
-Whether you knew it or not, your service may be expecting IPv6, and the updated stemcell causes an error that did not appear previously. 
+Whether you knew it or not, your service might be expecting IPv6, and the updated stemcell causes an error that did not appear previously. 
 As above, please contact [Pivotal Support](http://support.pivotal.io/).
 
 * **If a security scan shows that IPv6 is active** for your service, but your service does not use it. 
@@ -30,7 +30,7 @@ Tiles may need to enable IPv6 because:
   - Brokered or managed service instances communicate externally via IPv6 during instance creation.
   - Brokered service instances communicate externally via IPv6 during runtime.
 
-You can enable IPv6 with `sysctl` in a VM startup script, or elsewhere, but a more secure approach would be to make IPv6 an option configurable in Ops Manager.
+You can enable IPv6 with `sysctl` in a VM startup script or elsewhere, but a more secure approach would be to make IPv6 an option configurable in Ops Manager.
 
 For more information, see the Pivotal Knowledge Base article [IPv6 disabled at kernel level on Stemcell 3363.20](https://discuss.pivotal.io/hc/en-us/articles/115006965027).
 
@@ -121,7 +121,7 @@ BOSH releases handle these deploy-time values in two places, as described in mor
 These templates contain Ruby calls embedded in place for any deployment-specific values.
 Different templates can use different sets of properties listed in the job spec, as needed. 
 
-To fill in deployment-specific values at deploy time, BOSH:
+To fill in deployment-specific values at deploy time, BOSH does the following:
 
 1. Reads the property value definitions in the manifest.
 
