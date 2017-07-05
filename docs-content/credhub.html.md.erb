@@ -6,16 +6,17 @@ owner: Services
 CredHub is a secure credential management component that runs on the BOSH VM to minimize the surface area where credentials can be compromised.
 This topic provides resources for configuring service tiles to use CredHub, instead of encoding credentials in product template and job template files.
 
-See the [PCF CredHub documentation](https://docs.pivotal.io/pivotalcf/credhub/index.html) for more information.
+See the [CredHub documentation](https://docs.cloudfoundry.org/credhub/index.html) for more information.
 
 ## <a id="overview"></a> Overview
 
+Many <%= vars.product_name %> components use credentials to authenticate connections, and <%= vars.product_name %>  installations often have hundreds of active credentials. Secure credential management is essential to prevent data and security breaches.
+
 In Pivotal Cloud Foundry (PCF) v1.11.0, CredHub runs on the BOSH VM, alongside the BOSH Director and UAA. Ops Manager v1.11 stores its credentials in CredHub,
-and users retrieve them using the CredHub API rather than from the **Credentials** tab of the Ops Manager Director tile.
+and users can retrieve them using the CredHub API or the **Credentials** tab of the Ops Manager Director tile.
 Tile developers can embed CredHub calls in [manifest snippets](#snippets) and PCF apps can retrieve credentials using the CredHub API.
 
-See [Fetching Variable Names and Values](https://docs.pivotal.io/pivotalcf/credhub/credhub-api-variables.html)
-in the PCF CredHub documentation for how to fetch variable names and values using the CredHub API.
+See [Fetching Variable Names and Values](./get-credhub-vars.html) for how to fetch variable names and values using the CredHub API.
 
 <p class="note warning"><strong>WARNING</strong>: CredHub in PCF v1.11.0 does not support backup and restore, so Pivotal only recommends using CredHub for credentials that you can recover from elsewhere after a disaster.</p>
 
@@ -29,6 +30,24 @@ CredHub stores and retrieves the following types of credentials:
 * `certificate` — object containing certificate authority (CA), certificate, and private key
 * `ssh` — object containing SSH public key and private key
 * `rsa` — object containing RSA public key and private key
+
+For more information, read <a href="https://docs.cloudfoundry.org/credhub/credential-types.html">CredHub Credential Types</a>.
+
+## <a id="credential-names"></a>Creating New Variables
+
+To use CredHub in your deployment, you must create new variables and store them in CredHub. By default, variable namespaces are written to prevent collision across deployments, but you can type variable names precisely if you wish.
+
+For more information, read <a href="./create-credhub-vars.html">Creating New Variables in CredHub</a>.
+
+[//]: # ( CREDHUB API AND CLI NOT READY YET IN FULL; UNCOMMENT BELOW WHEN READY )
+
+[//]: # ( For more information, see the [CredHub API](https://credhub-api.cfapps.io), [CredHub CLI repo](https://github.com/cloudfoundry-incubator/credhub-cli), and [CredHub Release repo](https://github.com/pivotal-cf/credhub-release). )
+
+## <a id="api-variables"></a>Fetching Variable Names and Values
+
+API endpoints are available to help you find variable names and values for products known to the Ops Manager Director. 
+
+For more information, read <a href="./get-credhub-vars.html" class="subnav">Fetching Variable Names and Values</a>.
 
 ## <a id="snippets"></a> CredHub in Manifest Snippets
 
@@ -55,6 +74,3 @@ PCF v1.11.0 supports CredHub for credential storage, but it does not support the
 
 Tile authors may choose to wait until PCF supports some or all of these features before incorporating CredHub into their service.
 
-[//]: # ( CREDHUB API AND CLI NOT READY YET IN FULL; UNCOMMENT BELOW WHEN READY )
-
-[//]: # ( For more information, see the [CredHub API](https://credhub-api.cfapps.io), [CredHub CLI repo](https://github.com/cloudfoundry-incubator/credhub-cli), and [CredHub Release repo](https://github.com/pivotal-cf/credhub-release). )
