@@ -7,9 +7,10 @@ This topic explains how CredHub manages variables in the context of a larger dep
 
 ## Background
 
-Ops Manager supports a new top-level key in the product template called <code>variables</code>. Tile Authors can define variables in this section as follows: 
+When a Tile Author defines a top-level `variables` section in the product template, Ops Manager passes the `variables` section to the product manifest.
+Tile Authors can define variables in the product template as follows:
 
-<pre class="code">
+<pre>
 variables:
   - name: EXAMPLE-CREDHUB-PASSWORD
     type: password
@@ -17,13 +18,25 @@ variables:
 
 You can reference these variables in the manifest snippets in their tile metadata using a triple parentheses syntax: 
 
-<code>((( EXAMPLE-CREDHUB-PASSWORD )))</code>  
+<pre>((( EXAMPLE-CREDHUB-PASSWORD )))</pre>  
 
-This new triple parentheses syntax differentiates between Ops Manager’s and BOSH’s double parentheses syntaxes. Using triple parentheses lets Ops Manager identify CredHub variables while still supporting BOSH’s double parentheses syntax. 
+Using triple parentheses lets Ops Manager identify CredHub variables while still supporting the BOSH double parentheses syntax. A variable referenced within triple parentheses is replaced by double parentheses in the generated manifest. After contacting CredHub, BOSH populates that variable value internally.
 
-A variable referenced within triple parentheses is replaced by double parentheses in the generated manifest. After contacting CredHub, BOSH populates that variable value internally.
+The benefit of this approach is that the Ops Manager YAML file does not contain sensitive credentials when the metadata manifest snippets have triple parentheses. The resulting manifest file contains variables within double parentheses, rather than unobscured credentials.
 
-The benefit of this approach is that the YAML file on disk in Ops Manager does not contain sensitive credentials when the metadata manifest snippets have triple parentheses. The resulting manifest file contains variables within double parentheses, rather than unobscured credentials.
+For example, a Tile Author adds credentials to a manifest snippet in the following format:
+
+<pre>
+  key: ((( EXAMPLE-CREDHUB-PASSWORD )))
+  key: prefix-((( ANOTHER-CREDHUB-PASSWORD )))-suffix
+</pre>
+
+Ops Manager evaluates the above example to generate the following section in the product manifest:
+
+<pre>
+  (( EXAMPLE-CREDHUB-PASSWORD ))
+  prefix-(( ANOTHER-CREDHUB-PASSWORD ))-suffix
+</pre>
 
 ## How CredHub Works Within a Deployment
 
@@ -33,11 +46,11 @@ Once CredHub has been deployed and configured on the Director, any Director depl
 
 ## Changing Your Deployment Manifest to Include CredHub Variables
 
-When CredHub is enabled on the Ops Manager Director, it interpolates credential values into manifests that use the <code>((variables))</code> syntax. When the Director encounters a variable using this syntax, it requests the credential value from CredHub. If the credential does not exist and the release or manifest contains generation properties, the credential value is generated automatically.
+The Ops Manager Director interpolates credential values into manifests that use the <code>((variables))</code> syntax. When the Director encounters a variable using this syntax, it requests the credential value from CredHub. If the credential does not exist and the release or manifest contains generation properties, the credential value is generated automatically.
 
 The manifest excerpt below includes references to two credentials, <code>EXAMPLE-PASSWORD</code> and <code>EXAMPLE-TLS</code>. 
 
-When this manifest is deployed, the Ops Manager Director retrieves the stored variables and replaces them with the credential values associated with each variable. The <code>EXAMPLE-TLS</code> variables include property accessors, so only the certificate and private_key components will be interpolated.
+When this manifest is deployed, the Ops Manager Director retrieves the stored variables and replaces them with the credential values associated with each variable. The <code>EXAMPLE-TLS</code> variables include property accessors, so only the `certificate` and `private_key` components are interpolated.
 
 <pre class="code">
 name: demo-deploy
@@ -54,7 +67,7 @@ instance_groups:
           private_key: ((EXAMPLE-TLS.private_key))
 </pre>
 
-OpsManager configures the Director to generate a credential if it does not exist. The manifest includes generation parameters that define how the credential should be generated. These generation parameters are defined in the variables section as shown below.
+Ops Manager configures the Director to generate a credential if it does not exist. The manifest includes generation parameters that define how the credential should be generated. These generation parameters are defined in the variables section as shown below.
 
 <pre class="code">
 ---
@@ -80,15 +93,15 @@ instance_groups:
     release: demo
     properties:
       demo:
-        password: ((EXAMPLE-PASSWORD))
+        password: (( EXAMPLE-PASSWORD ))
         tls: 
-          certificate: ((EXAMPLE-TLS.certificate))
-          private_key: ((EXAMPLE-TLS.private_key))
+          certificate: (( EXAMPLE-TLS.certificate ))
+          private_key: (( EXAMPLE-TLS.private_key ))
 </pre>
 
 ## Variable Namespacing
 
-Deployment manifests often use common variable names; for example, <code>((password))</code>. To avoid variable name collisions between deployments, the Ops Manager Director automatically stores variables with the Ops Manager Director's name and deployment name. For example, the variable <code>((example-password))</code> will be stored in CredHub as /Ops-Manager-Director-name/deployment-name/example-password.
+Deployment manifests often use common variable names; for example, <code>(( PASSWORD ))</code>. To avoid variable name collisions between deployments, the Ops Manager Director automatically stores variables with the Ops Manager Director name and deployment name. For example, the variable <code>(( EXAMPLE-PASSWORD ))</code> is stored in CredHub as /Ops-Manager-Director-name/deployment-name/example-password.
 
 ### Other Namespacing Options
 

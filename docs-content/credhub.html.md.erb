@@ -55,11 +55,10 @@ Tile developers can embed CredHub in product template and job template manifest 
 [triple-parenthesis notation](./product-template-reference.html#job-manifest):
 
 ```
-    manifest: |
-      credhub:
-        concatenated_password: prefix-((( credhub-password )))-suffix
-        password: ((( credhub-password )))
-
+  manifest: |
+    credhub:
+      concatenated_password: prefix-((( credhub-password )))-suffix
+      password: ((( credhub-password )))
 ```
 
 ## <a id="limitations"></a> PCF v1.11.0 Limitations
