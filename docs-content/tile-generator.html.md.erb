@@ -461,7 +461,8 @@ by using the `docker-bosh` type:
       - "9200:9200"
 ```
 
-If a docker image cannot be downloaded by BOSH dynamically, its better to provide a ready made docker image and package it as part of the BOSH release. In that case, specify the image as a local file.
+If a docker image cannot be downloaded by BOSH dynamically, its better to provide a ready made docker image
+and package it as part of the BOSH release. In that case, specify the image as a local file.
 
 ```
 - name: docker-bosh2
@@ -481,6 +482,39 @@ If a docker image cannot be downloaded by BOSH dynamically, its better to provid
       - "EXAMPLE_VAR=1"
       # See below on custom forms/variables and binding it to the docker env variable
       - "custom_variable_name=((.properties.customer_name.value))"
+```
+
+To expose a container via
+[gorouter](https://docs.cloudfoundry.org/concepts/architecture/router.html)
+(for example, one of the docker containers hosts an admin webapp interface),
+use `routes` to choose a port and prefix. The external url
+will be `[prefix]-[package.name].[system-domain]`.
+In this case, `https://admin-docker-bosh3.sys.example.com` (where sys.example.com is the PCF system domain). `routes` is
+a list, so multiple containers can be exposed.
+
+```
+- name: docker-bosh3
+  type: docker-bosh
+  docker_images:
+  - "cfplatformeng/database"
+  - "cfplatformeng/admin_ui"
+  routes:
+    - prefix: admin
+      port: 8080
+  cpu: 5
+  memory: 4096
+  ephemeral_disk: 4096
+  instances: 1
+  manifest: |
+    containers:
+    - name: database
+      image: "cfplatformeng/database"
+      bind_ports:
+      - "5432:5432"
+    - name: admin_ui
+      image: "cfplatformeng/admin_ui"
+      bind_ports:
+      - "8080:8080"
 ```
 
 ### <a id="custom-forms"></a> Custom Forms and Properties
