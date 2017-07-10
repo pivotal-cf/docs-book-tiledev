@@ -10,15 +10,17 @@ This topic explains how CredHub manages variables in the context of a larger dep
 When a Tile Author defines a top-level `variables` section in the product template, Ops Manager passes the `variables` section to the product manifest.
 Tile Authors can define variables in the product template as follows:
 
-<pre>
+```
 variables:
   - name: EXAMPLE-CREDHUB-PASSWORD
     type: password
-</pre>
+```
 
 You can reference these variables in the manifest snippets in their tile metadata using a triple parentheses syntax: 
 
-<pre>((( EXAMPLE-CREDHUB-PASSWORD )))</pre>  
+```
+((( EXAMPLE-CREDHUB-PASSWORD )))
+```
 
 Using triple parentheses lets Ops Manager identify CredHub variables while still supporting the BOSH double parentheses syntax. A variable referenced within triple parentheses is replaced by double parentheses in the generated manifest. After contacting CredHub, BOSH populates that variable value internally.
 
@@ -26,17 +28,17 @@ The benefit of this approach is that the Ops Manager YAML file does not contain 
 
 For example, a Tile Author adds credentials to a manifest snippet in the following format:
 
-<pre>
+```
   key: ((( EXAMPLE-CREDHUB-PASSWORD )))
   key: prefix-((( ANOTHER-CREDHUB-PASSWORD )))-suffix
-</pre>
+```
 
 Ops Manager evaluates the above example to generate the following section in the product manifest:
 
-<pre>
+```
   (( EXAMPLE-CREDHUB-PASSWORD ))
   prefix-(( ANOTHER-CREDHUB-PASSWORD ))-suffix
-</pre>
+```
 
 ## How CredHub Works Within a Deployment
 
@@ -52,7 +54,7 @@ The manifest excerpt below includes references to two credentials, <code>EXAMPLE
 
 When this manifest is deployed, the Ops Manager Director retrieves the stored variables and replaces them with the credential values associated with each variable. The <code>EXAMPLE-TLS</code> variables include property accessors, so only the `certificate` and `private_key` components are interpolated.
 
-<pre class="code">
+```
 name: demo-deploy
 
 instance_groups:
@@ -65,11 +67,11 @@ instance_groups:
         tls: 
           certificate: ((EXAMPLE-TLS.certificate))
           private_key: ((EXAMPLE-TLS.private_key))
-</pre>
+```
 
 Ops Manager configures the Director to generate a credential if it does not exist. The manifest includes generation parameters that define how the credential should be generated. These generation parameters are defined in the variables section as shown below.
 
-<pre class="code">
+```
 ---
 name: demo deploy 
 
@@ -97,7 +99,7 @@ instance_groups:
         tls: 
           certificate: (( EXAMPLE-TLS.certificate ))
           private_key: (( EXAMPLE-TLS.private_key ))
-</pre>
+```
 
 ## Variable Namespacing
 
@@ -107,4 +109,6 @@ Deployment manifests often use common variable names; for example, <code>(( PASS
 
 Use a [BOSH link](../../tiledev/release-notes-1-11.html#bosh-links) to share credentials across deployments. Alternatively, if you want to use an exact name, prefixing the variable with a forward slash (/) will cause the Director to use the exact name you type. An example of a precisely typed variable follows.
 
-<pre class="code">((/EXAMPLE-PASSWORD))</pre>
+```
+((/EXAMPLE-PASSWORD))
+```
