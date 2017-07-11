@@ -461,7 +461,7 @@ by using the `docker-bosh` type:
       - "9200:9200"
 ```
 
-If a Docker image cannot be downloaded by BOSH dynamically, its better to provide a ready made Docker image
+If a Docker image cannot be downloaded by BOSH dynamically, provide a ready-made Docker image
 and package it as part of the BOSH release. In that case, specify the image as a local file.
 
 ```
@@ -485,9 +485,9 @@ and package it as part of the BOSH release. In that case, specify the image as a
 ```
 
 To expose a container via
-[gorouter](https://docs.cloudfoundry.org/concepts/architecture/router.html)
-(for example, one of the Docker containers hosts an admin webapp interface),
-use `routes` to choose a port and prefix. The external url
+[gorouter](https://docs.cloudfoundry.org/concepts/architecture/router.html),
+for example, one of the Docker containers hosts an admin webapp interface,
+use `routes` to choose a port and prefix. The external URL
 will be `[prefix]-[package.name].[system-domain]`.
 In this case, `https://admin-docker-bosh3.sys.example.com` (where sys.example.com is the PCF system domain). `routes` is
 a list, so multiple containers can be exposed.

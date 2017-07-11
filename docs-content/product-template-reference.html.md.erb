@@ -151,7 +151,7 @@ See [Lifecycle Errands](./tile-errands.html). If this property is not supplied, 
 The following is an example of the properties that appear in the `form_types` section of a product template.
 These forms appear on the left hand side, as links, after a user clicks on the tile itself.
 
-As shown in a later section, form properties reference `property_blueprints` for the definition of the type of data (url, IP address, list, etc.) being saved.
+As shown in a later section, form properties reference `property_blueprints` for the definition of the type of data (URL, IP address, list, etc.) being saved.
 Form properties are themselves referenced in the manifest section of the `job_types` section, which will also be explained later in this document.
 The eventual purpose of these properties is to hydrate a BOSH manifest, which Ops Manager generates on the user's behalf.
 
@@ -287,7 +287,7 @@ The text disappears when the user types in the field and reappears if the user l
 
 ## <a id='simple-vs-complex'></a> Simple vs. Complex Inputs (Selectors and Collections)
 
-Most properties are simple values such as strings, integers, url addresses, or IP addresses.
+Most properties are simple values such as strings, integers, URL addresses, or IP addresses.
 Others are complex, such as selectors or collections.
 
 Selectors are a means of giving the user a choice of a set of inputs.
@@ -388,7 +388,7 @@ Multiple `must_match_regex` constraints for a single property blueprint are eval
 
 ## <a id='configurable-props'></a> Configurable Properties
 
-Many of these properties are strings, but can be used with validators in order to check that the user typed in the correct format for a url, IP, address, domain, etc.
+Many of these properties are strings, but can be used with validators in order to check that the user typed in the correct format for a URL, IP, address, domain, etc.
 
 ### <a id='configurable-string'></a> string
 
@@ -420,7 +420,7 @@ A string. Appears as an HTML textarea.
 
 ### <a id='configurable-ldap-url'></a> ldap_url
 
-A url prefaced by `ldap://`.
+A URL prefaced by `ldap://`.
 
 ### <a id='configurable-email'></a> email
 
