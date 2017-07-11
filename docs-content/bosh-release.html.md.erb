@@ -45,17 +45,17 @@ These topics explain how to create a BOSH release:
 If you have already packaged your service as Docker images, you can emulate
 a managed service deployment using the [Tile Generator](tile-generator.html)'s
 support for `docker-bosh` packages. This feature lets you deploy pre-existing
-docker images into bash managed virtual machines on the PCF infrastructure.
+Docker images into bash managed virtual machines on the PCF infrastructure.
 
 While this is a great, easy way to deploy your service on PCF, we don't
 recommend this as a long-term, production-ready solution. There is really no
 benefit of running your service in containers on the VMs, and it does have
 a number of operational ("day 2") drawbacks:
 
-- You introduce more software (docker) which needs to be kept up-to-date, and
+- You introduce more software (Docker) which needs to be kept up-to-date, and
 has the potential for bugs, downtime, and security vulnerabilities.
 
 - You can no longer take advantage of the patching capabilities of PCF for
 stemcells and application dependencies, like frameworks and libraries. Instead,
-you become directly responsible for managing all software that is in the docker
+you become directly responsible for managing all software that is in the Docker
 images you deploy.

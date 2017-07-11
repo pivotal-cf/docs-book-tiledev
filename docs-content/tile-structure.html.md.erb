@@ -173,7 +173,7 @@ Tile Generator does not dictate any directory structure for a Github repository,
 ```
 /tile.yml
 /src        # source code for all components deployed by the tile
-/resources  # other resources, such as icon images and imported docker images or bosh releases
+/resources  # other resources, such as icon images and imported Docker images or bosh releases
 /release    # generated bosh release(s)
 /product    # generated tile
 ```
@@ -185,7 +185,7 @@ PCF services typically require multiple component job processes to run concurren
 The `tile yml` file that you pass to Tile Generator defines these service components it its `packages:` section. Each package has a name and a package type. The list of possible package types to pass to Tile Generator is in the [Tile Generator code](https://github.com/cf-platform-eng/tile-generator/blob/master/tile_generator/config.py#L59-L70). It includes:
 
   * app - `cf push`ed to PCF
-  * docker-app - `cf push`ed to PCF (image will not be embedded so requires docker registry access)
+  * docker-app - `cf push`ed to PCF (image will not be embedded so requires Docker registry access)
   * app-broker - `cf push`ed to PCF and registered as a broker
   * docker-app-broker - `cf push`ed to PCF and registered as a broker (image is not embedded, so requires Docker registry access)
   * external-broker - Registered as a broker

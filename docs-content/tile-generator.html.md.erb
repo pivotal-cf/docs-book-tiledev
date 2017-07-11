@@ -99,7 +99,7 @@ then wrap that release into a Pivotal tile (in the `product` subdirectory).
 If required for the installation, it will automatically pull down the latest
 release version of the Cloud Foundry CLI.
 
-Tile generator is also available pre-installed in a docker image on
+Tile generator is also available pre-installed in a Docker image on
 [Docker Hub](https://hub.docker.com/r/cfplatformeng/tile-generator/).
 This image contains the tile-generator `tile` and `pcf` commands, all the
 necessary Python dependencies, as well as the BOSH CLI.
@@ -114,7 +114,7 @@ for your tasks:
       image: cfplatformeng/tile-generator
 ```
 
-Or you can derive your own docker images from this one by using it as the base
+Or you can derive your own Docker images from this one by using it as the base
 image in your Dockerfile:
 
 ```
@@ -135,9 +135,9 @@ tile build
 
 <p class="note"><strong>Note</strong>: The sample tile includes a Python application that is re-used in several packages,
     sometimes as an app, sometimes as a service broker. One of the deployments (app3)
-    uses the sample application inside a docker image that is currently only modified
+    uses the sample application inside a Docker image that is currently only modified
     by the CI pipeline. If you modify the sample app, you will have to build your own
-    docker image using the provided `Dockerfile` and change the image name in
+    Docker image using the provided `Dockerfile` and change the image name in
     `sample/tile.yml` to include the modified code in app3.</p>
 
 ## <a id="define"></a> Define your Tile in <i>tile.yml</i>
@@ -402,10 +402,10 @@ bosh-release package's deployment manifest, you can include the
 
 #### <a id="docker"></a> Docker Images
 
-Applications packages as docker images can be deployed inside or outside the Elastic
-Runtime. To push a docker image as a CF application, use the *Pushed Application*
+Applications packages as Docker images can be deployed inside or outside the Elastic
+Runtime. To push a Docker image as a CF application, use the *Pushed Application*
 format specified above, but use the `docker-app` or `docker-app-broker` type instead
-of just `app` or `app-broker`. The docker image to be used is then specified using
+of just `app` or `app-broker`. The Docker image to be used is then specified using
 the `image` property:
 
 ```
@@ -417,7 +417,7 @@ the `image` property:
 ```
 
 If this app is also a service broker, use `docker-app-broker` instead of just
-`docker-app`. This option is appropriate for docker-wrapped 12-factor apps that
+`docker-app`. This option is appropriate for Docker-wrapped 12-factor apps that
 delegate their persistence to bound services.
 
 Docker applications that require persistent storage can not be deployed into
@@ -461,7 +461,7 @@ by using the `docker-bosh` type:
       - "9200:9200"
 ```
 
-If a docker image cannot be downloaded by BOSH dynamically, its better to provide a ready made docker image
+If a Docker image cannot be downloaded by BOSH dynamically, its better to provide a ready made Docker image
 and package it as part of the BOSH release. In that case, specify the image as a local file.
 
 ```
@@ -480,13 +480,13 @@ and package it as part of the BOSH release. In that case, specify the image as a
       image: "cfplatformeng/docker-tile-example"
       env_vars:
       - "EXAMPLE_VAR=1"
-      # See below on custom forms/variables and binding it to the docker env variable
+      # See below on custom forms/variables and binding it to the Docker env variable
       - "custom_variable_name=((.properties.customer_name.value))"
 ```
 
 To expose a container via
 [gorouter](https://docs.cloudfoundry.org/concepts/architecture/router.html)
-(for example, one of the docker containers hosts an admin webapp interface),
+(for example, one of the Docker containers hosts an admin webapp interface),
 use `routes` to choose a port and prefix. The external url
 will be `[prefix]-[package.name].[system-domain]`.
 In this case, `https://admin-docker-bosh3.sys.example.com` (where sys.example.com is the PCF system domain). `routes` is
@@ -595,7 +595,7 @@ plain text as all other value types.
 ### Automatic Provisioning of Services
 
 Tile generator automates the provisioning of services. Any application (including
-service brokers and docker-based applications) that are being pushed into the
+service brokers and Docker-based applications) that are being pushed into the
 Elastic Runtime can automatically be bound to services through the `auto_services`
 feature:
 
@@ -680,7 +680,7 @@ apply_open_security_group: true
 
 The tile generator will default to a recent stemcell supported by Ops Manager.
 In most cases the default will be fine, as the stemcell is only used to execute
-CF command lines and/or the docker daemon. But if you have specific stemcell
+CF command lines and/or the Docker daemon. But if you have specific stemcell
 requirements, you can override the defaults in your `tile.yml` file by including
 a `stemcell-criteria` section and replacing the appopriate values:
 
@@ -795,5 +795,5 @@ tile build [patch|minor|major|<version>]
 ## <a id="credits"></a> Credits
 
 - [sparameswaran](https://github.com/sparameswaran) supplied most of the actual template content, originally built as part of [cf-platform-eng/bosh-generic-sb-release](https://github.com/cf-platform-eng/bosh-generic-sb-release.git)
-- [frodenas](https://github.com/frodenas) contributed most of the docker content through [cloudfoundry-community/docker-boshrelease](https://github.com/cloudfoundry-community/docker-boshrelease.git)
+- [frodenas](https://github.com/frodenas) contributed most of the Docker content through [cloudfoundry-community/docker-boshrelease](https://github.com/cloudfoundry-community/docker-boshrelease.git)
 - [joshuamckenty](https://github.com/joshuamckenty) suggested the jinja template approach he employed in [opencontrol](https://github.com/opencontrol)

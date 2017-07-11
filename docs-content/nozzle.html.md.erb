@@ -250,7 +250,7 @@ This table describes each element of a standard PCF syslog message.
     <th>Meaning or Value</th>
   </tr><tr>
     <td><code>${PRI}</code></td>
-    <td><p><a href="https://tools.ietf.org/html/rfc5424#section-6.2.1">Priority value (PRI)</a>, calculated as <code>8 × Facility Code + Severity Code</code>.</p>
+    <td><p><a href="https://tools.ietf.org/html/rfc5424#section-6.2.1">Priority value (PRI)</a>, calculated as <code>8 × Facility Code + Severity Code</code></p>
     <p>Pivotal uses a Facility Code value of <code>1</code>, indicating a user-level facility. This adds <code>8</code> to the RFC-5424 Severity Codes, resulting in the numbers listed in the <a href="#severity-codes">table below</a>.</p>
     <p>If in doubt, default to <code>13</code>, to indicate Notice-level severity.</p>
 </td>
