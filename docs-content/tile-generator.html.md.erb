@@ -489,8 +489,8 @@ To expose a container via
 for example, one of the Docker containers hosts an admin webapp interface,
 use `routes` to choose a port and prefix. The external URL
 will be `[prefix]-[package.name].[system-domain]`.
-In this case, `https://admin-docker-bosh3.sys.example.com` (where sys.example.com is the PCF system domain). `routes` is
-a list, so multiple containers can be exposed.
+In this case, the URL is `https://admin-docker-bosh3.sys.example.com`, where `sys.example.com` is the PCF system domain.
+`routes` is a list, so multiple containers can be exposed.
 
 ```
 - name: docker-bosh3
