@@ -39,13 +39,19 @@ To use CredHub in your deployment, you must create new variables and store them 
 
 For more information, read <a href="./create-credhub-vars.html">Creating New Variables in CredHub</a>.
 
+## <a id="migrate-creds"></a>Migrating Credentials
+
+To migrate existing non-configurable credentials to CredHub, such as blobstore secrets and backup encryption keys, use the JavaScript migration process. After a successful migration, Ops Manager deletes the migrated credentials from installation.yml.
+
+For more information, read [Migrating Existing Credentials to CredHub](./migrating-credhub-credentials.html).
+
 [//]: # ( CREDHUB API AND CLI NOT READY YET IN FULL; UNCOMMENT BELOW WHEN READY )
 
 [//]: # ( For more information, see the [CredHub API](https://credhub-api.cfapps.io), [CredHub CLI repo](https://github.com/cloudfoundry-incubator/credhub-cli), and [CredHub Release repo](https://github.com/pivotal-cf/credhub-release). )
 
 ## <a id="api-variables"></a>Fetching Variable Names and Values
 
-API endpoints are available to help you find variable names and values for products known to the Ops Manager Director. 
+API endpoints are available to help you find variable names and values for products known to the Ops Manager Director.
 
 For more information, read <a href="./get-credhub-vars.html" class="subnav">Fetching Variable Names and Values</a>.
 
