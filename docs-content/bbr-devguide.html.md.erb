@@ -1,0 +1,310 @@
+---
+title: "BOSH Backup & Restore"
+owner: BOSH Backup & Restore Team
+---
+
+<br>
+# A Guide for Release Authors
+BOSH Backup & Restore (BBR) is a framework for release authors to add backup and restore functionality to their release. The BBR framework consists of a CLI and a set of hooks, which call out to scripts. The framework uses BOSH to orchestrate the execution of backup and restore scripts. BBR allows release authors fine grained control over how their release is backed up, since different services have different needs.
+
+![Script execution order](script-execution-order.png)
+
+In order to ensure that that backup and restore scripts do not get out of sync with the releases themselves, release authors are responsible for naming, creating, testing, and troubleshooting their own backup and restore scripts. It is important for release authors to be aware of the possibility of these backup and restore jobs to be collocated with other releases' backup and restore jobs; therefore, it is important that these jobs have unique and descriptive names to avoid name collisions.
+
+Different systems require different strategies for backup and restore. To help release authors make consist backups of their systems, the BBR Framework provides hooks with which lock scripts can be run so a job can be brought to a consistent state before backup begins.
+
+Backup mechanism: since the framework is focused on the interface, hooks, backup destination, and intra deployment orchestration, it is mechanism-agnostic i.e. release authors can choose to backup their release however they would like, as long as the scripts they write have the correct name and directory structure.
+
+## <a id='backup-workflow'></a>Backup Workflow
+
+
+###  <a id='script-implementation'></a>Script Implementation
+
+Release authors need to implement scripts as part of the BBR contract. The scripts itself are packaged and distributed as a BOSH release. The [Exemplar Backup and Restore Release](https://github.com/pivotal-cf-experimental/exemplar-backup-and-restore-release) provides examples on how release authors can structure their jobs to implement the contract with BBR.
+
+The pre-backup-lock, backup, post-backup-unlock, and restore scripts are executable scripts. ERB tags may be used for templating. These scripts are executed similarly to other release job scriptse (start, stop, drain), and you can use the job's package dependencies.
+
+In scripts, exit code 0 indicates success, while any other exit code indicates a failure. BBR will check exit codes of the scripts when orchestrating.
+
+
+#### Directory Structure
+
+```
+acme-release
+├── README.md
+├── config
+│   ├── blobs.yml
+│   └── final.yml
+├── jobs
+│   ├── backup-restore-acme
+│   │   ├── monit
+│   │   ├── spec
+│   │   └── templates
+│   │       ├── backup.sh.erb
+│   │       ├── config.json.erb
+│   │       └── restore.sh.erb
+│   └── lock-unlock-acme
+│       ├── monit
+│       ├── spec
+│       └── templates
+│           ├── post-backup-unlock.sh.erb
+│           └── pre-backup-lock.sh.erb
+├── packages
+└── src
+```
+
+
+#### Logs
+
+The stdout and stderr streams will be captured and sent to the operator invoking the backup.
+
+### <a id='pre-backup-lock'></a>Pre-Backup-Lock
+
+The release job can have a pre-backup-lock script that will stop any processes that could make any changes to the components being backed up. This script should allow the job to lock so that backups are consistent across a cluster. For example, in a Cloud Foundry deployment, the pre-backup-lock script stops Cloud Controller processes that may make changes to its blobstore and database, thus making sure the blobstore and the Cloud Controller database are consistent with each other.
+
+#### Job Configuration
+
+To add a pre-backup-lock script to a release:
+
+* Create a new job in your release that is specific to backup and restore scripts. We recommend you name this something unique and specific to your component
+* Create a script with any name in the templates directory in your new release job
+* In the templates section of the release job spec file, add the script name and `bin/bbr/pre-backup-lock` as a key-value pair
+
+
+#### Example Spec File:
+
+```yaml
+---
+name: lock-unlock-acme
+templates:
+  pre-backup-lock.sh.erb: bin/bbr/pre-backup-lock
+```
+
+#### Script Implementation
+
+The pre-backup-lock script is called before the backup scripts are called on any instances in the deployment. Success indicates to BBR that the job has successfully locked and is ready for backup.
+
+BBR does not guarantee the order in which pre-backup-lock scripts are called across the jobs in a deployment.
+
+### <a id='backup'></a>Backup
+
+The release job can have a backup script that will dump the backup of the job's database to the directory specified by `$BBR_ARTIFACT_DIRECTORY`. For example, when backing up MySQL, this script can invoke the `mysqldump` binary for the MySQL adapter.
+
+There should be at least one job in the deployment providing a backup script. If there isn't a backup script, calling backup or pre-backup-check for the deployment will fail.
+
+#### Job Configuration
+
+To add a backup script to a release job:
+
+* Create a script with any name in the templates directory of a release job.
+* In the templates section of the release job spec file, add the script name and `bin/bbr/backup` as a key-value pair.
+
+#### Example:
+
+```yaml
+---
+name: backup-restore-acme
+templates:
+  backup.erb: bin/bbr/backup
+```
+
+#### Script Implementation
+
+The backup script is called after all of the pre-backup-lock scripts have exited successfully across all jobs of the deployment. A single failed pre-backup-lock script will halt the backup-restore process and run the corresponding post-backup-unlock scripts. Success indicates the job successfully backed up.
+
+The backup script is called before any of the post-backup-unlock scripts are called on any jobs in the deployment. Backup scripts may be called in any order across the jobs in a deployment.
+
+### <a id='post-backup-unlock'></a>Post-Backup-Unlock
+
+The job can have a post-backup-unlock script that will undo the operations done in pre-backup-lock.
+
+#### Job Configuration
+
+To add a post-backup-unlock script to a release job:
+
+* Create a script with any name in the templates directory of a release job.
+* In the templates section of the release job spec file, add the script name and `bin/bbr/post-backup-unlock` as a key-value pair.
+
+#### Example:
+
+```yaml
+---
+name: lock-unlock-acme
+templates:
+  post-backup-unlock.erb: bin/bbr/post-backup-unlock
+```
+
+#### Script Implementation
+
+The post-backup-unlock script is called after all of the backup scripts have exited on all nodes of the deployment. Success indicates the job successfully unlocked and is ready for normal operation.
+
+### <a id='error-handling'></a>Error Handling
+
+If errors occur during the backup workflow, clean up tasks are executed to put the system back in a working state.
+
+A normal workflow for backing up a deployment does the following:
+
+
+<% mermaid_diagram do%>
+ graph TB
+    start(Start) --> check-deployment(Check that the deployment exists)
+    check-deployment -- Yes --> make-local-artifact(Make a local artifact dir)
+    check-deployment -- No --> exit(Exit)
+    make-local-artifact -- Success --> pre-backup(Run pre-backup lock scripts)
+    make-local-artifact -- Failure --> exit
+    pre-backup -- Success --> backup(Run backup scripts)
+    pre-backup -- Failure --> post-backup(Run post-backup-unlock scripts)
+    backup --> post-backup
+    post-backup -- backup was successful --> drain(Drains artifact from instance)
+    post-backup -- backup failed --> cleanup(Removes backup from the instance)
+    drain --> cleanup
+    cleanup --> exit
+<% end %>
+
+## <a id='restore-workflow'></a>Restore Workflow
+
+### <a id='restore'></a>Restore
+
+If a release has a backup script, it should also have a restore script. The restore script expects a backup artifact to be provided in `$BBR_ARTIFACT_DIRECTORY`. For example, when restoring MySQL, the script will invoke `mysql` to restore from a mysqldump file.
+
+#### Job Configuration
+
+To add a restore script to a release job:
+
+* Create a script with any name in the templates directory of a release job.
+* In the templates section of the release job spec file, add the script name and `bin/bbr/restore` as a key-value pair.
+
+#### Example:
+
+```yaml
+---
+name: backup-restore-acme
+templates:
+  backup.erb: bin/bbr/restore
+```
+
+#### Script Implementation
+
+The restore scripts are called after all post-backup-unlock scripts have exited successfully. Success indicates the job was successfully restored.
+
+## <a id='testing'></a>Testing
+The functional testing pattern recommended for BBR scripts is:
+
+* Create data for which the release is responsible
+* Back up the release
+* Delete data
+* Restore the release
+* Validate that restored data are correct
+
+Where scripts are implemented for releases that are part of larger deployments, end-to-end testing that validates consistency across releases is recommended.
+
+
+## <a id="bbr-utilities"></a>Backup and Restore Utilities
+
+If your release stores state in a Postgres or MySQL database, deploy the `database-backup-restorer` job from the [`backup-and-restore-sdk-release`](https://github.com/pivotal-cf/backup-and-restore-sdk-release).
+
+Ensure your job templates a `config.json` as follows:
+
+```json
+{
+  "username": "db user",
+  "password": "db password",
+  "host": "db host",
+  "port": "db port",
+  "adapter": "bbr supported adapter (e.g. mysql or postgres)",
+  "database": "database name"
+}
+```
+
+Ensure your backup and restore scripts call the appropriate `database-backup-restorer` binaries as follows:
+
+**Backup**
+
+```bash
+/var/vcap/jobs/database-backup-restorer/bin/backup /path/to/config.json
+
+cp <output_file> $ARTIFACT_DIRECTORY
+```
+
+**Restore**
+
+```bash
+cp $ARTIFACT_DIRECTORY <output_file>
+
+/var/vcap/jobs/database-backup-restorer/bin/restore /path/to/config.json
+```
+
+## <a id="bbr-cf"></a>BBR and Cloud Foundry Databases
+
+We have provided a pattern for Cloud Foundry release authors to follow to ensure their scripts abide by the BBR Framework contract.
+
+A Cloud Foundry operator will add a `backup-restore` instance to their Cloud Foundry deployment. By default, release-specific database `backup` and `restore` job scripts will be collocated on this instance along with the `database-backup-restorer` job from the [Backup and Restore SDK release](https://github.com/pivotal-cf/backup-and-restore-sdk-release).
+
+If your release requires that you stop your component's processes during backup and restore, you will also need to provide [`unlock`](#post-backup-unlock) and [`lock`](#pre-backup-lock) scripts. You may collocate these scripts on either the `backup-restore` or your component's instance, but we recommend the latter to be able to directly interact with monit or your running job.
+
+### <a id="bbr-cf-example"></a>Example
+
+Acme Release is a Cloud Foundry component that has no persistent disk on its component VM. It is an API that stores its data in a MySQL database deployed on a different instance group in this CF deployment. Here's how the backup and restore job should be placed:
+
+The release authors have chosen to create two new jobs to be incorporated into their existing release, where one job includes the `backup` and `restore` scripts in its templates directory, and the other job includes the `pre-backup-lock` and `post-backup-unlock` scripts. This is because the operator will collocate the former job on the `backup-restore` VM, and the latter job on the Acme Release VM.
+
+<% mermaid_diagram do%>
+ graph LR
+         subgraph Backup Restore VM
+         database-backup-restorer
+         bbr_acmedb
+         end
+         subgraph acme VM
+         acme
+         bbr_lock_unlock_acme
+         end
+         subgraph Acme Release
+         jobs/acme_job-->acme
+         jobs/bbr_lock_unlock_acme-->bbr_lock_unlock_acme
+         jobs/bbr_acmedb-->bbr_acmedb
+         end
+         subgraph BBR SDK Release
+         jobs/database-backup-restorer-->database-backup-restorer
+         end
+
+classDef lavender fill:#8ca5ce,stroke:#333
+classDef turquoise fill:#8bc1ce,stroke:#333
+class jobs/acme_job lavender
+class jobs/bbr_lock_unlock_acme lavender
+class jobs/bbr_acmedb lavender
+class jobs/database-backup-restorer turquoise
+<% end %>
+
+#### Naming Conventions
+
+Multiple backup and restore scripts will be collocated on the `backup-restore` instance, separated by job name. For this reason, each release should name the jobs containing their `backup` and `restore` scripts following the pattern `bbr_[release name]db`.
+
+## <a id='drats'></a>Acceptance tests
+
+The **Disaster Recovery Acceptance Test Suite** (DRATS) runs against a Cloud Foundry deployment to ensure that backup and restore works as expected. Specifically, it adds state to a Cloud Foundry deployment (e.g. pushing an app), backs up the deployment, restores from the backup, and asserts the state is present after restore.
+
+To add extra test cases, create a new TestCase that implements the [TestCase interface](https://github.com/pivotal-cf-experimental/disaster-recovery-acceptance-tests/blob/master/acceptance/testcases/test_case.go).
+
+The methods that need to be implemented are `PopulateState()`, `CheckState()` and `Cleanup()`.
+
+* `PopulateState()` should create some state in the Cloud Foundry deployment to be backed up (whose name is set to environment variable `DEPLOYMENT_TO_BACKUP`).
+* `CheckState()` should assert that the state in the restored Cloud Foundry deployment (whose name is set to environment variable DEPLOYMENT_TO_RESTORE) matches that created by `PopulateState()`.
+* `Cleanup()` should clean up the state created in the Cloud Foundry deployment to be backed up.
+
+Further instructions and examples can be found [here](https://github.com/pivotal-cf-experimental/disaster-recovery-acceptance-tests/blob/master/README.md).
+
+### <a id='running-drats'></a>Running acceptance tests
+
+1. Spin up a Cloud Foundry deployment.
+1. Deploy a jumpbox deployment called `integration-jump-box` containing a single VM, `jumpbox`.
+1. From the [DRATS repo](https://github.com/pivotal-cf-experimental/disaster-recovery-acceptance-tests/), run `ci/scripts/acceptance.sh` with the following environment variables set:
+  * `DEPLOYMENT_TO_BACKUP` - name of the Cloud Foundry deployment
+  * `DEPLOYMENT_TO_RESTORE` - name of the Cloud Foundry deployment
+  * `BOSH_URL` - URL of BOSH Director which has deployed the above Cloud Foundries
+  * `BOSH_CLIENT` - BOSH Director username
+  * `BOSH_CLIENT_SECRET` - BOSH Director password
+  * `BOSH_CERT_PATH` - path to BOSH Director's CA cert
+  * `BOSH_GATEWAY_USER` - BOSH SSH client username
+  * `BOSH_GATEWAY_HOST` - BOSH SSH client hostname
+  * `BOSH_GATEWAY_KEY` - path to BOSH SSH client private key
+  * `BBR_BUILD_PATH` - path to BBR binary
