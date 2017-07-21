@@ -4,10 +4,25 @@ owner: BOSH Backup & Restore Team
 ---
 
 <br>
-# A Guide for Release Authors
-BOSH Backup & Restore (BBR) is a framework for release authors to add backup and restore functionality to their release. The BBR framework consists of a CLI and a set of hooks, which call out to scripts. The framework uses BOSH to orchestrate the execution of backup and restore scripts. BBR allows release authors fine grained control over how their release is backed up, since different services have different needs.
+<a id="overview"></a># Overview
 
-![Script execution order](script-execution-order.png)
+This guide describes the framework for release authors to add backup and restore functionality to their release, using BOSH Backup & Restore (BBR).
+
+BBR is a framework for backing up and restoring BOSH deployments and BOSH directors. It orchestrates triggering the backup or restore process on the deployment or director, and transfers the backup artifacts to and from the deployment or director.
+
+BBR sets out a contract with release authors, to call specific backup and restore scripts in a specific order:
+
+* pre-backup-lock
+
+* backup
+
+* post-backup-unlock
+
+The BBR framework consists of a CLI and a set of hooks, which call out to scripts. The framework uses BOSH to orchestrate the execution of backup and restore scripts. BBR allows release authors fine grained control over how their release is backed up, since different services have different needs.
+
+The following diagram illustrates a BBR script execution sequence.
+
+![Script execution order](img/script-execution-order.png)
 
 In order to ensure that that backup and restore scripts do not get out of sync with the releases themselves, release authors are responsible for naming, creating, testing, and troubleshooting their own backup and restore scripts. It is important for release authors to be aware of the possibility of these backup and restore jobs to be collocated with other releases' backup and restore jobs; therefore, it is important that these jobs have unique and descriptive names to avoid name collisions.
 
