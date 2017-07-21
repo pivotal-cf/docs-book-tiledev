@@ -3,8 +3,7 @@ title: "BOSH Backup & Restore"
 owner: BOSH Backup & Restore Team
 ---
 
-<br>
-<a id="overview"></a># Overview
+## <a id="overview"></a> Overview
 
 This guide describes the framework for release authors to add backup and restore functionality to their release, using BOSH Backup & Restore (BBR).
 
@@ -18,28 +17,33 @@ BBR sets out a contract with release authors, to call specific backup and restor
 
 * post-backup-unlock
 
-The BBR framework consists of a CLI and a set of hooks, which call out to scripts. The framework uses BOSH to orchestrate the execution of backup and restore scripts. BBR allows release authors fine grained control over how their release is backed up, since different services have different needs.
+The BBR framework consists of a CLI and a set of hooks, which call out to scripts. The framework uses BOSH to orchestrate the execution of backup and restore scripts. BBR allows release authors fine grained control over how their release is backed up.
 
-The following diagram illustrates a BBR script execution sequence.
+### <a id="mechanism"></a> Backup Mechanism
+
+Different systems require different strategies for backup and restore. To help release authors make consistent backups of their systems, the BBR Framework provides hooks with which lock scripts can be run so a job can be brought to a consistent state before backup begins.
+
+The following diagram illustrates an example BBR script execution sequence.
 
 ![Script execution order](img/script-execution-order.png)
 
-In order to ensure that that backup and restore scripts do not get out of sync with the releases themselves, release authors are responsible for naming, creating, testing, and troubleshooting their own backup and restore scripts. It is important for release authors to be aware of the possibility of these backup and restore jobs to be collocated with other releases' backup and restore jobs; therefore, it is important that these jobs have unique and descriptive names to avoid name collisions.
+Since the framework is focused on the interface, hooks, backup destination, and intra deployment orchestration, it is mechanism-agnostic. That is, release authors can choose to backup their release however they would like, as long as the scripts they write have the correct name and directory structure.
 
-Different systems require different strategies for backup and restore. To help release authors make consist backups of their systems, the BBR Framework provides hooks with which lock scripts can be run so a job can be brought to a consistent state before backup begins.
+In order to ensure that that backup and restore scripts do not get out of sync with the releases themselves, release authors are responsible for naming, creating, testing, and troubleshooting their own backup and restore scripts. 
 
-Backup mechanism: since the framework is focused on the interface, hooks, backup destination, and intra deployment orchestration, it is mechanism-agnostic i.e. release authors can choose to backup their release however they would like, as long as the scripts they write have the correct name and directory structure.
+<p class="note"><strong>Important</strong>: Release authors must be aware of the possibility of these backup and restore jobs to be collocated with other releases' backup and restore jobs. Therefore, these jobs must have unique and descriptive names to avoid name collisions.
+
 
 ## <a id='backup-workflow'></a>Backup Workflow
 
 
 ###  <a id='script-implementation'></a>Script Implementation
 
-Release authors need to implement scripts as part of the BBR contract. The scripts itself are packaged and distributed as a BOSH release. The [Exemplar Backup and Restore Release](https://github.com/pivotal-cf-experimental/exemplar-backup-and-restore-release) provides examples on how release authors can structure their jobs to implement the contract with BBR.
+Release authors must implement scripts as part of the BBR contract. The scripts themselves are packaged and distributed as a BOSH release. The [Exemplar Backup and Restore Release](https://github.com/pivotal-cf-experimental/exemplar-backup-and-restore-release) provides examples of how release authors can structure their jobs to implement the contract with BBR.
 
-The pre-backup-lock, backup, post-backup-unlock, and restore scripts are executable scripts. ERB tags may be used for templating. These scripts are executed similarly to other release job scriptse (start, stop, drain), and you can use the job's package dependencies.
+The p`re-backup-lock`, `backup`, `post-backup-unlock`, and `restore` scripts are executable scripts. ERB tags may be used for templating. These scripts are executed similarly to other release job scripts (`start`, `stop`, `drain`), and you can use the job's package dependencies.
 
-In scripts, exit code 0 indicates success, while any other exit code indicates a failure. BBR will check exit codes of the scripts when orchestrating.
+BBR checks exit codes of the scripts when orchestrating. Exit code 0 indicates success, while any other exit code indicates a failure. 
 
 
 #### Directory Structure
@@ -71,7 +75,7 @@ acme-release
 
 #### Logs
 
-The stdout and stderr streams will be captured and sent to the operator invoking the backup.
+The `stdout` and `stderr` streams are captured and sent to the operator invoking the backup.
 
 ### <a id='pre-backup-lock'></a>Pre-Backup-Lock
 
