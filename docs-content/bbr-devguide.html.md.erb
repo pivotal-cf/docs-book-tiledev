@@ -11,14 +11,14 @@ BBR is a framework for backing up and restoring BOSH deployments and BOSH direct
 
 BBR sets out a contract with release authors, to call specific backup and restore scripts in a specific order:
 
-### Backup scripts
+### <a id="backup-scripts"></a>Backup scripts
 * pre-backup-lock
 
 * backup
 
 * post-backup-unlock
 
-### Restore scripts
+### <a id="restore-scripts"></a>Restore scripts
 * pre-restore-lock (in development)
 
 * restore
@@ -263,7 +263,7 @@ Where scripts are implemented for releases that are part of larger deployments, 
 
 ## <a id="bbr-utilities"></a>Backup and Restore Utilities
 
-If your release stores state in a Postgres or MySQL database, deploy the `database-backup-restorer` job from the `backup-and-restore-sdk-release` repo.
+If your release stores state in a Postgres or MySQL database, deploy the `database-backup-restorer` job from [this repo](https://github.com/cloudfoundry-incubator/backup-and-restore-sdk-release).
 
 Ensure your job templates a `config.json` as follows:
 
@@ -300,7 +300,7 @@ cp $ARTIFACT_DIRECTORY <output_file>
 
 BBR provides a pattern for Cloud Foundry release authors to follow to ensure their scripts abide by the BBR Framework contract.
 
-A Cloud Foundry operator adds a `backup-restore` instance to their Cloud Foundry deployment. By default, release-specific database `backup` and `restore` job scripts are collocated on this instance along with the `database-backup-restorer` job from the Backup and Restore SDK release repo.
+A Cloud Foundry operator adds a `backup-restore` instance to their Cloud Foundry deployment. By default, release-specific database `backup` and `restore` job scripts are collocated on this instance along with the `database-backup-restorer` job from [this repo](https://github.com/cloudfoundry-incubator/backup-and-restore-sdk-release).
 
 If your release requires that you stop your component's processes during backup and restore, you will also need to provide [`unlock`](#post-backup-unlock) and [`lock`](#pre-backup-lock) scripts. You may collocate these scripts on either the `backup-restore` instance or your component's instance, but we recommend the latter in order to be able to directly interact with `monit` or your running job.
 
@@ -347,7 +347,7 @@ Multiple backup and restore scripts will be collocated on the `backup-restore` i
 
 The **Disaster Recovery Acceptance Test Suite** (DRATS) runs against a Cloud Foundry deployment to ensure that backup and restore works as expected. Specifically, it adds state to a Cloud Foundry deployment, for example when pushing an app. DRATS backs up the deployment, restores from the backup, and asserts that the state is present after restore.
 
-To add extra test cases, create a new TestCase that implements the [TestCase interface](https://github.com/pivotal-cf-experimental/disaster-recovery-acceptance-tests/blob/master/acceptance/testcases/test_case.go).
+To add extra test cases, create a new TestCase that implements the [TestCase interface](https://github.com/cloudfoundry-incubator/disaster-recovery-acceptance-tests/tree/master/testcases).
 
 You must implement the following methods:
 
@@ -355,7 +355,7 @@ You must implement the following methods:
 * `CheckState()` must assert that the state in the restored Cloud Foundry deployment matches that created by `PopulateState()`. The restored Cloud Foundry deployment's name must be set to `DEPLOYMENT_TO_RESTORE`.
 * `Cleanup()` must clean up the state created in the Cloud Foundry deployment to be backed up.
 
-You can find further instructions and examples [here](https://github.com/pivotal-cf-experimental/disaster-recovery-acceptance-tests/blob/master/README.md).
+You can find further instructions and examples [here](https://github.com/cloudfoundry-incubator/disaster-recovery-acceptance-tests).
 
 ### <a id='running-drats'></a>Running Acceptance Tests
 
