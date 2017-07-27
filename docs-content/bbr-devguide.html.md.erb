@@ -11,11 +11,19 @@ BBR is a framework for backing up and restoring BOSH deployments and BOSH direct
 
 BBR sets out a contract with release authors, to call specific backup and restore scripts in a specific order:
 
+### Backup scripts
 * pre-backup-lock
 
 * backup
 
 * post-backup-unlock
+
+### Restore scripts
+* pre-restore-lock (in development)
+
+* restore
+
+* post-restore-unlock (in development)
 
 The BBR framework consists of a CLI and a set of hooks, which call out to scripts. The framework uses BOSH to orchestrate the execution of backup and restore scripts. BBR allows release authors fine grained control over how their release is backed up.
 
