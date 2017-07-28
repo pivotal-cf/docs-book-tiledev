@@ -1,11 +1,11 @@
 ---
-title: "BOSH Backup & Restore"
+title: "BOSH Backup and Restore"
 owner: BOSH Backup & Restore Team
 ---
 
 ## <a id="overview"></a> Overview
 
-This guide describes the framework for release authors to add backup and restore functionality to their release, using BOSH Backup & Restore (BBR).
+This guide describes the framework for release authors to add backup and restore functionality to their release, using BOSH Backup and Restore (BBR).
 
 BBR is a framework for backing up and restoring BOSH deployments and BOSH directors. It orchestrates triggering the backup or restore process on the deployment or director, and transfers the backup artifacts to and from the deployment or director.
 
@@ -25,7 +25,7 @@ BBR sets out a contract with release authors, to call specific backup and restor
 
 * post-restore-unlock (in development)
 
-The BBR framework consists of a CLI and a set of hooks, which call out to scripts. The framework uses BOSH to orchestrate the execution of backup and restore scripts. BBR allows release authors fine grained control over how their release is backed up.
+The BBR framework consists of a command line interface (CLI) and a set of hooks, which call out to scripts. The framework uses BOSH to orchestrate the execution of backup and restore scripts. BBR allows release authors fine grained control over how their release is backed up.
 
 ### <a id="mechanism"></a> Backup Mechanism
 
@@ -37,7 +37,7 @@ The following diagram illustrates an example BBR script execution sequence.
 
 Since the framework is focused on the interface, hooks, backup destination, and intra deployment orchestration, it is mechanism-agnostic. That is, release authors can choose to backup their release however they would like, as long as the scripts they write have the correct name and directory structure.
 
-In order to ensure that that backup and restore scripts do not get out of sync with the releases themselves, release authors are responsible for naming, creating, testing, and troubleshooting their own backup and restore scripts. 
+To ensure that that backup and restore scripts do not get out of sync with the releases themselves, release authors are responsible for naming, creating, testing, and troubleshooting their own backup and restore scripts. 
 
 <p class="note"><strong>Important</strong>: Release authors must be aware of the possibility of these backup and restore jobs to be collocated with other releases' backup and restore jobs. Therefore, these jobs must have unique and descriptive names to avoid name collisions.
 
@@ -51,7 +51,7 @@ Release authors must implement scripts as part of the BBR contract. The scripts 
 
 The `pre-backup-lock`, `backup`, `post-backup-unlock`, and `restore` scripts are executable scripts. ERB tags may be used for templating. These scripts are executed similarly to other release job scripts (`start`, `stop`, `drain`), and you can use the job's package dependencies.
 
-BBR checks exit codes of the scripts when orchestrating. Exit code 0 indicates success, while any other exit code indicates a failure. 
+BBR checks exit codes of the scripts when orchestrating. Exit code `0` indicates success, while any other exit code indicates a failure. 
 
 
 #### Directory Structure
@@ -263,7 +263,7 @@ Where scripts are implemented for releases that are part of larger deployments, 
 
 ## <a id="bbr-utilities"></a>Backup and Restore Utilities
 
-If your release stores state in a Postgres or MySQL database, deploy the `database-backup-restorer` job from [this repo](https://github.com/cloudfoundry-incubator/backup-and-restore-sdk-release).
+If your release stores state in a Postgres or MySQL database, deploy the `database-backup-restorer` job from the [backup-and-restore-sdk-release](https://github.com/cloudfoundry-incubator/backup-and-restore-sdk-release) GitHub repository.
 
 Ensure your job templates a `config.json` as follows:
 
@@ -300,7 +300,7 @@ cp $ARTIFACT_DIRECTORY <output_file>
 
 BBR provides a pattern for Cloud Foundry release authors to follow to ensure their scripts abide by the BBR Framework contract.
 
-A Cloud Foundry operator adds a `backup-restore` instance to their Cloud Foundry deployment. By default, release-specific database `backup` and `restore` job scripts are collocated on this instance along with the `database-backup-restorer` job from [this repo](https://github.com/cloudfoundry-incubator/backup-and-restore-sdk-release).
+A Cloud Foundry operator adds a `backup-restore` instance to their Cloud Foundry deployment. By default, release-specific database `backup` and `restore` job scripts are collocated on this instance along with the `database-backup-restorer` job from the [backup-and-restore-sdk-release](https://github.com/cloudfoundry-incubator/backup-and-restore-sdk-release) GitHub repository.
 
 If your release requires that you stop your component's processes during backup and restore, you will also need to provide [`unlock`](#post-backup-unlock) and [`lock`](#pre-backup-lock) scripts. You may collocate these scripts on either the `backup-restore` instance or your component's instance, but we recommend the latter in order to be able to directly interact with `monit` or your running job.
 
@@ -362,8 +362,8 @@ You can find further instructions and examples [here](https://github.com/cloudfo
 Run acceptance tests as follows:
 
 1. Deploy Cloud Foundry.
-1. Deploy a jumpbox deployment called `integration-jump-box` containing a single VM, `jumpbox`.
-1. From the [DRATS repo](https://github.com/pivotal-cf-experimental/disaster-recovery-acceptance-tests/), run `ci/scripts/acceptance.sh` with the following environment variables set:
+1. Deploy a Kumpbox deployment named `integration-jump-box`, containing a single VM, `jumpbox`.
+1. From the [DRATS](https://github.com/pivotal-cf-experimental/disaster-recovery-acceptance-tests/) GitHub repository, run `ci/scripts/acceptance.sh` with the following environment variables set:
   * `DEPLOYMENT_TO_BACKUP` - name of the Cloud Foundry deployment
   * `DEPLOYMENT_TO_RESTORE` - name of the Cloud Foundry deployment
   * `BOSH_URL` - URL of BOSH Director that has deployed the above Cloud Foundry deployments
