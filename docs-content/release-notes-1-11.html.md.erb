@@ -256,9 +256,7 @@ See [BOSH Links: Why and How](https://gist.github.com/Amit-PivotalLabs/c39528248
 Version 1.11.0 of PCF introduces CredHub, a credential management component that runs on the BOSH VM
 to provide more a secure way for PCF to configure, store, and manage credentials.
 
-CredHub in PCF v1.11.0 does not support backup and restore, so Pivotal only recommends using CredHub for credentials
-that you can recover from elsewhere after a disaster. 
-CredHub also does not support automatic tile migrations through Ops Manager if they include some credential types.
+CredHub does not support automatic tile migrations through Ops Manager if they include some credential types.
 Tile authors may choose to wait for a PCF release that includes these features before incorporating CredHub into their service.
 
 Learn more about how tiles use CredHub in [CredHub integrations](./credhub.html). 
