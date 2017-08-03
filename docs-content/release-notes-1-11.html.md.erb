@@ -256,8 +256,11 @@ See [BOSH Links: Why and How](https://gist.github.com/Amit-PivotalLabs/c39528248
 Version 1.11.0 of PCF introduces CredHub, a credential management component that runs on the BOSH VM
 to provide more a secure way for PCF to configure, store, and manage credentials.
 
-CredHub does not support automatic tile migrations through Ops Manager if they include some credential types.
-Tile authors may choose to wait for a PCF release that includes these features before incorporating CredHub into their service.
+In PCF v1.11.1, CredHub supports automatic tile migrations through Ops Manager for `secret` credential types only.
+Tile developers can write JavaScript migrations to migrate these credentials to CredHub. See [Migrating Existing Credentials to CredHub](./migrating-credhub-credentials.html) for more information.
+
+Tile authors may choose to wait for a PCF release that includes support for more credential
+types before incorporating CredHub into their service.
 
 Learn more about how tiles use CredHub in [CredHub integrations](./credhub.html). 
 See the [CredHub documentation](https://docs.cloudfoundry.org/credhub/index.html) for more information about CredHub.
