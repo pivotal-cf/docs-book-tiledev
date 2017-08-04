@@ -99,15 +99,17 @@ Enter the following `curl` command to fetch the manifest for the tile:
 
 1. Enter the following `curl` command to request the credentials from the tile in
 a format compatible with CredHub:
+    <p class="note"><strong>Note</strong>: Call this API endpoint using a browser to automatically
+    download the file.</p>
 
     ```
     $ curl "https://OPS-MANAGER-FQDN.com/api/v0/staged/products/credhub_credentials" \ 
         -X GET \ 
         -H "Authorization: Bearer MY-TOKEN"
     ```
-    
+
     A successful request returns the credentials from your deployment, formatted as a YAML file:
-    
+
     ```
     HTTP/1.1 200 OK
 
