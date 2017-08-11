@@ -12,7 +12,7 @@ components much faster. We recommend that you approach development in the follow
 
 1. [Develop](#components) and test the Tile Generator inputs individually
 2. [Describe](#tile-generator) your tile in `tile.yml` and use [Tile Generator](./tile-generator.html) to create the tile components
-3. [Test](#test-errands) the generated deploy errands individually using [pcf utility](pcf-command.html#errands)
+3. Test the generated deploy errands individually
 4. [Deploy](#deploy-tile) the generated BOSH release and complete tile
 5. [Implement](#concourse) Continuous Integration (CI) for the complete tile
 
@@ -52,13 +52,6 @@ are to be included, add an icon and a description, and have the option to add
 forms for values that are to be configured by the PCF operator at installation
 time.
 
-## <a name="test-errands"></a> Test the Deploy and Delete Errands
-
-This is the first step for which you will need a [complete PCF deployment](./environments.html#pcf). But before you deploy your complete tile to Ops Manager, you can manually deploy your individual [components](#components) and test the errands created by the Tile Generator
-using the [pcf utility](pcf-command.html#errands). Doing this is significantly
-faster than testing the errands through Ops Manager and BOSH, as BOSH will
-run each errand in a newly created virtual machine.
- 
 ## <a name="deploy-tile"></a> Deploy your generated BOSH release and full tile
 
 After you have verified that all individual [components](#components) and
