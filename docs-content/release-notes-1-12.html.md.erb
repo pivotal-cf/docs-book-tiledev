@@ -16,3 +16,8 @@ PCF v1.12 Alpha 1 introduced support for migrating additional credential types, 
 
 See [Migrating Existing Credentials to CredHub](./migrating-credhub-credentials.html) for more information.
 
+## <a id="opsman"></a>Resource Config Pane Hides Zero-Instance Jobs
+
+A service tile's [**Resource Config**](./tile-structure.html#process) pane lists the jobs that the service runs and lets operators allocate resources to the jobs that are configurable.
+
+Tiles can define a job as `non_configurable` and set its instance count to `0`. This prevents the job from running, but lets external services access the job properties. The Ops Manager 1.12 **Resource Config** pane does not show these zero-instance jobs.
