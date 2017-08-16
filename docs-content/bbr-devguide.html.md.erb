@@ -362,11 +362,12 @@ You can find further instructions and examples [here](https://github.com/cloudfo
 Run acceptance tests as follows:
 
 1. Deploy Cloud Foundry.
-1. From the [DRATS](https://github.com/cloudfoundry-incubator/disaster-recovery-acceptance-tests) GitHub repository, run `scripts/run_acceptance_tests.sh` with the following environment variables set:
-  * `DEPLOYMENT_TO_BACKUP` - name of the Cloud Foundry deployment
-  * `DEPLOYMENT_TO_RESTORE` - name of the Cloud Foundry deployment
-  * `BOSH_URL` - URL of BOSH Director that has deployed the above Cloud Foundry deployments
-  * `BOSH_CLIENT` - BOSH Director username
-  * `BOSH_CLIENT_SECRET` - BOSH Director password
-  * `BOSH_CERT_PATH` - path to BOSH Director CA certificate
-  * `BBR_BUILD_PATH` - path to BBR binary
+1. From the [DRATS](https://github.com/cloudfoundry-incubator/disaster-recovery-acceptance-tests) GitHub repository,
+   run `scripts/run_acceptance_tests.sh` with the following environment variables set:
+  * `DEPLOYMENT_TO_BACKUP` — name of the Cloud Foundry deployment
+  * `DEPLOYMENT_TO_RESTORE` — name of the Cloud Foundry deployment
+  * `BOSH_URL` — URL of BOSH Director that has deployed the above Cloud Foundry deployments
+  * `BOSH_CLIENT` — BOSH Director username
+  * `BOSH_CLIENT_SECRET` — BOSH Director password
+  * `BOSH_CERT_PATH` — path to BOSH Director CA certificate
+  * `BBR_BUILD_PATH` — path to BBR binary
