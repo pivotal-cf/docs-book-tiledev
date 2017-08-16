@@ -46,7 +46,10 @@ The [Managed Service](./managed.html) topic has more information about managed s
 
 ## <a id="dynamic"></a>  Level 4. On-Demand (Dynamic) Service
 
-As with a managed service, an on-demand service and broker both run within PCF, and PivNet lists the service tile without "Service Broker" in the name. But unlike a managed service, an on-demand service does not limit the number of service instance VMs. The operator does not have to pre-allocate and provision VM resources for the service.
+As with a managed service, an on-demand service and broker both run within PCF,
+and PivNet lists the service tile without "Service Broker" in the name.
+But unlike a managed service, an on-demand service does not limit the number of service instance VMs.
+The operator does not have to pre-allocate and provision VM resources for the service.
 
 When a developer creates an instance of an on-demand service, they provision its resources (within an allowed range) and BOSH dynamically creates a new, dedicated VM for the instance.
 
