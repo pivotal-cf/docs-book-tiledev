@@ -28,7 +28,7 @@ On-demand service tiles have a configuration pane for each service plan. Operato
 
 ![Plan Pane](img/plan-config.png)
 
-The [property](./property-reference.htl#property-blueprints) that defines the VM type options is `vm_type_dropdown`, and the menu options for disk type come from the `disk_type_dropdown` property.
+The [property](./property-reference.html#property-blueprints) that defines the VM type options is `vm_type_dropdown`, and the menu options for disk type come from the `disk_type_dropdown` property.
 
 To help operators make the right choices for their on-demand plans, Ops Manager 1.12 lets tile developers specify in the product template `default` values for each VM type and disk type resource. For `vm_type_dropdown` the resources are `ram`, `ephemeral_disk`, and `cpu`. For `disk_type_dropdown` the resource is `persistent_disk`. For example:
 
