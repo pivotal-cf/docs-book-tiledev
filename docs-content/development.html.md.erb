@@ -3,6 +3,10 @@ title: Development Steps at Each Level
 owner: Services
 ---
 
+This topic describes the typical steps that tile developers follow when developing a tile at a given [integration level](./stages.html), such as brokered service tile, a managed service tile, or an on-demand service tile.
+
+## <a id="overview"></a> Overview
+
 The ultimate deliverable of a PCF integration is almost always a **tile**, a
 Pivotal Cloud Foundry installation package that is delivered through our
 [marketplace](http://network.pivotal.io) and installed through Pivotal's
@@ -25,7 +29,7 @@ to PCF.
 
 Each of the development phases is described in more detail below.
 
-## <a name="components"></a> Develop the Tile Generator Inputs
+## <a id="components"></a> Develop the Tile Generator Inputs
 
 Tiles are a packaging format to deliver ISV software to PCF customers. Most
 tiles contain one or more of the following types of components:
@@ -43,16 +47,16 @@ them as a tile.
 
 In most cases, you will not need a full PCF installation to complete these early phases. You can set up a [light-weight PCF development environment](./environments.html#pcfdev) on your laptop or desktop, possibly including BOSH-Lite if your are developing managed services.
  
-## <a name="tile-generator"></a> Describe and Generate your Tile
+## <a id="tile-generator"></a> Describe and Generate your Tile
 
-*After* your components are in working order, download and install the
+After your components are in working order, download and install the
 [Tile Generator](tile-generator.html) and follow the instructions to describe
 and generate your actual tile. This is where you list all the components that
 are to be included, add an icon and a description, and have the option to add
 forms for values that are to be configured by the PCF operator at installation
 time.
 
-## <a name="deploy-tile"></a> Deploy your generated BOSH release and full tile
+## <a id="deploy-tile"></a> Deploy your generated BOSH release and full tile
 
 After you have verified that all individual [components](#components) and
 [errands](#test-errands) work, you are ready to deploy your tile's generated BOSH release from the command line.

@@ -5,7 +5,7 @@ owner: Services
 
 This topic explains how to use [Concourse](http://concourse.ci) continuous integration (CI) to help develop and integrate apps for Pivotal Cloud Foundry (PCF).
 
-## <a name="overview"></a> Overview
+## <a id="overview"></a> Overview
 
 PCF is a fast moving platform as we are constantly extending and enhancing it. When you integrate your software with PCF, you should make sure that your integration continues to work with every new release of the platform. One way to ensure that is to set up a CI pipeline for your tile against a PCF deployment that is constantly updated with the latest Alpha release of the platform.
 
@@ -14,7 +14,7 @@ While you are of course free to use whatever system you are familiar with,
 our tools and documentation are built to make concourse CI as easy as
 possible.
 
-## <a name="server"></a> Set up a Concourse Server
+## <a id="server"></a> Set up a Concourse Server
 
 You will need a concourse server to host your pipeline. If you partner with
 us, we have servers that can host your pipeline, and S3 storage that can be
@@ -23,7 +23,7 @@ up your own, instructions can be found here:
 
 - [Setting up concourse](http://concourse.ci/setting-up.html)
  
-## <a name="pipeline"></a> Create a Concourse Pipeline for your Tile
+## <a id="pipeline"></a> Create a Concourse Pipeline for your Tile
 
 A typical CI pipeline for a tile consists of the following jobs:
 
@@ -37,7 +37,7 @@ concourse server. [Tile Generator](tile-generator.html) contains a sample
 pipeline that you can clone for your own tile. We are working on automating
 the process of generating a pipeline template for you.
  
-## <a name="pool"></a> Set up PCF for your CI Pipeline
+## <a id="pool"></a> Set up PCF for your CI Pipeline
 
 Pivotal partners who have us host their pipeline have access to a pool of PCF
 instances that are managed by us and are regularly updated with the latest
