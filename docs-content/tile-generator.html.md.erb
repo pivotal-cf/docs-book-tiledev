@@ -147,11 +147,17 @@ All required configuration for your tile is in the file called `tile.yml`.
 The first section in the file describes the general properties of your tile:
 
 ```yaml
-name: tile-name # By convention lowercase with dashes
+name: tile-name # Match Pivotal Network product name, lowercase with dashes
 icon_file: resources/icon.png
 label: Brief Text for the Tile Icon
 description: Longer description of the tile's purpose
 ```
+
+The `name` should be informative. A good starting point is your company name followed
+by the product name, e.g., `acme-anvil`. The name should match your product slug on
+Pivotal Network, which enables update notifications for customers. Please coordinate
+with your product team to agree upon a name; marketing teams often care about the
+name since it shows up in Pivotal Network URLs.
 
 The `icon_file` should be a 128x128 pixel image that will appear on your tile in
 the Ops Manager GUI. By convention, any resources used by the tile should be
