@@ -14,6 +14,7 @@
 @import "partials/search";
 @import "partials/sidenav";
 
+
 // ~LAYOUT
 // ===================================================
 .container {
@@ -182,7 +183,7 @@ category: basics
 
   > ul {
     list-style-position: inside;
-    list-style-type: disk;
+    list-style-type: lower-roman;
     margin-left: -1em;
 
     &:before {
@@ -283,15 +284,6 @@ category: basics
   }
 }
 
-.note.warning {
-  background-color: #fdd;
-  border-color: #fbb
-}
-
-.note.warning:before {
-  color: #f99;
-}
-
 /*doc
 ---
 title: Content Helper - New User Tip
@@ -385,13 +377,4 @@ category: basics
 // Hide back to top on homepage
 .index .to-top {
   display: none;
-}
-
-.partial-notice {
-  color: red;
-  font-size: $font-size-m;
-
-  ul {
-    font-size: $font-size-s;
-  }
 }
