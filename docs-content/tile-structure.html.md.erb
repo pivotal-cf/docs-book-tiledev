@@ -41,9 +41,11 @@ Specify the service broker for a tile in the tile directory's `tile.yml` file, a
 
 #### <a id='catalog'></a> Catalog
 
-Service brokers include [catalog metadata](http://docs.pivotal.io/pivotalcf/services/catalog-metadata.html) that list their service plans. This information publishes to the Services Marketplace that app developers use to browse and select services.
+Service brokers include [catalog metadata](http://docs.pivotal.io/pivotalcf/services/catalog-metadata.html) that list their service plans. This information publishes to the Marketplace that app developers use to browse and select services.
 
-Developers on either PCF or open-source Cloud Foundry see a plain-text version of the Services Marketplace by running `cf marketplace`. But PCF also features a graphical Services Marketplace, and PCF service brokers support this marketplace with additional catalog metadata fields for display names, logo images, and links to more information and documentation.
+Developers on either PCF or open-source Cloud Foundry see a plain-text version of the Marketplace by running `cf marketplace`.
+But PCF also features a graphical Marketplace, and PCF service brokers support this Marketplace with additional catalog metadata fields for display names,
+logo images, and links to more information and documentation.
 
 Define this catalog metadata for your service by writing your service broker to return the API calls listed in the [Catalog Metadata](http://docs.pivotal.io/pivotalcf/services/catalog-metadata.html) topic.
 
@@ -77,7 +79,8 @@ Include credentials to pass into a BOSH manifest as `salted_credentials` in your
 
 ### <a id='errands'></a> Errands
 
-Tile Generator automatically generates `deploy` and `delete` lifecycle errands for [packages](#packages) that deploy to PCF. These errand scripts deploy the service to PCF and publish its plans in the Services Marketplace, and remove the service from PCF and the marketplace.
+Tile Generator automatically generates `deploy` and `delete` lifecycle errands for [packages](#packages) that deploy to PCF.
+These errand scripts deploy the service to PCF and publish its plans in the Marketplace, and remove the service from PCF and the Marketplace.
 
 You can also define additional `post_deploy` and `pre_delete` errand scripts in `tile.yml` that prepare PCF to host the service or clean up before deleting it.
 
@@ -111,7 +114,7 @@ Tile directories contain the following components, which include each other as s
         * Dependencies
 * Tile manifest template (adds properties into BOSH manifest)
     - Configuration forms and properties
-    - Catalog metadata (for Services Marketplace)
+    - Catalog metadata (for the Marketplace)
 * Migrations
 
 The three required top-level subdirectories in a `.pivotal` tile directory are:
