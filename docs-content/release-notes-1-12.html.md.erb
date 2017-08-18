@@ -16,6 +16,42 @@ PCF v1.12 Alpha 1 introduced support for migrating additional credential types, 
 
 See [Migrating Existing Credentials to CredHub](./migrating-credhub-credentials.html) for more information.
 
+## <a id="boolean-constants"></a>Ternary Operator Evaluates Boolean Constants
+
+Ops Manager v1.12 adds support for evaluating boolean constants using ternary operators.
+Previously, the ternary operator supported string constants, property references, or `named_manifest` declarations.
+
+<p class="note"><strong>Breaking Change</strong>: If you define <strong>true</strong> and <strong>false</strong> in any <code>property_blueprint</code> names, as shown in the workaround below, update your job manifest to use boolean constants.</p>
+
+In previous versions of Ops Manager, to expose a property to operators as a checkbox that is checked by default,
+a Tile Author defined the true and false properties in the job manifest as a workaround.
+In the following example, the `disable_security_protocols` job spec property takes a boolean value:
+
+```
+property_blueprints:
+- name: true
+  type: boolean
+  configurable: false
+  default: true
+- name: false
+  type: boolean
+  configurable: false
+  default: false
+
+manifest:
+  disable_security_protocols: '(( .properties.secure_the_system ? .properties.false : .properties.true ))
+```
+
+In Ops Manager v1.12, the ternary operator manages boolean values natively.
+A Tile Author can rewrite the above example using the following syntax:
+
+```
+disable_security_protocols: '(( .properties.secure_the_system ? false : true ))'
+```
+
+When using this syntax, enclose everything following the initial colon with either single or double
+quotation marks and include the space between the boolean expression and the question mark, as shown above.
+
 ## <a id="zero-instance"></a>Resource Config Pane Hides Zero-Instance Jobs
 
 A service tile's [**Resource Config**](./tile-structure.html#process) pane lists the jobs that the service runs and lets operators allocate resources to the jobs that are configurable.
