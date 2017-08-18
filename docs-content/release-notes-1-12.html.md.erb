@@ -1,18 +1,21 @@
 ---
-title: Pivotal Cloud Foundry v1.12 Partners Release Notice
+title: PCF v1.12 Partners Release Notice
 owner: Technical Program Management
 ---
 
-This topic describes the changes that PCF v1.12 introduces which may be relevant to partner service tiles.
+This topic describes the changes that Pivotal Cloud Foundry (PCF) v1.12 introduces which may be relevant to partner service tiles.
 
-## <a id="credhub"></a>CredHub
-
-### <a id="cred-types"></a>Additional Credential Migrations
+## <a id="cred-types"></a>Additional Credential Migrations
 
 Version 1.11.0 of PCF introduced CredHub for credential management, and PCF v1.11.1 added
 support for migrating `secret` credentials to CredHub.
 
-PCF v1.12 Alpha 1 introduced support for migrating additional credential types, including `rsa` and `simple_credential`. Tile developers can migrate these credential types using the same JavaScript migration process as `secret` credentials.
+Ops Manager v1.12 added support for migrating additional credential types, including `rsa_pkey_credential` and `simple_credential`
+types in the v1.12 Alpha release and `salted_credential` in the v1.12 Beta release.
+Tile developers can migrate these credential types using the same JavaScript migration process as `secret` credentials.
+
+<p class="note"><strong>Breaking Change</strong>: When migrating <code>salted_credentials</code>, CredHub does not retain the salt. If your tile depends on the salt,
+refactor before migrating to CredHub.</p>
 
 See [Migrating Existing Credentials to CredHub](./migrating-credhub-credentials.html) for more information.
 
