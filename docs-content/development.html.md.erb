@@ -74,7 +74,7 @@ Everything else should work exactly as it did in prior steps.
 
 Good testing assures tile developers that their product installs and runs properly on diverse platforms, and assures PCF platform operators that the tile they install can provide its service successfully on their platform.
 
-Pivotal recommends a pyramid structure for testing, starting with unit tests and stepping up to successively broader and more automated levels of integration. Pivotal uses and recommends [Concourse](./concourse.ci) for creating build pipelines that follow this test structure. Other continuous integration tools should also support a pyramid testing approach.
+Pivotal recommends a pyramid structure for testing, starting with unit tests and stepping up to successively broader and more automated levels of integration. Pivotal uses and recommends [Concourse](./concourse.html) for creating build pipelines that follow this test structure. Other continuous integration tools should also support a pyramid testing approach.
 
 ### <a id="pyramid"></a> Tile Test Pyramid
 
@@ -98,7 +98,7 @@ For PCF tiles, a typical test pyramid progresses as follows:
 
 ### <a id="smoke"></a> Smoke Tests
 
-Smoke tests are end-to-end lifecycle tests for service instances that you can include as [post-deploy errands](./tile-errands.html#post-deploy) within a tile and also automate in [Concourse](./concourse.ci) or other integration platforms.
+Smoke tests are end-to-end lifecycle tests for service instances that you can include as [post-deploy errands](./tile-errands.html#post-deploy) within a tile and also automate in [Concourse](./concourse.html) or other integration platforms.
 
 A typical smoke test runs as follows:
 
