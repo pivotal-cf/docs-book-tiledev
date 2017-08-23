@@ -69,7 +69,7 @@ For each property, you can combine specifications for `name`, `type`, `default`,
 
 In the Ops Manager Installation Dashboard, your service tile bears an identifying label, description, and logo icon. Specify these at the top of your `tile.yml` configuration file as `label`, `description`, and `icon_file`. The value of `icon_file` should be the name of a 128×128 pixel PNG image.
 
-### <a id='fixed'></a> Fixed properties
+### <a id='fixed'></a> Fixed Properties
 
 A tile also writes fixed, unconfigurable properties into the BOSH manifest that it creates. You specify these properties in your `tile.yml` configuration file using [Double-Paren Expressions](./property-reference.html#expressions) format.
 
@@ -147,7 +147,7 @@ The entire tile directory is also a gzipped tarfile, with the `.tgz` extension r
 
 You can use any zip utility to create a `.pivotal` file. Ensure that the top-level subfolders as seen above in the `example-product` folder remain.
 
-#### Example workflow
+#### Example Workflow
 
 <pre class='terminal'>
 $ cd example-product
