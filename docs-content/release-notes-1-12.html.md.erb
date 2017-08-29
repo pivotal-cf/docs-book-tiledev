@@ -60,3 +60,133 @@ quotation marks and include the space between the boolean expression and the que
 A service tile's [**Resource Config**](./tile-structure.html#process) pane lists the jobs that the service runs and lets operators allocate resources to the jobs that are configurable.
 
 Tiles can define a job as `non_configurable` and set its instance count to `0`. This prevents the job from running, but lets external services access the job properties. The Ops Manager 1.12 **Resource Config** pane and [API endpoints](https://opsman-dev-api-docs.cfapps.io/#retrieving-resource-configuration-for-a-product) do not include these zero-instance jobs.
+
+## <a id="ert-props"></a>Elastic Runtime Tile Property Changes
+
+Properties in the Elastic Runtime tile have changed. Tile developers must change any `(( .properties.cf.PROPERTY.NAME ))` calls accordingly if their tiles access Elastic Runtime property values.
+
+The following tables list the properties that Pivotal [removed](#removed), [added](#added), [renamed](#renamed), and [retyped] (#retyped) between Elastic Runtime v1.11 and v1.12:
+
+<table id='removed' border="1" class="nice" >
+  	<tr><th>
+  Removed Properties
+  	</th></tr><tr><td>
+  <code>.ccdb.credentials</code>
+	</td></tr><tr><td>
+  <code>.diego_database.skip_consul_locks</code>
+	</td></tr><tr><td>
+  <code>.etcd_tls_server.election_timeout_in_milliseconds</code>
+	</td></tr><tr><td>
+  <code>.etcd_tls_server.heartbeat_interval_in_milliseconds</code>
+	</td></tr><tr><td>
+  <code>.properties.cf_etcd_client_cert</code>
+	</td></tr><tr><td>
+  <code>.properties.cf_etcd_peer_cert</code>
+	</td></tr><tr><td>
+  <code>.properties.cf_etcd_server_cert</code>
+	</td></tr><tr><td>
+  <code>.properties.container_networking.disable.garden_network_pool</code>
+	</td></tr><tr><td>
+  <code>.uaadb.credentials</code>
+  </td></tr></table>
+
+<table id='added' border="1" class="nice" >
+  	<tr><th>
+  Added Properties
+  	</th></tr><tr><td>
+   <code>.cloud_controller.staging_timeout_in_seconds</code>
+  	</td></tr><tr><td>
+  <code>.ha_proxy.internal_only_domains</code>
+  	</td></tr><tr><td>
+  <code>.ha_proxy.trusted_domain_cidrs</code>
+  	</td></tr><tr><td>
+  <code>.properties.container_networking_log_traffic</code>
+  	</td></tr><tr><td>
+  <code>.properties.container_networking_log_traffic.enable.iptables_accepted_udp_logs_per_sec</code>
+  	</td></tr><tr><td>
+  <code>.properties.container_networking_log_traffic.enable.iptables_denied_logs_per_sec</code>
+  	</td></tr><tr><td>
+  <code>.properties.doppler_ssl_ciphers</code>
+  	</td></tr><tr><td>
+  <code>.properties.enable_grootfs</code>
+  	</td></tr><tr><td>
+  <code>.properties.garden_image_plugin</code>
+  	</td></tr><tr><td>
+  <code>.properties.garden_image_plugin_empty</code>
+  	</td></tr><tr><td>
+  <code>.properties.garden_image_plugin_empty_args</code>
+  	</td></tr><tr><td>
+  <code>.properties.garden_image_plugin_extra_args</code>
+  	</td></tr><tr><td>
+  <code>.properties.haproxy_forward_tls</code>
+  	</td></tr><tr><td>
+  <code>.properties.haproxy_forward_tls.enable.backend_ca</code>
+  	</td></tr><tr><td>
+  <code>.properties.loggregator_client_cert</code>
+  	</td></tr><tr><td>
+  <code>.properties.metron_ssl_ciphers</code>
+  	</td></tr><tr><td>
+  <code>.properties.nfs_volume_driver.enable.ldap_server_host</code>
+  	</td></tr><tr><td>
+  <code>.properties.nfs_volume_driver.enable.ldap_server_port</code>
+  	</td></tr><tr><td>
+  <code>.properties.nfs_volume_driver.enable.ldap_service_account_password</code>
+  	</td></tr><tr><td>
+  <code>.properties.nfs_volume_driver.enable.ldap_service_account_user</code>
+  	</td></tr><tr><td>
+  <code>.properties.nfs_volume_driver.enable.ldap_user_fqdn</code>
+  	</td></tr><tr><td>
+  <code>.properties.rep_preloaded_rootfses_garden</code>
+  	</td></tr><tr><td>
+  <code>.properties.rep_preloaded_rootfses_grootfs</code>
+  	</td></tr><tr><td>
+  <code>.properties.router_backend_max_conn</code>
+  	</td></tr><tr><td>
+  <code>.properties.routing_minimum_tls_version</code>
+  	</td></tr><tr><td>
+  <code>.properties.secure_diego_communication</code>
+  	</td></tr><tr><td>
+  <code>.router.enable_isolated_routing</code>
+  </td></tr></table>
+
+<table id='renamed' border="1" class="nice" >
+  	<tr><th colspan=2>
+  Renamed Properties
+  	</th></tr><tr><th>
+  v1.11 name</th><th>v1.12 name
+  	</th></tr><tr><td>
+  <code>.properties.container_networking.enable.network_cidr</code></td><td><code>.properties.container_networking_network_cidr</code>
+  	</td></tr><tr><td>
+  <code>.properties.container_networking.enable.vtep_port</code></td><td><code>.properties.container_networking_vtep_port</code>
+  	</td></tr><tr><td>
+  <code>.properties.networking_point_of_entry.external_ssl.ssl_ciphers</code></td><td><code>.properties.gorouter_ssl_ciphers</code>
+  	</td></tr><tr><td>
+  <code>.properties.networking_point_of_entry.external_ssl.ssl_rsa_certificate</code></td><td><code>.properties.networking_poe_ssl_cert</code>
+  	</td></tr><tr><td>
+  <code>.properties.networking_point_of_entry.haproxy.disable_http</code></td><td><code>.properties.routing_disable_http</code>
+  	</td></tr><tr><td>
+  <code>.properties.networking_point_of_entry.haproxy.max_buffer_size</code></td><td><code>.properties.haproxy_max_buffer_size</code>
+  	</td></tr><tr><td>
+  <code>.properties.networking_point_of_entry.haproxy.ssl_ciphers</code></td><td><code>.properties.haproxy_ssl_ciphers</code>
+  	</td></tr><tr><td>
+  <code>.properties.networking_point_of_entry.haproxy.ssl_rsa_certificate</code></td><td><code>.properties.networking_poe_ssl_cert</code>
+  	</td></tr><tr><td>
+  <code>.push-apps-manager.secret_token</code></td><td><code>.push-usage-service.secret_token</code>
+  </td></tr></table>
+
+<table id='retyped' border="1" class="nice" >
+  	<tr><th colspan=3>
+  Retyped Properties
+  	</th></tr><tr><th>
+  Property</th><th>v1.11 type</th><th>v1.12 type
+  	</th></tr><tr><td>
+  <code>.autoscaling.broker_credentials</code></td><td><code>salted_credentials</code></td><td><code>simple_credentials</code>
+  	</td></tr><tr><td>
+  <code>.autoscaling.encryption_key</code></td><td><code>salted_credentials</code></td><td><code>secret</code>
+  	</td></tr><tr><td>
+  <code>.properties.mysql_backups.s3.region</code></td><td><code>dropdown_select</code></td><td><code>string</code>
+  	</td></tr><tr><td>
+  <code>.properties.system_blobstore.external.region</code></td><td><code>dropdown_select</code></td><td><code>string</code>
+  </td></tr></table>
+
+
