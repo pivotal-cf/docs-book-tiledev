@@ -39,9 +39,11 @@ Since the framework is focused on the interface, hooks, backup destination, and 
 
 To ensure that that backup and restore scripts do not get out of sync with the releases themselves, release authors are responsible for naming, creating, testing, and troubleshooting their own backup and restore scripts. 
 
-<p class="note"><strong>Important</strong>: Release authors must be aware of the possibility of these backup and restore jobs to be collocated with other releases' backup and restore jobs. Therefore, these jobs must have unique and descriptive names to avoid name collisions.</p>
+<p class="note"><strong>Important</strong>: Release authors must ensure the following.<br><br>
+    <strong>For all releases</strong>---Be aware of the possibility that these backup and restore jobs may be collocated with those of other releases. Therefore, give these jobs unique and descriptive names to avoid name collisions.
 
-<p class="note"><strong>Important</strong>: CF Release authors must ensure that their scripts respect the <code>release_level_backup</code> job property and run but do nothing if this property is set to false.</p>
+    <br><br><strong>For CF Releases</strong>---Your scripts must respect the <code>release_level_backup</code> job property and run it if set to <code>true</code>, but do nothing if set to <code>false</code>.
+</p>
 
 ## <a id='backup-workflow'></a>Backup Workflow
 
