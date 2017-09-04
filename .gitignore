@@ -1,2 +1,9 @@
+docs-book/output
+docs-book/final_app
+.bundle
+Gemfile.lock
 docs-book/final_app/*
-docs-book/output/*
+cached_shas.yml
+**/.sass-cache/*
+bin
+[#]*[#]
