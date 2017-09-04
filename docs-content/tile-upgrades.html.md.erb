@@ -20,7 +20,7 @@ To update a product tile, tile authors must complete the following steps:
 1. Copy the `TIMESTAMP_NAME.js` file to the PRODUCT/migrations/v1 directory.
 
 
-### <a id='import'></a>Example JavaScript Migration File###
+### <a id='js-example'></a>Example JavaScript Migration File###
 The functions below display an example migration file:
 
 ```
@@ -57,7 +57,7 @@ Each property's key in the properties object is its property reference from the 
 
 The object accessed through the property reference contains a value key whose structure is specific to the type of the property. Objects may be a string, an array, or a hash. Review the reference below for the structure of each type of property. 
 
-## <a id='import'></a>JavaScript Migrations API
+## <a id='js-api'></a>JavaScript Migrations API
 Inside a JavaScript migration function, the system provides the following functions for your code:
 
 ```
@@ -218,7 +218,7 @@ Refer to the example properties below when writing your own tile migration JS fi
 
  <p class="note"><strong>Note</strong>: If your product uses Ops Manager 1.6 or earlier metadata, you need to write a transmogrifier content migration for customers using your product on 1.6, and a JavaScript migration for those on Ops Manager 1.7 or later. Review the transmogrifier example in the <a href="https://github.com/pivotal-cf-experimental/ops-manager-example/releases/tag/tutorial-v1">Tile Tutorial V1</a>.</p>
 
-## <a id='import'></a>Examples Demonstrating Chaining Migrations ##
+## <a id='chaining'></a>Examples Demonstrating Chaining Migrations ##
 
 Migration chaining allows for multiple migrations to run sequentially when an upgrade is performed that skips an intermediate version.  For example, suppose you have three versions of your product:  1.6.0, 1.7.0, and 1.7.1. The 1.6.0 product contains 1.6 metadata, so it does not contain any JavaScript migrations.  
 
@@ -232,13 +232,13 @@ In this scenario, the customer starts with the 1.6.0 product installed. After up
 
 <%= image_tag("./img/chain-migration-scenarioA.png") %>
 
-### Scenario B:  Upgrading directly from 1.6.0 -> 1.7.1
+### Scenario B:  Upgrading Directly from 1.6.0 -> 1.7.1
 
 In this scenario, the customer also starts with 1.6.0 installed, but they decide to upgrade directly to 1.7.1, skipping the 1.7.0 version.  Both migrations run in lexicographical order.
 
 <%= image_tag("./img/chain-migration-scenarioB.png") %>
 
-### Scenario C:  Installing 1.7.0, then upgrading to 1.7.1
+### Scenario C:  Installing 1.7.0, Then Upgrading to 1.7.1
 
 In this scenario, the customer starts with nothing installed. They perform a clean install of version 1.7.0 of the product.  On install of 1.7.0, no migrations run because migrations only run on upgrades.  Later, the customer decides to upgrade to 1.7.1 of the product.  Because 1.7.1 contains both migrations, and because no migrations have run on this system, only the second migration `201607010000_b.js` runs.  The system recorded the fact that 1.7.0 includes `201606010000_a.js`, so that migration does not run.
 

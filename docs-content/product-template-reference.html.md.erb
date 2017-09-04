@@ -7,7 +7,7 @@ This document defines the separate pieces of a product template.
 For the purpose of explanation we use the [PCF example tile](https://github.com/pivotal-cf-experimental/ops-manager-example),
 a functional tile provided by the Ops Manager engineering team that deploys the NGINX web server.
 
-The product template, a `.yml.erb` file in the tile's `metadata` subdirectory, includes or points to the following:
+The product template, a `.yml` file in the tile's `metadata` subdirectory, includes or points to the following:
 
 * Metadata: high level information about your tile
 * Dependencies: how to specify product dependencies
@@ -73,7 +73,7 @@ This example shows a current product version of v1.7 that only upgrades from a v
   minimum_version_for_upgrade:  1.6.0.0
 ```
 
-### <a name='top-metadata'></a> metadata_version
+### <a id='top-metadata'></a> metadata_version
 
 String. Required.
 The versioned structure of the product template (the file you are editing).
@@ -405,6 +405,10 @@ A boolean. Viewed as a checkbox.
 ### <a id='configurable-dropdown'></a> dropdown_select
 
 A list of options. The user chooses one viewed as an HTML select box.
+
+### <a id='configurable-multiselect'></a> multi\_select\_options
+
+A list of options. The user chooses zero or more, viewed as HTML checkboxes.
 
 ### <a id='configurable-domain'></a> domain
 
