@@ -57,14 +57,13 @@ For a 7-minute introduction into what tile generator is and does, see
 ## <a id="how-to"></a> How to Use
 
 1. Install the tile-generator python package.
-   **Note**: tile-generator requires **Python 2** and will *not* work with Python 3.
 
      <p class="note"><strong>Note</strong>: tile-generator requires **Python 2** and  does *not* work with Python 3.</p>
    Pivotal recommends using a
    [virtualenv](https://virtualenv.pypa.io/en/stable/) environment to
    avoid conflicts with other Python packages.
    A virtualenv is simply a directory containing dependencies for a project.
-   When a virtual environment is *active*, packages will install into the
+   When a virtual environment is *active*, packages install into the
    virtualenv instead of the system-wide Python installation.
    Create a virtualenv with the `virtualenv` command:
 
@@ -78,7 +77,7 @@ For a 7-minute introduction into what tile generator is and does, see
 
         pip install tile-generator
 
-    This will put the `tile` and `pcf` commands in your `PATH` when the virtualenv is active.
+    This puts the `tile` and `pcf` commands in your `PATH` when the virtualenv is active.
     To deactivate the virtualenv, simply run the command `deactivate`.
 
     <p class="note"><strong>Note</strong>: To upgrade Tile Generator, run the following command with the virtualenv activated: <code>pip install tile-generator --upgrade</code></p>
@@ -97,9 +96,9 @@ For a 7-minute introduction into what tile generator is and does, see
 
         tile build
 
-The generator will first create a BOSH release in the `release` subdirectory,
+The generator first creates a BOSH release in the `release` subdirectory,
 then wrap that release into a Pivotal tile (in the `product` subdirectory).
-If required for the installation, it will automatically pull down the latest
+If required for the installation, it automatically pulls down the latest
 release version of the Cloud Foundry CLI.
 
 Tile generator is also available pre-installed in a Docker image on
@@ -130,27 +129,27 @@ The [tile-generator repository](https://github.com/cf-platform-eng/tile-generato
 tile generator. This sample tile is used by the tile generator's CI pipeline to verify that things work correctly.
 You can build this sample using the following steps:
 
-1. Download the required [redis bosh release](https://drive.google.com/uc?export=download&id=0B4WUQaDAVbdzd3UwY3JlRW9tQVU) and save it to `sample/resources/redis-12+dev.1.tgz`.
+1. Download the [Redis BOSH release](https://drive.google.com/uc?export=download&id=0B4WUQaDAVbdzd3UwY3JlRW9tQVU) and save it to `sample/resources/redis-12+dev.1.tgz`.
 
 1. Run the following commands:
 
-```bash
-cd sample
-src/build.sh
-tile build
-```
+    ```bash
+    cd sample
+    src/build.sh
+    tile build
+    ```
 
-<p class="note"><strong>Note</strong>: The sample tile includes a Python application that is re-used in several packages,
+<p class="note"><strong>Note</strong>: The sample tile includes a Python app that is re-used in several packages,
     sometimes as an app, sometimes as a service broker. One of the deployments (app3)
-    uses the sample application inside a Docker image that is currently only modified
-    by the CI pipeline. If you modify the sample app, you will have to build your own
-    Docker image using the provided `Dockerfile` and change the image name in
-    `sample/tile.yml` to include the modified code in app3.</p>
+    uses the sample app inside a Docker image that is currently only modified
+    by the CI pipeline. If you modify the sample app, you have to build your own
+    Docker image using the provided <code>Dockerfile</code> and change the image name in
+    <code>sample/tile.yml</code> to include the modified code in app3.</p>
 
 ## <a id="define"></a> Define your Tile in <i>tile.yml</i>
 
 All required configuration for your tile is in the file called `tile.yml`.
-`tile init` will create an initial version for you that can serve as a template.
+`tile init` creates an initial version for you that can serve as a template.
 The first section in the file describes the general properties of your tile:
 
 ```yaml
@@ -166,19 +165,19 @@ Pivotal Network, which enables update notifications for customers. Coordinate
 with your product team to agree upon a name; marketing teams often care about the
 name because it shows up in Pivotal Network URLs.
 
-The `icon_file` should be a 128x128 pixel image that will appear on your tile in
+The `icon_file` should be a 128x128 pixel image that appears on your tile in
 the Ops Manager GUI. By convention, any resources used by the tile should be
 placed in the `resources` sub-directory of your repository, although this is not
-mandatory. The `label` text will appear on the tile under your icon.
+mandatory. The `label` text appears on the tile under your icon.
 
 ### <a id="packages"></a> Packages
 
 Next you can specify the packages to be included in your tile. The format of
 each package entry depends on the type of package you are adding.
 
-#### <a id="pushed"></a> Pushed Applications
+#### <a id="pushed"></a> Pushed Apps
 
-Applications (including service brokers) that are being `cf push`ed into the
+Apps (including service brokers) that are being `cf push`ed into the
 Elastic Runtime use the following format:
 
 ```yaml
@@ -201,17 +200,17 @@ Elastic Runtime use the following format:
   auto_services: p-mysql p-redis     # optional
 ```
 
-Note: for applications that are normally pushed as multiple files (node.js for example)
-you should zip up the project files plus all dependencies into a single zip file, then
-edit tile.yml to point to the zipped file:
+For apps that are normally pushed as multiple files (node.js for example)
+zip up the project files plus all dependencies into a single ZIP file, then
+edit <code>tile.yml</code> to point to the zipped file:
 
 ```bash
 cd <your project dir>
 zip -r resources/<your project name>.zip <list of file and dirs to include in the zip>
 ```
 
-If your application is a service broker, use `app-broker` as the type instead of just
-`app`. The application will then automatically be registered as a broker on install,
+If your app is a service broker, use `app-broker` as the type instead of just
+`app`. The app is then automatically registered as a broker on install,
 and deleted on uninstall.
 
 `health_check` lets you configure the value of the cf cli `--health_check_type`
@@ -223,7 +222,7 @@ service for data persistence. If there is a specific broker you want to use, you
 use the `auto-services` feature described below. If you want to bind to an already
 existing service instance, use the `services` property of the `manifest` instead.
 
-`needs_cf_credentials` causes the application to receive two additional environment
+`needs_cf_credentials` causes the app to receive two additional environment
 variables named `CF_ADMIN_USER` and `CF_ADMIN_PASSWORD` with the admin credentials
 for the Elastic Runtime into which they are being deployed. This allows apps and
 services to interact with the Cloud Controller.
@@ -233,7 +232,7 @@ The `auto_services` feature is described in more detail below.
 #### <a id="brokers"></a> Service Brokers
 
 Most modern service brokers are pushed into the Elastic Runtime as normal
-CF applications. For these types of brokers, use the Pushed Application format
+CF apps. For these types of brokers, use the Pushed Application format
 specified above, but set the type to `app-broker` or `docker-app-broker` instead
 of just `app` or `docker-app`:
 
@@ -252,13 +251,13 @@ of just `app` or `docker-app`:
 ```
 
   <p class="note"><strong>Note</strong>: Unless you specify the `enable_global_access_to_plans: true` option, your
-    broker's services will not appear in the user's Marketplaces.
-    Operators will have to use the `cf enable-service-access` command to allow
+    broker's services do not appear in the user's Marketplaces.
+    Operators have to use the `cf enable-service-access` command to allow
     specific users, orgs, and spaces to access your services.</p>
 
-Your broker will be automatically registered with the Cloud Controller. The
-Cloud Controller will invoke your broker's endpoints, and it will use basic
-authentication to secure those API calls. The credentials it will use are
+Your broker is automatically registered with the Cloud Controller. The
+Cloud Controller invokes your broker's endpoints, and it uses basic
+authentication to secure those API calls. The credentials it uses are
 passed to your broker in two environment variables:
 
 ```
@@ -267,7 +266,7 @@ SECURITY_USER_PASSWORD
 ```
 
 Your broker is expected to accept those credentials. If it doesn't, automatic
-broker registration will fail.
+broker registration fails.
 
 Some service brokers support operator-defined service plans, for instance when
 the plans reflect customer license keys. To allow operators to add plans from
@@ -297,9 +296,9 @@ service_plan_forms:
       max: 500
 ```
 
-Name and GUID fields will be supplied by default for each plan, but all other fields
+Name and GUID fields are supplied by default for each plan, but all other fields
 are optional and customizable. Multiple forms are supported. The operator-configured
-plans will be passed to your service broker in JSON format in an environment variable
+plans are passed to your service broker in JSON format in an environment variable
 named after your form but in ALL CAPS (in this case `SERVICE_PLANS_1`).
 
 For an external service broker, use:
@@ -415,8 +414,8 @@ bosh-release package's deployment manifest, you can include the
 
 #### <a id="docker"></a> Docker Images
 
-Applications packages as Docker images can be deployed inside or outside the Elastic
-Runtime. To push a Docker image as a CF application, use the *Pushed Application*
+Apps packages as Docker images can be deployed inside or outside the Elastic
+Runtime. To push a Docker image as a CF app, use the *Pushed Application*
 format specified above, but use the `docker-app` or `docker-app-broker` type instead
 of just `app` or `app-broker`. The Docker image to be used is then specified using
 the `image` property:
@@ -433,7 +432,7 @@ If this app is also a service broker, use `docker-app-broker` instead of just
 `docker-app`. This option is appropriate for Docker-wrapped 12-factor apps that
 delegate their persistence to bound services.
 
-Docker applications that require persistent storage can not be deployed into
+Docker apps that require persistent storage can not be deployed into
 the Elastic Runtime. These can be deployed to separate BOSH-managed VMs instead
 by using the `docker-bosh` type:
 
@@ -501,7 +500,7 @@ To expose a container via
 [gorouter](https://docs.cloudfoundry.org/concepts/architecture/router.html),
 for example, one of the Docker containers hosts an admin webapp interface,
 use `routes` to choose a port and prefix. The external URL
-will be `[prefix]-[package.name].[system-domain]`.
+is `[prefix]-[package.name].[system-domain]`.
 In this case, the URL is `https://admin-docker-bosh3.sys.example.com`, where `sys.example.com` is the PCF system domain.
 `routes` is a list, so multiple containers can be exposed.
 
@@ -532,7 +531,7 @@ In this case, the URL is `https://admin-docker-bosh3.sys.example.com`, where `sy
 
 ### <a id="custom-forms"></a> Custom Forms and Properties
 
-You can pass custom properties to all applications deployed by your tile by adding
+You can pass custom properties to all apps deployed by your tile by adding
 the to the properties section of `tile.yml`:
 
 ```
@@ -587,8 +586,8 @@ forms:
     label: Password
 ```
 
-Properties defined in either section will be passed to all pushed applications
-as environment variables (the name of the environment variable will be the same
+Properties defined in either section are passed to all pushed apps
+as environment variables (the name of the environment variable is the same
 as the property name but in ALL_CAPS). They can also be referenced in other parts
 of the configuration file by using `(( .properties.<property-name> ))` instead
 of a hardcoded value.
@@ -600,15 +599,15 @@ is included in the form itself. For a complete list of supported property
 types and syntax, see the
 [Ops Manager Product Template Reference](./product-template-reference.html).
 
-Properties of type `secret` will have their value hidden on the forms and
-obfuscated in the installation logs (all but the first two characters will be
-replaced by `*****`). But their value will be passed to your applications in
+Properties of type `secret` have their value hidden on the forms and
+obfuscated in the installation logs (all but the first two characters are
+replaced by `*****`). But their value is passed to your apps in
 plain text as all other value types.
 
 ### Automatic Provisioning of Services
 
-Tile generator automates the provisioning of services. Any application (including
-service brokers and Docker-based applications) that are being pushed into the
+Tile generator automates the provisioning of services. Any app (including
+service brokers and Docker-based apps) that are being pushed into the
 Elastic Runtime can automatically be bound to services through the `auto_services`
 feature:
 
@@ -622,24 +621,24 @@ feature:
 ```
 
 You can specify any number of service names, optionally specifying a specific
-plan. During deployment, the generated tile will create an instance of each
+plan. During deployment, the generated tile creates an instance of each
 service if one does not already exist and then bind that instance to your
 package.
 
-Service instances provisioned this way survive updates, but will be deleted
+Service instances provisioned this way survive updates, but are deleted
 when the tile is uninstalled.
 
-<p class="note"><strong>Note</strong>:  The name is the name of the provided *service, not the broker*.
+<p class="note"><strong>Note</strong>:  The name is the name of the provided <em>service, not the broker</em>.
     In many cases these are not the same, and a single broker may even offer
-    multiple services. Use `cf service-access` to see the services and plans
+    multiple services. Use <code>cf service-access</code> to see the services and plans
     offered by installed service brokers.</p>
 
-If you do not specify a plan, the tile generator will use the first plan
+If you do not specify a plan, the tile generator uses the first plan
 listed for the service in the broker catalog. It is a good idea to always
 specify a service plan. If you *change* the plan between versions of your
-tile, the tile generator will attempt to update the plan while preserving
+tile, the tile generator attempts to update the plan while preserving
 the service (thus not causing data loss during upgrade). If the service
-does not support plan changes, this will cause the upgrade to fail.
+does not support plan changes, this causes the upgrade to fail.
 
 `configurable_persistence` is really just a special case of `auto_services`,
 letting the user choose between some standard brokers.
@@ -656,9 +655,9 @@ requires_product_versions:
 ```
 
 If the required product is not present in the PCF installation, Ops Manager
-will display a message saying
-`<your-tile> requires 'p-mysql' version '~> 1.7' as a dependency` and will
-refuse to install your tile until that dependency is satisfied.
+displays a message saying
+`<your-tile> requires 'p-mysql' version '~> 1.7' as a dependency` and 
+refuses to install your tile until that dependency is satisfied.
 
 When using automatic provisioning of services as described above, it is
 often appropriate to add those products as a dependency. Tile generator can
@@ -667,10 +666,10 @@ the requested service.
 
 ### Orgs and Spaces
 
-By default, the tile generator will create a single new org and space for any
+By default, the tile generator creates a single new org and space for any
 packages that install into the Elastic Runtime, using the name of the tile and
 appending `-org` and `-space`, respectively. The default memory quota for a
-newly created or will be 1024 (1G). You can change any of these defaults by
+newly created org is 1024 (1&nbsp;G). You can change any of these defaults by
 specifying the following properties in `tile.yml`:
 
 ```
@@ -682,8 +681,8 @@ space: test-space
 ### <a id="security"></a> Security
 
 If your cf packages need outbound access (including access to other packages
-within the same tile), you will need to apply an appropriate security group.
-The following option will remove all constraints on outbound traffic:
+within the same tile), you need to apply an appropriate security group.
+The following option removes all constraints on outbound traffic:
 
 ```
 apply_open_security_group: true
@@ -691,8 +690,8 @@ apply_open_security_group: true
 
 ### <a id="stemcells"></a> Stemcells
 
-The tile generator will default to a recent stemcell supported by Ops Manager.
-In most cases the default will be fine, as the stemcell is only used to execute
+The tile generator defaults to a recent stemcell supported by Ops Manager.
+In most cases the default is fine, because the stemcell is only used to execute
 CF command lines and/or the Docker daemon. But if you have specific stemcell
 requirements, you can override the defaults in your `tile.yml` file by including
 a `stemcell-criteria` section and replacing the appopriate values:
@@ -733,21 +732,21 @@ packages:
     # Intentional no-op, as others may have a dependency on this
 ```
 
-`deploy` and `delete` will completely replace the standard errand commands for the
+`deploy` and `delete` completely replace the standard errand commands for the
 package in which you include them. If you want to keep the standard commands, but
 add additional commands to execute before or after the standard errand, use
 `pre_deploy`, `post_deploy`, `pre_delete`, and/or `post_delete` instead.
 
 ## <a id="versioning"></a> Versioning
 
-The tile generator uses [semver versioning](http://semver.org/). By default, `tile build` will
-generate the next patch release. Major and minor releases can be generated
+The tile generator uses [semver versioning](http://semver.org/). By default, `tile build` 
+generates the next patch release. Major and minor releases can be generated
 by explicitly specifying `tile build major` or `tile build minor`. Or to
 override the version number completely, specify a valid semver version on
 the build command, e.g. `tile build 3.4.5`.
 
 No-op content migration rules are generated for every prior release to the
-current release, so that Ops Manager will allow tile upgrades from any
+current release, so that Ops Manager allows tile upgrades from any
 version to any newer version. This depends on the existence of the file
 `tile-history.yml`. In a pinch, if you need to be able to upgrade from a
 random old version to a new one, you can edit that file, or do:
@@ -757,13 +756,13 @@ tile build <old-version>
 tile build <new-version>
 ```
 
-The new tile will then support upgrades from `old-version`.
+The new tile then supports upgrades from `old-version`.
 
 ## <a id="upgrades"></a> Upgrades
 
 By default, tile generator produces all code necessary to do a blue/green,
 zero-downtime deployment of all tile components when installing a newer version
-over an older one. For most tile versions this will be all that is needed.
+over an older one. For most tile versions this is all that is needed.
 
 Ops Manager has support for performing upgrade actions, like database migrations,
 during a tile upgrade, but this capability is not yet exposed through tile
