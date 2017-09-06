@@ -75,12 +75,20 @@ acme-release
 │   │       ├── backup.sh.erb
 │   │       ├── config.json.erb
 │   │       └── restore.sh.erb
-│   └── lock-unlock-acme
-│       ├── monit
-│       ├── spec
-│       └── templates
-│           ├── post-backup-unlock.sh.erb
-│           └── pre-backup-lock.sh.erb
+│   ├── lock-unlock-acme
+│   │   ├── monit
+│   │   ├── spec
+│   │   └── templates
+│   │       ├── post-backup-unlock.sh.erb
+│   │       ├── pre-backup-lock.sh.erb
+│   │       └── metadata.sh.erb (optional)
+│   ├── lock-unlock-acme-interferer
+│   │   ├── monit
+│   │   ├── spec
+│   │   └── templates
+│   │       ├── post-backup-unlock.sh.erb
+│   │       ├── pre-backup-lock.sh.erb
+│   │       └── metadata.sh.erb (optional)
 ├── packages
 └── src
 ```
@@ -107,16 +115,35 @@ Create a script with any name in the templates directory of your new job.
 </li>
 <li>
 In the templates section of the release job spec file, add the script name and <code>bin/bbr/pre-backup-lock</code> as a key-value pair, as shown in the example below:
-</li>
-</ol>
-
-
-```yaml
+<pre class="terminal">
 ---
 name: lock-unlock-acme
 templates:
   pre-backup-lock.sh.erb: bin/bbr/pre-backup-lock
-```
+</pre>
+
+</li>
+<li>
+If you would like to ensure that your <code>bin/bbr/pre-backup-lock</code> scripts run in a deterministic order, you can define that order using the optional metadata script. This metadata specifies that the current job must be locked before some other job(s) in the deployment. When run, this script should print a yaml file to stdout, following this example:
+
+<pre class="terminal">
+#!/usr/bin/env bash
+
+echo "---
+should_be_locked_before:
+- job_name: lock-unlock-acme
+  release: acme-release" </pre>
+
+You will also need to add an entry to the templates section of the release job spec file:
+<pre class="terminal">
+templates:
+  ...
+  metadata.sh.erb: bin/bbr/metadata
+</li>
+
+</pre>
+</ol>
+
 
 #### Script Implementation
 
