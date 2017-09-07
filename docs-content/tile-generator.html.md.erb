@@ -45,7 +45,8 @@ combination of the following package types:
 
 Many tile authors, in both Pivotal-internal teams and at external partner companies, built their PCF tiles before the Tile Generator existed.
 
-Many other tile authors serve two markets with their service integrations, offering both a Cloud Foundry-compatible service broker to open-source users and corresponding PCF tile for PCF users. They wish to continue serving both sets of users.
+Many other tile authors serve two markets with their service integrations, offering both a Cloud Foundry-compatible service broker to open-source users and corresponding PCF tile for PCF users.
+They want to continue serving both sets of users.
 
 All of these tile authors can now use Tile Generator to simplify and speed up their development. The Tile Generator tool can generate an OSS-compatible BOSH release service broker BOSH release in addition to a PivNet-ready PCF tile.
 
@@ -58,7 +59,7 @@ For a 7-minute introduction into what tile generator is and does, see
 
 1. Install the tile-generator python package.
 
-     <p class="note"><strong>Note</strong>: tile-generator requires **Python 2** and  does *not* work with Python 3.</p>
+     <p class="note"><strong>Note</strong>: The tile-generator requires **Python 2** and  does *not* work with Python 3.</p>
    Pivotal recommends using a
    [virtualenv](https://virtualenv.pypa.io/en/stable/) environment to
    avoid conflicts with other Python packages.
@@ -92,7 +93,7 @@ For a 7-minute introduction into what tile generator is and does, see
 
 4. Edit the generated `tile.yml` file to define your tile. 
 
-5. Build your tile
+5. Build your tile:
 
         tile build
 
@@ -116,7 +117,7 @@ for your tasks:
       image: cfplatformeng/tile-generator
 ```
 
-Or you can derive your own Docker images from this one by using it as the base
+Or, you can derive your own Docker images from this one by using it as the base
 image in your Dockerfile:
 
 ```
