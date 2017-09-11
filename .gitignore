@@ -3,7 +3,6 @@ docs-book/final_app
 .bundle
 docs-book/.bundle
 docs-book/Gemfile.lock
-docs-book/output/*
 Gemfile.lock
 docs-book/final_app/*
 cached_shas.yml

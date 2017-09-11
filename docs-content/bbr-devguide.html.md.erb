@@ -100,11 +100,13 @@ The `stdout` and `stderr` streams are captured and sent to the operator invoking
 
 ### <a id='pre-backup-lock'></a>Pre-Backup-Lock
 
-The release job can have a `pre-backup-lock` script that will stop any processes that could make any changes to the components being backed up. This script should allow the job to lock so that backups are consistent across a cluster. For example, in a Cloud Foundry deployment, the `pre-backup-lock` script stops Cloud Controller processes that may make changes to its blobstore and database, thus making sure the blobstore and the Cloud Controller database are consistent with each other.
+The release job can have a `pre-backup-lock` script that stops any processes that could make changes to the components being backed up. This script must allow the job to lock so that backups are consistent across a cluster. 
+
+For example, in a Cloud Foundry deployment, the `pre-backup-lock` script stops Cloud Controller processes that may make changes to its blobstore and database, thus making sure the blobstore and the Cloud Controller database are consistent with each other.
 
 #### Job Configuration
 
-To add a `pre-backup-lock` script to a release:
+To add a `pre-backup-lock` script to a release, do the following:
 
 <ol>
 <li>
@@ -124,7 +126,9 @@ templates:
 
 </li>
 <li>
-If you would like to ensure that your <code>bin/bbr/pre-backup-lock</code> scripts run in a deterministic order, you can define that order using the optional metadata script. This metadata specifies that the current job must be locked before some other job(s) in the deployment. When run, this script should print a yaml file to stdout, following this example:
+If you want your <code>bin/bbr/pre-backup-lock</code> scripts to run in a specific order, define that order using the optional metadata script. In the sample directory structure illustrated above, this script is called <code>metadata.sh.erb</code>.<br><br>
+
+    a. The metadata script specifies that the current job must be locked before some other job(s) in the deployment. When run, this script must print a yaml file to stdout, following this example:
 
 <pre class="terminal">
 #!/usr/bin/env bash
@@ -134,7 +138,7 @@ should_be_locked_before:
 - job_name: lock-unlock-acme
   release: acme-release" </pre>
 
-You will also need to add an entry to the templates section of the release job spec file:
+    b. Add an entry to the templates section of the release job spec file:
 <pre class="terminal">
 templates:
   ...
