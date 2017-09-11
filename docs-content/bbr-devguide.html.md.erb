@@ -128,7 +128,8 @@ templates:
 <li>
 If you want your <code>bin/bbr/pre-backup-lock</code> scripts to run in a specific order, define that order using the optional metadata script. In the sample directory structure illustrated above, this script is called <code>metadata.sh.erb</code>.<br><br>
 
-    a. The metadata script specifies that the current job must be locked before some other job(s) in the deployment. When run, this script must print a yaml file to stdout, following this example:
+    a. The metadata script specifies that the current job must be locked before some other job(s) in the deployment.
+       When run, this script must print a YAML file to stdout, following this example:
 
 <pre class="terminal">
 #!/usr/bin/env bash
