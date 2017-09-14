@@ -19,11 +19,11 @@ BBR sets out a contract with release authors, to call specific backup and restor
 * post-backup-unlock
 
 ### <a id="restore-scripts"></a>Restore Scripts
-* pre-restore-lock (in development)
+* pre-restore-lock
 
 * restore
 
-* post-restore-unlock (in development)
+* post-restore-unlock
 
 The BBR framework consists of a command line interface (CLI) and a set of hooks, which call out to scripts. The framework uses BOSH to orchestrate the execution of backup and restore scripts. BBR allows release authors fine grained control over how their release is backed up.
 
@@ -37,7 +37,7 @@ The following diagram illustrates an example BBR script execution sequence.
 
 Since the framework is focused on the interface, hooks, backup destination, and intra deployment orchestration, it is mechanism-agnostic. That is, release authors can choose to backup their release however they would like, as long as the scripts they write have the correct name and directory structure.
 
-To ensure that that backup and restore scripts do not get out of sync with the releases themselves, release authors are responsible for naming, creating, testing, and troubleshooting their own backup and restore scripts. 
+To ensure that that backup and restore scripts do not get out of sync with the releases themselves, release authors are responsible for naming, creating, testing, and troubleshooting their own backup and restore scripts.
 
 <p class="note"><strong>Important</strong>: Release authors must ensure the following.<br><br>
     <strong>For all releases</strong>---Be aware of the possibility that these backup and restore jobs may be collocated with those of other releases. Therefore, give these jobs unique and descriptive names to avoid name collisions.
@@ -48,13 +48,13 @@ To ensure that that backup and restore scripts do not get out of sync with the r
 ## <a id='backup-workflow'></a>Backup Workflow
 
 
-###  <a id='script-implementation'></a>Script Implementation
+###  <a id='script-implementation'></a>Script Ordering
 
 Release authors must implement scripts as part of the BBR contract. The scripts themselves are packaged and distributed as a BOSH release. The [Exemplar Backup and Restore Release](https://github.com/pivotal-cf-experimental/exemplar-backup-and-restore-release) provides examples of how release authors can structure their jobs to implement the contract with BBR.
 
 The `pre-backup-lock`, `backup`, `post-backup-unlock`, and `restore` scripts are executable scripts. ERB tags may be used for templating. These scripts are executed similarly to other release job scripts (`start`, `stop`, `drain`), and you can use the job's package dependencies.
 
-BBR checks exit codes of the scripts when orchestrating. Exit code `0` indicates success, while any other exit code indicates a failure. 
+BBR checks exit codes of the scripts when orchestrating. Exit code `0` indicates success, while any other exit code indicates a failure.
 
 
 #### Directory Structure
@@ -100,20 +100,17 @@ The `stdout` and `stderr` streams are captured and sent to the operator invoking
 
 ### <a id='pre-backup-lock'></a>Pre-Backup-Lock
 
-The release job can have a `pre-backup-lock` script that stops any processes that could make changes to the components being backed up. This script must allow the job to lock so that backups are consistent across a cluster. 
+The release job can have a `pre-backup-lock` script that stops any processes that could make changes to the components being backed up. This script must allow the job to lock so that backups are consistent across a cluster.
 
 For example, in a Cloud Foundry deployment, the `pre-backup-lock` script stops Cloud Controller processes that may make changes to its blobstore and database, thus making sure the blobstore and the Cloud Controller database are consistent with each other.
 
 #### Job Configuration
 
-To add a `pre-backup-lock` script to a release, do the following:
+To add a `pre-backup-lock` script to a job, do the following:
 
 <ol>
 <li>
-Create a new job in your release that is specific to backup and restore scripts. Pivotal recommends you name this something unique and specific to your component.
-</li>
-<li>
-Create a script with any name in the templates directory of your new job.
+Create a script with any name in the templates directory of your job.
 </li>
 <li>
 In the templates section of the release job spec file, add the script name and <code>bin/bbr/pre-backup-lock</code> as a key-value pair, as shown in the example below:
@@ -150,11 +147,9 @@ templates:
 </ol>
 
 
-#### Script Implementation
+#### Script Ordering
 
 The `pre-backup-lock` script is called before the backup scripts are called on any instances in the deployment. Success indicates to BBR that the job has successfully locked and is ready for backup.
-
-BBR does not guarantee the order in which `pre-backup-lock` scripts are called across the jobs in a deployment.
 
 ### <a id='backup'></a>Backup
 
@@ -183,7 +178,7 @@ templates:
   backup.erb: bin/bbr/backup
 ```
 
-#### Script Implementation
+#### Script Ordering
 
 The `backup` script is called after all of the `pre-backup-lock` scripts have exited successfully across all jobs of the deployment. A single failed `pre-backup-lock` script  halts the backup-restore process and runs the corresponding `post-backup-unlock` scripts. Success indicates the job successfully backed up.
 
@@ -214,7 +209,7 @@ templates:
   post-backup-unlock.erb: bin/bbr/post-backup-unlock
 ```
 
-#### Script Implementation
+#### Script Ordering
 
 The `post-backup-unlock` script is called after all of the `backup` scripts have exited on all nodes of the deployment. Success indicates the job successfully unlocked and is ready for normal operation.
 
@@ -243,6 +238,33 @@ A normal workflow for backing up a deployment does the following:
 
 ## <a id='restore-workflow'></a>Restore Workflow
 
+### <a id='pre-restore-lock'></a>Pre-Restore-Lock
+
+The release job can have a `pre-restore-lock` script that stops any processes that could make changes to the components being restored.
+
+#### Job Configuration
+
+To add a `pre-restore-lock` script to a release, do the following:
+
+<ol>
+<li>
+Create a script with any name in the templates directory of your job.
+</li>
+<li>
+In the templates section of the release job spec file, add the script name and <code>bin/bbr/pre-restore-lock</code> as a key-value pair, as shown in the example below:
+<pre class="terminal">
+---
+name: lock-unlock-acme
+templates:
+  pre-restore-lock.sh.erb: bin/bbr/pre-restore-lock
+</pre>
+</li>
+</ol>
+
+#### Script Ordering
+
+The `pre-restore-lock` scripts are called before all `restore` scripts have been called. Success indicates the job is ready to be restored.
+
 ### <a id='restore'></a>Restore
 
 If a release has a `backup` script, it should also have a `restore` script. The `restore` script expects a backup artifact to be provided in `$BBR_ARTIFACT_DIRECTORY`. For example, when restoring MySQL, the script invokes `mysql` to restore from a mysqldump file.
@@ -268,9 +290,36 @@ templates:
   restore.erb: bin/bbr/restore
 ```
 
-#### Script Implementation
+#### Script Ordering
 
-The `restore` scripts are called after all `post-backup-unlock` scripts have exited successfully. Success indicates the job was successfully restored.
+The `restore` scripts are called after all `pre-restore-lock` scripts have exited successfully. Success indicates the job was successfully restored.
+
+### <a id='post-restore-unlock'></a>Post-Restore-Unlock
+
+The release job can have a `post-restore-unlock` script that resumes normal service operation. `post-restore-unlock` should be idempotent, has it can be called multiple times, even if `pre-restore-lock` has not been not called.
+
+#### Job Configuration
+
+To add a `post-restore-unlock` script to a release, do the following:
+
+<ol>
+<li>
+Create a script with any name in the templates directory of your job.
+</li>
+<li>
+In the templates section of the release job spec file, add the script name and <code>bin/bbr/post-restore-unlock</code> as a key-value pair, as shown in the example below:
+<pre class="terminal">
+---
+name: lock-unlock-acme
+templates:
+  post-restore-unlock.sh.erb: bin/bbr/post-restore-unlock
+</pre>
+</li>
+</ol>
+
+#### Script Ordering
+
+The `post-restore-unlock` scripts are called after all `restore` scripts have been called. This script will also be invoked if the `restore` or `pre-restore-lock` fail. It can also be invoked by the operator to do cleanup, even when restore was not called. Success indicates the job has resumed normal operations.
 
 ## <a id='testing'></a>Testing
 The functional testing pattern recommended for BBR scripts is:
@@ -341,7 +390,7 @@ If your release requires that you stop your component's processes during backup 
 
 ### <a id="bbr-cf-example"></a>Example
 
-Acme Release is a Cloud Foundry component that has no persistent disk on its component VM. The release is an API that stores its data in a MySQL database deployed on a different instance group in this CF deployment. 
+Acme Release is a Cloud Foundry component that has no persistent disk on its component VM. The release is an API that stores its data in a MySQL database deployed on a different instance group in this CF deployment.
 
 The release authors have chosen to create two new jobs to be incorporated into their existing release, where one job includes the `backup` and `restore` scripts in its templates directory, and the other job includes the `pre-backup-lock` and `post-backup-unlock` scripts. This is because the operator will collocate the former job on the `backup-restore` VM, and the latter job on the Acme Release VM.
 
