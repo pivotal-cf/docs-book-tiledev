@@ -1,9 +1,11 @@
 ---
-title: Creating a Runtime Config
+title: Managing Runtime Configs
 owner: Services
 ---
 
-This topic explains how to define and manage runtime configs your service tile for Pivotal Cloud Foundry (PCF).
+This topic explains how to define and manage named runtime configs your service tile for Pivotal Cloud Foundry (PCF).
+
+Tile authors can [create a new runtime config](#create) in an existing product tile, [delete a runtime config](#delete) from a tile, or add a tile that contains a [runtime config only](#config-only).
 
 See the [BOSH documentation](https://bosh.io/docs/runtime-config.html) for more information about runtime configs.
 
@@ -21,9 +23,11 @@ When you click **Apply Changes**, Ops Manager combines the runtime config inform
 TILE_NAME-GUID-RUNTIME_CONFIG_NAME
 ```
 
-## <a id="define"></a>Add a Runtime Config to a Tile
+## <a id="create"></a>Create a Runtime Config
 
-Tile authors can add `runtime_config` as a top-level key in tile metadata. In this key, the tile author defines configuration properties that Ops Manager applies to all deployments. A tile can support any number of runtime configs.
+Tile authors can add `runtime_configs` as a top-level key in tile metadata. In this key, the tile author defines configuration properties that Ops Manager applies to all deployments. A tile can support any number of runtime configs.
+
+A named runtime config, such as `MY-RUNTIME-CONFIG` in the example below, can contain any number of addons. Each addon can contain any number of jobs.
 
 To add a runtime config to a tile, add the following section to the tile metadata:
 
@@ -46,12 +50,26 @@ runtime_configs:
 Replace the text in the example above with the following:
 
 * `MY-RUNTIME-CONFIG`: Choose a name for the runtime config.
-* `MY-ADDON-NAME`: Enter the name of the addon that uses the runtime config.
-* `MY-RUNTIME-CONFIG-JOB`: Choose a name for the job that the runtime config defines.
+* `MY-ADDON-NAME`: Choose a name for the addon that contains the runtime config job.
+* `MY-RUNTIME-CONFIG-JOB`: Choose a name for the job the runtime config describes.
+
+<p class="note important"><strong>Important</strong>: The names you choose must be unique across a deployment. Pivotal recommends appending your product name or another unique identifier to each of the named items in the <code>runtime_configs</code> section.</p>
 
 Define the runtime config job properties in the `properties` section.
 
-## <a id="example"></a>Create a Tile with a Runtime Config Only
+## <a id="delete"></a>Delete a Runtime Config
+
+Tile authors can remove an existing runtime config from a tile by uploading a blank runtime config in its place. Remove the configuration for the named runtime config from the tile metadata, leaving the name in place.
+
+The following example deletes `example-runtime-config`:
+
+```
+runtime_configs:
+  - name: example-runtime-config
+    runtime_config:
+```
+
+## <a id="config-only"></a>Create a Runtime Config-Only Tile
 
 Tile authors can create a tile that only contains a runtime config. The only release that a tile author must include in a runtime config tile is `os-conf`. When creating a runtime config-only tile, a tile author is not required to define the following top-level keys:
 
@@ -107,9 +125,9 @@ runtime_configs:
       - name: os-conf
         version: 15
       addons:
-      - name: misc
+      - name: login
         jobs:
-        - name: login_banner
+        - name: login-banner
           release: os-conf
         properties:
           login_banner:
@@ -117,7 +135,7 @@ runtime_configs:
               (( .properties.example_string.value )).
 ```
 
-In the example runtime config above, `login_banner` prints a banner when a user logs into any VM in the deployment. The operator can configure the banner by editing the **Example string** value in Ops Manager or use the default value defined in the metadata. 
+In the example runtime config above, the `login-banner` job prints a banner when a user logs into any VM in the deployment. The operator can use the default value defined in the `form_types` section of the metadata or configure the banner by editing the **Example string** value in Ops Manager.
 
 ![Runtime Config Tile Information](img/runtime-config-tile.png)
 
