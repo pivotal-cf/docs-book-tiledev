@@ -17,7 +17,7 @@ To the operator, a runtime config appears in Ops Manager as a tile with minimal 
 
 ![Runtime Config Tile on the Ops Manager Installation Dashboard](img/runtime-config-dashboard.png)
 
-When you click **Apply Changes**, Ops Manager combines the runtime config information from each tile in your deployment and assigns each runtime config a unique identifier. Ops Manager creates the name using the tile name, a generated GUID, and the runtime config name defined in the metadata in the following format:
+When you click **Apply Changes**, Ops Manager combines the runtime config information from every tile in the deployment and assigns each named runtime config a unique identifier. Ops Manager creates the name using the tile name, a generated GUID, and the runtime config name defined in the metadata in the following format:
 
 ```
 TILE_NAME-GUID-RUNTIME_CONFIG_NAME
@@ -76,6 +76,8 @@ Tile authors can create a tile that only contains a runtime config. The only rel
 * `post_deploy_errands`
 * `pre_delete_errands`
 * `job_types`
+
+### <a id="example"></a>Example Runtime Config-Only Tile
 
 The following example shows a runtime config-only tile with minimal configuration:
 
