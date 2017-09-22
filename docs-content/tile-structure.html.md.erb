@@ -196,9 +196,19 @@ The `tile yml` file that you pass to Tile Generator defines these service compon
   * docker-bosh - describes a collection of Docker images that embed in the tile and run on BOSH-managed VMs, not PCF
   * bosh-release - a pre-existing BOSH release wrapped in a tile, to run on BOSH-managed VMs, not PCF; requires you to describe all jobs (long-running processes and errands)
 
-#### <a id='process'></a>Processes and VM Resources
+Packages typically contain a single process, but can include more than one, packaged to run in the same [location](#where).
 
-Each `app` or `broker` type package runs processes on its own VM, either deployed to PCF using `cf push`, or run on the BOSH layer underneath. These packages typically contain a single process, but can include more than one that share a VM.
+#### <a id='where'></a>Where Package Processes Run
+
+Where packaged processes run depends on their package type, as follows:
+
+* `app`, `docker-app`, `app-broker`, and `docker-app-broker` packages call `cf push` to run processes in containers on a Diego cell.
+
+* `docker-bosh` and `bosh-release` packages run their processes on VMs in the underlying BOSH layer.
+
+* `external-broker` and `buildpack` packages run one-time tasks, not long-running processes, on Diego cells.
+
+#### <a id='process'></a>Package VM Resources
 
 The service tile's **Resource Config** pane lets the operator configure resources individually for each package. This pane also lets operators provision resources for VMs that handle one-time tasks, with the `acceptance-tests`, `deploy-all`, and `delete-all` rows.
 
