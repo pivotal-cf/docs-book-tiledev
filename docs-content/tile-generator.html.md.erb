@@ -233,9 +233,10 @@ services to interact with the Cloud Controller.
 
 The `auto_services` feature is described in more detail below.
 
-`consumes` specifies [BOSH links](https://bosh.io/docs/links.html) to
-consume, and present the hosts and properties from the links as
+`consumes` specifies the [BOSH links](https://bosh.io/docs/links.html) to
+consume and presents the hosts and properties from the links as
 environment variables on the app:
+
 - `<LINK>_HOST`: The address of the first instance of the link.
 - `<LINK>_HOSTS`: A JSON array of the addresses of all instances of the link.
 - `<LINK>_PROPERTIES`: A JSON object of the properties on the link.
