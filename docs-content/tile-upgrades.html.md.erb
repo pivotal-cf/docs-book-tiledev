@@ -79,13 +79,13 @@ Example:
 ```
 
 ```
-generateGUID()
+generateGuid()
 Arguments:  none
 Return value:  string (example:  115f9ced-3167-4c7c-959b-d52c07f32cbf)
 Description:  Returns a globally unique identifier (GUID) that can be used as the unique identifier for each element of a Collections property.  When updating a Collection property blueprint, you as the migration author are responsible for updating the GUID of each new collection element that you create.
 Notes:  This function can be called a maximum of 100 times per `.js` file.  If you need more than 100 GUIDs, break your migration into two `.js` files.
 Example:
-  console.log(“Here's a GUID:  ”+generateGUID())
+  console.log(“Here's a GUID:  ”+generateGuid())
 ```
 
 ```
