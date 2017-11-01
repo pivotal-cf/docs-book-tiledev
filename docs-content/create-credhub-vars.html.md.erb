@@ -7,8 +7,8 @@ This topic explains how CredHub manages variables in the context of a larger dep
 
 ## Background
 
-When a Tile Author defines a top-level `variables` section in the product template, Ops Manager passes the `variables` section to the product manifest.
-Tile Authors can define variables in the product template as follows:
+When a tile author defines a top-level `variables` section in the product template, Ops Manager passes the `variables` section to the product manifest.
+tile authors can define variables in the product template as follows:
 
 ```
 variables:
@@ -26,7 +26,7 @@ Using triple parentheses lets Ops Manager identify CredHub variables while still
 
 The benefit of this approach is that the Ops Manager YAML file does not contain sensitive credentials when the metadata manifest snippets have triple parentheses. The resulting manifest file contains variables within double parentheses, rather than unobscured credentials.
 
-For example, a Tile Author adds credentials to a manifest snippet in the following format:
+For example, a tile author adds credentials to a manifest snippet in the following format:
 
 ```
   key: ((( EXAMPLE-CREDHUB-PASSWORD )))

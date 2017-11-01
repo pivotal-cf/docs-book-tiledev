@@ -27,7 +27,7 @@ Previously, the ternary operator supported string constants, property references
 <p class="note"><strong>Breaking Change</strong>: If you define <strong>true</strong> and <strong>false</strong> in any <code>property_blueprint</code> names, as shown in the workaround below, update your job manifest to use boolean constants.</p>
 
 In previous versions of Ops Manager, to expose a property to operators as a checkbox that is checked by default,
-a Tile Author defined the true and false properties in the job manifest as a workaround.
+a tile author defined the true and false properties in the job manifest as a workaround.
 In the following example, the `disable_security_protocols` job spec property takes a boolean value:
 
 ```
@@ -46,7 +46,7 @@ manifest:
 ```
 
 In Ops Manager v1.12, the ternary operator manages boolean values natively.
-A Tile Author can rewrite the above example using the following syntax:
+A tile author can rewrite the above example using the following syntax:
 
 ```
 disable_security_protocols: '(( .properties.secure_the_system ? false : true ))'

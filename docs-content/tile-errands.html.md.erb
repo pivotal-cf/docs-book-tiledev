@@ -3,17 +3,23 @@ title: Errands
 owner: Services
 ---
 
-Lifecycle errands are BOSH errands (scripts) that run at the beginning and end of an installed product's availability time. Product teams create errands as part of a product package, and a product can only run errands it includes. 
+Lifecycle errands are BOSH errands (scripts) that run at the beginning and end of an installed product's availability time. Product teams create errands as part of a product package, and a product can only run errands it includes.
+
 For more information about BOSH errands, see [BOSH documentation](https://bosh.io/), 
 and for more information about errands in Pivotal Cloud Foundry (PCF), see [Managing Errands in Ops Manager](http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html).
 
-Products can have two kinds of errands. [Post-deploy errands](#post-deploy) run after a product installs but before Ops Manager displays makes it available for use. [Pre-delete errands](#pre-delete) run after an operator chooses to delete a product, but before Ops Manager finishes removing it from use.
+Products can have two kinds of errands. [Post-deploy errands](#post-deploy) run after a product installs but before Ops Manager displays makes it available for use.
+[Pre-delete errands](#pre-delete) run after an operator chooses to delete a product, but before Ops Manager finishes removing it from use.
 
 To save deployment time, operators can set [errand run rules](#run-rules) that dictate whether or not errands run. Tile authors can [set defaults](./product-template-reference.html#top-level) for these run rules.
 
 <p class="note warning"><strong>WARNING</strong>: In Ops Manager v1.10.0 and later, errands set to the <strong>When Changed</strong> rule do not always run when the tile has relevant changes.
    Instead of using <strong>When Changed</strong>, Pivotal recommends that tile developers leave the default run rule for errands as <strong>On</strong>
    and let operators use <a href="http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html#changes-view">one-time rules</a> to turn errands off and save deploy time.</p>
+
+In Ops Manager 2.0 and later, tile authors can choose to [co-locate errands](#colocated) on existing VMs.
+When errands are not co-located, BOSH deploys a new VM for each errand defined in the tile metadata.
+Co-located errands can run alongside other jobs on existing VMs in an operator's deployment.
 
 ##<a id='post-deploy'></a>Post-Deploy Errands
 
@@ -56,3 +62,57 @@ Some errands do not always need to run. For example, installing a minor patch to
 * **Persistent Rules** in the tile's **Errands** pane. These rules persist through subsequent installations, until changed in the **Errands** pane.
 
 For more information, see [Configure Run Rules in Ops Manager](http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html#modify).
+
+## <a id="colocated"></a>Define a Co-Located Errand
+
+<p class="note"><strong>Note</strong>: Ops Manager 2.0 and later supports co-located errands.</p>
+
+Instead of deploying a new VM for each errand, co-located errands run on an existing VM alongside other jobs.
+Co-located errands run faster than traditional errands and use fewer resources, including disk and IP space.
+
+To configure a co-located errand, define the following properties in the `pre_delete_errands` and `post_deploy_errands` sections of the tile metadata:
+
+<table>
+  <tr>
+    <th>Property</th>
+    <th>Description</th>
+  </tr><tr>
+    <td width="28%"><code>name: MY-ERRAND</code></td>
+    <td>Provide a name for the errand job.</td>
+  </tr><tr>
+    <td><code>colocated: true</code></td>
+    <td>Set this value to <code>true</code> to enable co-located errands. If you do not set this value, Ops Manager ignores all other errand attributes in this section.</td>
+  </tr><tr>
+    <td><code>run_default: on</code></td>
+    <td>(Optional) If you do not define this property, Ops Manager sets the run default to <code>on</code>.
+    The operator can override this setting using the Ops Manager API or the tile's <strong>Errand Config</strong> tab.</td>
+  </tr><tr>
+    <td><code>instances: []</code></td>
+    <td>(Optional) Provide an array that tells BOSH where to run the errand.
+    Use the name of an instance group, such as <code>web_server</code>, or a single instance, such as <code>web_server/first</code>.<br><br>
+    If you do not define this property or you provide an empty array, the errand runs on all instances with an errand of the same name.</td>
+  </tr><tr>
+    <td><code>label: ERRAND-LABEL</code></td>
+    <td>Define the errand name to be shown in the tile's <strong>Errand Config</strong> tab.</td>
+  </tr>
+</table>
+
+### <a id="colocated-example"></a>Co-Located Errand Example Manifest
+
+The following example shows co-located `post_deploy_errands` and `pre_delete_errands` sections in the tile metadata:
+
+```yaml
+post_deploy_errands:
+  - name: my-colocated-post-deploy-errand
+    colocated: true
+    run_default: on
+    instances: []
+    label: an errand to log properties
+
+pre_delete_errands:
+  - name: my-colocated-pre-delete-errand
+    colocated: true
+    run_default: on
+    instances: []
+    label: an errand to log properties
+  ```
