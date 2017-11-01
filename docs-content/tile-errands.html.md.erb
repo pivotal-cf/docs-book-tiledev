@@ -13,9 +13,9 @@ Products can have two kinds of errands. [Post-deploy errands](#post-deploy) run 
 
 To save deployment time, operators can set [errand run rules](#run-rules) that dictate whether or not errands run. Tile authors can [set defaults](./product-template-reference.html#top-level) for these run rules.
 
-In Ops Manager 2.0 and later, tile authors can choose to [co-locate errands](#colocated) on existing VMs.
-When errands are not co-located, BOSH deploys a new VM for each errand defined in the tile metadata.
-Co-located errands can run alongside other jobs on existing VMs in an operator's deployment.
+In Ops Manager 2.0 and later, tile authors can choose to [colocate errands](#colocated) on existing VMs.
+When errands are not colocated, BOSH deploys a new VM for each errand defined in the tile metadata.
+Colocated errands can run alongside other jobs on existing VMs in an operator's deployment.
 
 ##<a id='post-deploy'></a>Post-Deploy Errands
 
@@ -63,14 +63,14 @@ Some errands do not always need to run. For example, installing a minor patch to
 
 For more information, see [Configure Run Rules in Ops Manager](http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html#modify).
 
-## <a id="colocated"></a>Define a Co-Located Errand
+## <a id="colocated"></a>Define a Colocated Errand
 
-<p class="note"><strong>Note</strong>: Ops Manager 2.0 and later supports co-located errands.</p>
+<p class="note"><strong>Note</strong>: Ops Manager 2.0 and later supports colocated errands.</p>
 
-Instead of deploying a new VM for each errand, co-located errands run on an existing VM alongside other jobs.
-Co-located errands run faster than traditional errands and use fewer resources, including disk and IP space.
+Instead of deploying a new VM for each errand, colocated errands run on an existing VM alongside other jobs.
+Colocated errands run faster than traditional errands and use fewer resources, including disk and IP space.
 
-To configure a co-located errand, define the following properties in the `pre_delete_errands` and `post_deploy_errands` sections of the tile metadata:
+To configure a colocated errand, define the following properties in the `pre_delete_errands` and `post_deploy_errands` sections of the tile metadata:
 
 <table>
   <tr>
@@ -81,7 +81,7 @@ To configure a co-located errand, define the following properties in the `pre_de
     <td>Provide a name for the errand job.</td>
   </tr><tr>
     <td><code>colocated: true</code></td>
-    <td>Set this value to <code>true</code> to enable co-located errands. If you do not set this value, Ops Manager ignores all other errand attributes in this section.</td>
+    <td>Set this value to <code>true</code> to enable colocated errands. If you do not set this value, Ops Manager ignores all other errand attributes in this section.</td>
   </tr><tr>
     <td><code>run_default: on</code></td>
     <td>(Optional) You can set the run rules to <code>on</code>, <code>off</code>, or <code>when-changed</code>. See <a href="#run-rules">Errand Run Rules</a> for more information.<br><br>
@@ -98,9 +98,9 @@ To configure a co-located errand, define the following properties in the `pre_de
   </tr>
 </table>
 
-### <a id="colocated-example"></a>Co-Located Errand Example Manifest
+### <a id="colocated-example"></a>Colocated Errand Example Manifest
 
-The following example shows co-located `post_deploy_errands` and `pre_delete_errands` sections in the tile metadata:
+The following example shows colocated `post_deploy_errands` and `pre_delete_errands` sections in the tile metadata:
 
 ```yaml
 post_deploy_errands:
