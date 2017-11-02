@@ -9,7 +9,7 @@ For more information about BOSH errands, see [BOSH documentation](https://bosh.i
 
 In Ops Manager 2.0 and later, tile authors can choose to [colocate errands](#colocated) on existing VMs.
 When errands are not colocated, BOSH deploys a new VM for each errand defined in the tile metadata.
-Colocated errands can run alongside other jobs on existing VMs in an operator's deployment.
+Colocated errands can run alongside other jobs or errands on existing VMs in an operator's deployment.
 
 Products can have two kinds of errands. [Post-deploy errands](#post-deploy) run after a product installs but before Ops Manager displays makes it available for use.
 [Pre-delete errands](#pre-delete) run after an operator chooses to delete a product, but before Ops Manager finishes removing it from use.
@@ -20,7 +20,8 @@ To save deployment time, operators can set [errand run rules](#run-rules) that d
 
 <p class="note"><strong>Note</strong>: Ops Manager 2.0 and later supports colocated errands.</p>
 
-Instead of deploying a new VM for each errand, colocated errands run on an existing VM alongside other jobs.
+Instead of deploying a new VM for each errand, colocated errands run on an existing VM.
+Errands can run alongside other jobs on a VM, and multiple errands can be colocated on the same VM.
 Colocated errands run faster than traditional errands and use fewer resources, including disk and IP space.
 
 To configure a colocated errand, define the following properties in the `pre_delete_errands` and `post_deploy_errands` sections of the tile metadata:
