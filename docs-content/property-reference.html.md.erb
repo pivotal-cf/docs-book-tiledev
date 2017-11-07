@@ -530,6 +530,27 @@ Example:
   default: plain
 ```
 
+#### network\_name
+
+Ensure the string is a network name
+
+Accessors:
+
+<table class="nice"><tr>
+  <td>value</td>
+  <td>Returns a string</td>
+  </tr>
+</table>
+
+Example:
+
+```
+- name: example_network_name
+  type: network_name
+  configurable: true
+  default: 'ExampleNetwork'
+```
+
 #### network\_address
 
 Ensure the string is a network address
