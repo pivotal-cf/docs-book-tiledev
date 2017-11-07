@@ -871,6 +871,8 @@ routing_certificates:
     certificate: CERTIFICATE
 ```
 
+<p class="note"><strong>Note:</strong> <pre>current_record</pre> should only refer to this property when it is a single collection record referring to its other properties. If you create a property with the name <pre>current_record</pre>, it will not work.</p>
+
 ### <a id='ops-man-snippets'></a> Ops Manager Provided Snippets
 
 The following double-parens accessors retrieve your job properties:
