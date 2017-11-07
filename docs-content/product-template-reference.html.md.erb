@@ -301,6 +301,8 @@ Collections appear as follows:
 
 ![Collection](img/collection.png)
 
+For more information about specifying and rendering named manifests for collection, see [named_manifest](#named-manifest).
+
 ## <a id='property-blueprints'></a> Property Blueprints
 
 The following is an example of the `property_blueprints` that appear in a product template.
@@ -484,8 +486,8 @@ We will learn about manifest snippets in the next section.
 ## <a id='job-types'></a> Job Types
 
 The following is an example of the `job_types` section that appears in a product template.
-This section defines the jobs that end up in a BOSH Manifest.
-Those jobs are defined in your BOSH Release.
+This section defines the jobs that end up in a BOSH manifest.
+Those jobs are defined in your BOSH release.
 Jobs require many different settings in order to function properly, and that is the crux of what Ops Manager does for you:
 it asks a user for values to those settings and generates a manifest based on what was entered.
 
@@ -822,6 +824,52 @@ includes the resulting double-parens expressions in the manifest it generates, f
 Selector snippets are evaluated twice. As you saw in the `property_blueprint`,
 the selector has a manifest snippet for both sets of inputs that the user might choose.
 Only one of these sets is evaluated and inserted into the job's manifest.
+
+### <a id='named-manifest'></a> named_manifest
+
+You can specify and render named manifests for collection.
+
+Specify a collection property in a product's metadata such as:
+
+```
+  - name: certificate_collection
+    type: collection
+    configurable: true
+    property_blueprints:
+      - name: some_cert_name
+        type: string
+      - name: some_cert
+        type: rsa_cert_credentials
+  named_manifests:
+  - name: for_routing
+    manifest: |
+      name:  (( current_record.some_cert_name.value ))
+      private_key:  (( current_record.some_cert.private_key_pem ))
+      public_key:  (( current_record.some_cert.public_key_pem ))
+      certificate: (( current_record.some_cert.cert_pem ))
+```
+
+Specify a manifest snippet containing:
+
+```
+routing_certificates: (( .properties.certificate_collection.parsed_manifest(for_routing) ))
+```
+
+The operator will then add the certificates to certificate_collection.
+
+Inspect the manifests in /debug/files. You will see the following rendered in your manifest:
+
+```
+routing_certificates:
+  - name: foo_cert
+    private_key: PRIVATE-KEY
+    public_key: PUBLIC-KEY
+    certificate: CERTIFICATE
+  - name: bar_cert
+    private_key: PRIVATE-KEY
+    public_key: PUBLIC-KEY
+    certificate: CERTIFICATE
+```
 
 ### <a id='ops-man-snippets'></a> Ops Manager Provided Snippets
 
