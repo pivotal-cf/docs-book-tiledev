@@ -827,11 +827,11 @@ Only one of these sets is evaluated and inserted into the job's manifest.
 
 ### <a id='named-manifest'></a> named_manifest
 
-You can specify and render named manifests for collection.
+<p class="note"><strong>Note</strong>: Ops Manager 2.0 and later supports specifying and rendering named manifests in a collection property.</p>
 
 Specify a collection property in a product's metadata such as:
 
-```
+```yaml
   - name: certificate_collection
     type: collection
     configurable: true
@@ -840,13 +840,13 @@ Specify a collection property in a product's metadata such as:
         type: string
       - name: some_cert
         type: rsa_cert_credentials
-  named_manifests:
-  - name: for_routing
-    manifest: |
-      name:  (( current_record.some_cert_name.value ))
-      private_key:  (( current_record.some_cert.private_key_pem ))
-      public_key:  (( current_record.some_cert.public_key_pem ))
-      certificate: (( current_record.some_cert.cert_pem ))
+    named_manifests:
+    - name: for_routing
+      manifest: |
+        name:  (( current_record.some_cert_name.value ))
+        private_key:  (( current_record.some_cert.private_key_pem ))
+        public_key:  (( current_record.some_cert.public_key_pem ))
+        certificate: (( current_record.some_cert.cert_pem ))
 ```
 
 Specify a manifest snippet containing:
