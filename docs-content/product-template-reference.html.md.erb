@@ -819,11 +819,6 @@ To include these BOSH deploy-time properties in a manifest snippet, use "triple-
 Ops Manager strips the outer parentheses from these expressions and
 includes the resulting double-parens expressions in the manifest it generates, for BOSH to evaluate at deploy time.
 
-### <a id='selector-snippets'></a> Selector Manifest Snippets
-
-Selector snippets are evaluated twice. As you saw in the `property_blueprint`,
-the selector has a manifest snippet for both sets of inputs that the user might choose.
-Only one of these sets is evaluated and inserted into the job's manifest.
 
 ### <a id='named-manifest'></a> named_manifest
 
@@ -872,6 +867,12 @@ routing_certificates:
 ```
 
 <p class="note"><strong>Note:</strong> <code>current_record</code> should only refer to this property when it is a single collection record referring to its other properties. If you create a property with the name <code>current_record</code>, it will not work.</p>
+
+### <a id='selector-snippets'></a> Selector Manifest Snippets
+
+Selector snippets are evaluated twice. As you saw in the `property_blueprint`,
+the selector has a manifest snippet for both sets of inputs that the user might choose.
+Only one of these sets is evaluated and inserted into the job's manifest.
 
 ### <a id='ops-man-snippets'></a> Ops Manager Provided Snippets
 
