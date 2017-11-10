@@ -756,12 +756,12 @@ label: TIBCO BusinessWorks Container Edition
 description: BusinessWorks edition that supports deploying to Cloud Foundry
 version: 0.0.2
 
-bosh init release
-bosh generate package cf_cli
-bosh generate package bwce_buildpack
-bosh generate job install_bwce_buildpack
-bosh generate job remove_bwce_buildpack
-bosh create release --final --with-tarball --version 0.0.2
+bosh init-release --dir
+bosh generate-package cf_cli
+bosh generate-package bwce_buildpack
+bosh generate-job install_bwce_buildpack
+bosh generate-job remove_bwce_buildpack
+bosh create-release --final --with-tarball --version 0.0.2
 
 tile generate release
 tile generate metadata
