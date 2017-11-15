@@ -8,14 +8,14 @@ This topic describes the Tile Generator tool, which helps tile authors develop, 
 ## <a id="overview"></a> Overview
 
 Tiles are the
-installation package format used by Pivotal Ops Manager to deploy services and other add-ons to both public and private cloud deployments. The tile generator
+installation package format used by Pivotal Ops Manager to deploy services and other add-ons to both public and private cloud deployments. Tile Generator
 uses templates and patterns that are based on years of experience integrating
 third-party services into Cloud Foundry and eliminates much of the need for
 you to have intimate knowledge of all the tools involved.
 
 ![Overview](img/tilegenerator.png)
 
-Tile generator takes your software components and a simple configuration file
+Tile Generator takes your software components and a simple configuration file
 that provides the minimal amount of information to describe and customize your
 tile. It then creates everything that's required to deploy your software into
 PCF:
@@ -30,10 +30,10 @@ PCF:
 - A **Concourse pipeline configuration** to enable Continuous Integration of
   your software with the latest versions of PCF
 
-Use the tile generator in combination with the [pcf utility](pcf-command.html)
+Use Tile Generator in combination with the [pcf utility](pcf-command.html)
 to enable rapid deploy and test cycles of your software.
 
-The current release of the tile generator supports tiles that have any
+The current release of Tile Generator supports tiles that have any
 combination of the following package types:
 
 - Cloud Foundry Applications
@@ -43,16 +43,16 @@ combination of the following package types:
 
 ### <a id="legacy"></a>Legacy Tiles and OSS-Compatible Service Brokers
 
-Many tile authors, in both Pivotal-internal teams and at external partner companies, built their PCF tiles before the Tile Generator existed.
+Many tile authors, in both Pivotal-internal teams and at external partner companies, built their PCF tiles before Tile Generator existed.
 
 Many other tile authors serve two markets with their service integrations, offering both a Cloud Foundry-compatible service broker to open-source users and corresponding PCF tile for PCF users.
 They want to continue serving both sets of users.
 
-All of these tile authors can now use Tile Generator to simplify and speed up their development. The Tile Generator tool can generate an OSS-compatible BOSH release service broker BOSH release in addition to a PivNet-ready PCF tile.
+All of these tile authors can now use Tile Generator to simplify and speed up their development. Tile Generator can generate an OSS-compatible BOSH release service broker BOSH release in addition to a PivNet-ready PCF tile.
 
 ## <a id="screencast"></a> Screencast
 
-For a 7-minute introduction into what tile generator is and does, see
+For a 7-minute introduction into what Tile Generator is and does, see
 [this screencast](https://www.youtube.com/watch?v=_WeJbqNJWzQ).
 
 ## <a id="how-to"></a> How to Use
@@ -102,7 +102,7 @@ then wrap that release into a Pivotal tile (in the `product` subdirectory).
 If required for the installation, it automatically pulls down the latest
 release version of the Cloud Foundry CLI.
 
-Tile generator is also available pre-installed in a Docker image on
+Tile Generator is also available pre-installed in a Docker image on
 [Docker Hub](https://hub.docker.com/r/cfplatformeng/tile-generator/).
 This image contains the tile-generator `tile` and `pcf` commands, all the
 necessary Python dependencies, as well as the BOSH CLI.
@@ -126,8 +126,7 @@ FROM cfplatformeng/tile-generator
 
 ## <a id="sample"></a> Build the Sample
 
-The [tile-generator repository](https://github.com/cf-platform-eng/tile-generator) includes a [sample tile](https://github.com/cf-platform-eng/tile-generator/tree/master/sample) that exercises most of the features of the
-tile generator. This sample tile is used by the tile generator's CI pipeline to verify that things work correctly.
+The [tile-generator repository](https://github.com/cf-platform-eng/tile-generator) includes a [sample tile](https://github.com/cf-platform-eng/tile-generator/tree/master/sample) that exercises most of the features of Tile Generator. This sample tile is used by Tile Generator's CI pipeline to verify that things work correctly.
 You can build this sample using the following steps:
 
 1. Download the [Redis BOSH release](https://github.com/cloudfoundry-community/redis-boshrelease/releases/tag/v13.1.2) and save it to `sample/resources/redis-13.1.2.tgz`.
@@ -584,7 +583,7 @@ plain text as all other value types.
 
 ### Automatic Provisioning of Services
 
-Tile generator automates the provisioning of services. Any app (including
+Tile Generator automates the provisioning of services. Any app (including
 service brokers and Docker-based apps) that are being pushed into the
 Elastic Runtime can automatically be bound to services through the `auto_services`
 feature:
@@ -611,10 +610,10 @@ when the tile is uninstalled.
     multiple services. Use <code>cf service-access</code> to see the services and plans
     offered by installed service brokers.</p>
 
-If you do not specify a plan, the tile generator uses the first plan
+If you do not specify a plan, Tile Generator uses the first plan
 listed for the service in the broker catalog. It is a good idea to always
 specify a service plan. If you *change* the plan between versions of your
-tile, the tile generator attempts to update the plan while preserving
+tile, Tile Generator attempts to update the plan while preserving
 the service (thus not causing data loss during upgrade). If the service
 does not support plan changes, this causes the upgrade to fail.
 
@@ -638,13 +637,13 @@ displays a message saying
 refuses to install your tile until that dependency is satisfied.
 
 When using automatic provisioning of services as described above, it is
-often appropriate to add those products as a dependency. Tile generator can
+often appropriate to add those products as a dependency. Tile Generator can
 not do this automatically as it can't always determine which product provides
 the requested service.
 
 ### Orgs and Spaces
 
-By default, the tile generator creates a single new org and space for any
+By default, Tile Generator creates a single new org and space for any
 packages that install into the Elastic Runtime, using the name of the tile and
 appending `-org` and `-space`, respectively. The default memory quota for a
 newly created org is 1024 (1&nbsp;G). You can change any of these defaults by
@@ -668,7 +667,7 @@ apply_open_security_group: true
 
 ### <a id="stemcells"></a> Stemcells
 
-The tile generator defaults to a recent stemcell supported by Ops Manager.
+Tile Generator defaults to a recent stemcell supported by Ops Manager.
 In most cases the default is fine, because the stemcell is only used to execute
 CF command lines and/or the Docker daemon. But if you have specific stemcell
 requirements, you can override the defaults in your `tile.yml` file by including
@@ -682,7 +681,7 @@ stemcell_criteria:
 
 ### <a id="custom-errands"></a> Custom Errands
 
-Tile generator supplies standard errands to deploy and delete CF type packages. You can
+Tile Generator supplies standard errands to deploy and delete CF type packages. You can
 replace or augment those errands by specifying errand shell commands in your tile.yml
 file. For example:
 
@@ -717,7 +716,7 @@ add additional commands to execute before or after the standard errand, use
 
 ## <a id="versioning"></a> Versioning
 
-The tile generator uses [semver versioning](http://semver.org/). By default, `tile build` 
+Tile Generator uses [semver versioning](http://semver.org/). By default, `tile build` 
 generates the next patch release. Major and minor releases can be generated
 by explicitly specifying `tile build major` or `tile build minor`. Or to
 override the version number completely, specify a valid semver version on
@@ -738,7 +737,7 @@ The new tile then supports upgrades from `old-version`.
 
 ## <a id="upgrades"></a> Upgrades
 
-By default, tile generator produces all code necessary to do a blue/green,
+By default, Tile Generator produces all code necessary to do a blue/green,
 zero-downtime deployment of all tile components when installing a newer version
 over an older one. For most tile versions this is all that is needed.
 
@@ -756,12 +755,12 @@ label: TIBCO BusinessWorks Container Edition
 description: BusinessWorks edition that supports deploying to Cloud Foundry
 version: 0.0.2
 
-bosh init-release --dir
+bosh init-release --dir=cf
 bosh generate-package cf_cli
 bosh generate-package bwce_buildpack
 bosh generate-job install_bwce_buildpack
 bosh generate-job remove_bwce_buildpack
-bosh create-release --final --with-tarball --version 0.0.2
+bosh create-release --final --tarball=cf_incubator --version 0.0.2
 
 tile generate release
 tile generate metadata
