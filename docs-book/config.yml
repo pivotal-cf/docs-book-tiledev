@@ -22,9 +22,9 @@ pcf_header: &local_pcf
 
 sections:
   - repository:
-      name: pivotal-cf/docs-book-tiledev/docs-content
+      name: pivotal-cf/docs-book-tiledev
       ref: '1-12'
-    directory: tiledev/1-12
+    directory: docs-content
     subnav_template: tiledev_subnav.erb 
     product_info: *local_pcf      
 
