@@ -1,0 +1,457 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      Creating New Variables in CredHub |
+    
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='/images/favicon.ico' rel='shortcut icon'>
+
+  <script src="/javascripts/all.js"></script>
+  
+<script type="text/javascript">
+  if (window.location.host === 'docs.pivotal.io') {
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '']);
+    _gaq.push(['_setDomainName', '']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  }
+</script>
+
+<script type="text/javascript">
+  var blackList = ['acceptance'];
+
+  blackList.forEach(function(blackListedEnv) {
+    if (document.URL.indexOf(blackListedEnv) > -1 && blackListedEnv != "") {
+      $('head').append('<meta name="hashtag" content="PivotalMoment">');
+    }
+  });
+</script>
+
+<!-- CrazyEgg Tracking Script -->
+  <script type="text/javascript">
+  setTimeout(function(){var a=document.createElement("script");
+  var b=document.getElementsByTagName("script")[0];
+  a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0055/2990.js?"+Math.floor(new Date().getTime()/3600000);
+  a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+  </script>
+
+<!-- Munchkin Marketo Script -->
+<script type="text/javascript">
+  (function() {
+    var didInit = false;
+
+    function initMunchkin() {
+      if (didInit === false) {
+        didInit = true;
+        Munchkin.init('625-IUJ-009');
+      }
+    }
+
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+    s.onreadystatechange = function() {
+      if (this.readyState == 'complete' || this.readyState == 'loaded') {
+        initMunchkin();
+      }
+    };
+    s.onload = initMunchkin;
+    document.getElementsByTagName('head')[0].appendChild(s);
+  })();
+</script>
+
+</head>
+
+<body class="tiledev tiledev_create-credhub-vars has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+      document.domain = "";
+    </script>
+
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
+        <div class="btn-menu" data-behavior="MenuMobile"></div>
+        
+        <div class="header-item">
+          
+        </div>
+        <!--Default search-->
+<!--If book needs something different, add a book-search partial to the book's layouts folder-->
+<div class="header-item searchbar js-searchbar">
+  <a class="search-icon" data-behavior="Search"></a>
+  <div class="search-input">
+    <div class="search-input-inner" id="docs-search">
+        <form method="get" action="/search">
+          <input name="q" placeholder="search" class="search-box" />
+        </form>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </header>
+
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    <ul>
+
+      <li>
+        <a href="index.html">PCF Tile Developers Guide</a>
+      </li>
+
+      <li class="has_submenu">
+        <a href="tile-basics.html">Tile Basics</a>
+        <ul>
+          <li>
+            <a href="cf-concepts.html">How PCF and PCF Services Work</a>
+          </li>
+          <li>
+            <a href="/tiledev/tile-structure.html">How Tiles Work</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/workflow.html">Tile Development Workflow</a>
+        <ul>
+          <li>
+            <a href="/tiledev/overview.html">Service Integration Overview</a>
+          </li>
+          <li>
+            <a href="/tiledev/stages.html">Levels of Integration</a>
+          </li>
+          <li>
+            <a href="/tiledev/development.html">Development Steps at Each Level</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/environments.html">Development Environments</a>
+        <ul>
+          <li>
+            <a href="/tiledev/environments.html#pcfdev">PCF Dev and BOSH Lite</a>
+          </li>
+          <li>
+            <a href="/tiledev/environments.html#pws">PWS or Other Supported CF Infrastructure</a>
+          </li>
+          <li>
+            <a href="/tiledev/environments.html#pcf">PCF with Ops Manager</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/tools.html">Development Tools</a>
+        <ul>
+          <li>
+            <a href="/tiledev/tile-generator.html">Tile Generator</a>
+          </li>
+          <li>
+            <a href="/tiledev/pcf-command.html">pcf Command Line Utility</a>
+          </li>
+          <li>
+            <a href="/tiledev/concourse.html">Concourse CI</a>
+          </li>
+          <li>
+            <a href="/tiledev/sdk.html">Services SDK</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu expanded">
+        <a href="/tiledev/roadmap.html">Service Development Roadmap</a>
+        <ul>
+          <li>
+            <a href="/tiledev/roadmap.html#user-provided">Level 1: User-Provided Service</a>
+          </li>
+          <li class="has_submenu">
+            <a href="/tiledev/brokered.html">Level 2: Brokered Service</a>
+            <ul>
+              <li>
+                <a href="/tiledev/service-brokers.html">Service Broker</a>
+              </li>
+            </ul>
+           </li> 
+          <li class="has_submenu">
+            <a href="/tiledev/managed.html">Level 3: Managed Service</a>
+            <ul>
+              <li>
+                <a href="/tiledev/bosh-release.html">BOSH Releases</a>
+              </li>
+              <li>
+                <a href="/tiledev/tile-errands.html">Errands</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/tiledev/on-demand.html">Level 4: On-Demand Service</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/other-integrations.html">Other Integrations</a>
+        <ul>
+          <li>
+            <a href="/tiledev/bbr-devguide.html">BOSH Backup and Restore</a>
+          </li>
+          <li>
+            <a href="/tiledev/buildpacks.html">Buildpacks</a>
+          </li>
+          <li class="has_submenu">
+            <a href="/tiledev/credhub.html">CredHub</a>
+            <ul>
+              <li>
+                <a href="/tiledev/create-credhub-vars.html">Creating New Variables in CredHub</a>
+              </li>
+              <li>
+                <a href="/tiledev/migrating-credhub-credentials.html">Migrating Existing Credentials to CredHub</a>
+              </li>
+              <li>
+                <a href="/tiledev/get-credhub-vars.html">Fetching Variable Names and Values</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/tiledev/embedded-agents.html">Embedded Agents</a>
+          </li>
+          <li>
+            <a href="/tiledev/nozzle.html">Logs, Metrics, and Nozzles</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/tiledev/tile-documentation.html">Documentation</a>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/publish.html">Publish and Update</a>
+        <ul>
+          <li>
+            <a href="/tiledev/tile-upgrades.html">Tile Upgrades</a>
+          </li>
+          <li>
+            <a href="/tiledev/releases.html">Partner Software Product Release Cycle</a>
+          </li>
+        </ul>
+      </li>
+
+
+      <li class="has_submenu">
+        <a href="/tiledev/reference.html">Reference</a>
+        <ul>
+          <li>
+            <a href="/tiledev/product-template-reference.html">Product Template Reference</a>
+          </li>
+          <li>
+            <a href="/tiledev/property-reference.html">Property Reference</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/release-notes.html">Partners Release Notices</a>
+        <ul>
+          <li>
+            <a href="/tiledev/release-notes-1-12.html">PCF v1.12 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-11.html">PCF v1.11 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-10.html">PCF v1.10 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-9.html">PCF v1.9 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-8.html">PCF v1.8 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-7.html">PCF v1.7 Partners Release Notice</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/tiledev/contacts.html">Contact Us</a>
+      </li>
+
+    </ul>
+  </div>
+</div><!--end of sub-nav-->
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    Creating New Variables in CredHub
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p>This topic explains how CredHub manages variables in the context of a larger deployment, and how to create new variables for use in CredHub. </p>
+
+<h2>Background</h2>
+
+<p>When a tile author defines a top-level <code>variables</code> section in the product template, Ops Manager passes the <code>variables</code> section to the product manifest.
+tile authors can define variables in the product template as follows:</p>
+<pre class="highlight plaintext"><code>variables:
+  - name: EXAMPLE-CREDHUB-PASSWORD
+    type: password
+</code></pre>
+
+<p>You can reference these variables in the manifest snippets in their tile metadata using a triple parentheses syntax: </p>
+<pre class="highlight plaintext"><code>((( EXAMPLE-CREDHUB-PASSWORD )))
+</code></pre>
+
+<p>Using triple parentheses lets Ops Manager identify CredHub variables while still supporting the BOSH double parentheses syntax. A variable referenced within triple parentheses is replaced by double parentheses in the generated manifest. After contacting CredHub, BOSH populates that variable value internally.</p>
+
+<p>The benefit of this approach is that the Ops Manager YAML file does not contain sensitive credentials when the metadata manifest snippets have triple parentheses. The resulting manifest file contains variables within double parentheses, rather than unobscured credentials.</p>
+
+<p>For example, a tile author adds credentials to a manifest snippet in the following format:</p>
+<pre class="highlight plaintext"><code>  key: ((( EXAMPLE-CREDHUB-PASSWORD )))
+  key: prefix-((( ANOTHER-CREDHUB-PASSWORD )))-suffix
+</code></pre>
+
+<p>Ops Manager evaluates the above example to generate the following section in the product manifest:</p>
+<pre class="highlight plaintext"><code>  (( EXAMPLE-CREDHUB-PASSWORD ))
+  prefix-(( ANOTHER-CREDHUB-PASSWORD ))-suffix
+</code></pre>
+
+<h2>How CredHub Works Within a Deployment</h2>
+
+<p>CredHub is distributed as a BOSH release. As part of this installation, Ops Manager co-locates the CredHub release on the Ops Manager Director, including the CredHub job configurations, and the Director is configured to point to the CredHub API.</p>
+
+<p>Once CredHub has been deployed and configured on the Director, any Director deployment can use CredHub variables in place of credential values. Using variables, rather than values, provides an extra layer of security when transmitting credentials within your deployment.</p>
+
+<h2>Changing Your Deployment Manifest to Include CredHub Variables</h2>
+
+<p>The Ops Manager Director interpolates credential values into manifests that use the <code>((variables))</code> syntax. When the Director encounters a variable using this syntax, it requests the credential value from CredHub. If the credential does not exist and the release or manifest contains generation properties, the credential value is generated automatically.</p>
+
+<p>The manifest excerpt below includes references to two credentials, <code>EXAMPLE-PASSWORD</code> and <code>EXAMPLE-TLS</code>. </p>
+
+<p>When this manifest is deployed, the Ops Manager Director retrieves the stored variables and replaces them with the credential values associated with each variable. The <code>EXAMPLE-TLS</code> variables include property accessors, so only the <code>certificate</code> and <code>private_key</code> components are interpolated.</p>
+<pre class="highlight plaintext"><code>name: demo-deploy
+
+instance_groups:
+  jobs: 
+  - name: demo 
+    release: demo
+    properties:
+      demo:
+        password: ((EXAMPLE-PASSWORD))
+        tls: 
+          certificate: ((EXAMPLE-TLS.certificate))
+          private_key: ((EXAMPLE-TLS.private_key))
+</code></pre>
+
+<p>Ops Manager configures the Director to generate a credential if it does not exist. The manifest includes generation parameters that define how the credential should be generated. These generation parameters are defined in the variables section as shown below.</p>
+<pre class="highlight plaintext"><code>---
+name: demo deploy 
+
+variables: 
+- name: EXAMPLE-PASSWORD
+  type: password
+- name: EXAMPLE-CA
+  type: certificate
+  options: 
+    is_ca: true
+    common_name: 'Example Certificate Authority'
+- name: EXAMPLE-TLS
+  type: certificate
+  options: 
+    ca: EXAMPLE-CA
+    common_name: example.com
+
+instance_groups:
+  jobs: 
+  - name: demo 
+    release: demo
+    properties:
+      demo:
+        password: (( EXAMPLE-PASSWORD ))
+        tls: 
+          certificate: (( EXAMPLE-TLS.certificate ))
+          private_key: (( EXAMPLE-TLS.private_key ))
+</code></pre>
+
+<h2>Variable Namespacing</h2>
+
+<p>Deployment manifests often use common variable names; for example, <code>(( PASSWORD ))</code>. To avoid variable name collisions between deployments, the Ops Manager Director automatically stores variables with the Ops Manager Director name and deployment name. For example, the variable <code>(( EXAMPLE-PASSWORD ))</code> is stored in CredHub as /Ops-Manager-Director-name/deployment-name/example-password.</p>
+
+<h3>Other Namespacing Options</h3>
+
+<p>Use a <a href="/tiledev/release-notes-1-11.html#bosh-links">BOSH link</a> to share credentials across deployments. Alternatively, if you want to use an exact name, prefixing the variable with a forward slash (/) will cause the Director to use the exact name you type. An example of a precisely typed variable follows.</p>
+<pre class="highlight plaintext"><code>((/EXAMPLE-PASSWORD))
+</code></pre>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/create-credhub-vars.html.md.erb'>View the source for this page in GitHub</a></div>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+  <a href='https://pivotal.io/privacy-policy'>Privacy Policy</a> | 
+  <a href='https://pivotal.io/terms-of-use'>Terms of Use</a><br/>
+  <a href='/'>Pivotal Documentation</a>
+  &copy; 2017 <a href='https://pivotal.io'>Pivotal Software</a>, Inc. All Rights Reserved.
+</div>
+<div class="support">
+  Need help? <a href="" target="_blank">Visit Support</a>
+</div>
+
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

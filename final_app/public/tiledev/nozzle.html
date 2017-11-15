@@ -1,0 +1,763 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      Logs, Metrics, and Nozzles |
+    
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='/images/favicon.ico' rel='shortcut icon'>
+
+  <script src="/javascripts/all.js"></script>
+  
+<script type="text/javascript">
+  if (window.location.host === 'docs.pivotal.io') {
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '']);
+    _gaq.push(['_setDomainName', '']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  }
+</script>
+
+<script type="text/javascript">
+  var blackList = ['acceptance'];
+
+  blackList.forEach(function(blackListedEnv) {
+    if (document.URL.indexOf(blackListedEnv) > -1 && blackListedEnv != "") {
+      $('head').append('<meta name="hashtag" content="PivotalMoment">');
+    }
+  });
+</script>
+
+<!-- CrazyEgg Tracking Script -->
+  <script type="text/javascript">
+  setTimeout(function(){var a=document.createElement("script");
+  var b=document.getElementsByTagName("script")[0];
+  a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0055/2990.js?"+Math.floor(new Date().getTime()/3600000);
+  a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+  </script>
+
+<!-- Munchkin Marketo Script -->
+<script type="text/javascript">
+  (function() {
+    var didInit = false;
+
+    function initMunchkin() {
+      if (didInit === false) {
+        didInit = true;
+        Munchkin.init('625-IUJ-009');
+      }
+    }
+
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+    s.onreadystatechange = function() {
+      if (this.readyState == 'complete' || this.readyState == 'loaded') {
+        initMunchkin();
+      }
+    };
+    s.onload = initMunchkin;
+    document.getElementsByTagName('head')[0].appendChild(s);
+  })();
+</script>
+
+</head>
+
+<body class="tiledev tiledev_nozzle has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+      document.domain = "";
+    </script>
+
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
+        <div class="btn-menu" data-behavior="MenuMobile"></div>
+        
+        <div class="header-item">
+          
+        </div>
+        <!--Default search-->
+<!--If book needs something different, add a book-search partial to the book's layouts folder-->
+<div class="header-item searchbar js-searchbar">
+  <a class="search-icon" data-behavior="Search"></a>
+  <div class="search-input">
+    <div class="search-input-inner" id="docs-search">
+        <form method="get" action="/search">
+          <input name="q" placeholder="search" class="search-box" />
+        </form>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </header>
+
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    <ul>
+
+      <li>
+        <a href="index.html">PCF Tile Developers Guide</a>
+      </li>
+
+      <li class="has_submenu">
+        <a href="tile-basics.html">Tile Basics</a>
+        <ul>
+          <li>
+            <a href="cf-concepts.html">How PCF and PCF Services Work</a>
+          </li>
+          <li>
+            <a href="/tiledev/tile-structure.html">How Tiles Work</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/workflow.html">Tile Development Workflow</a>
+        <ul>
+          <li>
+            <a href="/tiledev/overview.html">Service Integration Overview</a>
+          </li>
+          <li>
+            <a href="/tiledev/stages.html">Levels of Integration</a>
+          </li>
+          <li>
+            <a href="/tiledev/development.html">Development Steps at Each Level</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/environments.html">Development Environments</a>
+        <ul>
+          <li>
+            <a href="/tiledev/environments.html#pcfdev">PCF Dev and BOSH Lite</a>
+          </li>
+          <li>
+            <a href="/tiledev/environments.html#pws">PWS or Other Supported CF Infrastructure</a>
+          </li>
+          <li>
+            <a href="/tiledev/environments.html#pcf">PCF with Ops Manager</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/tools.html">Development Tools</a>
+        <ul>
+          <li>
+            <a href="/tiledev/tile-generator.html">Tile Generator</a>
+          </li>
+          <li>
+            <a href="/tiledev/pcf-command.html">pcf Command Line Utility</a>
+          </li>
+          <li>
+            <a href="/tiledev/concourse.html">Concourse CI</a>
+          </li>
+          <li>
+            <a href="/tiledev/sdk.html">Services SDK</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu expanded">
+        <a href="/tiledev/roadmap.html">Service Development Roadmap</a>
+        <ul>
+          <li>
+            <a href="/tiledev/roadmap.html#user-provided">Level 1: User-Provided Service</a>
+          </li>
+          <li class="has_submenu">
+            <a href="/tiledev/brokered.html">Level 2: Brokered Service</a>
+            <ul>
+              <li>
+                <a href="/tiledev/service-brokers.html">Service Broker</a>
+              </li>
+            </ul>
+           </li> 
+          <li class="has_submenu">
+            <a href="/tiledev/managed.html">Level 3: Managed Service</a>
+            <ul>
+              <li>
+                <a href="/tiledev/bosh-release.html">BOSH Releases</a>
+              </li>
+              <li>
+                <a href="/tiledev/tile-errands.html">Errands</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/tiledev/on-demand.html">Level 4: On-Demand Service</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/other-integrations.html">Other Integrations</a>
+        <ul>
+          <li>
+            <a href="/tiledev/bbr-devguide.html">BOSH Backup and Restore</a>
+          </li>
+          <li>
+            <a href="/tiledev/buildpacks.html">Buildpacks</a>
+          </li>
+          <li class="has_submenu">
+            <a href="/tiledev/credhub.html">CredHub</a>
+            <ul>
+              <li>
+                <a href="/tiledev/create-credhub-vars.html">Creating New Variables in CredHub</a>
+              </li>
+              <li>
+                <a href="/tiledev/migrating-credhub-credentials.html">Migrating Existing Credentials to CredHub</a>
+              </li>
+              <li>
+                <a href="/tiledev/get-credhub-vars.html">Fetching Variable Names and Values</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/tiledev/embedded-agents.html">Embedded Agents</a>
+          </li>
+          <li>
+            <a href="/tiledev/nozzle.html">Logs, Metrics, and Nozzles</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/tiledev/tile-documentation.html">Documentation</a>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/publish.html">Publish and Update</a>
+        <ul>
+          <li>
+            <a href="/tiledev/tile-upgrades.html">Tile Upgrades</a>
+          </li>
+          <li>
+            <a href="/tiledev/releases.html">Partner Software Product Release Cycle</a>
+          </li>
+        </ul>
+      </li>
+
+
+      <li class="has_submenu">
+        <a href="/tiledev/reference.html">Reference</a>
+        <ul>
+          <li>
+            <a href="/tiledev/product-template-reference.html">Product Template Reference</a>
+          </li>
+          <li>
+            <a href="/tiledev/property-reference.html">Property Reference</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/release-notes.html">Partners Release Notices</a>
+        <ul>
+          <li>
+            <a href="/tiledev/release-notes-1-12.html">PCF v1.12 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-11.html">PCF v1.11 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-10.html">PCF v1.10 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-9.html">PCF v1.9 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-8.html">PCF v1.8 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-7.html">PCF v1.7 Partners Release Notice</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/tiledev/contacts.html">Contact Us</a>
+      </li>
+
+    </ul>
+  </div>
+</div><!--end of sub-nav-->
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    Logs, Metrics, and Nozzles
+  </h1>
+
+          <div id="js-quick-links" >
+            <div class="quick-links"><ul>
+<li><a href="#overview">Overview</a></li>
+<li>
+<a href="#firehose">Firehose Communication</a><ul>
+<li><a href="#https">Secure HTTPS Protocol: PCF 1.10+</a></li>
+<li><a href="#http">HTTP Protocol: PCF 1.9 and Earlier</a></li>
+</ul>
+</li>
+<li>
+<a href="#nozzle">Nozzles</a><ul>
+<li><a href="#develop">Develop a Nozzle</a></li>
+<li><a href="#deploy">Deploy a Nozzle</a></li>
+<li><a href="#examples">Example Nozzles</a></li>
+</ul>
+</li>
+<li>
+<a href="#syslog-format-pcf">Log Format for PCF Components</a><ul>
+<li><a href="#syslog-elements">Syslog Message Elements</a></li>
+<li><a href="#severity">RFC-5424 Severity Codes</a></li>
+<li><a href="#sd-element">Structured Instance Data Format</a></li>
+</ul>
+</li>
+<li><a href="#metrics">Making Sense of Metrics</a></li>
+<li><a href="#resources">Other Resources</a></li>
+</ul></div>
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p>This topic explains how to integrate PCF services with Cloud Foundry&rsquo;s logging system, the <em>Loggregator</em>, by writing to and reading from its <em>Firehose</em> endpoint.</p>
+
+<h2><a id="overview"></a> Overview</h2>
+
+<p>Cloud Foundry&rsquo;s <em>Loggregator</em> logging system collects logs and metrics from PCF apps and platform components and streams them to a single endpoint, the <em>Firehose</em>. Your tile can integrate its service with the Loggregator system in two ways:</p>
+
+<ul>
+<li><p>By sending your service component logs and metrics to the Firehose, to be streamed along with PCF core platform component logs and metrics.</p></li>
+<li><p>By installing a <em>nozzle</em> on the Firehose that directs Firehose data to be consumed by external services or apps. A built-in nozzle can enable a service to:</p>
+
+<ul>
+<li>Drain metrics to an external dashboard product, for system operators</li>
+<li>Send HTTP request details to search or analysis tools</li>
+<li>Drain app logs to an external system </li>
+<li><a href="https://youtu.be/skJKvQfpKD4?t=1021">Auto-scale itself</a> based on Firehose metrics</li>
+</ul></li>
+</ul>
+
+<p><a href="https://github.com/cloudfoundry-community/firehose-to-syslog">Firehose-to-syslog</a> is a real world, production example of a nozzle.</p>
+
+<h2><a id="firehose"></a> Firehose Communication</h2>
+
+<p>PCF components publish logs and metrics to the Firehose through Metron agent processes that run locally on the component VMs. Metron agents input the data to the Loggregator system by writing it to Loggregator&rsquo;s <a href="https://coreos.com/etcd/">etcd</a> key-value store via a <a href="https://coreos.com/etcd/docs/latest/op-guide/grpc_proxy.html">gRPC</a> proxy. The topic <a href="https://docs.cloudfoundry.org/loggregator/architecture.html">Overview of the Loggregator System</a> shows how logs and metrics travel from PCF system components to the Firehose.</p>
+
+<p>Component VMs running PCF services can publish logs and metrics the same way, by including a Metron agent that writes to etcd. In PCF v1.10 and higher, components only communicate with <code>etcd</code> via secure, encrypted <code>https</code> protocol. Earlier versions of PCF allow both encrypted <code>https</code> and unencrypted <code>http</code> communications with etcd.</p>
+
+<h3><a id="https"></a> Secure HTTPS Protocol: PCF 1.10+</h3>
+
+<p>To enable a service component to supply logs and metrics to the Firehose through encrypted communications, you need to include a Metron agent and a Consul agent in its template definitions.</p>
+
+<p>The Metron definition includes double-paren properties defining a keypair for accessing etcd. The Consul definition includes double-paren properties for securely looking up the internal IP addresses of the etcd nodes at <code>cf-etcd.service.cf.internal</code>. This avoids hard-coding any etcd server addresses.</p>
+
+<p>For example:</p>
+<pre class="highlight plaintext"><code>name: service
+label: Service
+templates:
+  - name: consul
+    release: consul
+  - name: metron_agent
+    release: loggregator
+  - name: service
+    release: service
+manifest: |
+  metron_agent:
+    deployment: cf-my-service
+    etcd:
+      client_cert: (( ..cf.properties.cf_etcd_client_cert.cert_pem ))
+      client_key: (( ..cf.properties.cf_etcd_client_cert.private_key_pem ))
+  metron_endpoint:
+    shared_secret: (( ..cf.doppler.shared_secret_credentials.password ))
+  loggregator:
+    etcd:
+      require_ssl: true
+      machines: ['cf-etcd.service.cf.internal']
+      ca_cert: (( $ops_manager.ca_certificate ))
+  consul:
+    encrypt_keys:
+    - (( ..cf.properties.consul_encrypt_key.value ))
+    ca_cert: (( $ops_manager.ca_certificate ))
+    agent_cert: (( ..cf.properties.consul_agent_cert.cert_pem ))
+    agent_key: (( ..cf.properties.consul_agent_cert.private_key_pem ))
+    agent:
+      domain: cf.internal
+      servers:
+        lan: (( ..cf.consul_server.ips ))
+</code></pre>
+
+<p>Metron versions v72 and later do not use etcd to communicate with Loggregator, but the configuration above works with any version of Metron. If the Metron agent does not need values for etcd, it safely ignores them.</p>
+
+<h3><a id="http"></a> HTTP Protocol: PCF 1.9 and Earlier</h3>
+
+<p>In PCF v1.9, service components can send logs and metrics to the Firehose encrypted or unencrypted. In v1.8 and earlier releases, components only communicate their log and metrics data unencrypted.</p>
+
+<p>To enable unencrypted communications with etcd, define a Metron agent and list the addresses of the etcd servers in the template definitions as follows:</p>
+<pre class="highlight plaintext"><code>name: service
+label: Service
+templates:
+  - name: metron_agent
+    release: loggregator
+  - name: service
+    release: service
+manifest: |
+  metron_agent:
+    deployment: cf-my-service
+  metron_endpoint:
+    shared_secret: (( ..cf.doppler.shared_secret_credentials.password ))
+  loggregator:
+    etcd:
+      machines: (( ..cf.etcd_server.ips ))
+</code></pre>
+
+<h2><a id="nozzle"></a> Nozzles</h2>
+
+<p>A nozzle is a component dedicated to reading and processing data that streams from the Firehose. A service tile can install a nozzle as either a managed service, with package type <code>bosh-release</code>; or as an app pushed to Elastic Runtime, with the package type <code>app</code>.</p>
+
+<h3><a id="develop"></a> Develop a Nozzle</h3>
+
+<p>Pivotal recommends developing a nozzle in Go, to leverage the
+<a href="https://github.com/cloudfoundry/noaa">NOAA library</a>.
+NOAA does the heavy lifting of establishing
+an authenticated websocket connection to the logging system
+as well as de-serializing the protocol buffers.</p>
+
+<p>Draining the logs consists of:</p>
+
+<ol>
+<li>Authenticating</li>
+<li>Establishing a connection to the logging system</li>
+<li>Forwarding events on to their ultimate destination</li>
+</ol>
+
+<p>Authenticate against the API (<a href="https://github.com/cloudfoundry-community/go-cfclient">https://github.com/cloudfoundry-community/go-cfclient</a>)
+with a user in the <code>doppler.firehose</code> group:</p>
+<pre class="highlight go"><code><span class="k">import</span><span class="x"> </span><span class="s">"github.com/cloudfoundry-community/go-cfclient"</span><span class="x">
+
+</span><span class="o">...</span><span class="x">
+
+</span><span class="n">config</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">cfclient</span><span class="o">.</span><span class="n">Config</span><span class="p">{</span><span class="x">
+  </span><span class="n">ApiAddress</span><span class="o">:</span><span class="x">        </span><span class="n">apiUrl</span><span class="p">,</span><span class="x">
+  </span><span class="n">Username</span><span class="o">:</span><span class="x">          </span><span class="n">username</span><span class="p">,</span><span class="x">
+  </span><span class="n">Password</span><span class="o">:</span><span class="x">          </span><span class="n">password</span><span class="p">,</span><span class="x">
+  </span><span class="n">SkipSslValidation</span><span class="o">:</span><span class="x"> </span><span class="n">sslSkipVerify</span><span class="p">,</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="n">client</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">cfclient</span><span class="o">.</span><span class="n">NewClient</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="x">
+</span></code></pre>
+
+<p>Using the client&rsquo;s token, create a consumer and connect to the Firehose with a subscription id.
+The id is important, since the Firehose looks for connections having the same id and only
+sends an event to one of those connections. This is how a nozzle developer can prevent
+message loss during upgrades an other deployments: run at least two instances.</p>
+<pre class="highlight go"><code><span class="n">token</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">client</span><span class="o">.</span><span class="n">GetToken</span><span class="p">()</span><span class="x">
+
+</span><span class="n">consumer</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">consumer</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">TrafficControllerURL</span><span class="p">,</span><span class="x"> </span><span class="o">&amp;</span><span class="n">tls</span><span class="o">.</span><span class="n">Config</span><span class="p">{</span><span class="x">
+  </span><span class="n">InsecureSkipVerify</span><span class="o">:</span><span class="x"> </span><span class="n">config</span><span class="o">.</span><span class="n">SkipSSL</span><span class="p">,</span><span class="x">
+</span><span class="p">},</span><span class="x"> </span><span class="no">nil</span><span class="p">)</span><span class="x">
+</span><span class="n">events</span><span class="p">,</span><span class="x"> </span><span class="n">errors</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">consumer</span><span class="o">.</span><span class="n">Firehose</span><span class="p">(</span><span class="n">firehoseSubscriptionID</span><span class="p">,</span><span class="x"> </span><span class="n">token</span><span class="p">)</span><span class="x">
+</span></code></pre>
+
+<p><code>Firehose</code> will give back two channels: one for events and a second for errors.</p>
+
+<p>The events channel receives six different types of events.</p>
+
+<ul>
+<li>ValueMetric: Some platform metric at a point in time, emitted by platform components. For example, how many <code>2xx</code> responses the router has sent out.</li>
+<li>CounterEvent: An incrementing counter, emitted by platform components. For example, a Diego cell&rsquo;s remaining memory capacity.</li>
+<li>Error: An error.</li>
+<li>HttpStartStop: HTTP request details, including both app and platform requests.</li>
+<li>LogMessage: A log message for an individual app.</li>
+<li>ContainerMetric: Application container information. For example, memory used.</li>
+</ul>
+
+<p>For the full details on events, see the
+<a href="https://github.com/cloudfoundry/dropsonde-protocol/tree/master/events">dropsonde protocol</a>.</p>
+
+<p>The above events show how this data targets two different personae:
+platform operators and app developers. Keep this in mind when designing an integration.</p>
+
+<p>Having <code>doppler.firehose</code> scope gets a nozzle data for <em>every</em> app as well as the platform. 
+Any filtering based on the event payload is the nozzle implementor&rsquo;s responsibility.
+An advanced integration could do something like combine a
+<a href="/tiledev/service-brokers.html">service broker</a> with a nozzle to:</p>
+
+<ul>
+<li>Let app developers opt-in to logging (implementing filtering in the nozzle)</li>
+<li>Establish <a href="https://docs.cloudfoundry.org/services/dashboard-sso.html">SSO</a> exchange for authentication such that developers only can access logs for their space&rsquo;s apps</li>
+</ul>
+
+<p>For a full working example (suitable as an integration starting point),
+see <a href="https://github.com/cf-platform-eng/firehose-nozzle">firehose-nozzle</a>.</p>
+
+<h3><a id="deploy"></a> Deploy a Nozzle</h3>
+
+<p>Once you&rsquo;ve build a nozzle, you can deploy it as either a managed service or as an app.</p>
+
+<h4><a id="nozzle-service"></a> As a Managed Service</h4>
+
+<p>Visit <a href="/tiledev/managed.html">managed service</a>
+for more details on what it means to be a managed service.</p>
+
+<p>See also this
+<a href="https://github.com/cloudfoundry-incubator/example-nozzle-release">example nozzle BOSH release</a>.</p>
+
+<h4><a id="nozzle-app"></a> As an App</h4>
+
+<p>You can also deploy the nozzle as an app on Elastic Runtime.
+Visit the Tile Generator&rsquo;s
+<a href="/tiledev/tile-generator.html#pushed-applications">section on pushed apps</a>
+for more details.</p>
+
+<h3><a id="examples"></a> Example Nozzles</h3>
+
+<p>There are several open source examples you could use
+as a reference for building your nozzle</p>
+
+<p><a href="https://github.com/cf-platform-eng/firehose-nozzle">firehose-nozzle</a></p>
+
+<ul>
+<li>Example that simply writes to standard out</li>
+<li>Useful starting point: scaffolding, tests, etc are in place</li>
+</ul>
+
+<p><a href="https://github.com/cloudfoundry-incubator/example-nozzle">example-nozzle</a></p>
+
+<ul>
+<li>A single file implementation with no tests: as minimal as things can get</li>
+</ul>
+
+<p><a href="https://github.com/cloudfoundry-community/gcp-tools-release">gcp-tools-release</a></p>
+
+<ul>
+<li>In addition to Nozzle data, it drains component syslogs and health data</li>
+<li>Shows how to do a bosh-addon (for additional data outside a nozzle)</li>
+<li>Nozzle is managed through BOSH</li>
+<li>Raw logs and metrics data take different paths in the source</li>
+</ul>
+
+<p><a href="https://github.com/cloudfoundry-community/firehose-to-syslog">firehose-to-syslog</a></p>
+
+<ul>
+<li>Includes implementation code that adds additional metadata,
+which might be needed for an access control list (ACL)
+
+<ul>
+<li>App name</li>
+<li>Space UUID and name</li>
+<li>Org UUID and name</li>
+</ul></li>
+<li><a href="https://github.com/cloudfoundry-community/logsearch-for-cloudfoundry">logsearch-for-cloudfoundry</a> packages this nozzle as a BOSH release</li>
+</ul>
+
+<p><a href="https://github.com/cf-platform-eng/splunk-firehose-nozzle">splunk-firehose-nozzle</a></p>
+
+<ul>
+<li>Source code based on <code>firehose-to-syslog</code></li>
+<li>Packaged to run an app on PCF</li>
+</ul>
+
+<p><a href="https://github.com/DataDog/datadog-firehose-nozzle">datadog-firehose-nozzle</a></p>
+
+<ul>
+<li>Another real world implementation</li>
+</ul>
+
+<h2><a id="syslog-format-pcf"></a> Log Format for PCF Components</h2>
+
+<p>Pivotal&rsquo;s standard log format adheres to the <a href="https://tools.ietf.org/html/rfc5424">RFC-5424 syslog protocol</a>, with log messages formatted as follows:</p>
+
+<p><code>&lt;${PRI}&gt;${VERSION} ${TIMESTAMP} ${HOST_IP} ${APP_NAME} ${PROD_ID} ${MSG_ID} ${SD-ELEMENT-instance} ${MESSAGE}</code></p>
+
+<p>The <a href="#syslog-elements">Syslog Message Elements table</a> immediately below describes each element of the log, and the <a href="#sd-element">Structured Instance Data Format</a> table describes the contents of the structured data element that carries Cloud Foundry VM instance information.</p>
+
+<h3><a id="syslog-elements"></a> Syslog Message Elements</h3>
+
+<p>This table describes each element of a standard PCF syslog message.</p>
+
+<table id='syslog-elements-table' border="1" class="nice" >
+  <tr>
+    <th>Syslog Message Element</th>
+    <th>Meaning or Value</th>
+  </tr><tr>
+    <td><code>${PRI}</code></td>
+    <td><p><a href="https://tools.ietf.org/html/rfc5424#section-6.2.1">Priority value (PRI)</a>, calculated as <code>8 × Facility Code + Severity Code</code></p>
+    <p>Pivotal uses a Facility Code value of <code>1</code>, indicating a user-level facility. This adds <code>8</code> to the RFC-5424 Severity Codes, resulting in the numbers listed in the <a href="#severity-codes">table below</a>.</p>
+    <p>If in doubt, default to <code>13</code>, to indicate Notice-level severity.</p>
+</td>
+  </tr><tr>
+    <td><code>${VERSION}</code></td>
+    <td><a href="https://tools.ietf.org/html/rfc5424#section-9.1"><code>1</code></a></td>
+  </tr>
+  </tr><tr>
+    <td><code>${TIMESTAMP}</code></td>
+    <td><p>The <a href="https://tools.ietf.org/html/rfc5424#section-9.1">timestamp</a> of when the log message is forwarded; typically slightly after it was generated. Example: <code>2017-07-24T05:14:15.000003Z</code></p></td>
+  </tr><tr>
+    <td><code>${HOST_IP}</code></td>
+    <td><a href="https://tools.ietf.org/html/rfc5424#section-6.2.4">Internal IP address</a> of origin server</td>
+  </tr><tr>
+    <td><code>${APP_NAME}</code></td>
+    <td><p><a href="https://tools.ietf.org/html/rfc5424#section-6.2.5">Process name</a>  of the program the generated the message.  Prefixed with <code>vcap</code>. For example:</p>
+    <ul><li><code>vcap.rep</code></li>
+    <li><code>vcap.garden</code></li>
+    <li><code>vcap.cloud_controller_ng</code></li></ul>
+    <p>
+    You can derive this process name from either the program name configured for the local Metron agent or the <code>:progname</code>that blackbox derives from the folder that syslog-release forwards logs into.</p></td>
+  </tr><tr>
+    <td><code>${PROD_ID}</code></td>
+    <td>The <a href="https://tools.ietf.org/html/rfc5424#section-6.2.6">Process ID</a> of the syslog process doing the forwarding. If this is not easily available, default to <code>-</code> (hyphen) to indicate unknown.</td>
+</td>
+  </tr><tr>
+    <td><code>${MSG_ID}</code></td>
+    <td>The <a href="https://tools.ietf.org/html/rfc5424#section-6.2.7">type</a> of log message. If this is not easily available, default to <code>-</code> (hyphen) to indicate unknown.</td>
+  </tr><tr>
+    <td><code>${SD-ELEMENT-instance}</code></td>
+    <td>Structured data (SD) relevant to PCF about the <a href="https://tools.ietf.org/html/rfc5424#section-6.3.1">source instance (VM)</a> that originates the log message. See the <a href="#sd-element">Structured Instance Data Format table</a> below for content and format.</td>
+  </tr><tr>
+    <td><code>${MESSAGE}</code></td>
+    <td>The log message itself, ideally in JSON</td>
+  </tr>
+</table>
+
+<h3><a id="severity"></a> RFC-5424 Severity Codes</h3>
+
+<p>PCF components generate log messages with the following severity levels. The most common severity level is <code>13</code>.</p>
+
+<table id='severity-table' border="1" class="nice" >
+  <tr>
+    <th>Severity Code</th>
+    <th>Meaning</th>
+  </tr><tr>
+    <td><code>8</code></td>
+    <td>Emergency: system is unusable</td>
+  </tr><tr>
+    <td><code>9</code></td>
+    <td>Alert: action must be taken immediately</td>
+  </tr><tr>
+    <td><code>10</code></td>
+    <td>Critical: critical conditions</td>
+  </tr><tr>
+    <td><code>11</code></td>
+    <td>Error: error conditions</td>
+  </tr><tr>
+    <td><code>12</code></td>
+    <td>Warning: warning conditions</td>
+  </tr><tr>
+    <td><code>13</code></td>
+    <td>Notice: normal but significant condition</td>
+  </tr><tr>
+    <td><code>14</code></td>
+    <td>Informational: informational messages</td>
+  </tr><tr>
+    <td><code>15</code></td>
+    <td>Debug: debug-level messages</td>
+ </tr>
+</table>
+
+<h3><a id="sd-element"></a> Structured Instance Data Format</h3>
+
+<p>The RFC-5424 syslog protocol includes a <a href="https://tools.ietf.org/html/rfc5424#section-6.3.1">structured data element</a> that people can use as they see fit. Pivotal uses this element to carry VM instance information as follows:</p>
+
+<table id='sd-element-table' border="1" class="nice" >
+  <tr>
+    <th><code>SD-ELEMENT-instance</code> element</th>
+    <th>Meaning</th>
+  </tr><tr>
+    <td><code>${ENTERPRISE_ID}</code></td>
+    <td>Your Enterprise Number, as <a href="https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers">listed</a> by the Internet Assigned Numbers Authority (IANA) </td>
+  </tr><tr>
+    <td><code>${DIRECTOR}</code></td>
+    <td>The BOSH director managing the deployment. </td>
+  </tr><tr>
+    <td><code>${DEPLOYMENT}</code></td>
+    <td>BOSH <code>spec.deployment</code> value</td>
+  </tr><tr>
+    <td><code>${INSTANCE_GROUP}</code></td>
+    <td>BOSH <code>instance_group</code>, currently <code>spec.job.name</code></td>
+  </tr><tr>
+    <td><code>${AVAILABILITY_ZONE}</code></td>
+    <td>BOSH <code>spec.az</code> value</td>
+  </tr><tr>
+    <td><code>${ID}</code></td>
+    <td>BOSH <code>spec.id</code> value. This is a GUID, not an index. Necessary because BOSH Availability Zone index values are not always unique or sequential.</td>
+ </tr>
+</table>
+
+<h2><a id="metrics"></a> Making Sense of Metrics</h2>
+
+<p><a href="https://docs.pivotal.io/pivotalcf/monitoring/index.html">Monitoring Pivotal Cloud Foundry</a> has a great rundown of the
+various metrics and how to make them useful.</p>
+
+<h2><a id="resources"></a> Other Resources</h2>
+
+<ul>
+<li><p>CF Summit Video <a href="https://youtu.be/skJKvQfpKD4">Monitoring Cloud Foundry: Learning about the Firehose</a></p></li>
+<li><p><a href="https://github.com/cloudfoundry/loggregator/">Loggregator GitHub repository</a></p></li>
+<li><p><a href="https://docs.cloudfoundry.org/loggregator/architecture.html">Overview of the Loggregator System</a></p></li>
+<li><p><a href="https://cloudfoundry.slack.com/messages/loggregator/">Loggregator&rsquo;s Slack Channel</a></p></li>
+</ul>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/nozzle.html.md.erb'>View the source for this page in GitHub</a></div>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+  <a href='https://pivotal.io/privacy-policy'>Privacy Policy</a> | 
+  <a href='https://pivotal.io/terms-of-use'>Terms of Use</a><br/>
+  <a href='/'>Pivotal Documentation</a>
+  &copy; 2017 <a href='https://pivotal.io'>Pivotal Software</a>, Inc. All Rights Reserved.
+</div>
+<div class="support">
+  Need help? <a href="" target="_blank">Visit Support</a>
+</div>
+
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

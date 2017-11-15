@@ -1,0 +1,444 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      Fetching Variable Names and Values |
+    
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='/images/favicon.ico' rel='shortcut icon'>
+
+  <script src="/javascripts/all.js"></script>
+  
+<script type="text/javascript">
+  if (window.location.host === 'docs.pivotal.io') {
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '']);
+    _gaq.push(['_setDomainName', '']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  }
+</script>
+
+<script type="text/javascript">
+  var blackList = ['acceptance'];
+
+  blackList.forEach(function(blackListedEnv) {
+    if (document.URL.indexOf(blackListedEnv) > -1 && blackListedEnv != "") {
+      $('head').append('<meta name="hashtag" content="PivotalMoment">');
+    }
+  });
+</script>
+
+<!-- CrazyEgg Tracking Script -->
+  <script type="text/javascript">
+  setTimeout(function(){var a=document.createElement("script");
+  var b=document.getElementsByTagName("script")[0];
+  a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0055/2990.js?"+Math.floor(new Date().getTime()/3600000);
+  a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+  </script>
+
+<!-- Munchkin Marketo Script -->
+<script type="text/javascript">
+  (function() {
+    var didInit = false;
+
+    function initMunchkin() {
+      if (didInit === false) {
+        didInit = true;
+        Munchkin.init('625-IUJ-009');
+      }
+    }
+
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+    s.onreadystatechange = function() {
+      if (this.readyState == 'complete' || this.readyState == 'loaded') {
+        initMunchkin();
+      }
+    };
+    s.onload = initMunchkin;
+    document.getElementsByTagName('head')[0].appendChild(s);
+  })();
+</script>
+
+</head>
+
+<body class="tiledev tiledev_get-credhub-vars has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+      document.domain = "";
+    </script>
+
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
+        <div class="btn-menu" data-behavior="MenuMobile"></div>
+        
+        <div class="header-item">
+          
+        </div>
+        <!--Default search-->
+<!--If book needs something different, add a book-search partial to the book's layouts folder-->
+<div class="header-item searchbar js-searchbar">
+  <a class="search-icon" data-behavior="Search"></a>
+  <div class="search-input">
+    <div class="search-input-inner" id="docs-search">
+        <form method="get" action="/search">
+          <input name="q" placeholder="search" class="search-box" />
+        </form>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </header>
+
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    <ul>
+
+      <li>
+        <a href="index.html">PCF Tile Developers Guide</a>
+      </li>
+
+      <li class="has_submenu">
+        <a href="tile-basics.html">Tile Basics</a>
+        <ul>
+          <li>
+            <a href="cf-concepts.html">How PCF and PCF Services Work</a>
+          </li>
+          <li>
+            <a href="/tiledev/tile-structure.html">How Tiles Work</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/workflow.html">Tile Development Workflow</a>
+        <ul>
+          <li>
+            <a href="/tiledev/overview.html">Service Integration Overview</a>
+          </li>
+          <li>
+            <a href="/tiledev/stages.html">Levels of Integration</a>
+          </li>
+          <li>
+            <a href="/tiledev/development.html">Development Steps at Each Level</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/environments.html">Development Environments</a>
+        <ul>
+          <li>
+            <a href="/tiledev/environments.html#pcfdev">PCF Dev and BOSH Lite</a>
+          </li>
+          <li>
+            <a href="/tiledev/environments.html#pws">PWS or Other Supported CF Infrastructure</a>
+          </li>
+          <li>
+            <a href="/tiledev/environments.html#pcf">PCF with Ops Manager</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/tools.html">Development Tools</a>
+        <ul>
+          <li>
+            <a href="/tiledev/tile-generator.html">Tile Generator</a>
+          </li>
+          <li>
+            <a href="/tiledev/pcf-command.html">pcf Command Line Utility</a>
+          </li>
+          <li>
+            <a href="/tiledev/concourse.html">Concourse CI</a>
+          </li>
+          <li>
+            <a href="/tiledev/sdk.html">Services SDK</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu expanded">
+        <a href="/tiledev/roadmap.html">Service Development Roadmap</a>
+        <ul>
+          <li>
+            <a href="/tiledev/roadmap.html#user-provided">Level 1: User-Provided Service</a>
+          </li>
+          <li class="has_submenu">
+            <a href="/tiledev/brokered.html">Level 2: Brokered Service</a>
+            <ul>
+              <li>
+                <a href="/tiledev/service-brokers.html">Service Broker</a>
+              </li>
+            </ul>
+           </li> 
+          <li class="has_submenu">
+            <a href="/tiledev/managed.html">Level 3: Managed Service</a>
+            <ul>
+              <li>
+                <a href="/tiledev/bosh-release.html">BOSH Releases</a>
+              </li>
+              <li>
+                <a href="/tiledev/tile-errands.html">Errands</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/tiledev/on-demand.html">Level 4: On-Demand Service</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/other-integrations.html">Other Integrations</a>
+        <ul>
+          <li>
+            <a href="/tiledev/bbr-devguide.html">BOSH Backup and Restore</a>
+          </li>
+          <li>
+            <a href="/tiledev/buildpacks.html">Buildpacks</a>
+          </li>
+          <li class="has_submenu">
+            <a href="/tiledev/credhub.html">CredHub</a>
+            <ul>
+              <li>
+                <a href="/tiledev/create-credhub-vars.html">Creating New Variables in CredHub</a>
+              </li>
+              <li>
+                <a href="/tiledev/migrating-credhub-credentials.html">Migrating Existing Credentials to CredHub</a>
+              </li>
+              <li>
+                <a href="/tiledev/get-credhub-vars.html">Fetching Variable Names and Values</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/tiledev/embedded-agents.html">Embedded Agents</a>
+          </li>
+          <li>
+            <a href="/tiledev/nozzle.html">Logs, Metrics, and Nozzles</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/tiledev/tile-documentation.html">Documentation</a>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/publish.html">Publish and Update</a>
+        <ul>
+          <li>
+            <a href="/tiledev/tile-upgrades.html">Tile Upgrades</a>
+          </li>
+          <li>
+            <a href="/tiledev/releases.html">Partner Software Product Release Cycle</a>
+          </li>
+        </ul>
+      </li>
+
+
+      <li class="has_submenu">
+        <a href="/tiledev/reference.html">Reference</a>
+        <ul>
+          <li>
+            <a href="/tiledev/product-template-reference.html">Product Template Reference</a>
+          </li>
+          <li>
+            <a href="/tiledev/property-reference.html">Property Reference</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/release-notes.html">Partners Release Notices</a>
+        <ul>
+          <li>
+            <a href="/tiledev/release-notes-1-12.html">PCF v1.12 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-11.html">PCF v1.11 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-10.html">PCF v1.10 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-9.html">PCF v1.9 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-8.html">PCF v1.8 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-7.html">PCF v1.7 Partners Release Notice</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/tiledev/contacts.html">Contact Us</a>
+      </li>
+
+    </ul>
+  </div>
+</div><!--end of sub-nav-->
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    Fetching Variable Names and Values
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <h2>Overview</h2>
+
+<p>CredHub has two API endpoints to identify and re-use variables. Operators who want to see all the credentials associated with their product, or support engineers who want to troubleshoot issues specific to one virtual machine (VM), can use these APIs for those purposes.</p>
+
+<p>The API endpoints perform these functions:</p>
+
+<ul>
+<li>Identifying and printing the name of a variable</li>
+<li>Using the name of the variable to identify and print the value of the variable</li>
+</ul>
+
+<h3>Using the API Endpoints</h3>
+
+<p>Use these endpoints to view variables for any product in Ops Manager, except the Ops Manager Director. These endpoints are read-only. You cannot use them to add, remove, or rotate variables.</p>
+
+<h2>Fetching Variables</h2>
+
+<p>This endpoint returns the list of variables associated with a product that are stored in CredHub. Not all variables are stored in CredHub. If you call a variable that is not stored in CredHub, the call returns an empty value.</p>
+
+<pre class="terminal">
+$ curl "http<span>s</span>://example.com/api/v0/deployed/products/product-guid/variables" \ 
+    -X GET \ 
+    -H "Authorization: Bearer EXAMPLE_UAA_ACCESS_TOKEN"
+</pre>
+
+<h3>Example Response</h3>
+
+<pre class="terminal">
+HTTP/1.1 200 OK
+
+{
+  "variables": ["FIRST-EXAMPLE-VARIABLE", "SECOND-EXAMPLE-VARIABLE", "THIRD-EXAMPLE-VARIABLE"]
+}
+</pre>
+
+<h3>Query Parameters</h3>
+
+<table class="nice">
+    <th>Parameter</th>
+    <th>Description</th>
+    <tr>
+        <td>product_guid</td>
+        <td>The unique product identifier, formatted as a text string</td>
+    </tr>
+</table>
+
+<p>This endpoint returns a variable&rsquo;s name. Use the name in the next endpoint to return the variable&rsquo;s value.</p>
+
+<h2>Fetching Variable Values</h2>
+
+<p>This endpoint returns the value of a variable stored in CredHub. Not all variables are stored in CredHub, so if you call a variable that isn&rsquo;t in CredHub, the call will return an empty value.</p>
+
+<pre class="terminal">
+$ curl "http<span>s</span>://example.com/api/v0/deployed/products/product-guid/variables?name=EXAMPLE-VARIABLE-NAME" \ 
+    -X GET \ 
+    -H "Authorization: Bearer UAA_ACCESS_TOKEN"
+</pre>
+
+<h3>Example Response</h3>
+
+<pre class="terminal">
+HTTP/1.1 200 OK
+
+{
+  "credhub-password": "EXAMPLE-PASSWORD"
+}
+</pre>
+
+<h3>Query Parameters</h3>
+
+<table>
+    <th>Parameter</th>
+    <th>Description</th>
+    <tr>
+        <td>variable_name</td>
+        <td>The name of the variable, formatted as a text string</td>
+    </tr>
+    <tr>
+        <td>product_guid</td>
+        <td>The unique product identifier, formatted as a text string</td>
+    </tr>
+</table>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/get-credhub-vars.html.md.erb'>View the source for this page in GitHub</a></div>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+  <a href='https://pivotal.io/privacy-policy'>Privacy Policy</a> | 
+  <a href='https://pivotal.io/terms-of-use'>Terms of Use</a><br/>
+  <a href='/'>Pivotal Documentation</a>
+  &copy; 2017 <a href='https://pivotal.io'>Pivotal Software</a>, Inc. All Rights Reserved.
+</div>
+<div class="support">
+  Need help? <a href="" target="_blank">Visit Support</a>
+</div>
+
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

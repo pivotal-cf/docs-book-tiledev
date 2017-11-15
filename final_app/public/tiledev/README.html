@@ -1,0 +1,514 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='/images/favicon.ico' rel='shortcut icon'>
+
+  <script src="/javascripts/all.js"></script>
+  
+<script type="text/javascript">
+  if (window.location.host === 'docs.pivotal.io') {
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '']);
+    _gaq.push(['_setDomainName', '']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  }
+</script>
+
+<script type="text/javascript">
+  var blackList = ['acceptance'];
+
+  blackList.forEach(function(blackListedEnv) {
+    if (document.URL.indexOf(blackListedEnv) > -1 && blackListedEnv != "") {
+      $('head').append('<meta name="hashtag" content="PivotalMoment">');
+    }
+  });
+</script>
+
+<!-- CrazyEgg Tracking Script -->
+  <script type="text/javascript">
+  setTimeout(function(){var a=document.createElement("script");
+  var b=document.getElementsByTagName("script")[0];
+  a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0055/2990.js?"+Math.floor(new Date().getTime()/3600000);
+  a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+  </script>
+
+<!-- Munchkin Marketo Script -->
+<script type="text/javascript">
+  (function() {
+    var didInit = false;
+
+    function initMunchkin() {
+      if (didInit === false) {
+        didInit = true;
+        Munchkin.init('625-IUJ-009');
+      }
+    }
+
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+    s.onreadystatechange = function() {
+      if (this.readyState == 'complete' || this.readyState == 'loaded') {
+        initMunchkin();
+      }
+    };
+    s.onload = initMunchkin;
+    document.getElementsByTagName('head')[0].appendChild(s);
+  })();
+</script>
+
+</head>
+
+<body class="tiledev tiledev_README has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+      document.domain = "";
+    </script>
+
+          <header class="header-home">
+      <div class="home-links js-bar-links">
+        <div class="btn-menu" data-behavior="MenuMobile"></div>
+        
+        <div class="header-item">
+          
+        </div>
+        <!--Default search-->
+<!--If book needs something different, add a book-search partial to the book's layouts folder-->
+<div class="header-item searchbar js-searchbar">
+  <a class="search-icon" data-behavior="Search"></a>
+  <div class="search-input">
+    <div class="search-input-inner" id="docs-search">
+        <form method="get" action="/search">
+          <input name="q" placeholder="search" class="search-box" />
+        </form>
+    </div>
+  </div>
+</div>
+
+      </div>
+      <h1 class="title-flashy">
+        <img src="../images/icon-p-green.jpg"> Pivotal Cloud Foundry Documentation
+
+      </h1>
+
+      <h2 class="title-intro">
+        
+      </h2>
+    </header>
+
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    <ul>
+
+      <li>
+        <a href="index.html">PCF Tile Developers Guide</a>
+      </li>
+
+      <li class="has_submenu">
+        <a href="tile-basics.html">Tile Basics</a>
+        <ul>
+          <li>
+            <a href="cf-concepts.html">How PCF and PCF Services Work</a>
+          </li>
+          <li>
+            <a href="/tiledev/tile-structure.html">How Tiles Work</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/workflow.html">Tile Development Workflow</a>
+        <ul>
+          <li>
+            <a href="/tiledev/overview.html">Service Integration Overview</a>
+          </li>
+          <li>
+            <a href="/tiledev/stages.html">Levels of Integration</a>
+          </li>
+          <li>
+            <a href="/tiledev/development.html">Development Steps at Each Level</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/environments.html">Development Environments</a>
+        <ul>
+          <li>
+            <a href="/tiledev/environments.html#pcfdev">PCF Dev and BOSH Lite</a>
+          </li>
+          <li>
+            <a href="/tiledev/environments.html#pws">PWS or Other Supported CF Infrastructure</a>
+          </li>
+          <li>
+            <a href="/tiledev/environments.html#pcf">PCF with Ops Manager</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/tools.html">Development Tools</a>
+        <ul>
+          <li>
+            <a href="/tiledev/tile-generator.html">Tile Generator</a>
+          </li>
+          <li>
+            <a href="/tiledev/pcf-command.html">pcf Command Line Utility</a>
+          </li>
+          <li>
+            <a href="/tiledev/concourse.html">Concourse CI</a>
+          </li>
+          <li>
+            <a href="/tiledev/sdk.html">Services SDK</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu expanded">
+        <a href="/tiledev/roadmap.html">Service Development Roadmap</a>
+        <ul>
+          <li>
+            <a href="/tiledev/roadmap.html#user-provided">Level 1: User-Provided Service</a>
+          </li>
+          <li class="has_submenu">
+            <a href="/tiledev/brokered.html">Level 2: Brokered Service</a>
+            <ul>
+              <li>
+                <a href="/tiledev/service-brokers.html">Service Broker</a>
+              </li>
+            </ul>
+           </li> 
+          <li class="has_submenu">
+            <a href="/tiledev/managed.html">Level 3: Managed Service</a>
+            <ul>
+              <li>
+                <a href="/tiledev/bosh-release.html">BOSH Releases</a>
+              </li>
+              <li>
+                <a href="/tiledev/tile-errands.html">Errands</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/tiledev/on-demand.html">Level 4: On-Demand Service</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/other-integrations.html">Other Integrations</a>
+        <ul>
+          <li>
+            <a href="/tiledev/bbr-devguide.html">BOSH Backup and Restore</a>
+          </li>
+          <li>
+            <a href="/tiledev/buildpacks.html">Buildpacks</a>
+          </li>
+          <li class="has_submenu">
+            <a href="/tiledev/credhub.html">CredHub</a>
+            <ul>
+              <li>
+                <a href="/tiledev/create-credhub-vars.html">Creating New Variables in CredHub</a>
+              </li>
+              <li>
+                <a href="/tiledev/migrating-credhub-credentials.html">Migrating Existing Credentials to CredHub</a>
+              </li>
+              <li>
+                <a href="/tiledev/get-credhub-vars.html">Fetching Variable Names and Values</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/tiledev/embedded-agents.html">Embedded Agents</a>
+          </li>
+          <li>
+            <a href="/tiledev/nozzle.html">Logs, Metrics, and Nozzles</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/tiledev/tile-documentation.html">Documentation</a>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/publish.html">Publish and Update</a>
+        <ul>
+          <li>
+            <a href="/tiledev/tile-upgrades.html">Tile Upgrades</a>
+          </li>
+          <li>
+            <a href="/tiledev/releases.html">Partner Software Product Release Cycle</a>
+          </li>
+        </ul>
+      </li>
+
+
+      <li class="has_submenu">
+        <a href="/tiledev/reference.html">Reference</a>
+        <ul>
+          <li>
+            <a href="/tiledev/product-template-reference.html">Product Template Reference</a>
+          </li>
+          <li>
+            <a href="/tiledev/property-reference.html">Property Reference</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="/tiledev/release-notes.html">Partners Release Notices</a>
+        <ul>
+          <li>
+            <a href="/tiledev/release-notes-1-12.html">PCF v1.12 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-11.html">PCF v1.11 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-10.html">PCF v1.10 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-9.html">PCF v1.9 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-8.html">PCF v1.8 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="/tiledev/release-notes-1-7.html">PCF v1.7 Partners Release Notice</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/tiledev/contacts.html">Contact Us</a>
+      </li>
+
+    </ul>
+  </div>
+</div><!--end of sub-nav-->
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+        
+          <div id="js-quick-links" >
+            <div class="quick-links"><ul><li>
+<a href="#overview">Overview</a><ul>
+<li><a href="#template">How To Use This Template</a></li>
+<li><a href="#bookbinder">How To Use Bookbinder To View Your Docs</a></li>
+<li><a href="#zero-to-bookbinder">Zero to Bookbinder: How to Install Bookbinder and Build, View, and Edit Your Docs from Nothing</a></li>
+</ul>
+</li></ul></div>
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <h2>This repo is for the Tile Developer Guide content only. See the <a href="https://github.com/pivotal-cf/docs-book-tiledev">Tile Developer Guide Book Repo</a> for the book that publishes this content.</h2>
+
+<h2>PCF Services Documentation Template</h2>
+
+<p>This template helps Pivotal development teams prepare documentation for Pivotal Cloud Foundry (PCF) services that appear on <a href="https://network.pivotal.io/">Pivotal Network</a>. </p>
+
+<h2><a id='overview'></a>Overview</h2>
+
+<p>Every PCF service has (or should have) documentation on the main Pivotal documentation site, <a href="http://docs.pivotal.io">docs.pivotal.io</a> under <strong>Pivotal Cloud Foundry Services</strong>.</p>
+
+<h3><a id='template'></a>How To Use This Template</h3>
+
+<p>You can use this template to develop documentation for a new PCF service. It includes sections for a Product Snapshot, prerequisites, instructions for installation and use, release notes, license information, and other generally useful and expected documentation.</p>
+
+<p>To begin using this repo to develop your documentation, perform the following steps:</p>
+
+<ol>
+<li>Clone this repo onto your local machine.</li>
+<li>Work your way through each topic, replacing the placeholders in ALL-CAPS and following the instructions in <strong>bold</strong>. </li>
+<li>Complete the subnav by replacing the placeholders in ALL-CAPS in the subnav file at <code>book/master_middleman/source/subnavs/service_subnav.erb</code> in this repo.</li>
+<li>View your documentation as a live local site in a browser, by following the steps below in the <a href="#bookbinder">How To Use Bookbinder To View Your Docs</a> section.</li>
+<li>When you&rsquo;ve finished your documentation, push your docs up to the remote and email the PCF Docs Team at <a href="mailto:cf-docs@pivotal.io">cf-docs@pivotal.io</a>.</li>
+</ol>
+
+<h3><a id='bookbinder'></a>How To Use Bookbinder To View Your Docs</h3>
+
+<p><a href="https://github.com/pivotal-cf/bookbinder/blob/master/README.md">Bookbinder</a> is a command-line utility for stitching Markdown docs into a hostable web app. The PCF Docs Team uses Bookbinder to publish our docs site, but you can also use Bookbinder to view a live version of your documentation on your local machine.</p>
+
+<p>Bookbinder draws the content for the site from <code>docs-content</code>, the subnav from <code>docs-book</code>, and various layout configuration and assets from <code>docs-layout</code>.</p>
+
+<p>To use Bookbinder to view your documentation, perform the following steps:</p>
+
+<ol>
+<li>On your local machine, <code>cd</code> into <code>docs-book</code> in the cloned repo.</li>
+<li>Run <code>bundle install</code> to make sure you have all the necessary gems installed.</li>
+<li>Build your documentation site with <code>bookbinder</code> in one of the two following ways:
+
+<ul>
+<li>Run <code>bookbinder watch</code> to build an interactive version of the docs and navigate to <code>localhost:4567/myservice/</code> in a browser. (It may take a moment for the site to load at first.) This builds a site from your content repo at <code>docs-content</code>, and then watches that repo to update the site if you make any changes to the repo.</li>
+<li>Run <code>bookbinder bind local</code> to build a Rack web-app of the book. After the bind has completed, <code>cd</code> into the <code>final_app</code> directory and run <code>rackup</code>. Then navigate to <code>localhost:9292/myservice/</code> in a browser.</li>
+</ul></li>
+</ol>
+
+<h3><a id='zero-to-bookbinder'></a>Zero to Bookbinder: How to Install Bookbinder and Build, View, and Edit Your Docs from Nothing</h3>
+
+<p>If you are reading this, Pivotal has invited you to a git repo where you can build and edit documentation in the Ruby / Markdown / HTML format that the online publishing tool <a href="https://github.com/pivotal-cf/bookbinder/blob/master/README.md">Bookbinder</a> uses to build Pivotal&rsquo;s documentation.</p>
+
+<p>Here&rsquo;s how to install Bookbinder and build your docs from the repo, starting from scratch, on a Mac OS X machine.</p>
+
+<p class="note"><strong>Note</strong>: All steps below are implicitly preceded with, &ldquo;If you haven&rsquo;t already&hellip;&rdquo; You should skip any installation steps that have already contributed to your environment.</p>
+
+<h4>Install Ruby</h4>
+
+<p>In Terminal window:</p>
+
+<ol>
+<li><p>Make and <code>cd</code> into a workspace directory.</p>
+
+<p><code>$ mkdir workspace</code></p>
+
+<p><code>$ cd workspace</code></p></li>
+<li><p>Follow the instructions at <code>http://brew.sh</code> to install brew / homebrew</p>
+
+<p><code>$ /usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</code></p></li>
+<li><p>Install your own (non-system) ruby.</p>
+
+<p><code>$ brew install ruby</code></p></li>
+</ol>
+
+<h4>Set up Git</h4>
+
+<ol>
+<li><p>Download and Install git by following the instructions at <a href="https://git-scm.com/download/">git-scm.com</a>.</p></li>
+<li><p>Install your own (non-system) bash-completion (optional).</p>
+
+<p><code>$ brew install git bash-completion</code></p></li>
+<li><p>If you don&rsquo;t already have one, generate a public/private RSA key pair, and save the key to your <code>~/.ssh</code> directory.
+<code>
+$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/YOUR-USERID/.ssh/id_rsa): 
+</code></p></li>
+<li><p>Get a <a href="http://github.com">Github</a> account.</p></li>
+<li><p>Add your RSA public key to your Github account / profile page.</p>
+
+<p><code>$ cat ~/.ssh/id_rsa.pub # copy and paste this into Github profile page as new key</code></p></li>
+</ol>
+
+<h4>Get the Correct Ruby Version</h4>
+
+<ol>
+<li><p>Install a Ruby manager such as chruby.</p>
+
+<p><code>$ brew install chruby</code></p></li>
+<li><p>Add your Ruby manager to your <code>~/.bashrc</code> by appending the following line:</p>
+
+<p><code>source /usr/local/opt/chruby/share/chruby/chruby.sh</code></p></li>
+<li><p>Install the <code>ruby-install</code> installer.</p>
+
+<p><code>$ brew install ruby-install</code></p></li>
+<li><p>Run <code>ruby-install</code> to install Ruby.</p>
+
+<p><code>$ ruby-install ruby 2.3</code></p></li>
+</ol>
+
+<h4>Install Bookbinder</h4>
+
+<ol>
+<li><p>Install <code>bundler</code>.</p>
+
+<p><code>$ gem install bundler</code></p></li>
+<li><p>Install bookbinder (the <code>bookbindery</code> gem).</p>
+
+<p><code>$ gem install bookbindery</code></p></li>
+</ol>
+
+<h4>Build the Docs Locally</h4>
+
+<ol>
+<li><p>Clone the docs template repo you will be building from.</p>
+
+<p><code>$ git clone git@github.com:pivotal-cf-experimental/docs-pcfservices-template</code></p></li>
+<li><p><code>cd</code> into the <code>book</code> subdirectory of the repo.</p></li>
+</ol>
+
+<p><code>$ cd docs-partners-template/docs-book</code></p>
+
+<ol>
+<li><p>Run <code>bundle install</code> to install all book dependencies.</p>
+
+<p><code>$ bundle install</code></p></li>
+<li><p>Run <code>bookbinder watch</code> to build the book on your machine. If it doesn&rsquo;t succeed, try prepending the command with <code>bundle exec</code> so that bookbinder uses local gems instead of global gems.</p></li>
+</ol>
+
+<p><code>$ bundle exec bookbinder watch</code></p>
+
+<ol>
+<li>Browse to <code>localhost:4567</code> to view the book locally and &ldquo;watch&rdquo; any changes that you make to source <code>html.md.erb</code> files. As you make and save changes to the local source files for your site, you will see them in your browser after a slight delay.</li>
+</ol>
+
+<p><img alt="PCF Service Template landing page" src="images/book/master_middleman/source/images/pcfservices-template-landing.png" /></p>
+
+<p><img alt="PCF Service Template service index page" src="images/book/master_middleman/source/images/pcfservices-template-service-index.png" /></p>
+
+<p>After each session of writing or revising your docs source files, commit and push them to your github repo.</p>
+
+<p>Happy documenting!</p>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/README.html.md.erb'>View the source for this page in GitHub</a></div>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+  <a href='https://pivotal.io/privacy-policy'>Privacy Policy</a> | 
+  <a href='https://pivotal.io/terms-of-use'>Terms of Use</a><br/>
+  <a href='/'>Pivotal Documentation</a>
+  &copy; 2017 <a href='https://pivotal.io'>Pivotal Software</a>, Inc. All Rights Reserved.
+</div>
+<div class="support">
+  Need help? <a href="" target="_blank">Visit Support</a>
+</div>
+
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>
