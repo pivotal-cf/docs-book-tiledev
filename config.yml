@@ -19,12 +19,12 @@ pcf_header: &local_pcf
   local_header_title: Pivotal Cloud Foundry
   search_placeholder: Search Tile Developers Guide
   local_product_version: '1.12'
-  url_prefix: tiledev
+  url_prefix: tiledev/1-12
 
 sections:
   - repository:
       name: pivotal-cf/docs-tiledev
-    directory: tiledev
+    directory: tiledev/1-12
     subnav_template: tiledev_subnav.erb 
 
 template_variables:                             # optional
