@@ -14,12 +14,19 @@ elastic_search: true
 pcf_header: &local_pcf
   use_local_header: true
   latest_stable_version: '1.12'
-  changelog_href: http://docs.pivotal.io/pivotalcf/pcf-release-notes/
+  changelog_href: http://docs.pivotal.io/tiledev/1-12/release-notes-1-12.html
   local_header_img: /images/cloud_rings.png
   local_header_title: Pivotal Cloud Foundry
   search_placeholder: Search Tile Developers Guide 1.12
   local_product_version: '1.12'
   url_prefix: tiledev/1-12
+  local_header_links:
+    - <a href="https://network.pivotal.io/">Download</a>
+    - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
+    - <a href="https://discuss.pivotal.io/hc/en-us/categories/200072648-Pivotal-CF-Knowledge-Base">PCF Knowledge Base</a>
+  local_header_version_list:
+    - url_prefix: https://docs.pivotal.io/tiledev/1-12
+      display_name: v1.12
 
 sections:
   - repository:
