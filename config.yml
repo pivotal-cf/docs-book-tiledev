@@ -1,8 +1,9 @@
 ---
 book_repo: pivotal-cf/docs-book-tiledev
 layout_repo: pivotal-cf/docs-layout-repo
-layout_repo_ref: 'master'
+layout_repo_ref: 'edge'
 book_title: PCF Tile Developers Guide
+book_title_short: PCF Tile Developers Guide
 
 broken_link_exclusions: iefix|arrowhead
 repo_link_enabled: true
