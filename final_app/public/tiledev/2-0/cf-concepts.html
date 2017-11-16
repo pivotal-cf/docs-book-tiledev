@@ -8,6 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
+      How PCF and PCF Services Work |
     
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,7 @@
 
 </head>
 
-<body class="subnavs subnavs_tiledev_subnav">
+<body class="tiledev tiledev_2-0 tiledev_2-0_cf-concepts has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -89,8 +90,13 @@
       document.domain = "";
     </script>
 
-          <header class="header-home">
-      <div class="home-links js-bar-links">
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
         <div class="btn-menu" data-behavior="MenuMobile"></div>
         
         <div class="header-item">
@@ -110,14 +116,6 @@
 </div>
 
       </div>
-      <h1 class="title-flashy">
-        <img src="../images/icon-p-green.jpg"> Pivotal Cloud Foundry Documentation
-
-      </h1>
-
-      <h2 class="title-intro">
-        
-      </h2>
     </header>
 
 
@@ -125,20 +123,7 @@
     <div class="container">
 
       <!--googleoff: index-->
-      
-      <!--googleon: index-->
-
-      <main class="content content-layout" id="js-content" role="main">
-        <a id="top"></a>
-        
-        
-          <div id="js-quick-links" >
-            
-          </div>
-        <div class="to-top" id="js-to-top">
-          <a href="#top" title="back to top"></a>
-        </div>
-        <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
   <a class="sidenav-title" data-behavior="SubMenuMobile">
     Doc Index
   </a>
@@ -333,7 +318,99 @@
   </div>
 </div><!--end of sub-nav-->
 
-        <div></div>
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    How PCF and PCF Services Work
+  </h1>
+
+          <div id="js-quick-links" >
+            <div class="quick-links"><ul>
+<li><a href="#overview">General Overview</a></li>
+<li><a href="#applications">Applications</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#buildpacks">Buildpacks</a></li>
+<li><a href="#agents">Embedded Agents</a></li>
+<li><a href="#nozzles">Nozzles</a></li>
+</ul></div>
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p>There are many ways to integrate services with Pivotal Cloud Foundry (PCF). The right one for each service depends on what the service does, and how
+customer applications consume it. To determine the best way to integrate your
+service, you&rsquo;ll need a good understanding of PCF concepts like applications, containers, services, brokers, and buildpacks.</p>
+
+<p>This page provides a collection of links to documentation for the most relevant
+concepts. If you prefer to learn through guided training,
+<a href="mailto:mjoseph@pivotal.io">ask us</a> about available training options.</p>
+
+<h2><a id="overview"></a>General Overview</h2>
+
+<p>For general overview of PCF, and the various ways to interact with it,
+use the following links:</p>
+
+<ul>
+<li><a href="http://docs.pivotal.io/pivotalcf/concepts/overview.html">Cloud Foundry Subsystems</a> provides high-level descriptions of internal functions performed by different PCF components.</li>
+<li><a href="http://docs.pivotal.io/pivotalcf/cf-cli/index.html">Cloud Foundry Command Line Interface (cf CLI)</a> links to topics that explain how to direct PCF deployment from your local command line.</li>
+<li><a href="http://docs.pivotal.io/pivotalcf/customizing/pcf-interface.html">Pivotal Ops Manager</a> describes the Ops Manager and Installation Dashboard interfaces, where cloud operators see, install, configure, and deploy service tiles.</li>
+<li><a href="http://docs.pivotal.io/pivotalcf/console/index.html">Pivotal Apps Manager</a> describes the Apps Manager interface, where app developers create and configure service instances and bind them to their apps.</li>
+</ul>
+
+<h2><a id="applications"></a> Applications</h2>
+
+<p>Cloud Foundry is primarily a cloud native application platform. To understand how to integrate your services with Cloud Foundry, you should understand how your customers are using the platform to develop, deploy, and operate their applications.</p>
+
+<ul>
+<li><a href="http://docs.pivotal.io/pivotalcf/devguide/index.html">Developer Guide</a> explains how to push an app to run on PCF and enable it to use services.</li>
+<li><a href="http://docs.pivotal.io/pivotalcf/loggregator/index.html">Logging and Monitoring</a> describes how PCF aggregates and streams logs and metrics from the apps it hosts and from internal system components.</li>
+</ul>
+
+<h2><a id="services"></a> Services</h2>
+
+<p>Most value-add integrations are done by exposing your software to customer applications as services. To understand the service concepts, and what a service integration looks like, read the following documentation:</p>
+
+<ul>
+<li><a href="http://docs.pivotal.io/pivotalcf/devguide/services/index.html">Services Overview</a> explains how developers provision and use existing services in their apps.</li>
+<li><a href="http://docs.pivotal.io/on-demand-service-broker/about.html#cf-broker">Cloud Foundry Service Brokers and PCF Tiles</a> briefly describes the two main elements of PCF service integration: the service broker API, which connects the service to PCF internally by taking commands from the Cloud Controller; and the tile, a packaged interface that cloud operators use to install and configure a service within PCF.</li>
+<li><a href="http://docs.pivotal.io/pivotalcf/services/index.html">Custom Services</a> explains how service authors package their service as a <a href="/tiledev/2-0/managed.html">Managed Service</a> that is available for use by PCF operators and developers, and which runs locally on PCF rather than running remotely.</li>
+</ul>
+
+<h2><a id="buildpacks"></a> Buildpacks</h2>
+
+<p>When application code is deployed to Cloud Foundry, it is processed by a language-specific buildpack. Language buildpacks provide a convenient integration hook for any service that needs to inspect or embellish application code. The meta-buildpack also provides a language-agnostic way to inject your code into the application container image.</p>
+
+<ul>
+<li><a href="http://docs.pivotal.io/pivotalcf/concepts/how-applications-are-staged.html">Application Staging Process</a> explains how PCF packages and deploys apps in containers with buildpacks so that they can run on multiple VMs interchangeably.</li>
+<li><a href="http://docs.pivotal.io/pivotalcf/buildpacks/index.html">Language Buildpacks</a> describes the language-specific buildpacks support PCF apps.</li>
+<li><a href="https://github.com/guidowb/meta-buildpack">Meta Buildpack</a> describes how to use &ldquo;decorator&rdquo; buildpacks to lessen the buildpack overhead needed for apps written in multiple languages.</li>
+</ul>
+
+<h2><a id="agents"></a> Embedded Agents</h2>
+
+<p>Some integrations depend on the ability to inject code into the application container.
+We refer to these injected components as &ldquo;container-embedded agents&rdquo;.
+<a href="#buildpacks">Buildpacks</a> provide a mechanism to inject components into the application container image, and the <code>.profile.d</code> directory provides a way to start agents before or alongside the customer application.</p>
+
+<ul>
+<li><a href="https://github.com/guidowb/meta-buildpack">Agent Injection with the meta-buildpack</a></li>
+<li><a href="http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/deploy-app.html#profile">Using .profile.d</a></li>
+</ul>
+
+<h2><a id="nozzles"></a> Nozzles</h2>
+
+<p>Cloud Foundry&rsquo;s logging system, Loggregator, has a feature named <strong>firehose</strong>. The firehose includes the combined stream of logs from all apps, plus metrics data from Cloud Foundry components, and is intended to be used by operators and administrators.</p>
+
+<p>A nozzle takes this data and forwards it to an external logging and/or metrics solution.</p>
+
+<ul>
+<li><a href="https://github.com/cloudfoundry/loggregator">Loggregator system</a></li>
+</ul>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/cf-concepts.html.md.erb'>View the source for this page in GitHub</a></div>
 
       </main>
     </div>

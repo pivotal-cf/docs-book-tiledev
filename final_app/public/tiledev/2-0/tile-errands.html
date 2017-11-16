@@ -1,0 +1,511 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      Errands |
+    
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='/images/favicon.ico' rel='shortcut icon'>
+
+  <script src="/javascripts/all.js"></script>
+  
+<script type="text/javascript">
+  if (window.location.host === 'docs.pivotal.io') {
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '']);
+    _gaq.push(['_setDomainName', '']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  }
+</script>
+
+<script type="text/javascript">
+  var blackList = ['acceptance'];
+
+  blackList.forEach(function(blackListedEnv) {
+    if (document.URL.indexOf(blackListedEnv) > -1 && blackListedEnv != "") {
+      $('head').append('<meta name="hashtag" content="PivotalMoment">');
+    }
+  });
+</script>
+
+<!-- CrazyEgg Tracking Script -->
+  <script type="text/javascript">
+  setTimeout(function(){var a=document.createElement("script");
+  var b=document.getElementsByTagName("script")[0];
+  a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0055/2990.js?"+Math.floor(new Date().getTime()/3600000);
+  a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+  </script>
+
+<!-- Munchkin Marketo Script -->
+<script type="text/javascript">
+  (function() {
+    var didInit = false;
+
+    function initMunchkin() {
+      if (didInit === false) {
+        didInit = true;
+        Munchkin.init('625-IUJ-009');
+      }
+    }
+
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+    s.onreadystatechange = function() {
+      if (this.readyState == 'complete' || this.readyState == 'loaded') {
+        initMunchkin();
+      }
+    };
+    s.onload = initMunchkin;
+    document.getElementsByTagName('head')[0].appendChild(s);
+  })();
+</script>
+
+</head>
+
+<body class="tiledev tiledev_2-0 tiledev_2-0_tile-errands has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+      document.domain = "";
+    </script>
+
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
+        <div class="btn-menu" data-behavior="MenuMobile"></div>
+        
+        <div class="header-item">
+          
+        </div>
+        <!--Default search-->
+<!--If book needs something different, add a book-search partial to the book's layouts folder-->
+<div class="header-item searchbar js-searchbar">
+  <a class="search-icon" data-behavior="Search"></a>
+  <div class="search-input">
+    <div class="search-input-inner" id="docs-search">
+        <form method="get" action="/search">
+          <input name="q" placeholder="search" class="search-box" />
+        </form>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </header>
+
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    <ul>
+
+      <li>
+        <a href="index.html">PCF Tile Developers Guide</a>
+      </li>
+
+      <li class="has_submenu">
+        <a href="tile-basics.html">Tile Basics</a>
+        <ul>
+          <li>
+            <a href="cf-concepts.html">How PCF and PCF Services Work</a>
+          </li>
+          <li>
+            <a href="tile-structure.html">How Tiles Work</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="workflow.html">Tile Development Workflow</a>
+        <ul>
+          <li>
+            <a href="overview.html">Service Integration Overview</a>
+          </li>
+          <li>
+            <a href="stages.html">Levels of Integration</a>
+          </li>
+          <li>
+            <a href="development.html">Development Steps at Each Level</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="environments.html">Development Environments</a>
+        <ul>
+          <li>
+            <a href="environments.html#pcfdev">PCF Dev and BOSH Lite</a>
+          </li>
+          <li>
+            <a href="environments.html#pws">PWS or Other Supported CF Infrastructure</a>
+          </li>
+          <li>
+            <a href="environments.html#pcf">PCF with Ops Manager</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="tools.html">Development Tools</a>
+        <ul>
+          <li>
+            <a href="tile-generator.html">Tile Generator</a>
+          </li>
+          <li>
+            <a href="pcf-command.html">pcf Command Line Utility</a>
+          </li>
+          <li>
+            <a href="concourse.html">Concourse CI</a>
+          </li>
+          <li>
+            <a href="sdk.html">Services SDK</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu expanded">
+        <a href="roadmap.html">Service Development Roadmap</a>
+        <ul>
+          <li>
+            <a href="roadmap.html#user-provided">Level 1: User-Provided Service</a>
+          </li>
+          <li class="has_submenu">
+            <a href="brokered.html">Level 2: Brokered Service</a>
+            <ul>
+              <li>
+                <a href="service-brokers.html">Service Broker</a>
+              </li>
+            </ul>
+           </li> 
+          <li class="has_submenu">
+            <a href="managed.html">Level 3: Managed Service</a>
+            <ul>
+              <li>
+                <a href="bosh-release.html">BOSH Releases</a>
+              </li>
+              <li>
+                <a href="tile-errands.html">Errands</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="on-demand.html">Level 4: On-Demand Service</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="other-integrations.html">Other Integrations</a>
+        <ul>
+          <li>
+            <a href="https://github.com/cloudfoundry/docs-bbr/blob/master/bbr-devguide.html.md.erb">BOSH Backup and Restore</a>
+          </li>
+          <li>
+            <a href="buildpacks.html">Buildpacks</a>
+          </li>
+          <li class="has_submenu">
+            <a href="credhub.html">CredHub</a>
+            <ul>
+              <li>
+                <a href="create-credhub-vars.html">Creating New Variables in CredHub</a>
+              </li>
+              <li>
+                <a href="migrating-credhub-credentials.html">Migrating Existing Credentials to CredHub</a>
+              </li>
+              <li>
+                <a href="get-credhub-vars.html">Fetching Variable Names and Values</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="embedded-agents.html">Embedded Agents</a>
+          </li>
+          <li>
+            <a href="nozzle.html">Logs, Metrics, and Nozzles</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="tile-documentation.html">Documentation</a>
+      </li>
+
+      <li class="has_submenu">
+        <a href="publish.html">Publish and Update</a>
+        <ul>
+          <li>
+            <a href="tile-upgrades.html">Tile Upgrades</a>
+          </li>
+          <li>
+            <a href="releases.html">Partner Software Product Release Cycle</a>
+          </li>
+        </ul>
+      </li>
+
+
+      <li class="has_submenu">
+        <a href="reference.html">Reference</a>
+        <ul>
+          <li>
+            <a href="product-template-reference.html">Product Template Reference</a>
+          </li>
+          <li>
+            <a href="property-reference.html">Property Reference</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="has_submenu">
+        <a href="release-notes.html">Partners Release Notices</a>
+        <ul>
+          <li>
+            <a href="release-notes-1-12.html">PCF v1.12 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="release-notes-1-11.html">PCF v1.11 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="release-notes-1-10.html">PCF v1.10 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="release-notes-1-9.html">PCF v1.9 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="release-notes-1-8.html">PCF v1.8 Partners Release Notice</a>
+          </li>
+          <li>
+            <a href="release-notes-1-7.html">PCF v1.7 Partners Release Notice</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="contacts.html">Contact Us</a>
+      </li>
+
+    </ul>
+  </div>
+</div><!--end of sub-nav-->
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    Errands
+  </h1>
+
+          <div id="js-quick-links" >
+            <div class="quick-links"><ul>
+<li>
+<a href="#colocated">Define a Colocated Errand</a><ul><li><a href="#colocated-example">Colocated Errand Example Manifest</a></li></ul>
+</li>
+<li><a href="#post-deploy">Post-Deploy Errands</a></li>
+<li><a href="#pre-delete">Pre-Delete Errands</a></li>
+<li><a href="#run-rules">Errand Run Rules</a></li>
+</ul></div>
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p>Lifecycle errands are BOSH errands (scripts) that run at the beginning and end of an installed product&rsquo;s availability time. Product teams create errands as part of a product package, and a product can only run errands it includes.</p>
+
+<p>For more information about BOSH errands, see <a href="https://bosh.io/docs/errands">BOSH documentation</a>, and for more information about errands in Pivotal Cloud Foundry (PCF), see <a href="http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html">Managing Errands in Ops Manager</a>.</p>
+
+<p>In Ops Manager 2.0 and later, tile authors can choose to <a href="#colocated">colocate errands</a> on existing VMs.
+When errands are not colocated, BOSH deploys a new VM for each errand defined in the tile metadata.
+Colocated errands can run alongside other jobs or errands on existing VMs in an operator&rsquo;s deployment.</p>
+
+<p>Products can have two kinds of errands. <a href="#post-deploy">Post-deploy errands</a> run after a product installs but before Ops Manager displays makes it available for use.
+<a href="#pre-delete">Pre-delete errands</a> run after an operator chooses to delete a product, but before Ops Manager finishes removing it from use.</p>
+
+<p>To save deployment time, operators can set <a href="#run-rules">errand run rules</a> that dictate whether or not errands run. Tile authors can <a href="/tiledev/2-0/product-template-reference.html#top-level">set defaults</a> for these run rules.</p>
+
+<h2><a id="colocated"></a>Define a Colocated Errand</h2>
+
+<p class="note"><strong>Note</strong>: Ops Manager 2.0 and later supports colocated errands.</p>
+
+<p>Instead of deploying a new VM for each errand, colocated errands run on an existing VM.
+Errands can run alongside other jobs on a VM, and multiple errands can be colocated on the same VM.
+Colocated errands run faster than traditional errands and use fewer resources, including disk and IP space.</p>
+
+<p>To configure a colocated errand, define the following properties in the <code>pre_delete_errands</code> and <code>post_deploy_errands</code> sections of the tile metadata:</p>
+
+<table>
+  <tr>
+    <th>Property</th>
+    <th>Description</th>
+  </tr><tr>
+    <td width="28%"><code>name: MY-ERRAND</code></td>
+    <td>Provide the name of the errand job. The example manifest in the following section uses <code>example_colocated_errand</code>.</td>
+  </tr><tr>
+    <td><code>colocated: true</code></td>
+    <td>Set this value to <code>true</code> to enable colocated errands. If you do not set this value, Ops Manager ignores all other errand attributes in this section.</td>
+  </tr><tr>
+    <td><code>run_default: on</code></td>
+    <td>(Optional) You can set the run rules to <code>on</code>, <code>off</code>, or <code>when-changed</code>. See <a href="#run-rules">Errand Run Rules</a> for more information.<br><br>
+    If you do not define this property, Ops Manager sets the run default to <code>on</code>.
+    The operator can override this setting using the Ops Manager API or the tile&rsquo;s <strong>Errand Config</strong> tab.</td>
+  </tr><tr>
+    <td><code>instances: []</code></td>
+    <td>(Optional) Provide an array that tells BOSH where to run the errand.
+    Use the name of an instance group, such as <code>web_server</code>, or a single instance, such as <code>web_server/first</code>.<br><br>
+    If you do not define this property or you provide an empty array, the errand runs on every instance of the job in the operator&rsquo;s deployment.</td>
+  </tr><tr>
+    <td><code>label: ERRAND-LABEL</code></td>
+    <td>Define the errand name to be shown in the tile&rsquo;s <strong>Errand Config</strong> page and above <strong>Apply Changes</strong>.
+    The example manifest in the following section uses <code>colocated errand on web_server</code>.</td>
+  </tr><tr>
+    <td><code>description: TEXT</code></td>
+    <td>(Optional) Provide a description for the errand that appears in the tile&rsquo;s <strong>Errand Config</strong> page.</td>
+  </tr>
+</table>
+
+<p>After defining the errand in the sections above, add the errand to the job properties in the <code>job_types</code> section.</p>
+
+<h3><a id="colocated-example"></a>Colocated Errand Example Manifest</h3>
+
+<p>The following example shows colocated <code>post_deploy_errands</code> and <code>pre_delete_errands</code> sections in the tile metadata:</p>
+<pre class="highlight yaml"><code><span class="s">post_deploy_errands</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">example-errand</span>
+    <span class="s">colocated</span><span class="pi">:</span> <span class="s">false</span>
+  <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">example_colocated_errand</span>
+    <span class="s">colocated</span><span class="pi">:</span> <span class="s">true</span>
+    <span class="s">run_default</span><span class="pi">:</span> <span class="s">on</span>
+    <span class="s">instances</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">web_server/first</span>
+    <span class="s">label</span><span class="pi">:</span> <span class="s">colocated errand on web_server</span>
+    <span class="s">description</span><span class="pi">:</span> <span class="s">This errand does little more than print a message in order to prove colocated errands work.</span>
+
+<span class="s">pre_delete_errands</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">example-errand</span>
+</code></pre>
+
+<p>The following example shows the colocated errands referenced within the <code>job_type</code>:</p>
+<pre class="highlight yaml"><code><span class="s">job_types</span><span class="pi">:</span>
+ <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">web_server</span>
+    <span class="s">resource_label</span><span class="pi">:</span> <span class="s">Web Server</span>
+    <span class="s">templates</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">web_server</span>
+        <span class="s">release</span><span class="pi">:</span> <span class="s">example-release</span>
+        <span class="s">provides</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="no">web_server_info: (( .properties.example_selector.selected_option.parsed_manifest(provides_section) ))</span>
+        <span class="s">consumes</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="no">web_server_info: (( .properties.example_selector.selected_option.parsed_manifest(consumes_section) ))</span>
+      <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">time_logger</span>
+        <span class="s">release</span><span class="pi">:</span> <span class="s">example-release</span>
+      <span class="s">- name</span><span class="pi">:</span> <span class="s">example_colocated_errand</span>
+        <span class="s">release</span><span class="pi">:</span> <span class="s">example-release</span>
+    <span class="s">release</span><span class="pi">:</span> <span class="s">example-release</span>
+    <span class="s">static_ip</span><span class="pi">:</span> <span class="s">1</span>
+    <span class="s">dynamic_ip</span><span class="pi">:</span> <span class="s">0</span>
+    <span class="s">max_in_flight</span><span class="pi">:</span> <span class="s">1</span>
+</code></pre>
+
+<h2><a id='post-deploy'></a>Post-Deploy Errands</h2>
+
+<p>Post-deploy errands run after a product installs, but before Ops Manager makes it available for use.</p>
+
+<p>Typical post-install errands include smoke or acceptance tests, database initialization or database migration, and service broker registration.</p>
+
+<p>Post-deploy errands run by default. An operator can prevent a post-deploy errand from running by setting its <a href="#run-rules">run rule</a> to <strong>Off</strong> under <strong>Pending Changes</strong> in the Ops Manager Installation Dashboard or on the product tile&rsquo;s <strong>Settings</strong> tab <strong>Errands</strong> pane, before installing the product.</p>
+
+<p><img alt="Example Errand" src="img/example-errand.png" /></p>
+
+<p>For example, Redis has a <strong>Broker Registrar</strong> post-deploy errand that the Elastic Runtime tile uses to register its service broker with the Cloud Controller and publish its service plans.</p>
+
+<p>If an operator chooses <strong>Off</strong> in the drop-down menu for Elastic Runtime&rsquo;s <strong>Broker Registrar</strong> errand before installation, Elastic Runtime&rsquo;s service broker is not registered with the Cloud Controller and its service plans are not made public.</p>
+
+<h2><a id='pre-delete'></a>Pre-Delete Errands</h2>
+
+<p>Pre-delete errands run after an operator chooses to delete a product, but before Ops Manager actually finishes deleting it.</p>
+
+<p>Typical pre-delete errands include clean up of application artifacts and service
+broker de-registration. For example, Pivotal MySQL has a <strong>Broker Deregistrar</strong> pre-delete errand that:</p>
+
+<ul>
+<li>Purges the service offering</li>
+<li>Purges all service instances</li>
+<li>Purges all application bindings</li>
+<li>Deletes the service broker from the Cloud Controller</li>
+</ul>
+
+<p>When an operator chooses to delete the Pivotal MySQL product, Ops Manager first
+runs the <strong>Broker Deregistrar</strong> pre-delete errand, then deletes the product.</p>
+
+<p>Pre-delete errands run by default. An operator can prevent a pre-delete errand from running by setting its <a href="#run-rules">run rule</a> to <strong>Off</strong> under <strong>Pending Changes</strong> in the Ops Manager Installation Dashboard or on the product tile&rsquo;s <strong>Settings</strong> tab <strong>Errands</strong> pane, before installing the product.</p>
+
+<h2><a id='run-rules'></a>Errand Run Rules</h2>
+
+<p class="note warning"><strong>WARNING</strong>: In Ops Manager v1.10.0 and later, errands set to the <strong>When Changed</strong> rule do not always run when the tile has relevant changes.
+   Instead of using <strong>When Changed</strong>, Pivotal recommends that tile developers leave the default run rule for errands as <strong>On</strong>
+   and let operators use <a href="http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html#changes-view">one-time rules</a> to turn errands off and save deploy time.</p>
+
+<p>Some errands do not always need to run. For example, installing a minor patch to a existing service might not require re-registering its broker. Ops Manager lets operators save installation time by turning errands off or on. They set these errand run rules in two places:</p>
+
+<ul>
+<li><p><strong>One-Time Rules</strong> under <strong>Pending Changes</strong> in the Ops Manager Installation Dashboard. These rules only apply to the next time you run <strong>Apply Changes</strong> and do not persist after the next successful installation.<br>
+<img alt="Pending Changes" src="img/pending_changes.png" /></p></li>
+<li><p><strong>Persistent Rules</strong> in the tile&rsquo;s <strong>Errands</strong> pane. These rules persist through subsequent installations, until changed in the <strong>Errands</strong> pane.</p></li>
+</ul>
+
+<p>For more information, see <a href="http://docs.pivotal.io/pivotalcf/1-10/customizing/managing_errands.html#modify">Configure Run Rules in Ops Manager</a>.</p>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/tile-errands.html.md.erb'>View the source for this page in GitHub</a></div>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+  <a href='https://pivotal.io/privacy-policy'>Privacy Policy</a> | 
+  <a href='https://pivotal.io/terms-of-use'>Terms of Use</a><br/>
+  <a href='/'>Pivotal Documentation</a>
+  &copy; 2017 <a href='https://pivotal.io'>Pivotal Software</a>, Inc. All Rights Reserved.
+</div>
+<div class="support">
+  Need help? <a href="" target="_blank">Visit Support</a>
+</div>
+
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

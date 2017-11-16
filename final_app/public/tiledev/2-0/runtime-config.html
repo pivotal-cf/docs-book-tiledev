@@ -8,6 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
+      Managing Runtime Configs |
     
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,7 @@
 
 </head>
 
-<body class="subnavs subnavs_tiledev_subnav">
+<body class="tiledev tiledev_2-0 tiledev_2-0_runtime-config has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -89,8 +90,13 @@
       document.domain = "";
     </script>
 
-          <header class="header-home">
-      <div class="home-links js-bar-links">
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
         <div class="btn-menu" data-behavior="MenuMobile"></div>
         
         <div class="header-item">
@@ -110,14 +116,6 @@
 </div>
 
       </div>
-      <h1 class="title-flashy">
-        <img src="../images/icon-p-green.jpg"> Pivotal Cloud Foundry Documentation
-
-      </h1>
-
-      <h2 class="title-intro">
-        
-      </h2>
     </header>
 
 
@@ -125,20 +123,7 @@
     <div class="container">
 
       <!--googleoff: index-->
-      
-      <!--googleon: index-->
-
-      <main class="content content-layout" id="js-content" role="main">
-        <a id="top"></a>
-        
-        
-          <div id="js-quick-links" >
-            
-          </div>
-        <div class="to-top" id="js-to-top">
-          <a href="#top" title="back to top"></a>
-        </div>
-        <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
   <a class="sidenav-title" data-behavior="SubMenuMobile">
     Doc Index
   </a>
@@ -333,7 +318,166 @@
   </div>
 </div><!--end of sub-nav-->
 
-        <div></div>
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    Managing Runtime Configs
+  </h1>
+
+          <div id="js-quick-links" >
+            <div class="quick-links"><ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#create">Create a Runtime Config</a></li>
+<li><a href="#delete">Delete a Runtime Config</a></li>
+<li>
+<a href="#config-only">Create a Runtime Config-Only Tile</a><ul><li><a href="#example">Example Runtime Config-Only Tile</a></li></ul>
+</li>
+</ul></div>
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p class="note"><strong>Note</strong>: Ops Manager 2.0 Alpha introduces support for runtime configs.</p>
+
+<p>This topic explains how to define and manage named runtime configs with your service tile for Pivotal Cloud Foundry (PCF).</p>
+
+<p>Tile authors can <a href="#create">create a new runtime config</a> in an existing product tile, <a href="#delete">delete a runtime config</a> from a tile, or add a tile that contains a <a href="#config-only">runtime config only</a>.</p>
+
+<p>See the <a href="https://bosh.io/docs/runtime-config.html">BOSH documentation</a> for more information about runtime configs.</p>
+
+<h2><a id="overview"></a>Overview</h2>
+
+<p>A runtime config is a section of the tile metadata that can define global deployment configurations. When a tile author includes a runtime config as a top-level key in the tile metadata, BOSH applies the runtime config to every VM in the deployment.</p>
+
+<p>To the operator, a runtime config appears in Ops Manager as a tile with minimal configuration options. Runtime config tiles contain no stemcell, network, availability zone (AZ), or resource config information.</p>
+
+<p><img alt="Runtime Config Tile on the Ops Manager Installation Dashboard" src="img/runtime-config-dashboard.png" /></p>
+
+<p>When you click <strong>Apply Changes</strong>, Ops Manager combines the runtime config information from every tile in the deployment and assigns each named runtime config a unique identifier. Ops Manager creates the name using the tile name, a generated GUID, and the runtime config name defined in the metadata in the following format:</p>
+<pre class="highlight plaintext"><code>TILE_NAME-GUID-RUNTIME_CONFIG_NAME
+</code></pre>
+
+<h2><a id="create"></a>Create a Runtime Config</h2>
+
+<p>Tile authors can add <code>runtime_configs</code> as a top-level key in tile metadata. In this key, the tile author defines configuration properties that Ops Manager applies to all deployments. A tile can support any number of runtime configs.</p>
+
+<p>A named runtime config, such as <code>MY-RUNTIME-CONFIG</code> in the example below, can contain any number of addons. Each addon can contain any number of jobs.</p>
+
+<p>To add a runtime config to a tile, add the following section to the tile metadata:</p>
+<pre class="highlight plaintext"><code>runtime_configs:
+  - name: MY-RUNTIME-CONFIG
+    runtime_config: |
+      releases:
+      - name: os-conf
+        version: 15
+      addons:
+      - name: MY-ADDON-NAME
+        jobs:
+        - name: MY-RUNTIME-CONFIG-JOB
+          release: os-conf
+        properties:
+          MY-ADDON-NAME:
+        ...
+</code></pre>
+
+<p>Replace the text in the example above with the following:</p>
+
+<ul>
+<li><code>MY-RUNTIME-CONFIG</code>: Choose a name for the runtime config.</li>
+<li><code>MY-ADDON-NAME</code>: Choose a name for the addon that contains the runtime config job.</li>
+<li><code>MY-RUNTIME-CONFIG-JOB</code>: Choose a name for the job the runtime config describes.</li>
+</ul>
+
+<p class="note important"><strong>Important</strong>: The names you choose must be unique across a deployment. Pivotal recommends appending your product name or another unique identifier to each of the named items in the <code>runtime_configs</code> section.</p>
+
+<p>Define the runtime config job properties in the <code>properties</code> section.</p>
+
+<h2><a id="delete"></a>Delete a Runtime Config</h2>
+
+<p>Tile authors can remove an existing runtime config from a tile by uploading a blank runtime config in its place. Remove the configuration for the named runtime config from the tile metadata, leaving the name in place.</p>
+
+<p>The following example deletes <code>example-runtime-config</code>:</p>
+<pre class="highlight plaintext"><code>runtime_configs:
+  - name: example-runtime-config
+    runtime_config:
+</code></pre>
+
+<h2><a id="config-only"></a>Create a Runtime Config-Only Tile</h2>
+
+<p>Tile authors can create a tile that only contains a runtime config. The only release that a tile author must include in a runtime config tile is <code>os-conf</code>. When creating a runtime config-only tile, a tile author is not required to define the following top-level keys:</p>
+
+<ul>
+<li><code>post_deploy_errands</code></li>
+<li><code>pre_delete_errands</code></li>
+<li><code>job_types</code></li>
+</ul>
+
+<h3><a id="example"></a>Example Runtime Config-Only Tile</h3>
+
+<p>The following example shows a runtime config-only tile with minimal configuration:</p>
+<pre class="highlight plaintext"><code>---
+name: runtime-config-only-example-product
+product_version: "3.4"
+minimum_version_for_upgrade: "2.0"
+metadata_version: "2.0"
+label: 'Runtime Config Only Example Product'
+description: An example product to demonstrate runtime config features
+rank: 1
+service_broker: false # Default value
+stemcell_criteria:
+  os: ubuntu-trusty
+  version: STEMCELL-VERSION
+
+releases:
+  - name: os-conf
+    file: os-conf
+    version: '15'
+
+post_deploy_errands: []
+
+pre_delete_errands: []
+
+form_types:
+  - name: example_form
+    label: 'Example form'
+    description: 'An example form'
+    property_inputs:
+      - reference: .properties.example_string
+        label: 'Example string'
+
+property_blueprints:
+  - name: example_string
+    type: string
+    configurable: true
+    default: Pizza
+
+job_types: []
+
+runtime_configs:
+  - name: example-runtime-config
+    runtime_config: |
+      releases:
+      - name: os-conf
+        version: 15
+      addons:
+      - name: login
+        jobs:
+        - name: login-banner
+          release: os-conf
+        properties:
+          login_banner:
+            text: |
+              (( .properties.example_string.value )).
+</code></pre>
+
+<p>In the example runtime config above, the <code>login-banner</code> job prints a banner when a user logs into any VM in the deployment. The operator can use the default value defined in the <code>form_types</code> section of the metadata or configure the banner by editing the <strong>Example string</strong> value in Ops Manager.</p>
+
+<p><img alt="Runtime Config Tile Information" src="img/runtime-config-tile.png" /></p>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/runtime-config.html.md.erb'>View the source for this page in GitHub</a></div>
 
       </main>
     </div>

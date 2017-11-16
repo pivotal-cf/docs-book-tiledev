@@ -8,6 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
+      On-Demand Service |
     
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,7 @@
 
 </head>
 
-<body class="subnavs subnavs_tiledev_subnav">
+<body class="tiledev tiledev_2-0 tiledev_2-0_on-demand has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -89,8 +90,13 @@
       document.domain = "";
     </script>
 
-          <header class="header-home">
-      <div class="home-links js-bar-links">
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
         <div class="btn-menu" data-behavior="MenuMobile"></div>
         
         <div class="header-item">
@@ -110,14 +116,6 @@
 </div>
 
       </div>
-      <h1 class="title-flashy">
-        <img src="../images/icon-p-green.jpg"> Pivotal Cloud Foundry Documentation
-
-      </h1>
-
-      <h2 class="title-intro">
-        
-      </h2>
     </header>
 
 
@@ -125,20 +123,7 @@
     <div class="container">
 
       <!--googleoff: index-->
-      
-      <!--googleon: index-->
-
-      <main class="content content-layout" id="js-content" role="main">
-        <a id="top"></a>
-        
-        
-          <div id="js-quick-links" >
-            
-          </div>
-        <div class="to-top" id="js-to-top">
-          <a href="#top" title="back to top"></a>
-        </div>
-        <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
   <a class="sidenav-title" data-behavior="SubMenuMobile">
     Doc Index
   </a>
@@ -333,7 +318,61 @@
   </div>
 </div><!--end of sub-nav-->
 
-        <div></div>
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    On-Demand Service
+  </h1>
+
+          <div id="js-quick-links" >
+            <div class="quick-links"><ul>
+<li><a href="#overview">Overview</a></li>
+<li>
+<a href="#create">Create an On-Demand Service</a><ul><li><a href="#dynamic-ha">High Availability</a></li></ul>
+</li>
+</ul></div>
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p>This topic explains how to integrate your software as an on-demand service and service tile for PCF.</p>
+
+<h2><a id="overview"></a> Overview</h2>
+
+<p>Brokered service and managed service integrations assume that you have a single VM instance deployed for your software deployed, or a limited number of VMs.</p>
+
+<p>These VMs can be multi-tenant, and you can possibly scale them manually to accommodate many concurrent applications. But for real production deployments, most of your customers will want dedicated VM instances of your service for each application.</p>
+
+<p>On-demand (dynamic) services enable this flexibility in a scalable way. When an operator deploys the service, do not pre-allocate VM resources for service instances. Instead, they define an allowable range of VM memory and CPU sizes and create a dedicated network on the IaaS to host any required number of service instance VMs.</p>
+
+<p>When a developer creates an instance of an on-demand service, they provision its resources within the allowed range, and BOSH dynamically creates a new, dedicated VM for the instance.</p>
+
+<h2><a id="create"></a> Create an On-Demand Service</h2>
+
+<p>The best way to create an on-demand service is to use the <a href="http://docs.pivotal.io/on-demand-service-broker">On-Demand Services SDK</a>.</p>
+
+<p>The on-demand services SDK provides a generic on-demand service broker (ODB) that Tile Generator can consume like any other service broker.</p>
+
+<p>The on-demand service author does not write a service broker. Instead, they write a service adapter component that takes requests from the ODB and interfaces with their service software to fulfill requests from the ODB.</p>
+
+<p>To create their tile, the tile author then feeds their service adapter and the BOSH release of the ODB to <a href="/tiledev/2-0/tile-generator.html">Tile Generator</a>.</p>
+
+<ul>
+<li><p>[On-Demand Services SDK] documentation explains how to write a service adapter for an on-demand service that uses the ODB.</p></li>
+<li><p>Once you have the individual components for your brokered service integration, you can work through the <a href="/tiledev/2-0/development.html">development steps</a> to create your tile.</p></li>
+</ul>
+
+<p>At any level of integration, Pivotal recommends and supports using <a href="/tiledev/2-0/concourse.html">Concourse</a> for continuous integration during development.</p>
+
+<h3><a id="dynamic-ha"></a> High Availability</h3>
+
+<p>If you had not <a href="/tiledev/2-0/managed.html#managed-ha">already configured</a> your service for High Availability as a managed service, the final step would be to consider how
+you can make each of your dynamically-provisioned service instances more highly available.</p>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/on-demand.html.md.erb'>View the source for this page in GitHub</a></div>
 
       </main>
     </div>

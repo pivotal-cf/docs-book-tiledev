@@ -8,6 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
+      Publish and Update |
     
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,7 @@
 
 </head>
 
-<body class="subnavs subnavs_tiledev_subnav">
+<body class="tiledev tiledev_2-0 tiledev_2-0_publish has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -89,8 +90,13 @@
       document.domain = "";
     </script>
 
-          <header class="header-home">
-      <div class="home-links js-bar-links">
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
         <div class="btn-menu" data-behavior="MenuMobile"></div>
         
         <div class="header-item">
@@ -110,14 +116,6 @@
 </div>
 
       </div>
-      <h1 class="title-flashy">
-        <img src="../images/icon-p-green.jpg"> Pivotal Cloud Foundry Documentation
-
-      </h1>
-
-      <h2 class="title-intro">
-        
-      </h2>
     </header>
 
 
@@ -125,20 +123,7 @@
     <div class="container">
 
       <!--googleoff: index-->
-      
-      <!--googleon: index-->
-
-      <main class="content content-layout" id="js-content" role="main">
-        <a id="top"></a>
-        
-        
-          <div id="js-quick-links" >
-            
-          </div>
-        <div class="to-top" id="js-to-top">
-          <a href="#top" title="back to top"></a>
-        </div>
-        <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
   <a class="sidenav-title" data-behavior="SubMenuMobile">
     Doc Index
   </a>
@@ -333,7 +318,58 @@
   </div>
 </div><!--end of sub-nav-->
 
-        <div></div>
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    Publish and Update
+  </h1>
+
+          <div id="js-quick-links" >
+            <div class="quick-links"><ul>
+<li><a href="#publish">Publish Your Tile</a></li>
+<li><a href="#update">Update Your Tile</a></li>
+</ul></div>
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p>This topic provides resources to help you publish and update your service tile for Pivotal Cloud Foundry (PCF).</p>
+
+<h2><a id="publish"></a> Publish Your Tile</h2>
+
+<p><a href="/tiledev/2-0/releases.html">The Pivotal Partner Software Product Release Cycle</a> explains how Pivotal works with partners to release PCF products,
+from the private alpha and closed beta phases, to general availability and publication on <a href="http://network.pivotal.io">Pivotal Network</a>.</p>
+
+<p>After you&rsquo;ve packaged your product&rsquo;s BOSH releases, stemcell, metadata, and other tile components into a single zipped download file, post it to Pivotal Network in one of two ways:</p>
+
+<ul>
+<li>Use the Pivotal Network <a href="https://network.pivotal.io/docs/api#public/docs/api/v2/product_files.md">API command</a> <code>POST /api/v2/products/:product_slug/product_files</code>.</li>
+<li>Use the Pivotal Network product upload form.
+<img alt="Pivnet Upload GUI" src="img/pivnet-upload.png" /></li>
+</ul>
+
+<h2><a id="update"></a> Update Your Tile</h2>
+
+<p>Most tile updates originate with the tile developer, but new releases of PCF can also necessitate tile changes 
+to maintain compatibility with the current version of the platform.</p>
+
+<ul>
+<li><p>Tile Generator automates tile versioning and upgrades.<br>
+For more information, see <a href="/tiledev/2-0/tile-generator.html#versioning">Versioning</a> in the Tile Generator documentation.</p></li>
+<li><p><a href="/tiledev/2-0/tile-upgrades.html">Tile Upgrades</a> explains how to write and include a JavaScript file that automates tile upgrades 
+by migrating property names and values from one tile version to another.</p></li>
+<li><p>When changes to PCF require tile changes, Pivotal distributes instructions to all of its partners:</p>
+
+<ul>
+<li><a href="/tiledev/2-0/release-notes-1-8.html">Pivotal Cloud Foundry v1.8 Partners Release Notice</a></li>
+<li><a href="/tiledev/2-0/release-notes-1-7.html">Pivotal Cloud Foundry v1.7 Partners Release Notice</a></li>
+</ul></li>
+</ul>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/publish.html.md.erb'>View the source for this page in GitHub</a></div>
 
       </main>
     </div>

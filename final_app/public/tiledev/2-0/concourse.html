@@ -8,6 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
+      Concourse |
     
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,7 @@
 
 </head>
 
-<body class="subnavs subnavs_tiledev_subnav">
+<body class="tiledev tiledev_2-0 tiledev_2-0_concourse has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -89,8 +90,13 @@
       document.domain = "";
     </script>
 
-          <header class="header-home">
-      <div class="home-links js-bar-links">
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
         <div class="btn-menu" data-behavior="MenuMobile"></div>
         
         <div class="header-item">
@@ -110,14 +116,6 @@
 </div>
 
       </div>
-      <h1 class="title-flashy">
-        <img src="../images/icon-p-green.jpg"> Pivotal Cloud Foundry Documentation
-
-      </h1>
-
-      <h2 class="title-intro">
-        
-      </h2>
     </header>
 
 
@@ -125,20 +123,7 @@
     <div class="container">
 
       <!--googleoff: index-->
-      
-      <!--googleon: index-->
-
-      <main class="content content-layout" id="js-content" role="main">
-        <a id="top"></a>
-        
-        
-          <div id="js-quick-links" >
-            
-          </div>
-        <div class="to-top" id="js-to-top">
-          <a href="#top" title="back to top"></a>
-        </div>
-        <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
   <a class="sidenav-title" data-behavior="SubMenuMobile">
     Doc Index
   </a>
@@ -333,7 +318,76 @@
   </div>
 </div><!--end of sub-nav-->
 
-        <div></div>
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    Concourse
+  </h1>
+
+          <div id="js-quick-links" >
+            <div class="quick-links"><ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#server">Set Up a Concourse Server</a></li>
+<li><a href="#pipeline">Create a Concourse Pipeline for Your Tile</a></li>
+<li><a href="#pool">Set Up PCF for Your CI Pipeline</a></li>
+</ul></div>
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p>This topic explains how to use <a href="http://concourse.ci">Concourse</a> continuous integration (CI) to help develop and integrate apps for Pivotal Cloud Foundry (PCF).</p>
+
+<h2><a id="overview"></a> Overview</h2>
+
+<p>PCF is a fast moving platform as we are constantly extending and enhancing it. When you integrate your software with PCF, you should make sure that your integration continues to work with every new release of the platform. One way to ensure that is to set up a CI pipeline for your tile against a PCF deployment that is constantly updated with the latest Alpha release of the platform.</p>
+
+<p>Our tool of choice for setting up CI is <a href="http://concourse.ci/">concourse</a>.
+While you are of course free to use whatever system you are familiar with,
+our tools and documentation are built to make concourse CI as easy as
+possible.</p>
+
+<h2><a id="server"></a> Set Up a Concourse Server</h2>
+
+<p>You will need a concourse server to host your pipeline. If you partner with
+us, we have servers that can host your pipeline, and S3 storage that can be
+used to transfer artifacts to and from your servers. If you choose to set
+up your own, instructions can be found here:</p>
+
+<ul>
+<li><a href="http://concourse.ci/setting-up.html">Setting up concourse</a></li>
+</ul>
+
+<h2><a id="pipeline"></a> Create a Concourse Pipeline for Your Tile</h2>
+
+<p>A typical CI pipeline for a tile consists of the following jobs:</p>
+
+<ul>
+<li>Build the tile</li>
+<li>Deploy it to PCF</li>
+<li>Run a set of deployment tests to verify that it deployed and works correctly</li>
+<li>Remove it from PCF</li>
+</ul>
+
+<p>You describe this pipeline in a <code>pipeline.yml</code> file that is then uploaded to the
+concourse server. <a href="/tiledev/2-0/tile-generator.html">Tile Generator</a> contains a sample
+pipeline that you can clone for your own tile. We are working on automating
+the process of generating a pipeline template for you.</p>
+
+<h2><a id="pool"></a> Set Up PCF for Your CI Pipeline</h2>
+
+<p>Pivotal partners who have us host their pipeline have access to a pool of PCF
+instances that are managed by us and are regularly updated with the latest
+(pre-)release versions of PCF. If you set up your own concourse server, you
+will have to target your pipeline at a <a href="/tiledev/2-0/environments.html">PCF instance you have setup</a>.</p>
+
+<p>Concourse has a resource type to manage a pool of resources that are shared
+between pipelines, which is what we use to serialize PCF access between the
+partner pipelines that run on our concourse server.</p>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/concourse.html.md.erb'>View the source for this page in GitHub</a></div>
 
       </main>
     </div>

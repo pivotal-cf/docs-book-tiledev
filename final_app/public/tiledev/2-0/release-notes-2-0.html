@@ -8,6 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
+      PCF v2.0 Partners Release Notice |
     
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,7 @@
 
 </head>
 
-<body class="subnavs subnavs_tiledev_subnav">
+<body class="tiledev tiledev_2-0 tiledev_2-0_release-notes-2-0 has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -89,8 +90,13 @@
       document.domain = "";
     </script>
 
-          <header class="header-home">
-      <div class="home-links js-bar-links">
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
         <div class="btn-menu" data-behavior="MenuMobile"></div>
         
         <div class="header-item">
@@ -110,14 +116,6 @@
 </div>
 
       </div>
-      <h1 class="title-flashy">
-        <img src="../images/icon-p-green.jpg"> Pivotal Cloud Foundry Documentation
-
-      </h1>
-
-      <h2 class="title-intro">
-        
-      </h2>
     </header>
 
 
@@ -125,20 +123,7 @@
     <div class="container">
 
       <!--googleoff: index-->
-      
-      <!--googleon: index-->
-
-      <main class="content content-layout" id="js-content" role="main">
-        <a id="top"></a>
-        
-        
-          <div id="js-quick-links" >
-            
-          </div>
-        <div class="to-top" id="js-to-top">
-          <a href="#top" title="back to top"></a>
-        </div>
-        <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
   <a class="sidenav-title" data-behavior="SubMenuMobile">
     Doc Index
   </a>
@@ -333,7 +318,54 @@
   </div>
 </div><!--end of sub-nav-->
 
-        <div></div>
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    PCF v2.0 Partners Release Notice
+  </h1>
+
+          <div id="js-quick-links" >
+            <div class="quick-links"><ul>
+<li><a href="#colocated-errands">Colocated Errands</a></li>
+<li><a href="#runtime-configs">Runtime Configs</a></li>
+<li><a href="#type-defaults">On-Demand Disk and VM Type Defaults</a></li>
+</ul></div>
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p>This topic describes the changes that Pivotal Cloud Foundry (PCF) v2.0 introduces which may be relevant to partner service tiles.</p>
+
+<h2><a id='colocated-errands'></a>Colocated Errands</h2>
+
+<p>Tile authors can configure the errands defined in their product tile to run on existing VMs in a deployment.
+Colocated errands run faster than traditional errands and use fewer resources, including disk and IP space.</p>
+
+<p>See <a href="/tiledev/2-0/tile-errands.html#colocated">Tile Errands</a> for more information.</p>
+
+<h2><a id='runtime-configs'></a>Runtime Configs</h2>
+
+<p>Tile authors can include <code>runtime_configs</code> as a top-level key in tile metadata to define global deployment configurations.
+Named runtime config settings apply to all VMs in a deployment.</p>
+
+<p>Version 2.0.0 of Ops Manager supports defining any number of runtime configs in an existing tile.
+Tile authors can also create a tile that includes a runtime config only and does not define any job types or errands.</p>
+
+<p>See <a href="/tiledev/2-0/runtime-config.html">Managing Runtime Configs</a> for more information.</p>
+
+<h2><a id='type-defaults'></a>On-Demand Disk and VM Type Defaults</h2>
+
+<p>On-demand service tiles have a configuration pane for each service plan.
+Operators use dropdown menus on the plan configuration pane to set the VM type and persistent disk type for each instance of that plan.</p>
+
+<p>Ops Manager 2.0.0 allows tile authors to specify the default values for VM types and persistent disk types in their tile&rsquo;s plan configuration pane.</p>
+
+<p>See <a href="/tiledev/2-0/odb-resource-defaults.html">Configuring Disk and VM Type Defaults for On-Demand Service Tiles</a> for more information.</p>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/release-notes-2-0.html.md.erb'>View the source for this page in GitHub</a></div>
 
       </main>
     </div>

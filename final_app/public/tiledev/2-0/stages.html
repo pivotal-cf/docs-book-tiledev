@@ -8,6 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
+      Levels of Integration |
     
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,7 @@
 
 </head>
 
-<body class="subnavs subnavs_tiledev_subnav">
+<body class="tiledev tiledev_2-0 tiledev_2-0_stages has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -89,8 +90,13 @@
       document.domain = "";
     </script>
 
-          <header class="header-home">
-      <div class="home-links js-bar-links">
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
         <div class="btn-menu" data-behavior="MenuMobile"></div>
         
         <div class="header-item">
@@ -110,14 +116,6 @@
 </div>
 
       </div>
-      <h1 class="title-flashy">
-        <img src="../images/icon-p-green.jpg"> Pivotal Cloud Foundry Documentation
-
-      </h1>
-
-      <h2 class="title-intro">
-        
-      </h2>
     </header>
 
 
@@ -125,20 +123,7 @@
     <div class="container">
 
       <!--googleoff: index-->
-      
-      <!--googleon: index-->
-
-      <main class="content content-layout" id="js-content" role="main">
-        <a id="top"></a>
-        
-        
-          <div id="js-quick-links" >
-            
-          </div>
-        <div class="to-top" id="js-to-top">
-          <a href="#top" title="back to top"></a>
-        </div>
-        <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
   <a class="sidenav-title" data-behavior="SubMenuMobile">
     Doc Index
   </a>
@@ -333,7 +318,80 @@
   </div>
 </div><!--end of sub-nav-->
 
-        <div></div>
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    Levels of Integration
+  </h1>
+
+          <div id="js-quick-links" >
+            <div class="quick-links"><ul>
+<li><a href="#levels">Integration Levels</a></li>
+<li><a href="#ups">Level 1. User-Provided Service</a></li>
+<li><a href="#broker">Level 2. Brokered Service</a></li>
+<li><a href="#managed">Level 3. Managed Service</a></li>
+<li><a href="#dynamic">Level 4. On-Demand (Dynamic) Service</a></li>
+</ul></div>
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <h2><a id="levels"></a> Integration Levels</h2>
+
+<p>A service can integrate with PCF at four levels, shown here in order of increasing integration. In general, user-experience and production-readiness improves as the integration level increases. But none of the higher levels is required. You can stop service integration and declare it complete (enough) after any of these:</p>
+
+<p>When integrating third-party software with Cloud Foundry, the effort
+typically progresses through increasing levels of integration. We recommend this
+staged approach because it enables early feedback on the value and the
+design of the integration, which helps make better decisions about future
+stages.</p>
+
+<p>For non-service integrations (such as applications or buildpacks), a similar
+staged integration approach is often possible and desirable.</p>
+
+<p><img alt="Service Integration Stages" src="img/integration-stages.png" /></p>
+
+<h2><a id="ups"></a> Level 1. User-Provided Service</h2>
+
+<p>The service runs external to PCF and has no service broker or tile. To use a service with an app, the developer creates a service broker by running <code>cf create-user-provided-service</code> from the Cloud Foundry Command-Line Interface (cf CLI).</p>
+
+<p>Configuring, running, upgrading, and paying for a user-provided service are all up to the developer.</p>
+
+<h2><a id="broker"></a> Level 2. Brokered Service</h2>
+
+<p>A brokered service runs external to PCF, but has a tile on <a href="http://network.pivotal.io">Pivotal Network</a> (PivNet).</p>
+
+<p>PivNet designates brokered services by including &ldquo;Service Broker for PCF&rdquo; in the name.</p>
+
+<p>Operators install, configure, and upgrade the tile through the Ops Manager Installation Dashboard. Developers can then see your service plans and create service instances in Apps Manager, or by running <code>cf marketplace</code> and <code>cf create-service</code> from the command-line.</p>
+
+<p>The <a href="/tiledev/2-0/brokered.html">Brokered Service</a> topic has more information about brokered service tiles and how to create them.</p>
+
+<h2><a id="managed"></a> Level 3. Managed Service</h2>
+
+<p>With a managed service, both the service broker and the service itself run within PCF. This enables PCF to manage, monitor, and increase service performance.</p>
+
+<p>As with the brokered service, the service has a service broker and a tile listed on PivNet. PivNet lists managed services as &ldquo;for PCF,&rdquo; without &ldquo;Service Broker&rdquo; in the name.</p>
+
+<p>When the operator installs the tile, they allocate a block of VMs to run service instances and provisions their CPU and memory resources uniformly.  </p>
+
+<p>The <a href="/tiledev/2-0/managed.html">Managed Service</a> topic has more information about managed service tiles and how to create them.</p>
+
+<h2><a id="dynamic"></a>  Level 4. On-Demand (Dynamic) Service</h2>
+
+<p>As with a managed service, an on-demand service and broker both run within PCF,
+and PivNet lists the service tile without &ldquo;Service Broker&rdquo; in the name.
+But unlike a managed service, an on-demand service does not limit the number of service instance VMs.
+The operator does not have to pre-allocate and provision VM resources for the service.</p>
+
+<p>When a developer creates an instance of an on-demand service, they provision its resources (within an allowed range) and BOSH dynamically creates a new, dedicated VM for the instance.</p>
+
+<p>The <a href="/tiledev/2-0/on-demand.html">On-Demand Service</a> topic has more information about On-Demand service tiles and how to create them.</p>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/stages.html.md.erb'>View the source for this page in GitHub</a></div>
 
       </main>
     </div>

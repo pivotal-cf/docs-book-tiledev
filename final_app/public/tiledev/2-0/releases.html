@@ -8,6 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
+      Partner Software Product Release Cycle |
     
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,7 @@
 
 </head>
 
-<body class="subnavs subnavs_tiledev_subnav">
+<body class="tiledev tiledev_2-0 tiledev_2-0_releases has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -89,8 +90,13 @@
       document.domain = "";
     </script>
 
-          <header class="header-home">
-      <div class="home-links js-bar-links">
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
         <div class="btn-menu" data-behavior="MenuMobile"></div>
         
         <div class="header-item">
@@ -110,14 +116,6 @@
 </div>
 
       </div>
-      <h1 class="title-flashy">
-        <img src="../images/icon-p-green.jpg"> Pivotal Cloud Foundry Documentation
-
-      </h1>
-
-      <h2 class="title-intro">
-        
-      </h2>
     </header>
 
 
@@ -125,20 +123,7 @@
     <div class="container">
 
       <!--googleoff: index-->
-      
-      <!--googleon: index-->
-
-      <main class="content content-layout" id="js-content" role="main">
-        <a id="top"></a>
-        
-        
-          <div id="js-quick-links" >
-            
-          </div>
-        <div class="to-top" id="js-to-top">
-          <a href="#top" title="back to top"></a>
-        </div>
-        <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
   <a class="sidenav-title" data-behavior="SubMenuMobile">
     Doc Index
   </a>
@@ -333,7 +318,164 @@
   </div>
 </div><!--end of sub-nav-->
 
-        <div></div>
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    Partner Software Product Release Cycle
+  </h1>
+
+          <div id="js-quick-links" >
+            <div class="quick-links"><ul>
+<li><a href="#alpha">Phase 1: Alpha</a></li>
+<li><a href="#closed-beta">Phase 2:  Closed Beta</a></li>
+<li><a href="#public-beta">Phase 3: Public Beta</a></li>
+<li><a href="#ga">Phase 4: General Availability</a></li>
+</ul></div>
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p>This topic describes the four phases of product release to Pivotal Cloud Foundry (PCF).</p>
+
+<h2><a id='alpha'></a>Phase 1: Alpha</h2>
+
+<p>A product begins development in the <strong>Alpha</strong> phase. The product undergoes constant churn and refactoring, and may not be feature-complete.</p>
+
+<p>Customers do not have exposure to a product during Alpha, and there are no quality requirements in this phase. Instead, developers use this stage for internal testing.</p>
+
+<h2><a id='closed-beta'></a>Phase 2:  Closed Beta</h2>
+
+<p>During <strong>Closed Beta</strong>, a limited pool of users gains access and provides feedback to a product. This feedback drives further development. A status of Closed (Private) Beta informs users that the product may be unstable and should not be used in production.</p>
+
+<p>A product should remain in Closed Beta while:</p>
+
+<ul>
+<li>Changes may break product function or cause loss of data.</li>
+<li>Users may experience major bugs.</li>
+<li>Users may need to delete and reinstall tiles rather than upgrading them.</li>
+</ul>
+
+<p>Developers make products in Closed Beta available to specific groups or individual customers on <a href="http://network.pivotal.io">Pivotal Network</a>.</p>
+
+<h3>Requirements</h3>
+
+<p>To enter Closed Beta, a product must meet the following requirements:</p>
+
+<ul>
+<li><p>The product must run properly on at least one IaaS, so that customers can install and try it out. Supported infrastructures are AWS, vSphere and OpenStack.</p></li>
+<li><p>Customers must be able to install the product error-free through a tile in Pivotal Ops Manager, and delete the product there without any traces remaining.</p></li>
+<li><p>The product tile must target the latest released stemcell version, as listed on <a href="https://network.pivotal.io/products/stemcells">Pivotal Network</a>.</p></li>
+<li><p>The release notes must make clear the following constraints:</p>
+
+<ul>
+<li>Potential data loss and lack of support make the beta version of the product unsuitable for use in production.</li>
+<li>Users will need to delete the old tile and install a new one in order to move to the next version of the product. No upgrade path exists.</li>
+</ul></li>
+<li><p>The product must fulfill its promised feature set, and perform as desired.</p></li>
+</ul>
+
+<p>Pivotal also recommends that any Closed Beta product include an easy way for users to provide feedback to the product developer.</p>
+
+<h3>Steps to Release</h3>
+
+<p>The following steps create a new Closed Beta release for your product:</p>
+
+<ol>
+<li><p>Log into <a href="http://network.pivotal.io">Pivotal Network</a>.</p></li>
+<li><p>Create a new release for your product and populate all of the required fields.</p></li>
+<li><p>Check that the release version states <strong>BETA</strong>.</p></li>
+<li><p>Clearly state in the release description that the product cannot be upgraded, and that users may suffer data loss.</p></li>
+<li><p>Email your Pivotal contact to request product validation and Closed Beta release. Please provide basic instructions on how to validate the new feature set. Pivotal will verify that the release meets all requirements, then make it accessible to invited customers.</p></li>
+</ol>
+
+<h2><a id='public-beta'></a>Phase 3: Public Beta</h2>
+
+<p>Your product will be made available to the general public in <strong>Public Beta</strong>. The wider pool of users increases public awareness and feedback and facilitates marketing and advertising. As development continues, you may publish a series of product versions in Public (Open) Beta.</p>
+
+<p>Your product is a good candidate for the <strong>Public Beta</strong> stage if:</p>
+
+<ul>
+<li>You have high confidence that further development will not break the product or incur data loss for users.</li>
+<li>The tile can be upgraded.</li>
+<li>You still want user feedback to discover minor bugs and evaluate existing features.</li>
+<li>The product does not contain the full set of features intended for the final release.</li>
+<li>You feel comfortable supporting this tile for customers.</li>
+</ul>
+
+<p>Products in Public Beta are available on <a href="http://network.pivotal.io">Pivotal Network</a> to any user with a free Pivotal Network account.</p>
+
+<h3>Requirements</h3>
+
+<p>Products in Public Beta must meet the following requirements:</p>
+
+<ul>
+<li><p>The product meets all requirements for <a href="#closed-beta"><strong>Closed Beta</strong></a>.</p></li>
+<li><p>The tile can be upgraded to subsequent versions without requiring the customer to uninstall the previous version.</p></li>
+<li><p>The product supports upgrade paths from any minor version or patch to the next minor version and any patches.</p></li>
+<li><p>Tile version upgrades result in no data or configuration loss, and maintain service functionality and availability.</p></li>
+<li><p>Where appropriate, PCF integrations work properly, including:</p>
+
+<ul>
+<li>Registered routes</li>
+<li>UAA</li>
+<li>Service brokers</li>
+</ul></li>
+<li><p>You can respond to discovery of a security flaw on the <a href="https://cve.mitre.org/cve/index.html">Common Vulnerabilities and Exposures (CVE) list</a> within a reasonable time frame. Security flaws include vulnerabilities in your stemcell or within one of the components of your tile.
+<p class="note"><strong>Note</strong>: Pivotal attempts to respond to all critical CVEs within 48 hours.
+</p></p></li>
+</ul>
+
+<h3>Steps to Release</h3>
+
+<ol>
+<li><p>Log into <a href="http://network.pivotal.io">Pivotal Network</a>.</p></li>
+<li><p>Create a new release for your product and populate all of the required fields.</p></li>
+<li><p>Check that the release version states <strong>BETA</strong>.</p></li>
+<li><p>Email your Pivotal contact to request product validation and Public Beta release. Please provide basic instructions on how to validate the new feature set. Pivotal will also validate the upgrade scenario and data persistence. After verifying that the release meets all requirements, Pivotal will make it visible to customers.</p></li>
+</ol>
+
+<h2><a id='ga'></a>Phase 4: General Availability</h2>
+
+<p>A product qualifies for <strong>General Availability</strong> when:</p>
+
+<ul>
+<li><p>It is production-ready.</p></li>
+<li><p>You can charge money for this product and provide support guarantees to your customers.</p></li>
+<li><p>The product&rsquo;s full set of features meets the standards of quality that you wish to uphold.</p></li>
+</ul>
+
+<h3>Requirements</h3>
+
+<p>Products must meet the following requirements for <strong>General Availability</strong>:</p>
+
+<ul>
+<li><p>The product meets all requirements for <a href="#public-beta"><strong>Public Beta</strong></a>.</p></li>
+<li><p>You consider the product production-ready, and you have adequate unit and functional tests to ensure high quality.</p></li>
+<li><p>You can provide customer support.</p></li>
+<li><p>Your business team can &ldquo;Go to market.&rdquo;</p></li>
+<li><p>The product can scale vertically, by increasing the amount of RAM or CPU. Vertical scaling improves performance and does not result in data loss.</p></li>
+<li><p>If appropriate, the product can scale horizontally for high availability.</p>
+
+<ul>
+<li>Scaled-out nodes (application VMs) function correctly.</li>
+<li>Removing a node does not result in downtime.</li>
+</ul></li>
+<li><p>If appropriate, the product supports zero downtime deployment.</p></li>
+<li><p>Product installation does not require an internet connection, after initial product download.</p></li>
+</ul>
+
+<h3>Steps to Release</h3>
+
+<ol>
+<li><p>Log into <a href="http://network.pivotal.io">Pivotal Network</a>.</p></li>
+<li><p>Create a new release for your product and populate all of the required fields.</p></li>
+<li><p>Email your Pivotal contact to request product validation and General Availability release. Please provide basic instructions on how to validate the new feature set. Pivotal will also validate the upgrade scenario and data persistence.</p></li>
+</ol>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/releases.html.md.erb'>View the source for this page in GitHub</a></div>
 
       </main>
     </div>

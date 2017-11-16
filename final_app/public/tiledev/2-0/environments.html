@@ -8,6 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
+      Development Environments |
     
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,7 @@
 
 </head>
 
-<body class="subnavs subnavs_tiledev_subnav">
+<body class="tiledev tiledev_2-0 tiledev_2-0_environments has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -89,8 +90,13 @@
       document.domain = "";
     </script>
 
-          <header class="header-home">
-      <div class="home-links js-bar-links">
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
         <div class="btn-menu" data-behavior="MenuMobile"></div>
         
         <div class="header-item">
@@ -110,14 +116,6 @@
 </div>
 
       </div>
-      <h1 class="title-flashy">
-        <img src="../images/icon-p-green.jpg"> Pivotal Cloud Foundry Documentation
-
-      </h1>
-
-      <h2 class="title-intro">
-        
-      </h2>
     </header>
 
 
@@ -125,20 +123,7 @@
     <div class="container">
 
       <!--googleoff: index-->
-      
-      <!--googleon: index-->
-
-      <main class="content content-layout" id="js-content" role="main">
-        <a id="top"></a>
-        
-        
-          <div id="js-quick-links" >
-            
-          </div>
-        <div class="to-top" id="js-to-top">
-          <a href="#top" title="back to top"></a>
-        </div>
-        <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
   <a class="sidenav-title" data-behavior="SubMenuMobile">
     Doc Index
   </a>
@@ -333,7 +318,87 @@
   </div>
 </div><!--end of sub-nav-->
 
-        <div></div>
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    Development Environments
+  </h1>
+
+          <div id="js-quick-links" >
+            <div class="quick-links"><ul>
+<li><a href="#pcfdev">PCF Dev and BOSH Lite</a></li>
+<li><a href="#pws">PWS or Other Supported CF Infrastructure</a></li>
+<li><a href="#pcf">PCF with Ops Manager</a></li>
+</ul></div>
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p>This topic explains how to set up tile development environments, from simple standalone tools to a full PCF development environment. As you progress through the <a href="/tiledev/2-0/stages.html">stages</a> of tile development, you will likely also progress through these environments.</p>
+
+<h2><a id="pcfdev"></a> PCF Dev and BOSH Lite</h2>
+
+<p>Pivotal provides a lightweight (vagrant packaged) instance of PCF with some
+basic services as a free product named PCF Dev. This is a great environment
+to develop and test everything that runs in the Cloud Foundry Elastic Runtime.</p>
+
+<p>Either of these environments allow you to develop the first three levels of service for Pivotal Cloud Foundry (PCF): a <a href="/tiledev/2-0/roadmap.html">User-Provided Service</a>, a <a href="/tiledev/2-0/brokered.html">Brokered Service</a>, and a <a href="/tiledev/2-0/managed.html">Managed Service</a>.</p>
+
+<p>If your integration includes managed services, you will also need an instance
+of BOSH that can manage virtual machines and BOSH releases for you.
+<a href="https://github.com/cloudfoundry/bosh-lite">BOSH-Lite</a> works well for that
+purpose.</p>
+
+<p>Between these two components, you will have everything you need to develop
+tiles, except for Pivotal&rsquo;s Ops Manager. But if you followed the recommended
+<a href="/tiledev/2-0/development.html">staged development approach</a> you will not need an actual full
+PCF environment until the later phases of your development.</p>
+
+<h2>Setting up BOSH-Lite</h2>
+
+<ul>
+<li><p><a href="https://github.com/cloudfoundry/bosh-lite">Install BOSH-Lite</a></p>
+
+<p class="note"><strong>Note</strong>: For this type of development environment, you only need BOSH-Lite itself to deploy managed service releases. You do **not** need to follow the instructions to Deploy Cloud Foundry in BOSH-Lite, as Cloud Foundry is provided by the PCF Dev installation above.</p></li>
+</ul>
+
+<h2>Setting up PCF Dev</h2>
+
+<ul>
+<li><a href="http://pivotal.io/platform/pcf-tutorials/getting-started-with-pivotal-cloud-foundry-dev/introduction">Try PCF on your Local Workstation</a></li>
+</ul>
+
+<h2><a id="pws"></a>PWS or Other Supported CF Infrastructure</h2>
+
+<ul>
+<li><a href="http://docs.run.pivotal.io/starting/index.html">Set Up Your PWS Account and Download the cf CLI</a> explains how to get started with Pivotal Web Services (PWS), a highly-available, production-scale PCF environment hosted by Pivotal.</li>
+</ul>
+
+<h2><a id="pcf"></a>PCF with Ops Manager</h2>
+
+<p><a name="setup"></a> </p>
+
+<p>Partners who participate in our program have access to a number of shared
+PCF environments that are operated and managed by Pivotal. If you are not
+(yet) in our program, need a dedicated environment, or want to be able to
+work offline, you can set up your own environment. Often, a
+<a href="/tiledev/2-0/environments.html#pcfdev">developer environment</a> is sufficient for the early
+phases of an integration effort. But eventually, you will need access to
+a complete environment that includes Pivotal&rsquo;s Ops Manager on one of the
+supported infrastructures:</p>
+
+<ul>
+<li><a href="http://docs.pivotal.io/pivotalcf/installing/index.html">Installing Pivotal Cloud Foundry</a>
+<a name="operations"></a> </li>
+<li><a href="http://docs.pivotal.io/pivotalcf/opsguide/index.html">Operating Pivotal Cloud Foundry</a>
+<a name="upgrade"></a> </li>
+<li><a href="http://docs.pivotal.io/pivotalcf/customizing/upgrading-pcf.html">Upgrading Pivotal Cloud Foundry</a></li>
+</ul>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/environments.html.md.erb'>View the source for this page in GitHub</a></div>
 
       </main>
     </div>

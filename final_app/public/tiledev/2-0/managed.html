@@ -8,6 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
+      Managed Service |
     
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,7 @@
 
 </head>
 
-<body class="subnavs subnavs_tiledev_subnav">
+<body class="tiledev tiledev_2-0 tiledev_2-0_managed has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -89,8 +90,13 @@
       document.domain = "";
     </script>
 
-          <header class="header-home">
-      <div class="home-links js-bar-links">
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
         <div class="btn-menu" data-behavior="MenuMobile"></div>
         
         <div class="header-item">
@@ -110,14 +116,6 @@
 </div>
 
       </div>
-      <h1 class="title-flashy">
-        <img src="../images/icon-p-green.jpg"> Pivotal Cloud Foundry Documentation
-
-      </h1>
-
-      <h2 class="title-intro">
-        
-      </h2>
     </header>
 
 
@@ -125,20 +123,7 @@
     <div class="container">
 
       <!--googleoff: index-->
-      
-      <!--googleon: index-->
-
-      <main class="content content-layout" id="js-content" role="main">
-        <a id="top"></a>
-        
-        
-          <div id="js-quick-links" >
-            
-          </div>
-        <div class="to-top" id="js-to-top">
-          <a href="#top" title="back to top"></a>
-        </div>
-        <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
   <a class="sidenav-title" data-behavior="SubMenuMobile">
     Doc Index
   </a>
@@ -333,7 +318,78 @@
   </div>
 </div><!--end of sub-nav-->
 
-        <div></div>
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    Managed Service
+  </h1>
+
+          <div id="js-quick-links" >
+            <div class="quick-links"><ul>
+<li>
+<a href="#overview">Overview</a><ul>
+<li><a href="#managed-mvp">Minimal Viable Product</a></li>
+<li><a href="#managed-ha">High Availability</a></li>
+</ul>
+</li>
+<li><a href="#create">Create a Managed Service</a></li>
+</ul></div>
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p>The topics in this subsection explain how to integrate your <a href="/tiledev/2-0/brokered.html">brokered service</a> more closely with Pivotal Cloud Foundry (PCF) to create a managed service and service tile for PCF.</p>
+
+<h2><a id="overview"></a> Overview</h2>
+
+<p>The next level of integration is to get your service to be deployed on PCF rather
+than externally, on the same IaaS that your particular Cloud Foundry instance
+is deployed on, and by the same orchestration tool, <a href="http://bosh.io">BOSH</a>.</p>
+
+<p>This is usually one of the more involved integrations, as you will have to change your packaging to allow your service components to be deployed by <a href="http://bosh.io">BOSH</a> onto the PCF infrastructure.</p>
+
+<p>Offering your software as a managed service means that your PCF customers
+will not have to learn different ways to deploy, manage, and monitor
+different components of their application platform.</p>
+
+<p>As with the brokered service, the service has a service broker and a tile listed on PivNet. PivNet lists managed services as &ldquo;for PCF,&rdquo; without &ldquo;Service Broker&rdquo; in the name.</p>
+
+<p>To integrate your service at this level, you will have to learn about stemcells, BOSH releases, and manifests. You will also have to decide how your service maps to virtual machines and how persistent storage is managed.</p>
+
+<h3><a id="managed-mvp"></a> Minimal Viable Product</h3>
+
+<p>For a Minimal Viable Product (MVP) version of a managed service, we typically
+recommend that you aim for a single, shared service instance, and don&rsquo;t yet
+worry too much about High Availability of this instance. This integration level is mostly about getting the BOSH packaging, deployment, and monitoring working
+correctly.</p>
+
+<h3><a id="managed-ha"></a> High Availability</h3>
+
+<p>Once you have a managed service, you may decide to prioritize either 
+<a href="/tiledev/2-0/on-demand.html">on-demand provisioning</a> of service instances, or making your
+single shared service instance more highly available.</p>
+
+<p>When properly configured, BOSH monitors and restarts any failing processes
+and virtual machines that are part of your service deployment. But to
+further increase availability, you will have to think about spreading your
+resources across multiple availability zones or even regions, and replicating
+your persistent storage across those as well.</p>
+
+<h2><a id="create"></a> Create a Managed Service</h2>
+
+<ul>
+<li><p>For BOSH to manage your service, you need to create a BOSH release for it.<br>
+<a href="/tiledev/2-0/bosh-release.html">BOSH Releases</a> explains how to do this, and how to use your already-existing Docker image as a shortcut.</p></li>
+<li><p>Once you have created a BOSH release for your managed service integration, you can work through the <a href="/tiledev/2-0/development.html">development steps</a> to create your tile.</p></li>
+<li><p>The <a href="/tiledev/2-0/tile-generator.html">Tile Generator</a> tool automatically creates the lifecycle errands that can run after a PCF tile is deployed or before it is removed. PCF operators control which errands run the next time they click <strong>Apply Changes</strong> to redeploy. See the <a href="/tiledev/2-0/tile-errands.html">Errands</a> topic for how PCF operators control when errands run, and how to set default errand run rules in the tile.</p></li>
+</ul>
+
+<p>At any level of integration, Pivotal recommends and supports using <a href="/tiledev/2-0/concourse.html">Concourse</a> for continuous integration during development.</p>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/managed.html.md.erb'>View the source for this page in GitHub</a></div>
 
       </main>
     </div>

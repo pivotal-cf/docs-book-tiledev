@@ -81,7 +81,7 @@
 
 </head>
 
-<body class="subnavs subnavs_tiledev_subnav">
+<body class="tiledev tiledev_2-0 tiledev_2-0_README has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -125,20 +125,7 @@
     <div class="container">
 
       <!--googleoff: index-->
-      
-      <!--googleon: index-->
-
-      <main class="content content-layout" id="js-content" role="main">
-        <a id="top"></a>
-        
-        
-          <div id="js-quick-links" >
-            
-          </div>
-        <div class="to-top" id="js-to-top">
-          <a href="#top" title="back to top"></a>
-        </div>
-        <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
   <a class="sidenav-title" data-behavior="SubMenuMobile">
     Doc Index
   </a>
@@ -333,7 +320,169 @@
   </div>
 </div><!--end of sub-nav-->
 
-        <div></div>
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+        
+          <div id="js-quick-links" >
+            <div class="quick-links"><ul><li>
+<a href="#overview">Overview</a><ul>
+<li><a href="#template">How To Use This Template</a></li>
+<li><a href="#bookbinder">How To Use Bookbinder To View Your Docs</a></li>
+<li><a href="#zero-to-bookbinder">Zero to Bookbinder: How to Install Bookbinder and Build, View, and Edit Your Docs from Nothing</a></li>
+</ul>
+</li></ul></div>
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <h2>This repo is for Tile Developer Guide content only. See the <a href="https://github.com/pivotal-cf/docs-book-tiledev">Tile Developer Guide Book Repo</a> for the book that publishes this content.</h2>
+
+<h2>PCF Services Documentation Template</h2>
+
+<p>This template helps Pivotal development teams prepare documentation for Pivotal Cloud Foundry (PCF) services that appear on <a href="https://network.pivotal.io/">Pivotal Network</a>. </p>
+
+<h2><a id='overview'></a>Overview</h2>
+
+<p>Every PCF service has (or should have) documentation on the main Pivotal documentation site, <a href="http://docs.pivotal.io">docs.pivotal.io</a> under <strong>Pivotal Cloud Foundry Services</strong>.</p>
+
+<h3><a id='template'></a>How To Use This Template</h3>
+
+<p>You can use this template to develop documentation for a new PCF service. It includes sections for a Product Snapshot, prerequisites, instructions for installation and use, release notes, license information, and other generally useful and expected documentation.</p>
+
+<p>To begin using this repo to develop your documentation, perform the following steps:</p>
+
+<ol>
+<li>Clone this repo onto your local machine.</li>
+<li>Work your way through each topic, replacing the placeholders in ALL-CAPS and following the instructions in <strong>bold</strong>. </li>
+<li>Complete the subnav by replacing the placeholders in ALL-CAPS in the subnav file at <code>book/master_middleman/source/subnavs/service_subnav.erb</code> in this repo.</li>
+<li>View your documentation as a live local site in a browser, by following the steps below in the <a href="#bookbinder">How To Use Bookbinder To View Your Docs</a> section.</li>
+<li>When you&rsquo;ve finished your documentation, push your docs up to the remote and email the PCF Docs Team at <a href="mailto:cf-docs@pivotal.io">cf-docs@pivotal.io</a>.</li>
+</ol>
+
+<h3><a id='bookbinder'></a>How To Use Bookbinder To View Your Docs</h3>
+
+<p><a href="https://github.com/pivotal-cf/bookbinder/blob/master/README.md">Bookbinder</a> is a command-line utility for stitching Markdown docs into a hostable web app. The PCF Docs Team uses Bookbinder to publish our docs site, but you can also use Bookbinder to view a live version of your documentation on your local machine.</p>
+
+<p>Bookbinder draws the content for the site from <code>docs-content</code>, the subnav from <code>docs-book</code>, and various layout configuration and assets from <code>docs-layout</code>.</p>
+
+<p>To use Bookbinder to view your documentation, perform the following steps:</p>
+
+<ol>
+<li>On your local machine, <code>cd</code> into <code>docs-book</code> in the cloned repo.</li>
+<li>Run <code>bundle install</code> to make sure you have all the necessary gems installed.</li>
+<li>Build your documentation site with <code>bookbinder</code> in one of the two following ways:
+
+<ul>
+<li>Run <code>bookbinder watch</code> to build an interactive version of the docs and navigate to <code>localhost:4567/myservice/</code> in a browser. (It may take a moment for the site to load at first.) This builds a site from your content repo at <code>docs-content</code>, and then watches that repo to update the site if you make any changes to the repo.</li>
+<li>Run <code>bookbinder bind local</code> to build a Rack web-app of the book. After the bind has completed, <code>cd</code> into the <code>final_app</code> directory and run <code>rackup</code>. Then navigate to <code>localhost:9292/myservice/</code> in a browser.</li>
+</ul></li>
+</ol>
+
+<h3><a id='zero-to-bookbinder'></a>Zero to Bookbinder: How to Install Bookbinder and Build, View, and Edit Your Docs from Nothing</h3>
+
+<p>If you are reading this, Pivotal has invited you to a git repo where you can build and edit documentation in the Ruby / Markdown / HTML format that the online publishing tool <a href="https://github.com/pivotal-cf/bookbinder/blob/master/README.md">Bookbinder</a> uses to build Pivotal&rsquo;s documentation.</p>
+
+<p>Here&rsquo;s how to install Bookbinder and build your docs from the repo, starting from scratch, on a Mac OS X machine.</p>
+
+<p class="note"><strong>Note</strong>: All steps below are implicitly preceded with, &ldquo;If you haven&rsquo;t already&hellip;&rdquo; You should skip any installation steps that have already contributed to your environment.</p>
+
+<h4>Install Ruby</h4>
+
+<p>In Terminal window:</p>
+
+<ol>
+<li><p>Make and <code>cd</code> into a workspace directory.</p>
+
+<p><code>$ mkdir workspace</code></p>
+
+<p><code>$ cd workspace</code></p></li>
+<li><p>Follow the instructions at <code>http://brew.sh</code> to install brew / homebrew</p>
+
+<p><code>$ /usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</code></p></li>
+<li><p>Install your own (non-system) ruby.</p>
+
+<p><code>$ brew install ruby</code></p></li>
+</ol>
+
+<h4>Set up Git</h4>
+
+<ol>
+<li><p>Download and Install git by following the instructions at <a href="https://git-scm.com/download/">git-scm.com</a>.</p></li>
+<li><p>Install your own (non-system) bash-completion (optional).</p>
+
+<p><code>$ brew install git bash-completion</code></p></li>
+<li><p>If you don&rsquo;t already have one, generate a public/private RSA key pair, and save the key to your <code>~/.ssh</code> directory.
+<code>
+$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/YOUR-USERID/.ssh/id_rsa): 
+</code></p></li>
+<li><p>Get a <a href="http://github.com">Github</a> account.</p></li>
+<li><p>Add your RSA public key to your Github account / profile page.</p>
+
+<p><code>$ cat ~/.ssh/id_rsa.pub # copy and paste this into Github profile page as new key</code></p></li>
+</ol>
+
+<h4>Get the Correct Ruby Version</h4>
+
+<ol>
+<li><p>Install a Ruby manager such as chruby.</p>
+
+<p><code>$ brew install chruby</code></p></li>
+<li><p>Add your Ruby manager to your <code>~/.bashrc</code> by appending the following line:</p>
+
+<p><code>source /usr/local/opt/chruby/share/chruby/chruby.sh</code></p></li>
+<li><p>Install the <code>ruby-install</code> installer.</p>
+
+<p><code>$ brew install ruby-install</code></p></li>
+<li><p>Run <code>ruby-install</code> to install Ruby.</p>
+
+<p><code>$ ruby-install ruby 2.3</code></p></li>
+</ol>
+
+<h4>Install Bookbinder</h4>
+
+<ol>
+<li><p>Install <code>bundler</code>.</p>
+
+<p><code>$ gem install bundler</code></p></li>
+<li><p>Install bookbinder (the <code>bookbindery</code> gem).</p>
+
+<p><code>$ gem install bookbindery</code></p></li>
+</ol>
+
+<h4>Build the Docs Locally</h4>
+
+<ol>
+<li><p>Clone the docs template repo you will be building from.</p>
+
+<p><code>$ git clone git@github.com:pivotal-cf-experimental/docs-pcfservices-template</code></p></li>
+<li><p><code>cd</code> into the <code>book</code> subdirectory of the repo.</p></li>
+</ol>
+
+<p><code>$ cd docs-partners-template/docs-book</code></p>
+
+<ol>
+<li><p>Run <code>bundle install</code> to install all book dependencies.</p>
+
+<p><code>$ bundle install</code></p></li>
+<li><p>Run <code>bookbinder watch</code> to build the book on your machine. If it doesn&rsquo;t succeed, try prepending the command with <code>bundle exec</code> so that bookbinder uses local gems instead of global gems.</p></li>
+</ol>
+
+<p><code>$ bundle exec bookbinder watch</code></p>
+
+<ol>
+<li>Browse to <code>localhost:4567</code> to view the book locally and &ldquo;watch&rdquo; any changes that you make to source <code>html.md.erb</code> files. As you make and save changes to the local source files for your site, you will see them in your browser after a slight delay.</li>
+</ol>
+
+<p>After each session of writing or revising your docs source files, commit and push them to your github repo.</p>
+
+<p>Happy documenting!</p>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/README.html.md.erb'>View the source for this page in GitHub</a></div>
 
       </main>
     </div>

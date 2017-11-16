@@ -8,6 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
+      Creating New Variables in CredHub |
     
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,7 @@
 
 </head>
 
-<body class="subnavs subnavs_tiledev_subnav">
+<body class="tiledev tiledev_2-0 tiledev_2-0_create-credhub-vars has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -89,8 +90,13 @@
       document.domain = "";
     </script>
 
-          <header class="header-home">
-      <div class="home-links js-bar-links">
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
         <div class="btn-menu" data-behavior="MenuMobile"></div>
         
         <div class="header-item">
@@ -110,14 +116,6 @@
 </div>
 
       </div>
-      <h1 class="title-flashy">
-        <img src="../images/icon-p-green.jpg"> Pivotal Cloud Foundry Documentation
-
-      </h1>
-
-      <h2 class="title-intro">
-        
-      </h2>
     </header>
 
 
@@ -125,20 +123,7 @@
     <div class="container">
 
       <!--googleoff: index-->
-      
-      <!--googleon: index-->
-
-      <main class="content content-layout" id="js-content" role="main">
-        <a id="top"></a>
-        
-        
-          <div id="js-quick-links" >
-            
-          </div>
-        <div class="to-top" id="js-to-top">
-          <a href="#top" title="back to top"></a>
-        </div>
-        <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
   <a class="sidenav-title" data-behavior="SubMenuMobile">
     Doc Index
   </a>
@@ -333,7 +318,118 @@
   </div>
 </div><!--end of sub-nav-->
 
-        <div></div>
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    Creating New Variables in CredHub
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p>This topic explains how CredHub manages variables in the context of a larger deployment, and how to create new variables for use in CredHub. </p>
+
+<h2>Background</h2>
+
+<p>When a tile author defines a top-level <code>variables</code> section in the product template, Ops Manager passes the <code>variables</code> section to the product manifest.
+tile authors can define variables in the product template as follows:</p>
+<pre class="highlight plaintext"><code>variables:
+  - name: EXAMPLE-CREDHUB-PASSWORD
+    type: password
+</code></pre>
+
+<p>You can reference these variables in the manifest snippets in their tile metadata using a triple parentheses syntax: </p>
+<pre class="highlight plaintext"><code>((( EXAMPLE-CREDHUB-PASSWORD )))
+</code></pre>
+
+<p>Using triple parentheses lets Ops Manager identify CredHub variables while still supporting the BOSH double parentheses syntax. A variable referenced within triple parentheses is replaced by double parentheses in the generated manifest. After contacting CredHub, BOSH populates that variable value internally.</p>
+
+<p>The benefit of this approach is that the Ops Manager YAML file does not contain sensitive credentials when the metadata manifest snippets have triple parentheses. The resulting manifest file contains variables within double parentheses, rather than unobscured credentials.</p>
+
+<p>For example, a tile author adds credentials to a manifest snippet in the following format:</p>
+<pre class="highlight plaintext"><code>  key: ((( EXAMPLE-CREDHUB-PASSWORD )))
+  key: prefix-((( ANOTHER-CREDHUB-PASSWORD )))-suffix
+</code></pre>
+
+<p>Ops Manager evaluates the above example to generate the following section in the product manifest:</p>
+<pre class="highlight plaintext"><code>  (( EXAMPLE-CREDHUB-PASSWORD ))
+  prefix-(( ANOTHER-CREDHUB-PASSWORD ))-suffix
+</code></pre>
+
+<h2>How CredHub Works Within a Deployment</h2>
+
+<p>CredHub is distributed as a BOSH release. As part of this installation, Ops Manager co-locates the CredHub release on the Ops Manager Director, including the CredHub job configurations, and the Director is configured to point to the CredHub API.</p>
+
+<p>Once CredHub has been deployed and configured on the Director, any Director deployment can use CredHub variables in place of credential values. Using variables, rather than values, provides an extra layer of security when transmitting credentials within your deployment.</p>
+
+<h2>Changing Your Deployment Manifest to Include CredHub Variables</h2>
+
+<p>The Ops Manager Director interpolates credential values into manifests that use the <code>((variables))</code> syntax. When the Director encounters a variable using this syntax, it requests the credential value from CredHub. If the credential does not exist and the release or manifest contains generation properties, the credential value is generated automatically.</p>
+
+<p>The manifest excerpt below includes references to two credentials, <code>EXAMPLE-PASSWORD</code> and <code>EXAMPLE-TLS</code>. </p>
+
+<p>When this manifest is deployed, the Ops Manager Director retrieves the stored variables and replaces them with the credential values associated with each variable. The <code>EXAMPLE-TLS</code> variables include property accessors, so only the <code>certificate</code> and <code>private_key</code> components are interpolated.</p>
+<pre class="highlight plaintext"><code>name: demo-deploy
+
+instance_groups:
+  jobs: 
+  - name: demo 
+    release: demo
+    properties:
+      demo:
+        password: ((EXAMPLE-PASSWORD))
+        tls: 
+          certificate: ((EXAMPLE-TLS.certificate))
+          private_key: ((EXAMPLE-TLS.private_key))
+</code></pre>
+
+<p>Ops Manager configures the Director to generate a credential if it does not exist. The manifest includes generation parameters that define how the credential should be generated. These generation parameters are defined in the variables section as shown below.</p>
+<pre class="highlight plaintext"><code>---
+name: demo deploy 
+
+variables: 
+- name: EXAMPLE-PASSWORD
+  type: password
+- name: EXAMPLE-CA
+  type: certificate
+  options: 
+    is_ca: true
+    common_name: 'Example Certificate Authority'
+- name: EXAMPLE-TLS
+  type: certificate
+  options: 
+    ca: EXAMPLE-CA
+    common_name: example.com
+
+instance_groups:
+  jobs: 
+  - name: demo 
+    release: demo
+    properties:
+      demo:
+        password: (( EXAMPLE-PASSWORD ))
+        tls: 
+          certificate: (( EXAMPLE-TLS.certificate ))
+          private_key: (( EXAMPLE-TLS.private_key ))
+</code></pre>
+
+<h2>Variable Namespacing</h2>
+
+<p>Deployment manifests often use common variable names; for example, <code>(( PASSWORD ))</code>. To avoid variable name collisions between deployments, the Ops Manager Director automatically stores variables with the Ops Manager Director name and deployment name. For example, the variable <code>(( EXAMPLE-PASSWORD ))</code> is stored in CredHub as /Ops-Manager-Director-name/deployment-name/example-password.</p>
+
+<h3>Other Namespacing Options</h3>
+
+<p>Use a <a href="../../tiledev/release-notes-1-11.html#bosh-links">BOSH link</a> to share credentials across deployments. Alternatively, if you want to use an exact name, prefixing the variable with a forward slash (/) will cause the Director to use the exact name you type. An example of a precisely typed variable follows.</p>
+<pre class="highlight plaintext"><code>((/EXAMPLE-PASSWORD))
+</code></pre>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/create-credhub-vars.html.md.erb'>View the source for this page in GitHub</a></div>
 
       </main>
     </div>

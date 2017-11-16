@@ -8,6 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
+      Service Brokers |
     
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,7 @@
 
 </head>
 
-<body class="subnavs subnavs_tiledev_subnav">
+<body class="tiledev tiledev_2-0 tiledev_2-0_service-brokers has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -89,8 +90,13 @@
       document.domain = "";
     </script>
 
-          <header class="header-home">
-      <div class="home-links js-bar-links">
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
         <div class="btn-menu" data-behavior="MenuMobile"></div>
         
         <div class="header-item">
@@ -110,14 +116,6 @@
 </div>
 
       </div>
-      <h1 class="title-flashy">
-        <img src="../images/icon-p-green.jpg"> Pivotal Cloud Foundry Documentation
-
-      </h1>
-
-      <h2 class="title-intro">
-        
-      </h2>
     </header>
 
 
@@ -125,20 +123,7 @@
     <div class="container">
 
       <!--googleoff: index-->
-      
-      <!--googleon: index-->
-
-      <main class="content content-layout" id="js-content" role="main">
-        <a id="top"></a>
-        
-        
-          <div id="js-quick-links" >
-            
-          </div>
-        <div class="to-top" id="js-to-top">
-          <a href="#top" title="back to top"></a>
-        </div>
-        <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
   <a class="sidenav-title" data-behavior="SubMenuMobile">
     Doc Index
   </a>
@@ -333,7 +318,49 @@
   </div>
 </div><!--end of sub-nav-->
 
-        <div></div>
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    Service Brokers
+  </h1>
+
+          <div id="js-quick-links" >
+            <div class="quick-links"><ul>
+<li><a href="#resources">Service Broker Resources</a></li>
+<li><a href="#route">Route Services Resources</a></li>
+<li><a href="#catalog">Catalog Resources</a></li>
+</ul></div>
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p>This topic provides resources for building service brokers and routing services.</p>
+
+<h2><a id="resources"></a> Service Broker Resources</h2>
+
+<ul>
+<li><p>The <a href="http://docs.pivotal.io/pivotalcf/services/overview.html">Custom Services Overview</a> topic gives a high-level description of how service brokers work in Pivotal Cloud Foundry (PCF).</p></li>
+<li><p><a href="http://docs.pivotal.io/pivotalcf/services/api.html">Service Broker API</a> gives a more detailed explanation of PCF service brokers, and provides a full specification for the endpoints, requests, responses, and status codes that a service broker must support.</p></li>
+<li><p><a href="http://docs.pivotal.io/pivotalcf/services/examples.html">Example Service Brokers</a> offers example brokers written in Ruby, Java, and Go.</p></li>
+</ul>
+
+<h2><a id="route"></a> Route Services Resources</h2>
+
+<ul>
+<li><p><a href="http://docs.pivotal.io/pivotalcf/services/route-services.html">Route Services</a> explains how route services work, and what are the different architectures for using them in a Cloud Foundry deployment. </p></li>
+<li><p><a href="http://docs.pivotal.io/pivotalcf/services/route-services.html#examples">Example Route Services</a> gives examples of a logging route service, a rate-limiting route service, and another logging service written in Spring Boot. It also offers a tutorial on setting up the logging route service.</p></li>
+</ul>
+
+<h2><a id="catalog"></a> Catalog Resources</h2>
+
+<ul>
+<li><a href="https://docs.pivotal.io/pivotalcf/services/catalog-metadata.html">Catalog Metadata</a> explains how to publish service plan information to the Services Marketplace, including the icons, display names, and links that appear in the PCF Apps Manager UI but not the plain text output of <code>cf marketplace</code>.</li>
+</ul>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/service-brokers.html.md.erb'>View the source for this page in GitHub</a></div>
 
       </main>
     </div>

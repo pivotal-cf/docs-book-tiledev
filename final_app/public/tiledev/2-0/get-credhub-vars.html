@@ -8,6 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
+      Fetching Variable Names and Values |
     
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,7 @@
 
 </head>
 
-<body class="subnavs subnavs_tiledev_subnav">
+<body class="tiledev tiledev_2-0 tiledev_2-0_get-credhub-vars has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -89,8 +90,13 @@
       document.domain = "";
     </script>
 
-          <header class="header-home">
-      <div class="home-links js-bar-links">
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
         <div class="btn-menu" data-behavior="MenuMobile"></div>
         
         <div class="header-item">
@@ -110,14 +116,6 @@
 </div>
 
       </div>
-      <h1 class="title-flashy">
-        <img src="../images/icon-p-green.jpg"> Pivotal Cloud Foundry Documentation
-
-      </h1>
-
-      <h2 class="title-intro">
-        
-      </h2>
     </header>
 
 
@@ -125,20 +123,7 @@
     <div class="container">
 
       <!--googleoff: index-->
-      
-      <!--googleon: index-->
-
-      <main class="content content-layout" id="js-content" role="main">
-        <a id="top"></a>
-        
-        
-          <div id="js-quick-links" >
-            
-          </div>
-        <div class="to-top" id="js-to-top">
-          <a href="#top" title="back to top"></a>
-        </div>
-        <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
   <a class="sidenav-title" data-behavior="SubMenuMobile">
     Doc Index
   </a>
@@ -333,7 +318,105 @@
   </div>
 </div><!--end of sub-nav-->
 
-        <div></div>
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    Fetching Variable Names and Values
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <h2>Overview</h2>
+
+<p>CredHub has two API endpoints to identify and re-use variables. Operators who want to see all the credentials associated with their product, or support engineers who want to troubleshoot issues specific to one virtual machine (VM), can use these APIs for those purposes.</p>
+
+<p>The API endpoints perform these functions:</p>
+
+<ul>
+<li>Identifying and printing the name of a variable</li>
+<li>Using the name of the variable to identify and print the value of the variable</li>
+</ul>
+
+<h3>Using the API Endpoints</h3>
+
+<p>Use these endpoints to view variables for any product in Ops Manager, except the Ops Manager Director. These endpoints are read-only. You cannot use them to add, remove, or rotate variables.</p>
+
+<h2>Fetching Variables</h2>
+
+<p>This endpoint returns the list of variables associated with a product that are stored in CredHub. Not all variables are stored in CredHub. If you call a variable that is not stored in CredHub, the call returns an empty value.</p>
+
+<pre class="terminal">
+$ curl "http<span>s</span>://example.com/api/v0/deployed/products/product-guid/variables" \ 
+    -X GET \ 
+    -H "Authorization: Bearer EXAMPLE_UAA_ACCESS_TOKEN"
+</pre>
+
+<h3>Example Response</h3>
+
+<pre class="terminal">
+HTTP/1.1 200 OK
+
+{
+  "variables": ["FIRST-EXAMPLE-VARIABLE", "SECOND-EXAMPLE-VARIABLE", "THIRD-EXAMPLE-VARIABLE"]
+}
+</pre>
+
+<h3>Query Parameters</h3>
+
+<table class="nice">
+    <th>Parameter</th>
+    <th>Description</th>
+    <tr>
+        <td>product_guid</td>
+        <td>The unique product identifier, formatted as a text string</td>
+    </tr>
+</table>
+
+<p>This endpoint returns a variable&rsquo;s name. Use the name in the next endpoint to return the variable&rsquo;s value.</p>
+
+<h2>Fetching Variable Values</h2>
+
+<p>This endpoint returns the value of a variable stored in CredHub. Not all variables are stored in CredHub, so if you call a variable that isn&rsquo;t in CredHub, the call will return an empty value.</p>
+
+<pre class="terminal">
+$ curl "http<span>s</span>://example.com/api/v0/deployed/products/product-guid/variables?name=EXAMPLE-VARIABLE-NAME" \ 
+    -X GET \ 
+    -H "Authorization: Bearer UAA_ACCESS_TOKEN"
+</pre>
+
+<h3>Example Response</h3>
+
+<pre class="terminal">
+HTTP/1.1 200 OK
+
+{
+  "credhub-password": "EXAMPLE-PASSWORD"
+}
+</pre>
+
+<h3>Query Parameters</h3>
+
+<table>
+    <th>Parameter</th>
+    <th>Description</th>
+    <tr>
+        <td>variable_name</td>
+        <td>The name of the variable, formatted as a text string</td>
+    </tr>
+    <tr>
+        <td>product_guid</td>
+        <td>The unique product identifier, formatted as a text string</td>
+    </tr>
+</table>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/get-credhub-vars.html.md.erb'>View the source for this page in GitHub</a></div>
 
       </main>
     </div>

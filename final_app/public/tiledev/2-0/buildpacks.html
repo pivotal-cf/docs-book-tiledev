@@ -8,6 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
+      Buildpacks |
     
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,7 @@
 
 </head>
 
-<body class="subnavs subnavs_tiledev_subnav">
+<body class="tiledev tiledev_2-0 tiledev_2-0_buildpacks has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -89,8 +90,13 @@
       document.domain = "";
     </script>
 
-          <header class="header-home">
-      <div class="home-links js-bar-links">
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
         <div class="btn-menu" data-behavior="MenuMobile"></div>
         
         <div class="header-item">
@@ -110,14 +116,6 @@
 </div>
 
       </div>
-      <h1 class="title-flashy">
-        <img src="../images/icon-p-green.jpg"> Pivotal Cloud Foundry Documentation
-
-      </h1>
-
-      <h2 class="title-intro">
-        
-      </h2>
     </header>
 
 
@@ -125,20 +123,7 @@
     <div class="container">
 
       <!--googleoff: index-->
-      
-      <!--googleon: index-->
-
-      <main class="content content-layout" id="js-content" role="main">
-        <a id="top"></a>
-        
-        
-          <div id="js-quick-links" >
-            
-          </div>
-        <div class="to-top" id="js-to-top">
-          <a href="#top" title="back to top"></a>
-        </div>
-        <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
   <a class="sidenav-title" data-behavior="SubMenuMobile">
     Doc Index
   </a>
@@ -333,7 +318,54 @@
   </div>
 </div><!--end of sub-nav-->
 
-        <div></div>
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    Buildpacks
+  </h1>
+
+          <div id="js-quick-links" >
+            <div class="quick-links"><ul>
+<li><a href="#language">Official Buildpacks</a></li>
+<li><a href="#other">Other Buildpacks</a></li>
+<li><a href="#custom">Custom Buildpacks</a></li>
+</ul></div>
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p>Buildpacks compile and package apps to run on PCF. This topic lists resources for using and deploying buildpacks with PCF apps, and for creating your own custom buildpack.</p>
+
+<h2><a id="language"></a> Official Buildpacks</h2>
+
+<ul>
+<li><p><a href="https://github.com/cloudfoundry/java-buildpack">Java buildpack</a> (by far the most complicated!)</p></li>
+<li><p><a href="https://github.com/cloudfoundry/go-buildpack">Go buildpack</a></p></li>
+<li><p><a href="https://github.com/cloudfoundry/ruby-buildpack">Ruby buildpack</a></p></li>
+<li><p><a href="https://github.com/cloudfoundry/nodejs-buildpack">Node.js buildpack</a></p></li>
+<li><p><a href="https://github.com/cloudfoundry/python-buildpack">Python buildpack</a></p></li>
+<li><p><a href="https://github.com/cloudfoundry/php-buildpack">PHP buildpack</a></p></li>
+<li><p><a href="https://github.com/cloudfoundry/staticfile-buildpack">Static file buildpack</a> (for static web content)</p></li>
+<li><p><a href="https://github.com/cloudfoundry/binary-buildpack">Binary buildpack</a></p></li>
+</ul>
+
+<h2><a id="other"></a> Other Buildpacks</h2>
+
+<ul>
+<li><p><a href="https://github.com/guidowb/meta-buildpack">Meta-Buildpack</a></p></li>
+<li><p><a href="https://github.com/guidowb/spring-config-decorator">Spring Config Decorator Buildpack</a></p></li>
+</ul>
+
+<h2><a id="custom"></a> Custom Buildpacks</h2>
+
+<ul>
+<li><a href="http://docs.pivotal.io/pivotalcf/buildpacks/custom.html">Creating a Custom Buildpack</a></li>
+</ul>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/buildpacks.html.md.erb'>View the source for this page in GitHub</a></div>
 
       </main>
     </div>

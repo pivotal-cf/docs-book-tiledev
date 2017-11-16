@@ -8,6 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
+      Other Integrations |
     
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,7 @@
 
 </head>
 
-<body class="subnavs subnavs_tiledev_subnav">
+<body class="tiledev tiledev_2-0 tiledev_2-0_other-integrations has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -89,8 +90,13 @@
       document.domain = "";
     </script>
 
-          <header class="header-home">
-      <div class="home-links js-bar-links">
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
         <div class="btn-menu" data-behavior="MenuMobile"></div>
         
         <div class="header-item">
@@ -110,14 +116,6 @@
 </div>
 
       </div>
-      <h1 class="title-flashy">
-        <img src="../images/icon-p-green.jpg"> Pivotal Cloud Foundry Documentation
-
-      </h1>
-
-      <h2 class="title-intro">
-        
-      </h2>
     </header>
 
 
@@ -125,20 +123,7 @@
     <div class="container">
 
       <!--googleoff: index-->
-      
-      <!--googleon: index-->
-
-      <main class="content content-layout" id="js-content" role="main">
-        <a id="top"></a>
-        
-        
-          <div id="js-quick-links" >
-            
-          </div>
-        <div class="to-top" id="js-to-top">
-          <a href="#top" title="back to top"></a>
-        </div>
-        <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
   <a class="sidenav-title" data-behavior="SubMenuMobile">
     Doc Index
   </a>
@@ -333,7 +318,36 @@
   </div>
 </div><!--end of sub-nav-->
 
-        <div></div>
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    Other Integrations
+  </h1>
+
+          <div id="js-quick-links" >
+            <div class="quick-links"><ul><li><a href="#overview">Overview</a></li></ul></div>
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <h2><a id="overview"></a> Overview</h2>
+
+<p>There are several integration points outside the service broker API:</p>
+
+<ul>
+<li><a href="/tiledev/2-0/buildpacks.html">Buildpacks</a> compile and package apps to run on PCF.</li>
+<li>A PCF buildpack lets you inject embedded agent code into application containers, such as for application performance monitoring (APM) or client-side routing.
+<a href="/tiledev/2-0/embedded-agents.html">Embedded Agents</a> explains how to do this.</li>
+<li>Cloud Foundry&rsquo;s Loggregator system emits platform metrics, application metrics, and application logs
+<a href="/tiledev/2-0/nozzle.html">Nozzles</a> explains how to produce and consume these metrics and logs.</li>
+<li>PCF does not use IPv6 internally. To enable external IPv6 communications, your tile must <a href="/tiledev/2-0/release-notes-1-11.html#ipv6">configure them</a>.</li>
+<li>Tiles deployed on PCF v1.11+ can use <a href="/tiledev/2-0/credhub.html">CredHub</a> to securely store credentials, rather than including them in the product and job template files and having Ops Manager write them into the manifest.</li>
+</ul>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/other-integrations.html.md.erb'>View the source for this page in GitHub</a></div>
 
       </main>
     </div>

@@ -8,6 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
+      Embedded Agents |
     
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,7 @@
 
 </head>
 
-<body class="subnavs subnavs_tiledev_subnav">
+<body class="tiledev tiledev_2-0 tiledev_2-0_embedded-agents has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -89,8 +90,13 @@
       document.domain = "";
     </script>
 
-          <header class="header-home">
-      <div class="home-links js-bar-links">
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
         <div class="btn-menu" data-behavior="MenuMobile"></div>
         
         <div class="header-item">
@@ -110,14 +116,6 @@
 </div>
 
       </div>
-      <h1 class="title-flashy">
-        <img src="../images/icon-p-green.jpg"> Pivotal Cloud Foundry Documentation
-
-      </h1>
-
-      <h2 class="title-intro">
-        
-      </h2>
     </header>
 
 
@@ -125,20 +123,7 @@
     <div class="container">
 
       <!--googleoff: index-->
-      
-      <!--googleon: index-->
-
-      <main class="content content-layout" id="js-content" role="main">
-        <a id="top"></a>
-        
-        
-          <div id="js-quick-links" >
-            
-          </div>
-        <div class="to-top" id="js-to-top">
-          <a href="#top" title="back to top"></a>
-        </div>
-        <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
   <a class="sidenav-title" data-behavior="SubMenuMobile">
     Doc Index
   </a>
@@ -333,7 +318,48 @@
   </div>
 </div><!--end of sub-nav-->
 
-        <div></div>
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    Embedded Agents
+  </h1>
+
+          <div id="js-quick-links" >
+            <div class="quick-links"><ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#resources">Embedded Agents Resources</a></li>
+</ul></div>
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p>This topic provides resources for configuring services that use software agents embedded in application containers.</p>
+
+<h2><a id="overview"></a> Overview</h2>
+
+<p>Some service integrations depend on the ability to inject code into application containers. Examples include:</p>
+
+<ul>
+<li>Application Performance Monitoring (APM) agents for monitoring services</li>
+<li>Container-embedded API gateways</li>
+<li>Client-side routers</li>
+</ul>
+
+<p>We refer to these injected components as &ldquo;container-embedded agents.&rdquo;</p>
+
+<p><a href="/tiledev/2-0/buildpacks.html">Buildpacks</a> provide a mechanism to inject components into the application container image, and the <code>.profile.d</code> directory provides a way to start agents before or alongside the customer application.</p>
+
+<h2><a id="resources"></a> Embedded Agents Resources</h2>
+
+<ul>
+<li><p><a href="https://github.com/guidowb/meta-buildpack">Agent Injection with the Meta-Buildpack</a></p></li>
+<li><p><a href="http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/deploy-app.html#profiled">Using .profile.d</a></p></li>
+</ul>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/embedded-agents.html.md.erb'>View the source for this page in GitHub</a></div>
 
       </main>
     </div>

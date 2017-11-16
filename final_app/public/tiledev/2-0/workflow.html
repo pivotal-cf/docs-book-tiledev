@@ -8,6 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
+      Tile Development Workflow |
     
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,7 @@
 
 </head>
 
-<body class="subnavs subnavs_tiledev_subnav">
+<body class="tiledev tiledev_2-0 tiledev_2-0_workflow has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -89,8 +90,13 @@
       document.domain = "";
     </script>
 
-          <header class="header-home">
-      <div class="home-links js-bar-links">
+       
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="/">Default Book Title</a>
+      </h1>
+      
+      <div class="header-links js-bar-links">
         <div class="btn-menu" data-behavior="MenuMobile"></div>
         
         <div class="header-item">
@@ -110,14 +116,6 @@
 </div>
 
       </div>
-      <h1 class="title-flashy">
-        <img src="../images/icon-p-green.jpg"> Pivotal Cloud Foundry Documentation
-
-      </h1>
-
-      <h2 class="title-intro">
-        
-      </h2>
     </header>
 
 
@@ -125,20 +123,7 @@
     <div class="container">
 
       <!--googleoff: index-->
-      
-      <!--googleon: index-->
-
-      <main class="content content-layout" id="js-content" role="main">
-        <a id="top"></a>
-        
-        
-          <div id="js-quick-links" >
-            
-          </div>
-        <div class="to-top" id="js-to-top">
-          <a href="#top" title="back to top"></a>
-        </div>
-        <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
   <a class="sidenav-title" data-behavior="SubMenuMobile">
     Doc Index
   </a>
@@ -333,7 +318,34 @@
   </div>
 </div><!--end of sub-nav-->
 
-        <div></div>
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" >
+    Tile Development Workflow
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p>The topics in this section explain the high-level sequence of steps that Pivotal recommends for developing a service tile.</p>
+
+<ul>
+<li><p><a href="/tiledev/2-0/overview.html">Services Integration Overview</a> diagrams and explains the staged service integration process at the highest level, from learning how tiles work and deciding on the scope of an integration effort to publishing, documenting, and maintaining your finished service tile.</p></li>
+<li><p><a href="/tiledev/2-0/stages.html">Levels of Integration</a> describes the different levels that a service can integrate with PCF, from user-provided, external services that have no PCF tile to on-demand, tile-installed services that run entirely on PCF. The Pivotal-recommended, staged tile development process runs through each of these, creating a working service integration at each level.</p></li>
+<li><p><a href="/tiledev/2-0/development.html">Development Steps at Each Integration Level</a> explains how to use <a href="/tiledev/2-0/tile-generator.html">Tile Generator</a> and other tools to develop your tile at each level of integration. The steps progress from creating and testing individual tile components on a local development machine to deploying and testing a finished tile on a full PCF installation.</p></li>
+</ul>
+
+<p>This chart shows a typical PCF tile development workflow. The <a href="/tiledev/2-0/overview.html">Services Integration Overview</a> topic explains each step in greater detail:</p>
+
+<p><img alt="Tile Development Workflow" src="img/tile-dev-workflow.png" /></p>
+
+        <div><a id='repo-link' href='http://github.com/pivotal-cf/docs-tiledev/tree/master/workflow.html.md.erb'>View the source for this page in GitHub</a></div>
 
       </main>
     </div>
