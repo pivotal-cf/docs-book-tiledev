@@ -2548,37 +2548,53 @@ header.header-home-global {
 .gsc-results-wrapper-overlay td {
   border: none !important; }
 
+/* line 12, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+.nav-content > ul {
+  padding-top: 1.5em !important; }
+
 /* line 15, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+.has-subnav.content-layout {
+  padding-top: 2em !important; }
+
+/* line 18, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+.edge-banner {
+  font-size: 1em !important; }
+
+/* line 21, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+.local-header.title-container {
+  padding-top: 44px !important; }
+
+/* line 26, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 * {
   box-sizing: border-box; }
 
-/* line 21, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 32, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .breadcrumbs {
   display: block;
   margin: 0;
   padding: 0; }
 
-/* line 26, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 37, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .breadcrumbs li {
   display: none;
   margin: 0; }
-  /* line 29, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+  /* line 40, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
   .breadcrumbs li:first-child {
     display: block; }
 
-/* line 37, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 48, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .index .content {
   padding-bottom: 0;
   padding-top: 0; }
 
-/* line 42, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 53, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .panel-wrapper {
   border: 2px solid #edefef;
   border-radius: 10px;
   margin: 3em 0 0;
   padding: 0 1.25rem; }
 
-/* line 48, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 59, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .panels {
   display: block;
   padding: 0; }
@@ -2588,11 +2604,11 @@ header.header-home-global {
     display: table;
     clear: both; }
   @media (min-width: 43.75em) {
-    /* line 48, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+    /* line 59, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
     .panels {
       margin-top: 1.5em; } }
 
-/* line 56, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 67, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .panel .title-deemph {
   display: block; }
 
@@ -2612,19 +2628,19 @@ category: basics
 </li>
 ```
 */
-/* line 77, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 88, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .panel {
   display: block;
   margin-bottom: 2em;
   position: relative; }
 
-/* line 82, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 93, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .panel img {
   display: block;
   margin: 0 auto;
   height: 4rem; }
 
-/* line 87, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 98, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .panel a {
   color: #424242;
   padding: 1em;
@@ -2638,59 +2654,40 @@ category: basics
   border-color: #F3F3F3;
   border-bottom-color: #E0E0E0;
   text-align: center; }
-  /* line 100, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+  /* line 111, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
   .panel a[href^="http"]:after {
-    display: none;
-    white-space: nowrap; }
+    display: none; }
 
-/* line 105, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 115, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .content .panel a:hover {
   background: #f8f8f8;
   border-bottom-color: #dee3e3; }
-  /* line 109, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+  /* line 119, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
   .content .panel a:hover .action {
     color: #424242; }
 
-/* line 113, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 123, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .prodname {
   font-size: 1.25em;
   line-height: 1.1; }
 
-/* line 117, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 127, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .action {
   color: #9c9c9c;
   margin-top: 0.8em; }
 
-/* line 121, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 131, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .version {
   color: #9c9c9c;
   font-style: italic;
   margin-top: 0.5em;
   display: none; }
 
-/*doc
----
-title: Link External
-name: link_external
-category: basics
----
-```html_example
-<a class="external-link" href="#">Link</a>
-```
-*/
-/* line 142, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
-.content a[href^="http"]:after,
-.external-link:after {
-  content: "";
-  font-size: 0.75em;
-  padding-left: 0.5em;
-  white-space: nowrap; }
-
-/* line 156, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 143, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .title-panel {
   margin-top: 1.5rem; }
 
-/* line 160, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 147, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .title-center {
   text-align: center; }
 
@@ -2706,26 +2703,26 @@ category: basics
 </h1>
 ```
 */
-/* line 176, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 163, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .title-flashy {
   display: inline-block;
   font-weight: 600;
   font-size: 1.563em;
   text-align: left;
   margin-left: 1rem; }
-  /* line 182, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+  /* line 169, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
   .title-flashy img {
     height: 3.8125rem;
     vertical-align: middle;
     padding-right: .5rem;
     float: left; }
     @media (min-width: 43.75em) {
-      /* line 182, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+      /* line 169, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
       .title-flashy img {
         height: 2.8125rem;
         float: none; } }
   @media (min-width: 43.75em) {
-    /* line 176, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+    /* line 163, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
     .title-flashy {
       font-size: 2.441em;
       margin-left: 0;
@@ -2745,7 +2742,7 @@ category: basics
 </h2>
 ```
 */
-/* line 212, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 199, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .title-intro {
   font-size: 1.25em;
   font-weight: 300;
@@ -2753,7 +2750,7 @@ category: basics
   max-width: 30em;
   text-align: center; }
   @media (min-width: 43.75em) {
-    /* line 212, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+    /* line 199, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
     .title-intro {
       font-size: 1.563em; } }
 
@@ -2769,7 +2766,7 @@ category: basics
 </h3>
 ```
 */
-/* line 234, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 221, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .title-details {
   font-size: 1.25em;
   font-weight: 300;
@@ -2778,7 +2775,7 @@ category: basics
   padding-bottom: 2em;
   text-align: center; }
   @media (min-width: 43.75em) {
-    /* line 234, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+    /* line 221, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
     .title-details {
       font-size: 1.25em; } }
 
@@ -2794,11 +2791,11 @@ category: basics
 </div>
 ```
 */
-/* line 259, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 246, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .title-deemph {
   font-weight: 300; }
 
-/* line 262, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 249, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .title-emph {
   font-weight: 600; }
 
@@ -2825,7 +2822,7 @@ Use this div to center table cells.
 ```
 
 */
-/* line 292, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 279, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .centered {
   margin: 0 auto;
   vertical-align: middle;
@@ -2847,7 +2844,7 @@ category: basics
 </ol>
 ```
 */
-/* line 316, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 303, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .list-steps {
   counter-reset: list-steps;
   list-style: none;
@@ -2855,7 +2852,7 @@ category: basics
   margin-top: 2em;
   padding: 0; }
 
-/* line 323, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 310, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .list-steps > li {
   clear: both;
   min-height: 5.2em;
@@ -2864,11 +2861,11 @@ category: basics
   position: relative;
   margin: 0; }
 
-/* line 331, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 318, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .list-steps > li:last-child {
   border: 0; }
 
-/* line 334, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 321, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .list-steps > li:before {
   background: #fff;
   border: 2px solid #eceae9;
@@ -2889,11 +2886,11 @@ category: basics
   top: 0;
   width: 3rem; }
 
-/* line 354, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 341, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .list-steps ul {
   margin-top: 1em; }
 
-/* line 357, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 344, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .list-steps ul li {
   list-style-type: disc;
   margin-top: 0.5em; }
@@ -2928,17 +2925,17 @@ category: basics
 </ol>
 ```
 */
-/* line 392, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 379, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .list > li > ol,
 .content ol > li > ol {
   list-style-type: lower-alpha; }
 
-/* line 397, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 384, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .list > li > ol > li > ol,
 .content ol > li > ol > li > ol {
   list-style-type: lower-roman; }
 
-/* line 405, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 392, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .pivotalcf .logo {
   background-image: url(../images/icon_cf_green@2x.png);
   background-repeat: no-repeat;
@@ -2946,7 +2943,7 @@ category: basics
   background-size: 1.5625rem auto;
   padding-left: 2.2em; }
 
-/* line 412, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 399, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .pivotalcf_index .title-container {
   background-image: url(../images/icon_cf_green@2x.png);
   background-repeat: no-repeat;
@@ -2955,133 +2952,12 @@ category: basics
   background-position: left center;
   display: inline-block; }
 
-/* line 422, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 409, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .pivotalcf_cf-cli_cf-help table tr td:first-child,
 .cf-cli_cf-help table tr td:first-child {
   width: 44%; }
 
-/* line 426, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
+/* line 413, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
 .pivotalcf_cf-cli_cf-help table, .pivotalcf_cf-cli_cf-help table tr.separator, .pivotalcf_cf-cli_cf-help table tr.separator td,
 .cf-cli_cf-help table, .cf-cli_cf-help table tr.separator, .cf-cli_cf-help table tr.separator td {
   border: none; }
-
-/*doc
----
-title: Content Helper - Note
-name: content_helper-note
-category: basics
----
-```html_example
-<p class="note">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus totam libero facilis voluptatem aliquam incidunt ipsa officiis, dicta nihil expedita, molestiae delectus impedit hic quidem deserunt laudantium, sint debitis tenetur.</p>
-```
-*/
-/* line 443, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
-.note {
-  background: #ffffed;
-  border-color: #ebebd3;
-  border-radius: 3px;
-  border-style: solid;
-  border-width: 1px;
-  margin: 1em 0;
-  padding: 0.7em 1em 0.7em 2.3em;
-  position: relative; }
-  /* line 452, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
-  .note:before {
-    content: "";
-    color: #b9b781;
-    font-size: 1.5em;
-    left: 0.6em;
-    position: absolute;
-    top: 0.45em; }
-
-/* line 463, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
-.note.warning {
-  background-color: #fdd;
-  border-color: #fbb; }
-  /* line 466, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
-  .note.warning:before {
-    content: "\F071";
-    font-family: FontAwesome;
-    color: #b9b781;
-    font-size: 1.2em;
-    left: 0.6em;
-    position: absolute;
-    top: 0.75em; }
-
-/*doc
----
-title: Content Helper - New User Tip
-name: content_helper-tip
-category: basics
----
-```html_example
-<p class="tip">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus totam libero facilis voluptatem aliquam incidunt ipsa officiis, dicta nihil expedita, molestiae delectus impedit hic quidem deserunt laudantium, sint debitis tenetur.</p>
-```
-*/
-/* line 489, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
-.tip {
-  background: #ffffff;
-  border-color: #a7cae1;
-  border-radius: 3px;
-  border-style: solid;
-  border-width: 1px;
-  margin: 1em 0;
-  padding: 1.7em 2em;
-  position: relative;
-  text-align: left; }
-  /* line 499, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
-  .tip:before {
-    color: #7C7C7C;
-    font-size: 1.953em;
-    left: 0.5em;
-    position: absolute;
-    top: 0.8em; }
-
-/*doc
----
-title: Code Example - Inline
-name: code_example-inline
-
-category: basics
----
-```html_example
-<code>"mbus"=&gt;"nats://nats:nats@192.168.86.17:4222"</code>
-```
-*/
-/* line 521, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
-code {
-  background-color: #f5f5ff;
-  border: 1px solid #e4e4e4;
-  display: inline-block;
-  font-size: 0.8125rem;
-  line-height: 1.4;
-  margin: 0.2em 0.1em 0.1em;
-  padding: 0 0.4em 0 0.4em;
-  vertical-align: text-top; }
-
-/* line 531, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
-code a {
-  color: #fefefe; }
-
-/* line 535, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
-hr {
-  background-color: #eceae9;
-  border: 0;
-  height: 1px;
-  float: left;
-  width: 100%; }
-
-/* line 543, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
-.content pre::-webkit-scrollbar {
-  -webkit-appearance: none;
-  width: 7px;
-  height: 7px; }
-/* line 548, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
-.content pre::-webkit-scrollbar-thumb {
-  border-radius: 4px;
-  background-color: #b5b5b5;
-  -webkit-box-shadow: 0 0 0px 2px #f8f8f8; }
-
-/* line 554, /Users/mgutermuth/workspace/docs-book-tiledev/output/master_middleman/source/stylesheets/layout-styles.scss */
-.hidden {
-  display: none !important; }
