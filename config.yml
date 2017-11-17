@@ -2,7 +2,8 @@
 book_repo: pivotal-cf/docs-book-tiledev
 layout_repo: pivotal-cf/docs-layout-repo
 layout_repo_ref: 'edge'
-book_title: PCF Tile Developers Guide
+title: Pivotal Cloud Foundry Tile Developers Guide
+book_title: Pivotal Cloud Foundry Tile Developers Guide
 book_title_short: PCF Tile Developers Guide
 
 broken_link_exclusions: iefix|arrowhead
