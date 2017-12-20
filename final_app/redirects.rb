@@ -1,5 +1,6 @@
 r301 %r{/tiledev/(?![\d-]+)(.*)}, "/tiledev/1-12/$1"
 
+<<<<<<< HEAD
 # Redirects to docs-book-services-sdk
 r301 %r{/on-demand-service-broker/(?![\d-]+)(.*)}, "/svc-sdk/odb/$1"
 r301 %r{/service-metrics/(?![\d-]+)(.*)}, "/svc-sdk/service-metrics/$1"
@@ -110,12 +111,18 @@ r301 %r{/mobile/push/(.*)}, '/push/'
 r301 'v1_6_0/api/tags/index.html', '/v1_6_0/api/topics/index.html'
 r301 %r{^/push/(?![\d-]+)(.*)}, "/push/1-9/$1"
 r301 %r{/pcf-scheduler/(?![\d-]+)(.*)}, "/pcf-scheduler/1-1/$1"
+=======
+r301 '/', '/tiledev/1-12/index.html'
+>>>>>>> 1.12
 
 r301 %r{/pivotalcf/packaging/(.*)}, '/tiledev/$1'
 r301 %r{/pivotalcf/partners/(.*)}, '/tiledev/$1'
 
+<<<<<<< HEAD
 # r301 '/partners/', '/tiledev/index.html'
 # r301 '/partners/index.html', '/tiledev/index.html'
+=======
+>>>>>>> 1.12
 r301 '/partners/creating.html', '/tiledev/tile-generator.html'
 r301 '/partners/decrypt-encrypt-install-file.html', '/pivotalcf/customizing/modify-ops-man.html'
 r301 '/partners/deploying-with-bosh.html', '/tiledev/tile-generator.html'
@@ -130,6 +137,7 @@ r301 '/partners/release-notes.html', '/tiledev/release-notes-1-8.html'
 r301 '/partners/releases.html', '/tiledev/releases.html'
 r301 '/partners/sdk.html', '/tiledev/sdk.html'
 r301 '/partners/tiles.html', '/tiledev/property-reference.html'
+<<<<<<< HEAD
 
 r301 '/p1-services/MongoDB.html', '/mongodb/index.html'
 r301 '/p1-services/Neo4j.html', '/neo4j/index.html'
@@ -216,3 +224,5 @@ r301 %r{/tibco-businessworks/(.*)}, "/partners/tibco-businessworks/$1"
 r301 %r{/redis/syslog.html}, '/redis/1-9/installing.html#syslog'
 
 r301 %r{/concourse-olm/(.*)}, "/p-concourse/$1"
+=======
+>>>>>>> 1.12
