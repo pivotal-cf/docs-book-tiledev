@@ -5,3 +5,21 @@
 // .container {
 //   color: mediumvioletred;
 // }
+
+// Bordify images
+main.content {
+	img {
+	    outline: 1px solid black;
+	    outline-offset: -1px;
+
+	}
+	.title-container img {
+	    outline: 0px;
+	   	outline-offset: 0px;
+	}
+	.no-border {
+		outline: none;
+		outline-offset: 0;
+		border: none;
+	}
+}
