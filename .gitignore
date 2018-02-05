@@ -1,5 +1,5 @@
-docs-book/output
-docs-book/final_app
+/output
+/final_app
 .bundle
 docs-book/.bundle
 docs-book/Gemfile.lock
