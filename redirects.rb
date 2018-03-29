@@ -1,6 +1,6 @@
-r301 %r{/tiledev/(?![\d-]+)(.*)}, "/tiledev/2-0/$1"
+r301 %r{/tiledev/(?![\d-]+)(.*)}, "/tiledev/2-1/$1"
 
-r301 '/', '/tiledev/2-0/index.html'
+r301 '/', '/tiledev/2-1/index.html'
 
 r301 %r{/pivotalcf/packaging/(.*)}, '/tiledev/$1'
 r301 %r{/pivotalcf/partners/(.*)}, '/tiledev/$1'
