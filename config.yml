@@ -15,14 +15,14 @@ sections:
   - repository:
       name: pivotal-cf/docs-tiledev
     directory: tiledev/2-2
-    subnav_template: tiledev_subnav_2_1.erb
+    subnav_template: tiledev_subnav_2_2.erb
     product_info:
       use_local_header: true
       latest_stable_version: '2.2'
-      changelog_href: http://docs.pivotal.io/tiledev/2-1/release-notes-2-1.html
+      changelog_href: http://docs.pivotal.io/tiledev/2-1/release-notes-2-2.html
       local_header_img: /images/cloud_rings.png
       local_header_title: PCF Tile Developers Guide
-      search_placeholder: Search PCF Tile Developers Guide 2.1
+      search_placeholder: Search PCF Tile Developers Guide 2.2
       local_product_version: '2.2'
       url_prefix: tiledev/2-2
       local_header_links:
