@@ -1,4 +1,4 @@
-r301 %r{/tiledev/(?![\d-]+)(.*)}, "/tiledev/2-1/$1"
+r301 %r{/tiledev/(?![\d-]+)(.*)}, "/tiledev/2-2/$1"
 
 r301 '/', '/tiledev/2-2/index.html'
 
