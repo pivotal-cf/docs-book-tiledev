@@ -1,0 +1,52 @@
+---
+title: Managed Service
+owner: Services
+---
+
+The topics in this subsection explain how to integrate your [brokered service](./brokered.html) more closely with Pivotal Cloud Foundry (PCF) to create a managed service and service tile for PCF.
+
+## <a id="overview"></a> Overview
+
+The next level of integration is to get your service to be deployed on PCF rather
+than externally, on the same IaaS that your particular Cloud Foundry instance
+is deployed on, and by the same orchestration tool, [BOSH](http://bosh.io).
+
+This is usually one of the more involved integrations, as you will have to change your packaging to allow your service components to be deployed by [BOSH](http://bosh.io) onto the PCF infrastructure.
+
+Offering your software as a managed service means that your PCF customers
+will not have to learn different ways to deploy, manage, and monitor
+different components of their application platform.
+
+As with the brokered service, the service has a service broker and a tile listed on PivNet. PivNet lists managed services as "for PCF," without "Service Broker" in the name.
+
+To integrate your service at this level, you will have to learn about stemcells, BOSH releases, and manifests. You will also have to decide how your service maps to virtual machines and how persistent storage is managed.
+
+### <a id="managed-mvp"></a> Minimal Viable Product
+
+For a Minimal Viable Product (MVP) version of a managed service, we typically
+recommend that you aim for a single, shared service instance, and don't yet
+worry too much about High Availability of this instance. This integration level is mostly about getting the BOSH packaging, deployment, and monitoring working
+correctly.
+ 
+### <a id="managed-ha"></a> High Availability
+
+Once you have a managed service, you may decide to prioritize either 
+[on-demand provisioning](./on-demand.html) of service instances, or making your
+single shared service instance more highly available.
+
+When properly configured, BOSH monitors and restarts any failing processes
+and virtual machines that are part of your service deployment. But to
+further increase availability, you will have to think about spreading your
+resources across multiple availability zones or even regions, and replicating
+your persistent storage across those as well.
+
+## <a id="create"></a> Create a Managed Service
+
+* For BOSH to manage your service, you need to create a BOSH release for it.  
+[BOSH Releases](./bosh-release.html) explains how to do this, and how to use your already-existing Docker image as a shortcut.
+
+* Once you have created a BOSH release for your managed service integration, you can work through the [development steps](./development.html) to create your tile.
+
+* The [Tile Generator](./tile-generator.html) tool automatically creates the lifecycle errands that can run after a PCF tile is deployed or before it is removed. PCF operators control which errands run the next time they click **Apply Changes** to redeploy. See the [Errands](./tile-errands.html) topic for how PCF operators control when errands run, and how to set default errand run rules in the tile.
+
+At any level of integration, Pivotal recommends and supports using [Concourse](./concourse.html) for continuous integration during development.

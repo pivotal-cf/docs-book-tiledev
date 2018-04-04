@@ -1,0 +1,248 @@
+---
+title: pcf Command Line Utility
+owner: Services
+---
+
+The `pcf` utility provides a command line interface to Pivotal Cloud Foundry for
+the purpose of deploying and testing tiles. Its primary reason for existence is
+to enable Ops Manager access from CI pipelines, but developers also find it
+convenient to use this CLI rather than the Ops manager GUI.
+
+The `pcf` utility also allows you to test your tile's BOSH errands
+directly from your CLI, without going through Ops Manager and BOSH. This greatly
+reduces the time it takes to deploy/test each iteration of your software components.
+
+##<a id="install"></a> Installation
+
+The `pcf` utility comes bundled with the Tile Generator tool. To
+install the `pcf` utility, follow the
+[Tile Generator installation instructions](tile-generator.html#how-to).
+
+##<a id="auth"></a> Authentication
+
+The `pcf` utility looks for a file called `metadata` in the current directory.
+This file is expected to provide the URL and credentials to connect to
+Ops Manager, in the following format:
+
+```yaml
+---
+opsmgr:
+    url: https://opsmgr.example.com
+    username: admin
+    password: <redacted>
+```
+
+The reason for this file naming is because this is how Concourse passes
+credentials of a "claimed" PCF pool resource to the CI pipeline scripts.
+For interactive use, this means that you will have to create a `metadata`
+file in the directory where you run the `pcf` command.
+
+<p class='note'>Pivotal recommends that you do <strong>not</strong> create this file inside your git or other version control system repository, as you do not want to accidentally commit these credentials to version control.</p>
+
+##<a id="commands"></a> Commands
+
+The `pcf` utility implements many different commands. To see available commands:
+
+```bash
+$ pcf --help
+Usage: pcf [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  apply-changes
+  cf-info
+  changes
+  configure
+  delete-unused-products
+  import
+  install
+  is-available
+  is-installed
+  logs
+  products
+  settings
+  target
+  test-errand
+  uninstall
+```
+
+##<a id="ops-man-settings"></a> Checking Ops Manager Settings
+
+To see which products are currently available and installed in Ops Manager:
+
+```bash
+$ pcf products
+- p-bosh 1.7.0.0 (installed)
+- cf 1.7.0-build.258 (installed)
+- test-tile 0.3.95
+```
+
+To test if a specific product is available or installed from within a script:
+
+```bash
+$ pcf is-available test-tile && echo "Product test-tile is available"
+$ pcf is-installed test-tile && echo "Product test-tile is installed"
+```
+
+You can retrieve the settings for a specific product (this will give you a *lot* of json):
+
+```bash
+$ pcf settings test-tile
+{
+    "network_reference": "669e213111ab5aa1008a",
+    "guid": "test-tile-be3e50cf26c530acca6e",
+    "jobs": [
+        {
+            "instance": {
+                "identifier": "instances"
+            },
+            "identifier": "compilation",
+            "guid": "compilation-066a85d82fbcd936f9d7",
+            "installation_name": "compilation",
+            "vm_credentials": {
+                "password": <redacted>,
+                "salt": <redacted>,
+                "identity": "vcap"
+            }
+        },
+        {
+            "guid": "deploy-all-b83a7cb7be00ebfd26d6",
+            "vm_credentials": {
+    ...
+```
+
+##<a id="deploy-tiles"></a> Deploying Tiles
+
+After your software works and correctly deploys using `test-errand`, you can go
+through the real Ops Manager deployment process from the CLI, as you would
+normally do through the Ops Manager GUI.
+
+Import your .pivotal file into Ops Manager:
+
+```bash
+$ pcf import sample/product/test-tile-0.0.2.pivotal
+```
+
+Install the uploaded version of your product:
+
+```bash
+$ pcf install test-tile 0.0.2
+```
+
+Where you would normally configure the tile settings in the GUI, the `configure`
+command lets you pass in any user-specified properties as a .yml file. This command
+also sets the stemcell for the tile to the same one used by your Elastic Runtime,
+to avoid the need to upload a tile-specific stemcell.
+
+```bash
+$ pcf configure test-tile sample/missing-properties.yml
+- Using stemcell bosh-vsphere-esxi-ubuntu-trusty-go_agent version 3215
+```
+
+The property file looks like this:
+
+```yaml
+---
+customer_name: Jimmy's Johnnys
+street_address: Cartaway Alley
+city: New Jersey
+country: US
+username: SpongeBob
+password: { 'secret': Square'Pants }
+app2:
+  persistence_store_type: none
+# In PCF 1.8+, BOSH-job-specific configuration is supported:
+jobs:
+  a_job:
+    # Job resource configuration:
+    resource_config:
+      persistent_disk:
+        size_mb: "10240"
+    # Job-specific property configuration:
+    job_property: property_value
+```
+
+You must define any `secret` type property value as a hash, in curly brackets. Specifying a simple
+string value for a field of this type results in a `500 System Error` being returned from `pcf configure`. 
+The `secret` type property values can contain special characters.
+
+To see what changes are ready to be applied:
+
+```bash
+$ pcf changes
+install: test-tile-207b165fcb7dc8b2597b
+delete:  
+```
+
+To apply these changes:
+
+```bash
+$ pcf apply-changes
+  ===== 2016-04-21 18:45:05 UTC Running "bosh-init deploy /var/tempest/workspaces/default/deployments/bosh.yml"
+  Deployment manifest: '/var/tempest/workspaces/default/deployments/bosh.yml'
+  Deployment state: '/var/tempest/workspaces/default/deployments/bosh-state.json'
+
+  Started validating
+    Validating release 'bosh'... Finished (00:00:08)
+    Validating release 'bosh-vsphere-cpi'... Finished (00:00:00)
+    Validating release 'uaa'... Finished (00:00:06)
+    Validating cpi release... Finished (00:00:00)
+    Validating deployment manifest... Finished (00:00:00)
+```
+
+`pcf apply-changes` automatically tails the logs for the installation process
+it started. If this gets aborted for any reason, you can always tail the logs
+of the most recent installation:
+
+```bash
+$ pcf logs
+```
+
+##<a id="remove"></a> Removing Tiles
+
+To uninstall a tile:
+
+```bash
+$ pcf uninstall test-tile
+```
+
+If you accumulate a lot of uninstalled tiles or old versions, you can clean
+up Ops Manager's available products (and disk space):
+
+```bash
+$ pcf delete-unused-products
+```
+
+##<a id="access-ert"></a> Accessing Elastic Runtime
+
+To see details about the Elastic Runtime of your PCF environment:
+
+```bash
+$ pcf cf-info
+- admin_password: <redacted>
+- admin_username: admin
+- apps_domain: cfapps-04.example.com
+- system_domain: run-04.example.com
+- system_services_password: <redacted>
+- system_services_username: system_services
+```
+
+To target your `cf` command line at this PCF environment:
+
+```bash
+$ pcf target
+Setting api endpoint to api.example.com...
+OK
+
+API endpoint:   https://api.example.com (API version: 2.52.0)   
+User:           admin   
+Org:            my-org
+Space:          my-space
+API endpoint: https://api.example.com
+Authenticating...
+OK
+
+...
+```

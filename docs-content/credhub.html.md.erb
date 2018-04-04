@@ -1,0 +1,79 @@
+---
+title: CredHub
+owner: Services
+---
+
+CredHub is a secure credential management component that runs on the BOSH VM to minimize the surface area where credentials can be compromised.
+This topic provides resources for configuring service tiles to use CredHub, instead of encoding credentials in product template and job template files.
+
+See the [CredHub documentation](https://docs.cloudfoundry.org/credhub/index.html) for more information.
+
+## <a id="overview"></a> Overview
+
+Many <%= vars.product_name %> components use credentials to authenticate connections, and <%= vars.product_name %>  installations often have hundreds of active credentials. Secure credential management is essential to prevent data and security breaches.
+
+In Pivotal Cloud Foundry (PCF) v1.11.0, CredHub runs on the BOSH VM, alongside the BOSH Director and UAA. Ops Manager v1.11 stores its credentials in CredHub,
+and users can retrieve them using the CredHub API or the **Credentials** tab of the Ops Manager Director tile.
+Tile developers can embed CredHub calls in [manifest snippets](#snippets) and PCF apps can retrieve credentials using the CredHub API.
+
+See [Fetching Variable Names and Values](./get-credhub-vars.html) for how to fetch variable names and values using the CredHub API.
+
+## <a id="types"></a> CredHub Credential Types
+
+CredHub stores and retrieves the following types of credentials:
+
+* `value` — single string value
+* `json` — arbitrary JSON object
+* `password` — password string
+* `certificate` — object containing certificate authority (CA), certificate, and private key
+* `ssh` — object containing SSH public key and private key
+* `rsa` — object containing RSA public key and private key
+
+For more information, read <a href="https://docs.cloudfoundry.org/credhub/credential-types.html">CredHub Credential Types</a>.
+
+## <a id="credential-names"></a>Creating New Variables
+
+To use CredHub in your deployment, you must create new variables and store them in CredHub. By default, variable namespaces are written to prevent collision across deployments, but you can type variable names precisely if you wish.
+
+For more information, read <a href="./create-credhub-vars.html">Creating New Variables in CredHub</a>.
+
+## <a id="migrate-creds"></a>Migrating Credentials
+
+To migrate existing non-configurable credentials to CredHub, such as blobstore secrets and backup encryption keys, use the JavaScript migration process. After a successful migration, Ops Manager deletes the migrated credentials from installation.yml.
+
+For more information, read [Migrating Existing Credentials to CredHub](./migrating-credhub-credentials.html).
+
+[//]: # ( CREDHUB API AND CLI NOT READY YET IN FULL; UNCOMMENT BELOW WHEN READY )
+
+[//]: # ( For more information, see the [CredHub API](https://credhub-api.cfapps.io), the [CredHub CLI GitHub repository](https://github.com/cloudfoundry-incubator/credhub-cli), and the [CredHub Release GitHub repository](https://github.com/pivotal-cf/credhub-release). )
+
+## <a id="api-variables"></a>Fetching Variable Names and Values
+
+API endpoints are available to help you find variable names and values for products known to the Ops Manager Director.
+
+For more information, read <a href="./get-credhub-vars.html" class="subnav">Fetching Variable Names and Values</a>.
+
+## <a id="snippets"></a> CredHub in Manifest Snippets
+
+Tile developers can embed CredHub in product template and job template manifest snippets using
+[triple-parenthesis notation](./product-template-reference.html#job-manifest):
+
+```
+  manifest: |
+    credhub:
+      concatenated_password: prefix-((( credhub-password )))-suffix
+      password: ((( credhub-password )))
+```
+
+## <a id="limitations"></a> PCF v1.11.0 Limitations
+
+PCF v1.11.0 supports CredHub for credential storage, but it does not support the following:
+
+* Automatic backup and restore for CredHub, along with other PCF system components.
+
+* Automatic tile [upgrades](./tile-upgrades.html) that migrate all types of credentials defined in [property blueprints](./property-reference.html#property-blueprints) in previous tile versions, to storage in CredHub.
+
+* Using CredHub to generate new credentials.
+
+Tile authors may choose to wait until PCF supports some or all of these features before incorporating CredHub into their service.
+

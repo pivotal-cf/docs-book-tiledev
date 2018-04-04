@@ -1,5 +1,3 @@
-<h2> This repo is for the Tile Developer Guide book ONLY. See the [Tile Developer Guide Content Repo](https://github.com/pivotal-cf/docs-tiledev) for the contents of this book.</h2>
-
 ## PCF Services Documentation Template
 
 This template helps Pivotal development teams prepare documentation for Pivotal Cloud Foundry (PCF) services that appear on [Pivotal Network](https://network.pivotal.io/). 
