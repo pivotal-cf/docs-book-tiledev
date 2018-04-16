@@ -74,9 +74,9 @@ sections:
       changelog_href: http://docs.pivotal.io/tiledev/2-0/release-notes-2-0.html
       local_header_img: /images/cloud_rings.png
       local_header_title: PCF Tile Developers Guide
-      search_placeholder: Search PCF Tile Developers Guide 2.1
-      local_product_version: '2.1'
-      url_prefix: tiledev/2-1
+      search_placeholder: Search PCF Tile Developers Guide 2.0
+      local_product_version: '2.0'
+      url_prefix: tiledev/2-0
       local_header_links:
         - <a href="https://network.pivotal.io/">Download</a>
         - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
