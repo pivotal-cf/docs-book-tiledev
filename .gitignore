@@ -1,11 +1,13 @@
 docs-book/output
 docs-book/final_app
+docs-book/final_app/*
+output
+final_app
+final_app/*
 .bundle
 docs-book/.bundle
-docs-book/Gemfile.lock
-Gemfile.lock
-docs-book/final_app/*
 cached_shas.yml
 **/.sass-cache/*
 bin
+.DS_Store
 [#]*[#]
