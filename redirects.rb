@@ -3,9 +3,9 @@ r301 %r{.*}, 'https://docs.pivotal.io$&', :if => Proc.new { |rack_env|
   rack_env['SERVER_NAME'] == 'docs.pivotal.io' && rack_env['HTTP_X_FORWARDED_PROTO'] == 'http'
 }
 
-r301 %r{/tiledev/(?![\d-]+)(.*)}, "/tiledev/2-1/$1"
+r301 %r{/tiledev/(?![\d-]+)(.*)}, "/tiledev/2-2/$1"
 
-r301 '/', '/tiledev/2-1/index.html'
+r301 '/', '/tiledev/2-2/index.html'
 
 r301 %r{/pivotalcf/packaging/(.*)}, '/tiledev/$1'
 r301 %r{/pivotalcf/partners/(.*)}, '/tiledev/$1'
