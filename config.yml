@@ -60,3 +60,6 @@ template_variables:
   support_link: <a href="http://support.pivotal.io" target="_blank">Support</a>
   support_call_to_action: <a href="http://support.pivotal.io" target="_blank">Need Support?</a>
   support_url: http://support.pivotal.io
+  
+  gtm_account_id: GTM-MW4LZHR
+  
