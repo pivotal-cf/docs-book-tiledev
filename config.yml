@@ -22,8 +22,8 @@ sections:
       latest_stable_version: '2.2'
       changelog_href: http://docs.pivotal.io/tiledev/2-2/release-notes-2-2.html
       local_header_img: /images/cloud_rings.png
-      local_header_title: PCF Tile Developers Guide
-      search_placeholder: Search PCF Tile Developers Guide 2.2
+      local_header_title: PCF Tile Developer Guide
+      search_placeholder: Search PCF Tile Developer Guide 2.2
       local_product_version: '2.2'
       url_prefix: tiledev/2-2
       local_header_links:
@@ -47,8 +47,8 @@ sections:
       latest_stable_version: '2.2'
       changelog_href: http://docs.pivotal.io/tiledev/2-1/release-notes-2-1.html
       local_header_img: /images/cloud_rings.png
-      local_header_title: PCF Tile Developers Guide
-      search_placeholder: Search PCF Tile Developers Guide 2.1
+      local_header_title: PCF Tile Developer Guide
+      search_placeholder: Search PCF Tile Developer Guide 2.1
       local_product_version: '2.1'
       url_prefix: tiledev/2-1
       local_header_links:
@@ -72,8 +72,8 @@ sections:
       latest_stable_version: '2.2'
       changelog_href: http://docs.pivotal.io/tiledev/2-0/release-notes-2-0.html
       local_header_img: /images/cloud_rings.png
-      local_header_title: PCF Tile Developers Guide
-      search_placeholder: Search PCF Tile Developers Guide 2.0
+      local_header_title: PCF Tile Developer Guide
+      search_placeholder: Search PCF Tile Developer Guide 2.0
       local_product_version: '2.0'
       url_prefix: tiledev/2-0
       local_header_links:
@@ -97,8 +97,8 @@ sections:
       latest_stable_version: '2.2'
       changelog_href: http://docs.pivotal.io/tiledev/1-12/release-notes-1-12.html
       local_header_img: /images/cloud_rings.png
-      local_header_title: PCF Tile Developers Guide
-      search_placeholder: Search PCF Tile Developers Guide 1.12
+      local_header_title: PCF Tile Developer Guide
+      search_placeholder: Search PCF Tile Developer Guide 1.12
       local_product_version: '1.12'
       url_prefix: tiledev/1-12
       local_header_links:
@@ -126,9 +126,9 @@ template_variables:
   product_abbr: 
   product_url: https://network.pivotal.io/products/pivotal-cf
   product_link: <div class="header-item"><a href="https://network.pivotal.io/products/pivotal-cf">Back to Product Page</a></div>
-  service_name: PCF Tile Developers Guide
-  service_name_article: PCF Tile Developers Guide
-  service_name_article_full: PCF Tile Developers Guide
+  service_name: PCF Tile Developer Guide
+  service_name_article: PCF Tile Developer Guide
+  service_name_article_full: PCF Tile Developer Guide
   support_link: <a href="http://support.pivotal.io" target="_blank">Support</a>
   support_call_to_action: <a href="http://support.pivotal.io" target="_blank">Need Support?</a>
   support_url: http://support.pivotal.io
