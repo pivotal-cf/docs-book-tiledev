@@ -21,35 +21,9 @@ r301 '/partners/releases.html', '/tiledev/releases.html'
 r301 '/partners/sdk.html', '/tiledev/sdk.html'
 r301 '/partners/tiles.html', '/tiledev/property-reference.html'
 
-r301 '/tiledev/roadmap.html', '/tiledev/index.html'
-r301 '/tiledev/development.html', '/tiledev/index.html'
-r301 '/tiledev/other-integrations.html', '/tiledev/stages.html'
-r301 '/tiledev/overview.html', '/tiledev/index.html'
-r301 '/tiledev/workflow.html', '/tiledev/index.html'
-
-r301 '/tiledev/2-2/roadmap.html', '/tiledev/index.html'
-r301 '/tiledev/2-2/development.html', '/tiledev/index.html'
-r301 '/tiledev/2-2/other-integrations.html', '/tiledev/stages.html'
-r301 '/tiledev/2-2/overview.html', '/tiledev/index.html'
-r301 '/tiledev/2-2/workflow.html', '/tiledev/index.html'
-
-r301 '/tiledev/2-1/roadmap.html', '/tiledev/index.html'
-r301 '/tiledev/2-1/development.html', '/tiledev/index.html'
-r301 '/tiledev/2-1/other-integrations.html', '/tiledev/stages.html'
-r301 '/tiledev/2-1/overview.html', '/tiledev/index.html'
-r301 '/tiledev/2-1/workflow.html', '/tiledev/index.html'
-
-r301 '/tiledev/2-0/roadmap.html', '/tiledev/index.html'
-r301 '/tiledev/2-0/development.html', '/tiledev/index.html'
-r301 '/tiledev/2-0/other-integrations.html', '/tiledev/stages.html'
-r301 '/tiledev/2-0/overview.html', '/tiledev/index.html'
-r301 '/tiledev/2-0/workflow.html', '/tiledev/index.html'
-
-r301 '/tiledev/1-12/roadmap.html', '/tiledev/index.html'
-r301 '/tiledev/1-12/development.html', '/tiledev/index.html'
-r301 '/tiledev/1-12/other-integrations.html', '/tiledev/stages.html'
-r301 '/tiledev/1-12/overview.html', '/tiledev/index.html'
-r301 '/tiledev/1-12/workflow.html', '/tiledev/index.html'
+# ANY url that starts with /tiledev/ and ends in roadmap.html, development.html, overview.html, or workflow.html redirects to the most current index. 
+r301 %r{/tiledev/(\d\-\d\/|)(roadmap|development|overview|workflow)(\.html)}, "/tiledev/index.html"
+r301 %r{/tiledev/(\d\-\d\/|)(other-integrations\.html)}, "/tiledev/stages.html"
 
 r301 %r{/tiledev/(?![\d-]+)(.*)}, "/tiledev/2-2/$1"
 
