@@ -3,6 +3,7 @@ r301 %r{.*}, 'https://docs.pivotal.io$&', :if => Proc.new { |rack_env|
   rack_env['SERVER_NAME'] == 'docs.pivotal.io' && rack_env['HTTP_X_FORWARDED_PROTO'] == 'http'
 }
 
+
 r301 %r{/pivotalcf/packaging/(.*)}, '/tiledev/$1'
 r301 %r{/pivotalcf/partners/(.*)}, '/tiledev/$1'
 
@@ -28,3 +29,8 @@ r301 %r{/tiledev/(\d+\-\d+\/|)(other-integrations\.html)}, "/tiledev/$1stages.ht
 r301 %r{/tiledev/(?![\d-]+)(.*)}, "/tiledev/2-3/$1"
 
 r301 '/', '/tiledev/2-3/index.html'
+
+# Any URL that includes the outdated/pre 2.3 tiledev references topics
+
+r301 '/tiledev/product-template-reference.html', '/tiledev/property-template-references.html'
+r301 '/tiledev/property-reference.html', '/tiledev/property-template-references.html'
