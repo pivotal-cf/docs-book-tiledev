@@ -25,7 +25,7 @@ sections:
       local_header_img: /images/cloud_rings.png
       local_header_title: PCF Tile Developer Guide
       search_placeholder: Search PCF Tile Developer Guide 2.n
-      local_product_version: '2.n'
+      local_product_version: '2.4'
       url_prefix: tiledev/2-n
       local_header_links:
         - <a href="https://network.pivotal.io/">Download</a>
