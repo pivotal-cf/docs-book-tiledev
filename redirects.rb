@@ -22,7 +22,7 @@ r301 '/partners/releases.html', '/tiledev/releases.html'
 r301 '/partners/sdk.html', '/tiledev/sdk.html'
 r301 '/partners/tiles.html', '/tiledev/property-reference.html'
 
-# ANY url that starts with /tiledev/ and middles with null or a version number and ends in roadmap.html, development.html, overview.html, or workflow.html redirects to the most current index. 
+# ANY url that starts with /tiledev/ and middles with null or a version number and ends in roadmap.html, development.html, overview.html, or workflow.html redirects to the most current index.
 r301 %r{/tiledev/(\d+\-\d+\/|)(roadmap|development|overview|workflow)(\.html)}, "/tiledev/$1index.html"
 r301 %r{/tiledev/(\d+\-\d+\/|)(other-integrations\.html)}, "/tiledev/$1stages.html"
 
