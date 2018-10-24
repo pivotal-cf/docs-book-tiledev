@@ -34,3 +34,8 @@ r301 '/', '/tiledev/2-3/index.html'
 
 r301 '/tiledev/product-template-reference.html', '/tiledev/property-template-references.html'
 r301 '/tiledev/property-reference.html', '/tiledev/property-template-references.html'
+
+r301 %r{/tiledev/1-12/property-template-references.html}, '/tiledev/property-template-references.html'
+r301 %r{/tiledev/2-0/property-template-references.html}, '/tiledev/property-template-references.html'
+r301 %r{/tiledev/2-1/property-template-references.html}, '/tiledev/property-template-references.html'
+r301 %r{/tiledev/2-2/property-template-references.html}, '/tiledev/property-template-references.html'
