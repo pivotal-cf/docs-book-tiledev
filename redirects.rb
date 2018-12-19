@@ -26,14 +26,19 @@ r301 '/partners/tiles.html', '/tiledev/property-reference.html'
 r301 %r{/tiledev/(\d+\-\d+\/|)(roadmap|development|overview|workflow)(\.html)}, "/tiledev/$1index.html"
 r301 %r{/tiledev/(\d+\-\d+\/|)(other-integrations\.html)}, "/tiledev/$1stages.html"
 
-r301 %r{/tiledev/(?![\d-]+)(.*)}, "/tiledev/2-3/$1"
+r301 %r{/tiledev/(?![\d-]+)(.*)}, "/tiledev/2-4/$1"
 
-r301 '/', '/tiledev/2-3/index.html'
+r301 '/', '/tiledev/2-4/index.html'
+
+# tiledev 2.4 URLs that include the outdated/pre 2.3 tiledev references topics
+
+r301 '/tiledev/2-4/product-template-reference.html', '/tiledev/property-template-references.html'
+r301 '/tiledev/2-4/property-reference.html', '/tiledev/property-template-references.html'
 
 # tiledev 2.3 URLs that include the outdated/pre 2.3 tiledev references topics
 
-r301 '/tiledev/2-3/product-template-reference.html', '/tiledev/property-template-references.html'
-r301 '/tiledev/2-3/property-reference.html', '/tiledev/property-template-references.html'
+r301 '/tiledev/2-3/product-template-reference.html', '/tiledev/2-3/property-template-references.html'
+r301 '/tiledev/2-3/property-reference.html', '/tiledev/2-3/property-template-references.html'
 
 # tiledev 2.2 and earlier URLs that include the new 2.3 tiledev references topics
 
