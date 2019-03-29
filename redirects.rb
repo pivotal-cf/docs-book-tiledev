@@ -26,9 +26,14 @@ r301 '/partners/tiles.html', '/tiledev/property-reference.html'
 r301 %r{/tiledev/(\d+\-\d+\/|)(roadmap|development|overview|workflow)(\.html)}, "/tiledev/$1index.html"
 r301 %r{/tiledev/(\d+\-\d+\/|)(other-integrations\.html)}, "/tiledev/$1stages.html"
 
-r301 %r{/tiledev/(?![\d-]+)(.*)}, "/tiledev/2-4/$1"
+r301 %r{/tiledev/(?![\d-]+)(.*)}, "/tiledev/2-5/$1"
 
-r301 '/', '/tiledev/2-4/index.html'
+r301 '/', '/tiledev/2-5/index.html'
+
+# tiledev 2.5 URLs that include the outdated/pre 2.3 tiledev references topics
+
+r301 '/tiledev/2-5/product-template-reference.html', '/tiledev/property-template-references.html'
+r301 '/tiledev/2-5/property-reference.html', '/tiledev/property-template-references.html'
 
 # tiledev 2.4 URLs that include the outdated/pre 2.3 tiledev references topics
 
