@@ -47,7 +47,5 @@ r301 '/tiledev/2-3/property-reference.html', '/tiledev/2-3/property-template-ref
 
 # tiledev 2.2 and earlier URLs that include the new 2.3 tiledev references topics
 
-r301 '/tiledev/1-12/property-template-references.html', '/tiledev/1-12/product-template-reference.html'
-r301 '/tiledev/2-0/property-template-references.html', '/tiledev/2-0/product-template-reference.html'
 r301 '/tiledev/2-1/property-template-references.html', '/tiledev/2-1/product-template-reference.html'
 r301 '/tiledev/2-2/property-template-references.html', '/tiledev/2-2/product-template-reference.html'
