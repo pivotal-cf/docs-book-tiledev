@@ -20,18 +20,20 @@ sections:
     subnav_template: tiledev_subnav_2_n.erb 
     product_info:
       use_local_header: true
-      latest_stable_version: '2.4'
+      latest_stable_version: '2.5'
       changelog_href: http://docs.pivotal.io/tiledev/2-n/release-notes.html
       local_header_img: /images/cloud_rings.png
       local_header_title: PCF Tile Developer Guide
       search_placeholder: Search PCF Tile Developer Guide 2.n
-      local_product_version: '2.5'
+      local_product_version: '2.6'
       url_prefix: tiledev/2-n
       local_header_links:
         - <a href="https://network.pivotal.io/">Download</a>
         - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
         - <a href="https://discuss.pivotal.io/hc/en-us/categories/200072648-Pivotal-CF-Knowledge-Base">PCF Knowledge Base</a>
       local_header_version_list:
+        - url_prefix: https://docs.pivotal.io/tiledev/2-5
+          display_name: v2.5
         - url_prefix: https://docs.pivotal.io/tiledev/2-4
           display_name: v2.4
         - url_prefix: https://docs.pivotal.io/tiledev/2-3
