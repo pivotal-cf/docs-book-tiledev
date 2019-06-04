@@ -77,7 +77,7 @@ sections:
     subnav_template: tiledev_subnav_2_3.erb
     product_info:
       use_local_header: true
-      latest_stable_version: '2.4'
+      latest_stable_version: '2.5'
       changelog_href: http://docs.pivotal.io/tiledev/2-3/release-notes.html
       local_header_img: /images/cloud_rings.png
       local_header_title: PCF Tile Developer Guide
@@ -106,7 +106,7 @@ sections:
     subnav_template: tiledev_subnav_2_2.erb
     product_info:
       use_local_header: true
-      latest_stable_version: '2.4'
+      latest_stable_version: '2.5'
       changelog_href: http://docs.pivotal.io/tiledev/2-2/release-notes.html
       local_header_img: /images/cloud_rings.png
       local_header_title: PCF Tile Developer Guide
@@ -135,7 +135,7 @@ sections:
     subnav_template: tiledev_subnav_2_1.erb
     product_info:
       use_local_header: true
-      latest_stable_version: '2.4'
+      latest_stable_version: '2.5'
       changelog_href: http://docs.pivotal.io/tiledev/2-1/release-notes.html
       local_header_img: /images/cloud_rings.png
       local_header_title: PCF Tile Developer Guide
