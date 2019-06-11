@@ -31,18 +31,18 @@ sections:
         - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
         - <a href="https://discuss.pivotal.io/hc/en-us/categories/200072648-Pivotal-CF-Knowledge-Base">PCF Knowledge Base</a>
       local_header_version_list:
-         - url_prefix: https://docs.pivotal.io/tiledev/2-5
-         display_name: v2.5
-         - url_prefix: https://docs.pivotal.io/tiledev/2-4
-         display_name: v2.4
-         - url_prefix: https://docs.pivotal.io/tiledev/2-3
-         display_name: v2.3
-         - url_prefix: https://docs.pivotal.io/tiledev/2-2
-         display_name: v2.2
-         - url_prefix: https://docs.pivotal.io/tiledev/2-1
-         display_name: v2.1
-         - <a href="https://docs.pivotal.io/archives/tiledev-guide-2.0.pdf">v2.0</a>
-         - <a href="https://docs.pivotal.io/archives/tiledev-guide-1.12.pdf">v1.12</a>
+        - url_prefix: https://docs.pivotal.io/tiledev/2-5
+          display_name: v2.5
+        - url_prefix: https://docs.pivotal.io/tiledev/2-4
+          display_name: v2.4
+        - url_prefix: https://docs.pivotal.io/tiledev/2-3
+          display_name: v2.3
+        - url_prefix: https://docs.pivotal.io/tiledev/2-2
+          display_name: v2.2
+        - url_prefix: https://docs.pivotal.io/tiledev/2-1
+          display_name: v2.1
+        - <a href="https://docs.pivotal.io/archives/tiledev-guide-2.0.pdf">v2.0</a>
+        - <a href="https://docs.pivotal.io/archives/tiledev-guide-1.12.pdf">v1.12</a>
   - repository:
       name: pivotal-cf/docs-tiledev
       ref: '2.5'
