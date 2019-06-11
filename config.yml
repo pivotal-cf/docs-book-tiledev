@@ -25,13 +25,15 @@ sections:
       local_header_img: /images/cloud_rings.png
       local_header_title: PCF Tile Developer Guide
       search_placeholder: Search PCF Tile Developer Guide 2.n
-      local_product_version: '2.6'
+      local_product_version: '2.7'
       url_prefix: tiledev/2-n
       local_header_links:
         - <a href="https://network.pivotal.io/">Download</a>
         - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
         - <a href="https://discuss.pivotal.io/hc/en-us/categories/200072648-Pivotal-CF-Knowledge-Base">PCF Knowledge Base</a>
       local_header_version_list:
+        - url_prefix: https://docs.pivotal.io/tiledev/2-6
+          display_name: v2.6
         - url_prefix: https://docs.pivotal.io/tiledev/2-5
           display_name: v2.5
         - url_prefix: https://docs.pivotal.io/tiledev/2-4
