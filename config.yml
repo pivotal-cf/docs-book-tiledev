@@ -66,6 +66,7 @@ template_variables:
   product_name_code_embed: PCF
   product_runtime: Pivotal Application Service
   product_abbr: 
+  product_dev_local: PCF Dev
   product_url: https://network.pivotal.io/products/pivotal-cf
   product_link: <div class="header-item"><a href="https://network.pivotal.io/products/pivotal-cf">Back to Product Page</a></div>
   service_name: PCF Tile Developer Guide
