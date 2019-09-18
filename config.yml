@@ -170,9 +170,6 @@ template_variables:
   title: <span class="title-deemph">Pivotal</span> Documentation
   title_image: images/icon-p-green.jpg
   hero_text: "Detailed documentation to help you install, understand, and succeed with Pivotal's enterprise-grade software."
-  product_full: Elastic Runtime
-  product_short: Elastic Runtime
-  product_name: PCF
   product_abbr:
   product_url: https://network.pivotal.io/products/pivotal-cf
   product_link: <div class="header-item"><a href="https://network.pivotal.io/products/pivotal-cf">Back to Product Page</a></div>
@@ -182,5 +179,14 @@ template_variables:
   support_link: <a href="http://support.pivotal.io" target="_blank">Support</a>
   support_call_to_action: <a href="http://support.pivotal.io" target="_blank">Need Support?</a>
   support_url: http://support.pivotal.io
+
+# Global product variables
+  product_name: Pivotal Platform
+  app_runtime_full: Pivotal Application Service
+  app_runtime: Application Service
+  k8s_runtime_full: Enterprise Pivotal Container Service (Enterprise PKS)
+  k8s_runtime: Enterprise PKS
+  windows_runtime_full: Pivotal Application Service for Windows
+  windows_runtime: Application Service for Windows
 
   gtm_account_id: GTM-MW4LZHR
