@@ -7,7 +7,6 @@ r301 %r{.*}, 'https://docs.pivotal.io$&', :if => Proc.new { |rack_env|
 r301 %r{/pivotalcf/packaging/(.*)}, '/tiledev/$1'
 r301 %r{/pivotalcf/partners/(.*)}, '/tiledev/$1'
 
-
 r301 '/partners/creating.html', '/tiledev/tile-generator.html'
 r301 '/partners/decrypt-encrypt-install-file.html', '/pivotalcf/customizing/modify-ops-man.html'
 r301 '/partners/deploying-with-bosh.html', '/tiledev/tile-generator.html'
@@ -31,28 +30,26 @@ r301 %r{/tiledev/(?![\d-]+)(.*)}, "/tiledev/2-7/$1"
 
 r301 '/', '/tiledev/2-7/index.html'
 
+# tiledev 2.5 URLs that include the outdated/pre 2.3 tiledev references topics
 
-# For links in docs-dev-guide topics published in tiledev under /brokers, redirect to original OSS docs locations
+r301 '/tiledev/2-5/product-template-reference.html', '/tiledev/property-template-references.html'
+r301 '/tiledev/2-5/property-reference.html', '/tiledev/property-template-references.html'
 
-r301 %r{/tiledev/(\d+)-(\d+)/brokers/api.html(.*)}, 'https://github.com/openservicebrokerapi/servicebroker/blob/v2.13/spec.md'
+# tiledev 2.4 URLs that include the outdated/pre 2.3 tiledev references topics
 
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/index.html}, 'https://docs.cloudfoundry.com/devguide/services/index.html'
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/log-management.html}, 'https://docs.cloudfoundry.com/devguide/services/log-management.html'
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/managing-services.html}, 'https://docs.cloudfoundry.com/devguide/services/managing-services.html'
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/route-binding.html}, 'https://docs.cloudfoundry.com/devguide/services/route-binding.html'
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/service-keys.html}, 'https://docs.cloudfoundry.com/devguide/services/service-keys.html'
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/sharing-instances.html}, 'https://docs.cloudfoundry.com/devguide/services/sharing-instances.html'
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/deploy-apps/environment-variable.html}, 'https://docs.cloudfoundry.com/devguide/deploy-apps/environment-variable.html'
+r301 '/tiledev/2-4/product-template-reference.html', '/tiledev/property-template-references.html'
+r301 '/tiledev/2-4/property-reference.html', '/tiledev/property-template-references.html'
 
+# tiledev 2.3 URLs that include the outdated/pre 2.3 tiledev references topics
 
-# tiledev redirect links to outdated/pre 2.3 tiledev references topics
+r301 '/tiledev/2-3/product-template-reference.html', '/tiledev/2-3/property-template-references.html'
+r301 '/tiledev/2-3/property-reference.html', '/tiledev/2-3/property-template-references.html'
 
-r301 %r{/tiledev/(\d+)-(\d+)/product-template-reference.html}, '/tiledev/property-template-references.html'
-r301 %r{/tiledev/(\d+)-(\d+)/property-reference.html}, '/tiledev/property-template-references.html'
-
-
-# redirect to PDF for v2.1 and earlier
+# tiledev 2.2 and earlier URLs that include the new 2.3 tiledev references topics
 
 r301 %r{/tiledev/2-1/(.*)}, 'http://docs.pivotal.io/archives/tiledev-guide-2.1.pdf'
 r301 %r{/tiledev/2-0/(.*)}, 'http://docs.pivotal.io/archives/tiledev-guide-2.0.pdf'
 r301 %r{/tiledev/1-12/(.*)}, 'http://docs.pivotal.io/archives/tiledev-guide-1.12.pdf'
+
+r301 '/tiledev/2-1/property-template-references.html', '/tiledev/2-1/product-template-reference.html'
+r301 '/tiledev/2-2/property-template-references.html', '/tiledev/2-2/product-template-reference.html'
