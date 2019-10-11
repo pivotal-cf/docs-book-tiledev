@@ -14,7 +14,7 @@ elastic_search: true
 sections:
   - repository:
       name: pivotal-cf/docs-tiledev
-      ref: '2.7'
+      ref: 'master'
     directory: tiledev/2-7
     subnav_template: tiledev_subnav_2_7.erb
     product_info:
