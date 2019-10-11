@@ -36,13 +36,13 @@ r301 '/', '/tiledev/2-7/index.html'
 
 r301 %r{/tiledev/(\d+)-(\d+)/brokers/api.html(.*)}, 'https://github.com/openservicebrokerapi/servicebroker/blob/v2.13/spec.md'
 
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/index.html}, 'https://docs.cloudfoundry.com/devguide/services/index.html'
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/log-management.html}, 'https://docs.cloudfoundry.com/devguide/services/log-management.html'
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/managing-services.html}, 'https://docs.cloudfoundry.com/devguide/services/managing-services.html'
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/route-binding.html}, 'https://docs.cloudfoundry.com/devguide/services/route-binding.html'
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/service-keys.html}, 'https://docs.cloudfoundry.com/devguide/services/service-keys.html'
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/sharing-instances.html}, 'https://docs.cloudfoundry.com/devguide/services/sharing-instances.html'
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/deploy-apps/environment-variable.html}, 'https://docs.cloudfoundry.com/devguide/deploy-apps/environment-variable.html'
+r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/index.html}, 'https://docs.cloudfoundry.org/devguide/services/index.html'
+r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/log-management.html}, 'https://docs.cloudfoundry.org/devguide/services/log-management.html'
+r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/managing-services.html}, 'https://docs.cloudfoundry.org/devguide/services/managing-services.html'
+r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/route-binding.html}, 'https://docs.cloudfoundry.org/devguide/services/route-binding.html'
+r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/service-keys.html}, 'https://docs.cloudfoundry.org/devguide/services/service-keys.html'
+r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/sharing-instances.html}, 'https://docs.cloudfoundry.org/devguide/services/sharing-instances.html'
+r301 %r{/tiledev/(\d+)-(\d+)/devguide/deploy-apps/environment-variable.html}, 'https://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html'
 
 
 # tiledev redirect links to outdated/pre 2.3 tiledev references topics
