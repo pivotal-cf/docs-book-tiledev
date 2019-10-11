@@ -20,18 +20,20 @@ sections:
     subnav_template: tiledev_subnav_2_n.erb 
     product_info:
       use_local_header: true
-      latest_stable_version: '2.5'
+      latest_stable_version: '2.7'
       changelog_href: http://docs.pivotal.io/tiledev/2-n/release-notes.html
       local_header_img: /images/cloud_rings.png
       local_header_title: Pivotal Platform Tile Developer Guide
       search_placeholder: Search Pivotal Platform Tile Developer Guide 2.n
-      local_product_version: '2.7'
+      local_product_version: '2.8'
       url_prefix: tiledev/2-n
       local_header_links:
         - <a href="https://network.pivotal.io/">Download</a>
         - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
         - <a href="https://community.pivotal.io/s/topic/0TO0P000000IKhwWAG/welcome">Pivotal Support Community</a>
       local_header_version_list:
+        - url_prefix: https://docs.pivotal.io/tiledev/2-7
+          display_name: v2.7
         - url_prefix: https://docs.pivotal.io/tiledev/2-6
           display_name: v2.6
         - url_prefix: https://docs.pivotal.io/tiledev/2-5
