@@ -49,6 +49,7 @@ sections:
         name: cloudfoundry/docs-services
         ref: '12.0'
       directory: brokers
+      no-docs: true
   - repository:
       name: pivotal-cf/docs-tiledev
       ref: '2.6'
@@ -81,11 +82,6 @@ sections:
         - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.1.pdf">v2.1</a>
         - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.0.pdf">v2.0</a>
         - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-1.12.pdf">v1.12</a>
-    dependent_sections:
-    - repository:
-        name: cloudfoundry/docs-services
-        ref: '9.3'
-      directory: brokers
   - repository:
       name: pivotal-cf/docs-tiledev
       ref: '2.5'
@@ -118,11 +114,6 @@ sections:
         - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.1.pdf">v2.1</a>
         - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.0.pdf">v2.0</a>
         - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-1.12.pdf">v1.12</a>
-    dependent_sections:
-    - repository:
-        name: cloudfoundry/docs-services
-        ref: '7.9'
-      directory: brokers
   - repository:
       name: pivotal-cf/docs-tiledev
       ref: '2.4'
@@ -155,11 +146,6 @@ sections:
         - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.1.pdf">v2.1</a>
         - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.0.pdf">v2.0</a>
         - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-1.12.pdf">v1.12</a>
-    dependent_sections:
-    - repository:
-        name: cloudfoundry/docs-services
-        ref: '6.7'
-      directory: brokers
   - repository:
       name: pivotal-cf/docs-tiledev
       ref: '2.3'
@@ -192,11 +178,6 @@ sections:
         - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.1.pdf">v2.1</a>
         - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.0.pdf">v2.0</a>
         - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-1.12.pdf">v1.12</a>
-    dependent_sections:
-    - repository:
-        name: cloudfoundry/docs-services
-        ref: '4.5'
-      directory: brokers
   - repository:
       name: pivotal-cf/docs-tiledev
       ref: '2.2'
@@ -229,11 +210,6 @@ sections:
         - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.1.pdf">v2.1</a>
         - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.0.pdf">v2.0</a>
         - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-1.12.pdf">v1.12</a>
-    dependent_sections:
-    - repository:
-        name: cloudfoundry/docs-services
-        ref: '2.2'
-      directory: brokers
 
 template_variables:
   use_global_header: true
