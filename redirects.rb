@@ -34,7 +34,7 @@ r301 '/', '/tiledev/2-7/index.html'
 
 # For links in docs-dev-guide topics published in tiledev under /brokers, redirect to original OSS docs locations
 
-r301 %r{/tiledev/brokers/api.html(.*)}, 'https://github.com/openservicebrokerapi/servicebroker/blob/v2.13/spec.md'
+r301 %r{/tiledev/(\d+)-(\d+)/brokers/api.html(.*)}, 'https://github.com/openservicebrokerapi/servicebroker/blob/v2.13/spec.md'
 
 r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/index.html}, 'https://docs.cloudfoundry.org/devguide/services/index.html'
 r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/log-management.html}, 'https://docs.cloudfoundry.org/devguide/services/log-management.html'
