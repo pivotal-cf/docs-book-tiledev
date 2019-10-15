@@ -206,38 +206,13 @@ sections:
       - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.0.pdf">v2.0</a>
       - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-1.12.pdf">v1.12</a>
 
-# docs-services (OSS) for service broker topics
+# cross-product resources
 
 - repository:
     name: cloudfoundry/docs-services
-    ref: 12.0
-  directory: tiledev/2-7/brokers
+    ref: master
+  directory: tiledev/brokers
   subnav_template: tiledev_subnav_2_7.erb
-- repository:
-    name: cloudfoundry/docs-services
-    ref: 9.3
-  directory: tiledev/2-6/brokers
-  subnav_template: tiledev_subnav_2_6.erb
-- repository:
-    name: cloudfoundry/docs-services
-    ref: 7.9
-  directory: tiledev/2-5/brokers
-  subnav_template: tiledev_subnav_2_5.erb
-- repository:
-    name: cloudfoundry/docs-services
-    ref: 6.7
-  directory: tiledev/2-4/brokers
-  subnav_template: tiledev_subnav_2_4.erb
-- repository:
-    name: cloudfoundry/docs-services
-    ref: 4.5
-  directory: tiledev/2-3/brokers
-  subnav_template: tiledev_subnav_2_3.erb
-- repository:
-    name: cloudfoundry/docs-services
-    ref: 2.2
-  directory: tiledev/2-2/brokers
-  subnav_template: tiledev_subnav_2_2.erb
 
 template_variables:
   use_global_header: true
