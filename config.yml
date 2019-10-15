@@ -211,7 +211,8 @@ sections:
 - repository:
     name: cloudfoundry/docs-services
     ref: master
-  directory: brokers
+  directory: tiledev/brokers
+  subnav_template: tiledev_subnav_2_7.erb
 
 template_variables:
   use_global_header: true
