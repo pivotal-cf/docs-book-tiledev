@@ -53,12 +53,10 @@ sections:
   subnav_template: tiledev_subnav_2_7.erb
   product_info:
     use_local_header: true
-    latest_stable_version: '2.7'
     changelog_href: http://docs.pivotal.io/tiledev/2-7/release-notes.html
     local_header_img: /images/cloud_rings.png
     local_header_title: Pivotal Platform Tile Developer Guide
     search_placeholder: Search Platform Developer Guide 2.7
-    local_product_version: '2.7'
     url_prefix: tiledev/2-7
     local_header_links:
       - <a href="https://network.pivotal.io/">Download</a>
