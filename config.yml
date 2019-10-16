@@ -57,7 +57,26 @@ sections:
     local_header_img: /images/cloud_rings.png
     local_header_title: Pivotal Platform Tile Developer Guide
     search_placeholder: Search Platform Developer Guide 2.7
+    local_product_version: '2.7'
     url_prefix: tiledev/2-7
+    local_header_links:
+      - <a href="https://network.pivotal.io/">Download</a>
+      - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
+      - <a href="https://discuss.pivotal.io/hc/en-us/categories/200072648-Pivotal-CF-Knowledge-Base">Pivotal Platform Knowledge Base</a>
+
+- repository:
+    name: cloudfoundry/docs-services
+    ref: master
+  directory: tiledev/brokers
+  subnav_template: tiledev_subnav_2_6.erb
+  product_info:
+    use_local_header: true
+    changelog_href: http://docs.pivotal.io/tiledev/2-6/release-notes.html
+    local_header_img: /images/cloud_rings.png
+    local_header_title: Pivotal Platform Tile Developer Guide
+    search_placeholder: Search Platform Developer Guide 2.6
+    local_product_version: '2.6'
+    url_prefix: tiledev/2-6
     local_header_links:
       - <a href="https://network.pivotal.io/">Download</a>
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
