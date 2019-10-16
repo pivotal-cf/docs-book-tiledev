@@ -429,6 +429,9 @@ template_variables:
 
   oss_docs_ref: " in the _Cloud Foundry Application Runtime_ documentation"
 
+  route_services_config: <h2><a id='enabling-route-services'></a>Enabling Route Services in Pivotal Application Service</h2>You configure Route Services for your deployment in the Application Service tile, under **Settings** > **Networking**. For more information, see <a href="https://docs.pivotal.io/platform/application-service/customizing/configure-pas.html">Configuring Pivotal Application Service</a>.
+  route_services_appsman1: <p class="note"><strong>Note</strong>&#58; The procedures in this topic use the Cloud Foundry Command Line Interface (cf CLI). You can also manage route services using Apps Manager. For more information, see the <a href="http://docs.pivotal.io/platform/application-service/console/manage-apps.html#manage-route-services">Manage Route Services</a> section of the <em>Managing Apps and Service Instances Using Apps Manager</em> topic.</p>
+
 # Product variables
   platform_name: Pivotal Platform
   platform_old: Pivotal Cloud Foundry
