@@ -47,7 +47,7 @@ sections:
 - repository:
     name: cloudfoundry/docs-services
     ref: master
-  directory: tiledev/2-7/brokers
+  directory: brokers/2-7
   subnav_template: tiledev_subnav_2_7.erb
   product_info:
     use_local_header: true
@@ -112,7 +112,7 @@ sections:
 - repository:
     name: cloudfoundry/docs-services
     ref: 9.3
-  directory: tiledev/2-6/brokers
+  directory: brokers/2-6
   subnav_template: tiledev_subnav_2_6.erb
   product_info:
     use_local_header: true
@@ -177,7 +177,7 @@ sections:
 - repository:
     name: cloudfoundry/docs-services
     ref: 7.9
-  directory: tiledev/2-5/brokers
+  directory: brokers/2-5
   subnav_template: tiledev_subnav_2_5.erb
   product_info:
     use_local_header: true
@@ -242,7 +242,7 @@ sections:
 - repository:
     name: cloudfoundry/docs-services
     ref: 6.7
-  directory: tiledev/2-4/brokers
+  directory: brokers/2-4
   subnav_template: tiledev_subnav_2_4.erb
   product_info:
     use_local_header: true
@@ -307,7 +307,7 @@ sections:
 - repository:
     name: cloudfoundry/docs-services
     ref: 4.5
-  directory: tiledev/2-3/brokers
+  directory: brokers/2-3
   subnav_template: tiledev_subnav_2_3.erb
   product_info:
     use_local_header: true
@@ -372,7 +372,7 @@ sections:
 - repository:
     name: cloudfoundry/docs-services
     ref: 2.2
-  directory: tiledev/2-2/brokers
+  directory: brokers/2-2
   subnav_template: tiledev_subnav_2_2.erb
   product_info:
     use_local_header: true
