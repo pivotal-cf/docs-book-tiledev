@@ -27,22 +27,22 @@ r301 '/partners/tiles.html', '/tiledev/property-reference.html'
 r301 %r{/tiledev/(\d+\-\d+\/|)(roadmap|development|overview|workflow)(\.html)}, "/tiledev/$1index.html"
 r301 %r{/tiledev/(\d+\-\d+\/)(other-integrations\.html)}, "/tiledev/$1stages.html"
 
-r301 %r{/tiledev/(?![\d-]+|brokers)(.*)}, "/tiledev/2-7/$1"
+r301 %r{/tiledev/(?![\d-]+)(.*)}, "/tiledev/2-7/$1"
 
 r301 '/', '/tiledev/2-7/index.html'
 
 
 # For links in docs-dev-guide topics published in tiledev under /brokers, redirect to original OSS docs locations
 
-r301 %r{/tiledev/brokers/api.html(.*)}, 'https://github.com/openservicebrokerapi/servicebroker/blob/v2.13/spec.md'
+r301 %r{/tiledev/(\d+)-(\d+)/brokers/api.html(.*)}, 'https://github.com/openservicebrokerapi/servicebroker/blob/v2.13/spec.md'
 
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/index.html}, 'https://docs.cloudfoundry.org/devguide/services/index.html'
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/log-management.html}, 'https://docs.cloudfoundry.org/devguide/services/log-management.html'
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/managing-services.html}, 'https://docs.cloudfoundry.org/devguide/services/managing-services.html'
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/route-binding.html}, 'https://docs.cloudfoundry.org/devguide/services/route-binding.html'
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/service-keys.html}, 'https://docs.cloudfoundry.org/devguide/services/service-keys.html'
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/services/sharing-instances.html}, 'https://docs.cloudfoundry.org/devguide/services/sharing-instances.html'
-r301 %r{/tiledev/(\d+)-(\d+)/devguide/deploy-apps/environment-variable.html}, 'https://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html'
+r301 %r{/tiledev/(\d+)-(\d+)/brokers/devguide/services/index.html}, 'https://docs.cloudfoundry.org/devguide/services/index.html'
+r301 %r{/tiledev/(\d+)-(\d+)/brokers/devguide/services/log-management.html}, 'https://docs.cloudfoundry.org/devguide/services/log-management.html'
+r301 %r{/tiledev/(\d+)-(\d+)/brokers/devguide/services/managing-services.html}, 'https://docs.cloudfoundry.org/devguide/services/managing-services.html'
+r301 %r{/tiledev/(\d+)-(\d+)/brokers/devguide/services/route-binding.html}, 'https://docs.cloudfoundry.org/devguide/services/route-binding.html'
+r301 %r{/tiledev/(\d+)-(\d+)/brokers/devguide/services/service-keys.html}, 'https://docs.cloudfoundry.org/devguide/services/service-keys.html'
+r301 %r{/tiledev/(\d+)-(\d+)/brokers/devguide/services/sharing-instances.html}, 'https://docs.cloudfoundry.org/devguide/services/sharing-instances.html'
+r301 %r{/tiledev/(\d+)-(\d+)/brokers/devguide/deploy-apps/environment-variable.html}, 'https://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html'
 
 
 # tiledev redirect links to outdated/pre 2.3 tiledev references topics
