@@ -57,7 +57,7 @@ sections:
     local_header_title: Pivotal Platform Tile Developer Guide
     search_placeholder: Search Platform Developer Guide 2.7
     local_product_version: '2.7'
-    url_prefix: tiledev/2-7
+    url_prefix: brokers/2-7
     local_header_links:
       - <a href="https://network.pivotal.io/">Download</a>
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
@@ -122,7 +122,7 @@ sections:
     local_header_title: Pivotal Platform Tile Developer Guide
     search_placeholder: Search Platform Developer Guide 2.6
     local_product_version: '2.6'
-    url_prefix: tiledev/2-6
+    url_prefix: brokers/2-6
     local_header_links:
       - <a href="https://network.pivotal.io/">Download</a>
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
@@ -187,7 +187,7 @@ sections:
     local_header_title: Pivotal Platform Tile Developer Guide
     search_placeholder: Search Platform Developer Guide 2.5
     local_product_version: '2.5'
-    url_prefix: tiledev/2-5
+    url_prefix: brokers/2-5
     local_header_links:
       - <a href="https://network.pivotal.io/">Download</a>
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
@@ -252,7 +252,7 @@ sections:
     local_header_title: Pivotal Platform Tile Developer Guide
     search_placeholder: Search Platform Developer Guide 2.4
     local_product_version: '2.4'
-    url_prefix: tiledev/2-4
+    url_prefix: brokers/2-4
     local_header_links:
       - <a href="https://network.pivotal.io/">Download</a>
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
@@ -317,7 +317,7 @@ sections:
     local_header_title: Pivotal Platform Tile Developer Guide
     search_placeholder: Search Platform Developer Guide 2.3
     local_product_version: '2.3'
-    url_prefix: tiledev/2-3
+    url_prefix: brokers/2-3
     local_header_links:
       - <a href="https://network.pivotal.io/">Download</a>
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
@@ -382,7 +382,7 @@ sections:
     local_header_title: Pivotal Platform Tile Developer Guide
     search_placeholder: Search Platform Developer Guide 2.2
     local_product_version: '2.2'
-    url_prefix: tiledev/2-2
+    url_prefix: brokers/2-2
     local_header_links:
       - <a href="https://network.pivotal.io/">Download</a>
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
