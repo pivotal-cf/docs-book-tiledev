@@ -63,15 +63,15 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://discuss.pivotal.io/hc/en-us/categories/200072648-Pivotal-CF-Knowledge-Base">Pivotal Platform Knowledge Base</a>
     local_header_version_list:
-      - url_prefix: https://docs.pivotal.io/tiledev/2-6
+      - url_prefix: https://docs.pivotal.io/brokers/2-6
         display_name: v2.6
-      - url_prefix: https://docs.pivotal.io/tiledev/2-5
+      - url_prefix: https://docs.pivotal.io/brokers/2-5
         display_name: v2.5
-      - url_prefix: https://docs.pivotal.io/tiledev/2-4
+      - url_prefix: https://docs.pivotal.io/brokers/2-4
         display_name: v2.4
-      - url_prefix: https://docs.pivotal.io/tiledev/2-3
+      - url_prefix: https://docs.pivotal.io/brokers/2-3
         display_name: v2.3
-      - url_prefix: https://docs.pivotal.io/tiledev/2-2
+      - url_prefix: https://docs.pivotal.io/brokers/2-2
         display_name: v2.2
       - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.1.pdf">v2.1</a>
       - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.0.pdf">v2.0</a>
@@ -128,15 +128,15 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://discuss.pivotal.io/hc/en-us/categories/200072648-Pivotal-CF-Knowledge-Base">Pivotal Platform Knowledge Base</a>
     local_header_version_list:
-      - url_prefix: https://docs.pivotal.io/tiledev/2-7
+      - url_prefix: https://docs.pivotal.io/brokers/2-7
         display_name: v2.7
-      - url_prefix: https://docs.pivotal.io/tiledev/2-5
+      - url_prefix: https://docs.pivotal.io/brokers/2-5
         display_name: v2.5
-      - url_prefix: https://docs.pivotal.io/tiledev/2-4
+      - url_prefix: https://docs.pivotal.io/brokers/2-4
         display_name: v2.4
-      - url_prefix: https://docs.pivotal.io/tiledev/2-3
+      - url_prefix: https://docs.pivotal.io/brokers/2-3
         display_name: v2.3
-      - url_prefix: https://docs.pivotal.io/tiledev/2-2
+      - url_prefix: https://docs.pivotal.io/brokers/2-2
         display_name: v2.2
       - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.1.pdf">v2.1</a>
       - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.0.pdf">v2.0</a>
@@ -193,15 +193,15 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://discuss.pivotal.io/hc/en-us/categories/200072648-Pivotal-CF-Knowledge-Base">Pivotal Platform Knowledge Base</a>
     local_header_version_list:
-      - url_prefix: https://docs.pivotal.io/tiledev/2-7
+      - url_prefix: https://docs.pivotal.io/brokers/2-7
         display_name: v2.7
-      - url_prefix: https://docs.pivotal.io/tiledev/2-6
+      - url_prefix: https://docs.pivotal.io/brokers/2-6
         display_name: v2.6
-      - url_prefix: https://docs.pivotal.io/tiledev/2-4
+      - url_prefix: https://docs.pivotal.io/brokers/2-4
         display_name: v2.4
-      - url_prefix: https://docs.pivotal.io/tiledev/2-3
+      - url_prefix: https://docs.pivotal.io/brokers/2-3
         display_name: v2.3
-      - url_prefix: https://docs.pivotal.io/tiledev/2-2
+      - url_prefix: https://docs.pivotal.io/brokers/2-2
         display_name: v2.2
       - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.1.pdf">v2.1</a>
       - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.0.pdf">v2.0</a>
@@ -258,15 +258,15 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://discuss.pivotal.io/hc/en-us/categories/200072648-Pivotal-CF-Knowledge-Base">Pivotal Platform Knowledge Base</a>
     local_header_version_list:
-      - url_prefix: https://docs.pivotal.io/tiledev/2-7
+      - url_prefix: https://docs.pivotal.io/brokers/2-7
         display_name: v2.7
-      - url_prefix: https://docs.pivotal.io/tiledev/2-6
+      - url_prefix: https://docs.pivotal.io/brokers/2-6
         display_name: v2.6
-      - url_prefix: https://docs.pivotal.io/tiledev/2-5
+      - url_prefix: https://docs.pivotal.io/brokers/2-5
         display_name: v2.5
-      - url_prefix: https://docs.pivotal.io/tiledev/2-3
+      - url_prefix: https://docs.pivotal.io/brokers/2-3
         display_name: v2.3
-      - url_prefix: https://docs.pivotal.io/tiledev/2-2
+      - url_prefix: https://docs.pivotal.io/brokers/2-2
         display_name: v2.2
       - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.1.pdf">v2.1</a>
       - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.0.pdf">v2.0</a>
@@ -323,15 +323,15 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://discuss.pivotal.io/hc/en-us/categories/200072648-Pivotal-CF-Knowledge-Base">Pivotal Platform Knowledge Base</a>
     local_header_version_list:
-      - url_prefix: https://docs.pivotal.io/tiledev/2-7
+      - url_prefix: https://docs.pivotal.io/brokers/2-7
         display_name: v2.7
-      - url_prefix: https://docs.pivotal.io/tiledev/2-6
+      - url_prefix: https://docs.pivotal.io/brokers/2-6
         display_name: v2.6
-      - url_prefix: https://docs.pivotal.io/tiledev/2-5
+      - url_prefix: https://docs.pivotal.io/brokers/2-5
         display_name: v2.5
-      - url_prefix: https://docs.pivotal.io/tiledev/2-4
+      - url_prefix: https://docs.pivotal.io/brokers/2-4
         display_name: v2.4
-      - url_prefix: https://docs.pivotal.io/tiledev/2-2
+      - url_prefix: https://docs.pivotal.io/brokers/2-2
         display_name: v2.2
       - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.1.pdf">v2.1</a>
       - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.0.pdf">v2.0</a>
@@ -388,15 +388,15 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://discuss.pivotal.io/hc/en-us/categories/200072648-Pivotal-CF-Knowledge-Base">Pivotal Platform Knowledge Base</a>
     local_header_version_list:
-      - url_prefix: https://docs.pivotal.io/tiledev/2-7
+      - url_prefix: https://docs.pivotal.io/brokers/2-7
         display_name: v2.7
-      - url_prefix: https://docs.pivotal.io/tiledev/2-6
+      - url_prefix: https://docs.pivotal.io/brokers/2-6
         display_name: v2.6
-      - url_prefix: https://docs.pivotal.io/tiledev/2-5
+      - url_prefix: https://docs.pivotal.io/brokers/2-5
         display_name: v2.5
-      - url_prefix: https://docs.pivotal.io/tiledev/2-4
+      - url_prefix: https://docs.pivotal.io/brokers/2-4
         display_name: v2.4
-      - url_prefix: https://docs.pivotal.io/tiledev/2-3
+      - url_prefix: https://docs.pivotal.io/brokers/2-3
         display_name: v2.32
       - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.1.pdf">v2.1</a>
       - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.0.pdf">v2.0</a>
