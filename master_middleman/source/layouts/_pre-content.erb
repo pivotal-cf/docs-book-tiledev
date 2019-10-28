@@ -1,0 +1,20 @@
+<%# Unless you've set `modified_date` to false in the frontmatter, add the `modified_date` variable to the beginning of a topic. %>
+
+<%  unless current_page.data.modified_date == false %>
+<p id="modified-date"><strong><%= modified_date %></strong></p>
+<% end %>
+
+<% if product_info['local_product_version'] == '2.4' || 
+	  product_info['local_product_version'] == '2.3' || 
+	  product_info['local_product_version'] == '2.2' || 
+	  product_info['local_product_version'] == '2.1' || 
+	  product_info['local_product_version'] == '2.0' %>
+<p class="note warning"><strong>Warning:</strong> Pivotal Operations Manager 
+	v<%= product_info['local_product_version'] %> is no longer supported 
+because it has reached the End of General Support (EOGS) phase as defined by the 
+<a href="https://pivotal.io/support/lifecycle_policy">Support Lifecycle Policy</a>.
+To stay up to date with the latest software and security updates,
+upgrade to a supported version.
+</p>
+<% else %>
+<% end %>
