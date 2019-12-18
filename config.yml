@@ -16,7 +16,7 @@ sections:
     name: pivotal-cf/docs-tiledev
     ref: '2.8'
   directory: tiledev/2-8
-  subnav_template: tiledev_subnav_2_7.erb
+  subnav_template: tiledev_subnav_2_8.erb
   product_info:
     use_local_header: true
     latest_stable_version: '2.8'
