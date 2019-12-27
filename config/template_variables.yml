@@ -42,3 +42,6 @@ template_variables:
   product_name: Pivotal Platform
   product_runtime: Pivotal Application Service
   product_short: PAS
+
+# Book content variables
+  recommended_by: Pivotal
