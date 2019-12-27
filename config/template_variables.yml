@@ -40,4 +40,5 @@ template_variables:
 
 # Deprecated variables -- replace with current product variables when possible
   product_name: Pivotal Platform
+  product_runtime: Pivotal Application Service
   product_short: PAS
