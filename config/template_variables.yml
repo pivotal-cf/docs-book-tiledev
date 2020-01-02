@@ -6,7 +6,7 @@ template_variables:
   title: <span class="title-deemph">Pivotal</span> Documentation
   title_image: images/icon-p-green.jpg
   hero_text: "Detailed documentation to help you install, understand, and succeed with Pivotal's enterprise-grade software."
-  product_dev_local: PCF Dev
+  product_dev_local: Pivotal Platform Dev
   product_link: <div class="header-item"><a href="https://network.pivotal.io/products/pivotal-cf">Back to Product Page</a></div>
   product_url: https://network.pivotal.io/products/pivotal-cf
   support_link: <a href="https://pivotal.io/support" target="_blank">Support</a>
