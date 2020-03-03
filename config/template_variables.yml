@@ -22,7 +22,7 @@ template_variables:
   ga_account_id: UA-39702075-1
   gtm_account_id: GTM-MW4LZHR
 
-# Product variables
+# To be Tanzu'ed variables
   platform_name: Pivotal Platform
   platform_old: Pivotal Cloud Foundry
   platform_code: PCF
@@ -37,6 +37,26 @@ template_variables:
   windows_runtime_full: Pivotal Application Service for Windows
   windows_runtime: Application Service for Windows
   windows_runtime_abbr: PASW
+  ops_manager_full: Pivotal Operations Manager
+  ops_manager: Ops Manager
+
+# Pivotal variables - v2.8 and earlier
+  platform_name_pivotal: Pivotal Platform
+  platform_old_pivotal: Pivotal Cloud Foundry
+  platform_code_pivotal: PCF
+  product_name_lc_pivotal: pcf
+  app_runtime_full_pivotal: Pivotal Application Service
+  app_runtime_pivotal: Application Service
+  app_runtime_abbr_pivotal: PAS
+  app_runtime_abbr_lc_pivotal: pas
+  k8s_runtime_full_pivotal: Enterprise Pivotal Container Service
+  k8s_runtime_pivotal: Enterprise PKS
+  k8s_runtime_abbr_pivotal: PKS
+  windows_runtime_full_pivotal: Pivotal Application Service for Windows
+  windows_runtime_pivotal: Application Service for Windows
+  windows_runtime_abbr_pivotal: PASW
+  ops_manager_full_pivotal: Pivotal Operations Manager
+  ops_manager_pivotal: Ops Manager
 
 # Deprecated variables -- replace with current product variables when possible
   product_name: Pivotal Platform
