@@ -28,14 +28,12 @@ template_variables:
   platform_code: PCF
   product_name_lc: pcf
   app_runtime_full: VMware Tanzu Application Service for VMs
-  app_runtime: Tanzu Application Service for VMs
-  app_runtime_abbr: TAS
+  app_runtime_abbr: TAS for VMs
+  app_runtime_abbr_lc: tas
   segment_runtime_full: Isolation Segment
   k8s_runtime_full: VMware PKS
-  k8s_runtime: VMware PKS
   k8s_runtime_abbr: PKS
   windows_runtime_full: VMware Tanzu Application Service &#91;Windows&#93;
-  windows_runtime: Tanzu Application Service &#91;Windows&#93;
   windows_runtime_abbr: TAS &#91;Windows&#93;
   ops_manager_full: Ops Manager
   ops_manager: Ops Manager
@@ -53,7 +51,6 @@ template_variables:
   k8s_runtime_pivotal: Enterprise PKS
   k8s_runtime_abbr_pivotal: PKS
   windows_runtime_full_pivotal: Pivotal Application Service for Windows
-  windows_runtime_pivotal: Application Service for Windows
   windows_runtime_abbr_pivotal: PASW
   ops_manager_full_pivotal: Pivotal Operations Manager
   ops_manager_pivotal: Ops Manager
