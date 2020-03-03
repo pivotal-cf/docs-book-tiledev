@@ -22,8 +22,8 @@ sections:
     latest_stable_version: '2.8'
     changelog_href: http://docs.pivotal.io/tiledev/2-n/release-notes.html
     local_header_img: /images/cloud_rings.png
-    local_header_title: Pivotal Platform Tile Developer Guide
-    search_placeholder: Search Pivotal Platform Tile Developer Guide 2.n
+    local_header_title: Ops Manager Tile Developer Guide
+    search_placeholder: Search Ops Manager Tile Developer Guide 2.n
     local_product_version: '2.9'
     url_prefix: tiledev/2-n
     local_header_links:
