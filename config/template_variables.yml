@@ -33,8 +33,8 @@ template_variables:
   segment_runtime_full: Isolation Segment
   k8s_runtime_full: VMware PKS
   k8s_runtime_abbr: PKS
-  windows_runtime_full: VMware Tanzu Application Service &#91;Windows&#93;
-  windows_runtime_abbr: TAS &#91;Windows&#93;
+  windows_runtime_full: VMware Tanzu Application Service for VMs &#91;Windows&#93;
+  windows_runtime_abbr: TAS for VMs &#91;Windows&#93;
   ops_manager_full: Ops Manager
   ops_manager: Ops Manager
 
