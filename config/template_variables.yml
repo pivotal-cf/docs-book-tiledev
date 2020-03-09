@@ -39,6 +39,7 @@ template_variables:
   windows_runtime_abbr: PASW
   ops_manager_full: Pivotal Operations Manager
   ops_manager: Ops Manager
+  company_name: VMware
 
 # Pivotal variables - v2.8 and earlier
   platform_name_pivotal: Pivotal Platform
@@ -57,6 +58,7 @@ template_variables:
   windows_runtime_abbr_pivotal: PASW
   ops_manager_full_pivotal: Pivotal Operations Manager
   ops_manager_pivotal: Ops Manager
+  company_name_pivotal: Pivotal
 
 # Deprecated variables -- replace with current product variables when possible
   product_name: Pivotal Platform
