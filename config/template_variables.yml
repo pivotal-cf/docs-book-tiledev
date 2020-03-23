@@ -2,7 +2,7 @@
 template_variables:
   book_title: VMware Tanzu Documentation
   book_title_short: VMware Tanzu Docs
-  url_path: https://docs.pivotal.io/platform/2-8
+  url_path: https://docs.pivotal.io/tiledev
   title: <span class="title-deemph">VMware Tanzu</span> Documentation
   title_image: images/icon-p-green.jpg
   hero_text: "Detailed documentation to help you install, understand, and succeed with VMware's enterprise-grade software."
@@ -16,8 +16,8 @@ template_variables:
   use_global_header: true
   global_header_product_href: https://network.pivotal.io/
   global_header_product_link_text: Downloads
-  current_major_version: "2.8"
-  v_major_version: "v2.8"
+  current_major_version: "2.9"
+  v_major_version: "v2.9"
   api_version: "259"
   ga_account_id: UA-39702075-1
   gtm_account_id: GTM-MW4LZHR
