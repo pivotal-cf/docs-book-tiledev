@@ -16,7 +16,7 @@ sections:
 sections:
 - repository:
     name: pivotal-cf/docs-tiledev
-    ref: 'master'
+    ref: '2.9'
   directory: tiledev/2-9
   subnav_template: tiledev_subnav_2_9.erb
   product_info:
