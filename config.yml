@@ -21,7 +21,7 @@ sections:
   subnav_template: tiledev_subnav_2_9.erb
   product_info:
     use_local_header: true
-    latest_stable_version: '2.8'
+    latest_stable_version: '2.9'
     changelog_href: http://docs.pivotal.io/tiledev/2-9/release-notes.html
     local_header_img: /images/cloud_rings.png
     local_header_title: Ops Manager Tile Developer Guide
@@ -57,7 +57,7 @@ sections:
   subnav_template: tiledev_subnav_2_9.erb
   product_info:
     use_local_header: true
-    latest_stable_version: '2.8'
+    latest_stable_version: '2.9'
     changelog_href: http://docs.pivotal.io/tiledev/2-9/release-notes.html
     local_header_img: /images/cloud_rings.png
     local_header_title: Ops Manager Tile Developer Guide
@@ -95,7 +95,7 @@ sections:
   subnav_template: tiledev_subnav_2_8.erb
   product_info:
     use_local_header: true
-    latest_stable_version: '2.8'
+    latest_stable_version: '2.9'
     changelog_href: http://docs.pivotal.io/tiledev/2-8/release-notes.html
     local_header_img: /images/cloud_rings.png
     local_header_title: Pivotal Platform Tile Developer Guide
@@ -107,6 +107,8 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://community.pivotal.io/s/topic/0TO0P000000IKhwWAG/welcome">Knowledge Base</a>
     local_header_version_list:
+      - url_prefix: https://docs.pivotal.io/brokers/2-9
+        display_name: v2.9
       - url_prefix: https://docs.pivotal.io/tiledev/2-7
         display_name: v2.7
       - url_prefix: https://docs.pivotal.io/tiledev/2-6
@@ -129,7 +131,7 @@ sections:
   subnav_template: tiledev_subnav_2_8.erb
   product_info:
     use_local_header: true
-    latest_stable_version: '2.8'
+    latest_stable_version: '2.9'
     changelog_href: http://docs.pivotal.io/tiledev/2-8/release-notes.html
     local_header_img: /images/cloud_rings.png
     local_header_title: Pivotal Platform Tile Developer Guide
@@ -141,6 +143,8 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://community.pivotal.io/s/topic/0TO0P000000IKhwWAG/welcome">Knowledge Base</a>
     local_header_version_list:
+      - url_prefix: https://docs.pivotal.io/brokers/2-9
+        display_name: v2.9
       - url_prefix: https://docs.pivotal.io/brokers/2-7
         display_name: v2.7
       - url_prefix: https://docs.pivotal.io/brokers/2-6
@@ -163,7 +167,7 @@ sections:
   subnav_template: tiledev_subnav_2_7.erb
   product_info:
     use_local_header: true
-    latest_stable_version: '2.8'
+    latest_stable_version: '2.9'
     changelog_href: http://docs.pivotal.io/tiledev/2-7/release-notes.html
     local_header_img: /images/cloud_rings.png
     local_header_title: Pivotal Platform Tile Developer Guide
@@ -175,6 +179,8 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://community.pivotal.io/s/topic/0TO0P000000IKhwWAG/welcome">Knowledge Base</a>
     local_header_version_list:
+      - url_prefix: https://docs.pivotal.io/tiledev/2-9
+        display_name: v2.9
       - url_prefix: https://docs.pivotal.io/tiledev/2-8
         display_name: v2.8
       - url_prefix: https://docs.pivotal.io/tiledev/2-6
@@ -197,7 +203,7 @@ sections:
   subnav_template: tiledev_subnav_2_7.erb
   product_info:
     use_local_header: true
-    latest_stable_version: '2.8'
+    latest_stable_version: '2.9'
     changelog_href: http://docs.pivotal.io/tiledev/2-7/release-notes.html
     local_header_img: /images/cloud_rings.png
     local_header_title: Pivotal Platform Tile Developer Guide
@@ -209,6 +215,8 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://community.pivotal.io/s/topic/0TO0P000000IKhwWAG/welcome">Knowledge Base</a>
     local_header_version_list:
+      - url_prefix: https://docs.pivotal.io/brokers/2-9
+        display_name: v2.9
       - url_prefix: https://docs.pivotal.io/brokers/2-8
         display_name: v2.8
       - url_prefix: https://docs.pivotal.io/brokers/2-6
@@ -232,7 +240,7 @@ sections:
   subnav_template: tiledev_subnav_2_6.erb
   product_info:
     use_local_header: true
-    latest_stable_version: '2.8'
+    latest_stable_version: '2.9'
     changelog_href: http://docs.pivotal.io/tiledev/2-6/release-notes.html
     local_header_img: /images/cloud_rings.png
     local_header_title: PCF Tile Developer Guide
@@ -244,6 +252,8 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://community.pivotal.io/s/topic/0TO0P000000IKhwWAG/welcome">PCF Knowledge Base</a>
     local_header_version_list:
+      - url_prefix: https://docs.pivotal.io/tiledev/2-9
+        display_name: v2.9
       - url_prefix: https://docs.pivotal.io/tiledev/2-8
         display_name: v2.8
       - url_prefix: https://docs.pivotal.io/tiledev/2-7
@@ -266,7 +276,7 @@ sections:
   subnav_template: tiledev_subnav_2_6.erb
   product_info:
     use_local_header: true
-    latest_stable_version: '2.8'
+    latest_stable_version: '2.9'
     changelog_href: http://docs.pivotal.io/tiledev/2-6/release-notes.html
     local_header_img: /images/cloud_rings.png
     local_header_title: PCF Tile Developer Guide
@@ -278,6 +288,8 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://community.pivotal.io/s/topic/0TO0P000000IKhwWAG/welcome">Knowledge Base</a>
     local_header_version_list:
+      - url_prefix: https://docs.pivotal.io/brokers/2-9
+        display_name: v2.9
       - url_prefix: https://docs.pivotal.io/brokers/2-8
         display_name: v2.8
       - url_prefix: https://docs.pivotal.io/brokers/2-7
@@ -301,7 +313,7 @@ sections:
   subnav_template: tiledev_subnav_2_5.erb
   product_info:
     use_local_header: true
-    latest_stable_version: '2.8'
+    latest_stable_version: '2.9'
     changelog_href: http://docs.pivotal.io/tiledev/2-5/release-notes.html
     local_header_img: /images/cloud_rings.png
     local_header_title: PCF Tile Developer Guide
@@ -313,6 +325,8 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://community.pivotal.io/s/topic/0TO0P000000IKhwWAG/welcome">PCF Knowledge Base</a>
     local_header_version_list:
+      - url_prefix: https://docs.pivotal.io/tiledev/2-9
+        display_name: v2.9
       - url_prefix: https://docs.pivotal.io/tiledev/2-8
         display_name: v2.8
       - url_prefix: https://docs.pivotal.io/tiledev/2-7
@@ -335,7 +349,7 @@ sections:
   subnav_template: tiledev_subnav_2_5.erb
   product_info:
     use_local_header: true
-    latest_stable_version: '2.8'
+    latest_stable_version: '2.9'
     changelog_href: http://docs.pivotal.io/tiledev/2-5/release-notes.html
     local_header_img: /images/cloud_rings.png
     local_header_title: PCF Tile Developer Guide
@@ -347,6 +361,8 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://community.pivotal.io/s/topic/0TO0P000000IKhwWAG/welcome">Knowledge Base</a>
     local_header_version_list:
+      - url_prefix: https://docs.pivotal.io/brokers/2-9
+        display_name: v2.9
       - url_prefix: https://docs.pivotal.io/brokers/2-8
         display_name: v2.8
       - url_prefix: https://docs.pivotal.io/brokers/2-7
@@ -370,7 +386,7 @@ sections:
   subnav_template: tiledev_subnav_2_4.erb
   product_info:
     use_local_header: true
-    latest_stable_version: '2.8'
+    latest_stable_version: '2.9'
     changelog_href: http://docs.pivotal.io/tiledev/2-4/release-notes.html
     local_header_img: /images/cloud_rings.png
     local_header_title: PCF Tile Developer Guide
@@ -382,6 +398,8 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://community.pivotal.io/s/topic/0TO0P000000IKhwWAG/welcome">PCF Knowledge Base</a>
     local_header_version_list:
+      - url_prefix: https://docs.pivotal.io/tiledev/2-9
+        display_name: v2.9
       - url_prefix: https://docs.pivotal.io/tiledev/2-8
         display_name: v2.8
       - url_prefix: https://docs.pivotal.io/tiledev/2-7
@@ -404,7 +422,7 @@ sections:
   subnav_template: tiledev_subnav_2_4.erb
   product_info:
     use_local_header: true
-    latest_stable_version: '2.8'
+    latest_stable_version: '2.9'
     changelog_href: http://docs.pivotal.io/tiledev/2-4/release-notes.html
     local_header_img: /images/cloud_rings.png
     local_header_title: PCF Tile Developer Guide
@@ -416,6 +434,8 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://community.pivotal.io/s/topic/0TO0P000000IKhwWAG/welcome">Knowledge Base</a>
     local_header_version_list:
+      - url_prefix: https://docs.pivotal.io/brokers/2-9
+        display_name: v2.9
       - url_prefix: https://docs.pivotal.io/brokers/2-8
         display_name: v2.8
       - url_prefix: https://docs.pivotal.io/brokers/2-7
@@ -439,7 +459,7 @@ sections:
   subnav_template: tiledev_subnav_2_3.erb
   product_info:
     use_local_header: true
-    latest_stable_version: '2.8'
+    latest_stable_version: '2.9'
     changelog_href: http://docs.pivotal.io/tiledev/2-3/release-notes.html
     local_header_img: /images/cloud_rings.png
     local_header_title: PCF Tile Developer Guide
@@ -451,6 +471,8 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://community.pivotal.io/s/topic/0TO0P000000IKhwWAG/welcome">PCF Knowledge Base</a>
     local_header_version_list:
+      - url_prefix: https://docs.pivotal.io/tiledev/2-9
+        display_name: v2.9
       - url_prefix: https://docs.pivotal.io/tiledev/2-8
         display_name: v2.8
       - url_prefix: https://docs.pivotal.io/tiledev/2-7
@@ -473,7 +495,7 @@ sections:
   subnav_template: tiledev_subnav_2_3.erb
   product_info:
     use_local_header: true
-    latest_stable_version: '2.8'
+    latest_stable_version: '2.9'
     changelog_href: http://docs.pivotal.io/tiledev/2-3/release-notes.html
     local_header_img: /images/cloud_rings.png
     local_header_title: PCF Tile Developer Guide
@@ -485,6 +507,8 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://community.pivotal.io/s/topic/0TO0P000000IKhwWAG/welcome">Knowledge Base</a>
     local_header_version_list:
+      - url_prefix: https://docs.pivotal.io/brokers/2-9
+        display_name: v2.9
       - url_prefix: https://docs.pivotal.io/brokers/2-8
         display_name: v2.8
       - url_prefix: https://docs.pivotal.io/brokers/2-7
@@ -508,7 +532,7 @@ sections:
   subnav_template: tiledev_subnav_2_2.erb
   product_info:
     use_local_header: true
-    latest_stable_version: '2.8'
+    latest_stable_version: '2.9'
     changelog_href: http://docs.pivotal.io/tiledev/2-2/release-notes.html
     local_header_img: /images/cloud_rings.png
     local_header_title: PCF Tile Developer Guide
@@ -520,6 +544,8 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://community.pivotal.io/s/topic/0TO0P000000IKhwWAG/welcome">PCF Knowledge Base</a>
     local_header_version_list:
+      - url_prefix: https://docs.pivotal.io/tiledev/2-9
+        display_name: v2.9
       - url_prefix: https://docs.pivotal.io/tiledev/2-8
         display_name: v2.8
       - url_prefix: https://docs.pivotal.io/tiledev/2-7
@@ -542,7 +568,7 @@ sections:
   subnav_template: tiledev_subnav_2_2.erb
   product_info:
     use_local_header: true
-    latest_stable_version: '2.8'
+    latest_stable_version: '2.9'
     changelog_href: http://docs.pivotal.io/tiledev/2-2/release-notes.html
     local_header_img: /images/cloud_rings.png
     local_header_title: PCF Tile Developer Guide
@@ -554,6 +580,8 @@ sections:
       - <a href="https://support.pivotal.io/hc/en-us/requests/new">Ask for Help</a>
       - <a href="https://community.pivotal.io/s/topic/0TO0P000000IKhwWAG/welcome">Knowledge Base</a>
     local_header_version_list:
+      - url_prefix: https://docs.pivotal.io/brokers/2-9
+        display_name: v2.9
       - url_prefix: https://docs.pivotal.io/brokers/2-8
         display_name: v2.8
       - url_prefix: https://docs.pivotal.io/brokers/2-7
