@@ -52,7 +52,7 @@ sections:
       - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-1.12.pdf">v1.12</a>
 - repository:
     name: cloudfoundry/docs-services
-    ref: 'master'
+    ref: '12.42'
   directory: brokers/2-9
   subnav_template: tiledev_subnav_2_9.erb
   product_info:
