@@ -27,10 +27,10 @@ r301 '/partners/tiles.html', '/tiledev/property-reference.html'
 r301 %r{/tiledev/(\d+\-\d+\/|)(roadmap|development|overview|workflow)(\.html)}, "/tiledev/$1index.html"
 r301 %r{/tiledev/(\d+\-\d+\/)(other-integrations\.html)}, "/tiledev/$1stages.html"
 
-r301 %r{/tiledev/(?![\d-]+)(.*)}, "/tiledev/2-9/$1"
-r301 %r{/brokers/(?![\d-]+)(.*)}, "/brokers/2-9/$1"
+r302 %r{/tiledev/(?![\d-]+)(.*)}, "/tiledev/2-10/$1"
+r302 %r{/brokers/(?![\d-]+)(.*)}, "/brokers/2-10/$1"
 
-r301 '/', '/tiledev/2-9/index.html'
+r302 '/', '/tiledev/2-10/index.html'
 
 
 
