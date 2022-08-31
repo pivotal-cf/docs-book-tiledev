@@ -1,7 +1,7 @@
 ---
 book_repo: pivotal-cf/docs-book-tiledev
 layout_repo: pivotal-cf/docs-layout-repo
-layout_repo_ref: master
+layout_repo_ref: main
 feedback_enabled: true
 
 broken_link_exclusions: iefix|arrowhead
@@ -204,7 +204,7 @@ sections:
         display_name: v2.2
       - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.1.pdf">v2.1</a>
       - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-2.0.pdf">v2.0</a>
-      - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-1.12.pdf">v1.12</a>  
+      - <a href="https://resources.docs.pivotal.io/pdfs/tiledev-guide-1.12.pdf">v1.12</a>
 - repository:
     name: cloudfoundry/docs-services
     ref: '12.21'
@@ -709,6 +709,6 @@ sections:
 
 - repository:
     name: pivotal-cf/docs-partials
-    ref: 'master'
+    ref: 'main'
   directory: pcf
   no_docs: true
