@@ -97,6 +97,6 @@ sections:
 
 - repository:
     name: pivotal-cf/docs-partials
-    ref: 'master'
+    ref: 'main'
   directory: pcf
   no_docs: true
