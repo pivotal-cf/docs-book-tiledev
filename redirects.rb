@@ -67,6 +67,6 @@ r301  %r{/tiledev/2-10}, "https://docs.vmware.com/en/Tile-Developer-Guide/2.10/t
 
 # Redirect from docs.pivotal.io/tiledev/3-0 to docs.vmware.com Tile Developer Guide docs
 
-r301  %r{/tiledev/2-10/([\w-]*\.html)}, "https://docs.vmware.com/en/Tile-Developer-Guide/3.0/tile-dev-guide/$1"
-r301  %r{/tiledev/2-10/}, "https://docs.vmware.com/en/Tile-Developer-Guide/3.0/tile-dev-guide/index.html"
-r301  %r{/tiledev/2-10}, "https://docs.vmware.com/en/Tile-Developer-Guide/3.0/tile-dev-guide/index.html"
+r301  %r{/tiledev/3-0/([\w-]*\.html)}, "https://docs.vmware.com/en/Tile-Developer-Guide/3.0/tile-dev-guide/$1"
+r301  %r{/tiledev/3-0/}, "https://docs.vmware.com/en/Tile-Developer-Guide/3.0/tile-dev-guide/index.html"
+r301  %r{/tiledev/3-0}, "https://docs.vmware.com/en/Tile-Developer-Guide/3.0/tile-dev-guide/index.html"
