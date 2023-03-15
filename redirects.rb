@@ -58,3 +58,9 @@ r301 %r{/tiledev/(\d+)-(\d+)/property-reference.html}, '/tiledev/property-templa
 r301 %r{/tiledev/2-1/(.*)}, 'http://docs.pivotal.io/archives/tiledev-guide-2.1.pdf'
 r301 %r{/tiledev/2-0/(.*)}, 'http://docs.pivotal.io/archives/tiledev-guide-2.0.pdf'
 r301 %r{/tiledev/1-12/(.*)}, 'http://docs.pivotal.io/archives/tiledev-guide-1.12.pdf'
+
+# Redirect from docs.pivotal.io/tiledev/2-10 to docs.vmware.com Tile Developer Guide docs
+
+r301  %r{/tiledev/2-10/([\w-]*\.html)}, "https://docs.vmware.com/en/Tile-Developer-Guide/2.10/tile-dev-guide/$1"
+r301  %r{/tiledev/2-10/}, "https://docs.vmware.com/en/Tile-Developer-Guide/2.10/tile-dev-guide/index.html"
+r301  %r{/tiledev/2-10}, "https://docs.vmware.com/en/Tile-Developer-Guide/2.10/tile-dev-guide/index.html"
