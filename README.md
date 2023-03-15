@@ -1,8 +1,14 @@
 <h2> This repo is for the Tile Developer Guide book ONLY. See the [Tile Developer Guide Content Repo](https://github.com/pivotal-cf/docs-tiledev) for the contents of this book.</h2>
 
+**Breaking Change**:
+
+The 2.10 and later docs have been migrated to [docs.vmware.com](https://docs.vmware.com). For these branches, this repo is only being used for redirects located in the `redirects.rb` file.
+
+For all files related to this documentation, including the table of contents (`toc.md`), see the content repo [pivotal-cf/docs-tiledev](https://github.com/pivotal-cf/docs-tiledev).
+
 ## PCF Services Documentation Template
 
-This template helps Pivotal development teams prepare documentation for Pivotal Cloud Foundry (PCF) services that appear on [Pivotal Network](https://network.pivotal.io/). 
+This template helps Pivotal development teams prepare documentation for Pivotal Cloud Foundry (PCF) services that appear on [Pivotal Network](https://network.pivotal.io/).
 
 ### <a id='overview'></a>Overview
 
@@ -15,7 +21,7 @@ You can use this template to develop documentation for a new PCF service. It inc
 To begin using this repo to develop your documentation, perform the following steps:
 
 1. Clone this repo onto your local machine.
-1. Work your way through each topic, replacing the placeholders in ALL-CAPS and following the instructions in **bold**. 
+1. Work your way through each topic, replacing the placeholders in ALL-CAPS and following the instructions in **bold**.
 1. Complete the subnav by replacing the placeholders in ALL-CAPS in the subnav file at `book/master_middleman/source/subnavs/service_subnav.erb` in this repo.
 1. View your documentation as a live local site in a browser, by following the steps below in the [How To Use Bookbinder To View Your Docs](#bookbinder) section.
 1. When you've finished your documentation, push your docs up to the remote and email the PCF Docs Team at cf-docs@pivotal.io.
@@ -72,7 +78,7 @@ In Terminal window:
     ```
     $ ssh-keygen
     Generating public/private rsa key pair.
-    Enter file in which to save the key (/Users/YOUR-USERID/.ssh/id_rsa): 
+    Enter file in which to save the key (/Users/YOUR-USERID/.ssh/id_rsa):
     ```
 
 1. Get a [Github](http://github.com) account.
@@ -126,7 +132,7 @@ In Terminal window:
 1. Run `bookbinder watch` to build the book on your machine. If it doesn't succeed, try prepending the command with `bundle exec` so that bookbinder uses local gems instead of global gems.
 
    `$ bundle exec bookbinder watch`
-   
+
 1. Browse to `localhost:4567` to view the book locally and "watch" any changes that you make to source `html.md.erb` files. As you make and save changes to the local source files for your site, you will see them in your browser after a slight delay.
 
 ![PCF Service Template landing page](book/master_middleman/source/images/pcfservices-template-landing.png)
@@ -136,5 +142,3 @@ In Terminal window:
 After each session of writing or revising your docs source files, commit and push them to your github repo.
 
 Happy documenting!
-
-
