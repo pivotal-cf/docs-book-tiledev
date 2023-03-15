@@ -2,6 +2,12 @@
 
 This template helps Pivotal development teams prepare documentation for Pivotal Cloud Foundry (PCF) services that appear on [Pivotal Network](https://network.pivotal.io/).
 
+**Breaking Change**:
+
+The 2.10 and later docs have been migrated to [docs.vmware.com](https://docs.vmware.com). For these branches, this repo is only being used for redirects located in the `redirects.rb` file.
+
+For all files related to this documentation, including the table of contents (`toc.md`), see the content repo [pivotal-cf/docs-tiledev](https://github.com/pivotal-cf/docs-tiledev).
+
 ### <a id='overview'></a>Overview
 
 Every PCF service has (or should have) documentation on the main Pivotal documentation site, [docs.pivotal.io](http://docs.pivotal.io) under **Pivotal Cloud Foundry Services**.
